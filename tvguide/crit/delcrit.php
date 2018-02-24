@@ -1,0 +1,30 @@
+<?php
+include "scufns.php";
+
+
+
+
+
+$crit = getReqValue('CRIT');
+$npage = getReqValue('NPAGE');
+
+# Might need to find a way to prevent multiple messages per IP from being added
+# to prevent malicious entries from being made
+# $ip = "unknownIP";
+
+
+$rc = 0;
+
+//$crit='^test.*$';
+//$npage="test";
+if(($crit!="") && ($npage!=""))
+{
+   $rc = delCrit($crit);
+}
+//echo "Return from addGuestBookEntry = $rc";
+	header("Location: http://" . $_SERVER['HTTP_HOST']
+                  . dirname($_SERVER['PHP_SELF'])
+                  . "/" . $npage);
+exit;
+
+?>

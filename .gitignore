@@ -1,0 +1,4 @@
+/trclogging.properties
+*.bak
+/.settings
+/bin

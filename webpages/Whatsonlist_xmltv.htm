@@ -1,0 +1,321 @@
+<html>
+
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+
+<SCRIPT LANGUAGE="JScript">
+var lastSelection = null;
+
+function onclickCell()
+{
+  var e, c;
+
+
+   e = window.event.srcElement;
+   c = findCell(e);
+
+   if (c != null)
+   {
+      if (lastSelection == null)
+      {
+         selectCell(c);
+         lastSelection = c;
+	   }
+	   else
+      {
+	      if (c == lastSelection)
+         {
+	         deselectCell(lastSelection);
+	      }
+	      else
+         {
+	         c.swapNode(lastSelection);
+            deselectCell(lastSelection);
+	         nSwaps += 1;
+	         numSwaps.innerText = nSwaps;
+		      checkWinner();
+	      }
+	      lastSelection = null;
+      }
+   }
+   window.event.cancelBubble = true;
+}
+
+function findCell(e)
+{
+   if (e.tagName == "TD")
+   {
+      return e;
+   }
+   else if (e.tagName == "BODY")
+   {
+      return null;
+   }
+   else
+   {
+      return findCell(e.parentElement);
+   }
+}
+
+function selectCell(c)
+{
+   c.runtimeStyle.backgroundColor = "red";
+   c.runtimeStyle.color = "white";
+}
+
+function cancelSelect()
+{
+   if (lastSelection != null)
+   {
+      deselectCell(lastSelection);
+      lastSelection = null;
+   }
+}
+
+function deselectCell(c)
+{
+   c.runtimeStyle.backgroundColor = "white";
+   c.runtimeStyle.color = "white";
+}
+
+document.onclick = cancelSelect;
+</SCRIPT>
+
+
+<STYLE ID=mainstyle TITLE="Main Style">
+H2 {font-family: helvetica ;
+   color: yellow}
+
+P  {color: yellow ;
+   font-family: 'Comic Sans MS'}
+
+
+TH {  color: blue ;
+      background-color :  "#808080" ;
+      font-family: 'Comic Sans MS' ;
+      font-weight: bold ;
+      font-size: 10pt
+   }
+
+TD {  color:blue ;
+      font-family: 'Comic Sans MS' ;
+      font-weight: bold ;
+      font-size: 10pt
+   }
+
+<!-- day 1 is Sunday
+
+-->
+.mon {color:yellow}
+.tue {color:yellow}
+.wed {color: yellow}
+.thu {color:yellow}
+.fri {color:yellow}
+.special {color: red}
+
+</STYLE>
+
+<SCRIPT>
+var todayname;
+function refresh()
+{
+var daynames = new Array("Su", "M", "T", "W", "Th", "F", "S");
+   now = new Date();
+   todayname = daynames[now.getDay()];
+
+   //Using the document all results in some objects which don't have
+   //suitable properties. Using the all collection associated with the
+   //named id should ensure that all elements have an innerText property.
+   var coln = document.all.Requests.all
+   for(i=0; i<coln.length; i++)
+   {
+      var elem = coln.item(i);
+
+      if(todayname == elem.innerText)
+      {
+         elem.style.color = "red";
+      }
+   }
+}
+
+function init()
+{
+  refresh();
+   window.setTimeout("refresh();", 60000);
+
+  // This seems to be the only way to find the value for base
+  var head = "";
+  for(i=0; i<document.all.length; i++)
+  {
+    if(document.all(i).tagName == "BASE")
+    {
+      head = document.all(i).href;
+    }
+  }
+  //alert("" + head);
+
+//  window.parent.frames("C45").location = "" + head + todayname + "c4.html";
+
+
+//This makes the changes based on the class of the item but requires a more complex HTML
+//statement to use.
+//var days = new Array("sun", "mon", "tue", "wed", "thu", "fri", "sat");
+//   today = days[now.getDay()];
+//   for(i=0; i<document.all.length; i++)
+//   {
+//      if(document.all(i).className == today)
+//         document.all(i).style.color = "red";
+//   }
+
+
+}
+</SCRIPT>
+
+<head><title>What's On</title></head>
+<BODY onLoad="init()" LINK="#0000ff" VLINK="#800080" BGCOLOR="#c0c0c0" ALIGN=CENTER BACKGROUND="/images/tvback.gif">
+<P>What's On
+
+<TABLE NAME=Requests ID=Requests BORDER=1 CELLSPACING=1 BORDERCOLOR="#808080">
+<TR><TD>BBC&nbsp;1</TD><TD><A HREF="tv/BBC1_Mon.html" target="INFO">M</A></TD>
+                       <TD><A HREF="tv/BBC1_Tue.html" target="INFO">T</A></TD>
+                       <TD><A HREF="tv/BBC1_Wed.html" target="INFO">W</A></TD>
+                       <TD><A HREF="tv/BBC1_Thu.html" target="INFO">Th</A></TD>
+                       <TD><A HREF="tv/BBC1_Fri.html" target="INFO">F</A></TD>
+                       <TD><A HREF="tv/BBC1_Sat.html" target="INFO">S</A></TD>
+                       <TD><A HREF="tv/BBC1_Sun.html" target="INFO">Su</A></TD>
+
+<TR><TD>BBC&nbsp;2</TD><TD><A HREF="tv/BBC2_Mon.html" target="INFO">M</A></TD>
+                       <TD><A HREF="tv/BBC2_Tue.html" target="INFO">T</A></TD>
+                       <TD><A HREF="tv/BBC2_Wed.html" target="INFO">W</A></TD>
+                       <TD><A HREF="tv/BBC2_Thu.html" target="INFO">Th</A></TD>
+                       <TD><A HREF="tv/BBC2_Fri.html" target="INFO">F</A></TD>
+                       <TD><A HREF="tv/BBC2_Sat.html" target="INFO">S</A></TD>
+                       <TD><A HREF="tv/BBC2_Sun.html" target="INFO">Su</A></TD>
+
+<TR><TD>BBC&nbsp;3</TD><TD><A HREF="tv/BBC3_Mon.html" target="INFO">M</A></TD>
+                       <TD><A HREF="tv/BBC3_Tue.html" target="INFO">T</A></TD>
+                       <TD><A HREF="tv/BBC3_Wed.html" target="INFO">W</A></TD>
+                       <TD><A HREF="tv/BBC3_Thu.html" target="INFO">Th</A></TD>
+                       <TD><A HREF="tv/BBC3_Fri.html" target="INFO">F</A></TD>
+                       <TD><A HREF="tv/BBC3_Sat.html" target="INFO">S</A></TD>
+                       <TD><A HREF="tv/BBC3_Sun.html" target="INFO">Su</A></TD>
+<TR><TD>BBC&nbsp;4</TD><TD><A HREF="tv/BBC4_Mon.html" target="INFO">M</A></TD>
+                       <TD><A HREF="tv/BBC4_Tue.html" target="INFO">T</A></TD>
+                       <TD><A HREF="tv/BBC4_Wed.html" target="INFO">W</A></TD>
+                       <TD><A HREF="tv/BBC4_Thu.html" target="INFO">Th</A></TD>
+                       <TD><A HREF="tv/BBC4_Fri.html" target="INFO">F</A></TD>
+                       <TD><A HREF="tv/BBC4_Sat.html" target="INFO">S</A></TD>
+                       <TD><A HREF="tv/BBC4_Sun.html" target="INFO">Su</A></TD>
+<TR><TD>R2</TD><TD>&nbsp;</TD>
+                       <TD>&nbsp;</TD>
+                       <TD>&nbsp;</TD>
+                       <TD>&nbsp;</TD>
+                       <TD><A HREF="..\quotes\Frir2.html" target="INFO">F</A></TD>
+                       <TD><A HREF="..\quotes\Satr2.html" target="INFO">S</A></TD>
+                       <TD><A HREF="..\quotes\Sunr2.html" target="INFO">Su</A></TD>
+
+<TR><TD>R4</TD><TD><A HREF="..\quotes\Monr4.html" target="INFO">M</A></TD>
+                       <TD>&nbsp;</TD>
+                       <TD>&nbsp;</TD>
+                       <TD>&nbsp;</TD>
+                       <TD>&nbsp;</TD>
+                       <TD><A HREF="..\quotes\Satr4.html" target="INFO">S</A></TD>
+                       <TD><A HREF="..\quotes\Sunr4.html" target="INFO">Su</A></TD>
+<TR><TD>ITV&nbsp;1</TD><TD><A HREF="tv/ITV1London_Mon.html" target="INFO">M</A></TD>
+                       <TD><A HREF="tv/ITV1London_Tue.html" target="INFO">T</A></TD>
+                       <TD><A HREF="tv/ITV1London_Wed.html" target="INFO">W</A></TD>
+                       <TD><A HREF="tv/ITV1London_Thu.html" target="INFO">Th</A></TD>
+                       <TD><A HREF="tv/ITV1London_Fri.html" target="INFO">F</A></TD>
+                       <TD><A HREF="tv/ITV1London_Sat.html" target="INFO">S</A></TD>
+                       <TD><A HREF="tv/ITV1London_Sun.html" target="INFO">Su</A></TD>
+</TR>
+<TR><TD>C&nbsp;4</TD>  <TD><A HREF="tv/Channel4_Mon.html" target="INFO">M</A></TD>
+                       <TD><A HREF="tv/Channel4_Tue.html" target="INFO">T</A></TD>
+                       <TD><A HREF="tv/Channel4_Wed.html" target="INFO">W</A></TD>
+                       <TD><A HREF="tv/Channel4_Thu.html" target="INFO">Th</A></TD>
+                       <TD><A HREF="tv/Channel4_Fri.html" target="INFO">F</A></TD>
+                       <TD><A HREF="tv/Channel4_Sat.html" target="INFO">S</A></TD>
+                       <TD><A HREF="tv/Channel4_Sun.html" target="INFO">Su</A></TD>
+</TR>
+<TR><TD>C&nbsp;5</TD>  <TD><A HREF="tv/Five_Mon.html" target="INFO">M</A></TD>
+                       <TD><A HREF="tv/Five_Tue.html" target="INFO">T</A></TD>
+                       <TD><A HREF="tv/Five_Wed.html" target="INFO">W</A></TD>
+                       <TD><A HREF="tv/Five_Thu.html" target="INFO">Th</A></TD>
+                       <TD><A HREF="tv/Five_Fri.html" target="INFO">F</A></TD>
+                       <TD><A HREF="tv/Five_Sat.html" target="INFO">S</A></TD>
+                       <TD><A HREF="tv/Five_Sun.html" target="INFO">Su</A></TD>
+</TR>
+<TR><TD>ITV&nbsp;2</TD><TD><A HREF="tv/ITV2_Mon.html" target="INFO">M</A></TD>
+                       <TD><A HREF="tv/ITV2_Tue.html" target="INFO">T</A></TD>
+                       <TD><A HREF="tv/ITV2_Wed.html" target="INFO">W</A></TD>
+                       <TD><A HREF="tv/ITV2_Thu.html" target="INFO">Th</A></TD>
+                       <TD><A HREF="tv/ITV2_Fri.html" target="INFO">F</A></TD>
+                       <TD><A HREF="tv/ITV2_Sat.html" target="INFO">S</A></TD>
+                       <TD><A HREF="tv/ITV2_Sun.html" target="INFO">Su</A></TD>
+</TR>
+<TR><TD>ITV&nbsp;3</TD><TD><A HREF="tv/ITV3_Mon.html" target="INFO">M</A></TD>
+                       <TD><A HREF="tv/ITV3_Tue.html" target="INFO">T</A></TD>
+                       <TD><A HREF="tv/ITV3_Wed.html" target="INFO">W</A></TD>
+                       <TD><A HREF="tv/ITV3_Thu.html" target="INFO">Th</A></TD>
+                       <TD><A HREF="tv/ITV3_Fri.html" target="INFO">F</A></TD>
+                       <TD><A HREF="tv/ITV3_Sat.html" target="INFO">S</A></TD>
+                       <TD><A HREF="tv/ITV3_Sun.html" target="INFO">Su</A></TD>
+</TR>
+<TR><TD>ITV&nbsp;4</TD><TD><A HREF="tv/ITV4_Mon.html" target="INFO">M</A></TD>
+                       <TD><A HREF="tv/ITV4_Tue.html" target="INFO">T</A></TD>
+                       <TD><A HREF="tv/ITV4_Wed.html" target="INFO">W</A></TD>
+                       <TD><A HREF="tv/ITV4_Thu.html" target="INFO">Th</A></TD>
+                       <TD><A HREF="tv/ITV4_Fri.html" target="INFO">F</A></TD>
+                       <TD><A HREF="tv/ITV4_Sat.html" target="INFO">S</A></TD>
+                       <TD><A HREF="tv/ITV4_Sun.html" target="INFO">Su</A></TD>
+</TR>
+<TR><TD>SKY&nbsp;3</TD><TD><A HREF="tv/SkyThree_Mon.html" target="INFO">M</A></TD>
+                       <TD><A HREF="tv/SkyThree_Tue.html" target="INFO">T</A></TD>
+                       <TD><A HREF="tv/SkyThree_Wed.html" target="INFO">W</A></TD>
+                       <TD><A HREF="tv/SkyThree_Thu.html" target="INFO">Th</A></TD>
+                       <TD><A HREF="tv/SkyThree_Fri.html" target="INFO">F</A></TD>
+                       <TD><A HREF="tv/SkyThree_Sat.html" target="INFO">S</A></TD>
+                       <TD><A HREF="tv/SkyThree_Sun.html" target="INFO">Su</A></TD>
+</TR>
+<TR><TD>FilmFour</TD><TD><A HREF="tv/FilmFour_Mon.html" target="INFO">M</A></TD>
+                       <TD><A HREF="tv/FilmFour_Tue.html" target="INFO">T</A></TD>
+                       <TD><A HREF="tv/FilmFour_Wed.html" target="INFO">W</A></TD>
+                       <TD><A HREF="tv/FilmFour_Thu.html" target="INFO">Th</A></TD>
+                       <TD><A HREF="tv/FilmFour_Fri.html" target="INFO">F</A></TD>
+                       <TD><A HREF="tv/FilmFour_Sat.html" target="INFO">S</A></TD>
+                       <TD><A HREF="tv/FilmFour_Sun.html" target="INFO">Su</A></TD>
+</TR>
+</TABLE>
+
+Listings are supplied by The Radio Times XML web service.
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

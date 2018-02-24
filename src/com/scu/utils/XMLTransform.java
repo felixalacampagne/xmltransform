@@ -1,11 +1,9 @@
 package com.scu.utils;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -191,8 +189,7 @@ public final static String ARG_OUTFILE = "-out";
 	   DOMSource xmlsrc = null;
 	   StreamSource xslsrc = null;
 	   StreamResult outrst = null;
-      StringWriter sw = null;
-	   TransformerFactory tf = null;
+      TransformerFactory tf = null;
 	   Transformer tx = null;
 	   String skey = null;
 
@@ -235,10 +232,6 @@ public final static String ARG_OUTFILE = "-out";
 	      xslsrc = new StreamSource(xslfile);
          if(outfile == null)
          {
-            // Could write to a string buffer instead but this might cause problems
-            // if the transform generates a large output. But if it does that and the
-            // output isn't being saved anywhere then what is the point in doing it!!
-            sw = new StringWriter();
             outrst = new StreamResult(new FileOutputStream(File.createTempFile("scu","xmlt")));
          }
          else

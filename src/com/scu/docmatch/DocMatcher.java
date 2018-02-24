@@ -6,7 +6,6 @@ import org.w3c.dom.Document;
 
 import com.scu.utils.CmdArgMgr;
 import com.scu.utils.XMLTransform;
-import com.scu.xmltv.HTMLMaker;
 
 
 public class DocMatcher
@@ -37,7 +36,6 @@ public String doMatch()
 {
 String result = null;
 XMLTransform xmlt = new XMLTransform();
-File f;
 
 Document doc2 = null;
 
@@ -76,9 +74,7 @@ public static void main(String[] args)
 
    String [] keys = null;
 
-   XMLTransform xmlt = new XMLTransform();
-
-      cmd.parseArgs(args);
+   cmd.parseArgs(args);
       keys = cmd.getArgNames();
 
       for(int i = 0; i<keys.length; i++)
@@ -106,7 +102,6 @@ public static void main(String[] args)
 
       DocMatcher dm = new DocMatcher(doc1file, doc2file, xsltfile);
       dm.setOutputfile(outfile);
-      String result = dm.doMatch();
    
 }
 }

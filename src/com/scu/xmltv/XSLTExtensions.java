@@ -1,13 +1,10 @@
 package com.scu.xmltv;
 import org.w3c.dom.*;
-import org.w3c.dom.traversal.NodeIterator;
 import org.xml.sax.InputSource;
 
 import com.scu.utils.FileTools;
 import com.scu.utils.XMLTransform;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.net.URLEncoder;
@@ -18,16 +15,12 @@ import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
-import javax.xml.xpath.XPathFunction;
 
 public class XSLTExtensions
 {
@@ -352,7 +345,6 @@ public class XSLTExtensions
     */
    public static String addToDate(String xmltvdate, String field, int ivalue)
    {
-   String rs = "";
    Date dt = null;
    String stmp = null;
    SimpleDateFormat sdf = new SimpleDateFormat();
@@ -422,7 +414,6 @@ public class XSLTExtensions
     */
    public static Node getDateRanges()
    {
-   XMLTransform xmlt = new XMLTransform();
    Date dt = new Date();
    SimpleDateFormat sdf = new SimpleDateFormat();
    GregorianCalendar cal = new GregorianCalendar();

@@ -2,11 +2,8 @@ package com.scu.xmltv;
 
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.net.URLEncoder;
 
-import javax.xml.transform.Result;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamResult;
 
 
@@ -16,7 +13,6 @@ import org.apache.xalan.templates.ElemExtensionCall;
 import org.apache.xalan.templates.OutputProperties;
 import org.apache.xalan.transformer.TransformerImpl;
 import org.apache.xml.serializer.SerializationHandler;
-import org.w3c.dom.Node;
 
 
 public class ExtensionElements
@@ -32,7 +28,6 @@ throws java.net.MalformedURLException,
 {
 TransformerImpl transf = context.getTransformer();
 String encurl = null;
-StringBuffer sb = new StringBuffer();
 SerializationHandler origSerializationHandler = null;
    try
    {

@@ -134,10 +134,8 @@ public static void main(String[] args)
 {
    CmdArgMgr cmd = new CmdArgMgr();
    String outfile = null;
-   String inifile = null;
    String [] keys = null;
-   String faveonly = null;
-   XMLTransform xmlt = new XMLTransform();
+   new XMLTransform();
 
       cmd.parseArgs(args);
       keys = cmd.getArgNames();

@@ -6,23 +6,10 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.text.SimpleDateFormat;
-
-import javax.xml.XMLConstants;
-import javax.xml.xpath.*;
-
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-
 import com.scu.utils.CmdArgMgr;
 import com.scu.utils.FileTools;
 import com.scu.utils.XMLTransform;
@@ -47,8 +34,6 @@ public static void main(String[] args)
    String outfile = null;
    String inifile = null;
    String [] keys = null;
-   String faveonly = null;
-   XMLTransform xmlt = new XMLTransform();
 
       // Can't override the jar manifest start class by specifying
       // a class on the command line, so have to provide access from here!
@@ -361,7 +346,6 @@ String inp = FileTools.readStringFromFile(fileabspath);
 String op = "";
 String mrksig="<FONT COLOR='#00FF00' SIZE='+1'>";
 String mrktrm="</FONT></U></A>";
-String docdate="";
 String xmldate = "";
 String channel = "";
 int ic = 0;
@@ -449,7 +433,6 @@ String titlecrit = "";
                end += mrktrm.length();
             }
             xmldate = "";
-            docdate = "";
             channel = "";
             // This only works if the match was in the program title column and matched the
             // complete title. I've tried to force this by adding the <B> delimiters but is
@@ -463,7 +446,6 @@ String titlecrit = "";
                if(match2.find(end))
                {
                   xmldate = inp.substring(match2.start(1), match2.end(1));
-                  docdate = XSLTExtensions.getTime(xmldate) + " " + XSLTExtensions.getLongDate(xmldate);
                }               
                match2 = Pattern.compile("\\<CHANNEL\\>(.*)\\</CHANNEL\\>").matcher(inp);
                if(match2.find(end))
@@ -472,17 +454,7 @@ String titlecrit = "";
                }
             }
             
-            //if(docdate.length() == 0)
-            //{
-            //   docdate = file.getName();
-            //}
-            //else if(channel.length() == 0)
-            //{
-            //   channel = file.getName() + ", ";
-            //}
-            
-            //fav += " (" + channel + docdate + ")";
-            //fav += "<BR>" + "\n";
+
             
             fav = "<FAV>" +
                   "<PROG>" + smat + "</PROG>\n" +

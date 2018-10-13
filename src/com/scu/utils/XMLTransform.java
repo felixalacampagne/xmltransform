@@ -253,11 +253,9 @@ public final static String ARG_OUTFILE = "-out";
 	         tx = tf.newTransformer(xslsrc);
 
 	         //System.err.println("XMLProcessor.transformXML: add parameters to the transformer");
-            for(Iterator it = mParams.keySet().iterator(); it.hasNext();)
-	         //for (Enumeration e = mParams.propertyNames() ; e.hasMoreElements() ;)
+            for(Iterator<String> it = mParams.keySet().iterator(); it.hasNext();)
 	         {
-	            //skey = (String) e.nextElement();
-               skey = (String) it.next();
+               skey = it.next();
 	            tx.setParameter(skey, mParams.get(skey));
 	         }
 

@@ -5,7 +5,6 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.apache.xalan.extensions.XSLProcessorContext;
 import org.apache.xalan.templates.ElemExtensionCall;
-import org.apache.xalan.templates.ElemLiteralResult;
 import org.apache.xalan.templates.OutputProperties;
 import org.apache.xalan.transformer.TransformerImpl;
 import org.apache.xml.serializer.SerializationHandler;

@@ -3,7 +3,6 @@ import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 
 import com.scu.utils.FileTools;
-import com.scu.utils.XMLTransform;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -248,7 +247,7 @@ public class XSLTExtensions
    /**
     * SimpleDateFormat is too stupid to realise that not all of a date has been passed in,
     * ie 20060728 instead of 20060728000000 +0000.
-    * So this method addjust the pattern to fit the number of fields which have been supplied.
+    * So this method adjusts the pattern to fit the number of fields which have been supplied.
     * The string must contain an integral number of fields or an exception will still result 
     * @param xmltvdatetime
     * @return
@@ -566,49 +565,4 @@ public class XSLTExtensions
       return encurl;
    }
 
-   /* This is specific to the real xalan 2.7.0. It doesn't work with the normal Java implementation
-    * or with the Web Services 2.0 dev pack
-   public static String urlencodeXLM(org.apache.xalan.extensions.XSLProcessorContext ctx, org.apache.xalan.templates.ElemExtensionCall exc)
-   {
-   String encurl = "";
-   String url = "";
-      try
-      {
-         Node ctxN = ctx.getContextNode();
-         System.out.println("Name=" + ctxN.getNodeName());
-         System.out.println("Type=" + ctxN.getNodeType());
-         System.out.println("Text=" + ctxN.getTextContent());
-         System.out.println("Children=" + (ctxN.getChildNodes()==null ? ctxN.getChildNodes().getLength() : "none"));
-         // So ContextNode is the current source node being operated on by the transformer.
-         // What I want is the content of my element.... maybe it's in exc...
-         
-
-         System.out.println("Name=" + exc.getNodeName());
-         System.out.println("Type=" + exc.getNodeType());
-         System.out.println("Text=" + exc.getTextContent());
-         System.out.println("Children=" + (exc.getChildNodes()==null ? exc.getChildNodes().getLength() : "none"));
-         
-         
-         
-         
-         // JDK docs say this will convert a space into a "+". Never seen this before
-         // so might still have to manually convert spaces into %20s first!!
-         // The docs use the HTML spec as the justification for converting the space
-         // to a plus, but I can't see where this is stated. In fact I did find something
-         // stating that a space should be encoded as %20, but maybe it is different for
-         // values used in the 'query' part of the URI rather than the 'path' part. The specs
-         // do not go into much detail about how to handle the 'query' part.
-         // So I'll convert the +s into %20s for now
-         encurl = URLEncoder.encode(url,"UTF-8");
-         
-         // Seems the pluses are OK with the DreamBox
-         //encurl = encurl.replace("+", "%20");
-      }
-      catch(Exception ex)
-      {
-         ex.printStackTrace();
-      }
-      return encurl;
-   }
-   */   
 }

@@ -43,12 +43,20 @@ public class XSLTExtensions
     * @param favs
     * @return
     */
-   public static boolean isMatch(String value, NodeList regexps)
+	public static boolean isMatch(String value, NodeList regexps)
+	{
+		// Implement the 'new' behaviour by default
+		return isMatch(value, regexps, true);
+	}
+	
+   public static boolean isMatch(String value, NodeList regexps, boolean igncase)
    {
-   Matcher match = null;
+  // Matcher match = null;
    Node node = null;
+
       if(regexps == null)
          return false;
+
       try
       {
          //System.out.println("isMatch: Checking " + regexps.getLength() + " reg.exps.");
@@ -100,14 +108,16 @@ public class XSLTExtensions
                }
             }
 
-            if(crit != null)
-            {
-               match = Pattern.compile(crit).matcher(value);
-               if(match.find())
-               {
-                  return true;
-               }
-            }
+            if(isMatch(value, crit, igncase))
+            	return true;
+//            if(crit != null)
+//            {
+//               match = Pattern.compile(crit, flags).matcher(value);
+//               if(match.find())
+//               {
+//                  return true;
+//               }
+//            }
          }
       }
       catch(Exception ex)
@@ -117,6 +127,31 @@ public class XSLTExtensions
       return false;
    }
 
+   public static boolean isMatch(String value, String regexp)
+   {
+   	return isMatch(value, regexp, true);
+   }
+   
+   public static boolean isMatch(String value, String regexp, boolean igncase)
+   {
+   	Matcher match = null;
+   	int flags = 0;
+      if(igncase)
+      {
+      	flags = Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE;
+      } 
+      if(regexp != null)
+      {
+         match = Pattern.compile(regexp, flags).matcher(value);
+         if(match.find())
+         {
+            return true;
+         }
+      }
+      return false;
+   }      
+   
+   
    // Attempt to work around the ArrayIndexOutOfBoundsException seen with the default Java 1.5
    // XSLT processor...
    public static boolean isMatchAlt(String value, Node crits)

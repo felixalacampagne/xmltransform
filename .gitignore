@@ -1,5 +1,6 @@
-/trclogging.properties
+trclogging.properties
 *.bak
-/.settings
-/bin
-/HTMLMaker.jar
+.settings
+bin
+HTMLMaker.jar
+lib/**

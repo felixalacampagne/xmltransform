@@ -3,4 +3,5 @@ trclogging.properties
 .settings
 bin
 HTMLMaker.jar
-lib/**
+lib
+*.zip

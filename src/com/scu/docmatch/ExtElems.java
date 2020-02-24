@@ -20,7 +20,7 @@ public String elmtval(XSLProcessorContext context, ElemExtensionCall elem)
 TransformerImpl transf = context.getTransformer();
 String result = null;
 SerializationHandler origSerializationHandler = null;
-
+ 
    try
    {
 
@@ -37,7 +37,7 @@ SerializationHandler origSerializationHandler = null;
    transf.executeChildTemplates(elem, context.getContextNode(), context.getMode(), flistener);      
    flistener.endDocument();
 
-   
+    
 
    result = new String(ostream.toByteArray(), "UTF-8");
 

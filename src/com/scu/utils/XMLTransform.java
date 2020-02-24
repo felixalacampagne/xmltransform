@@ -3,13 +3,16 @@ package com.scu.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.apache.xpath.XPathAPI;
 import org.w3c.dom.*;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
@@ -440,7 +443,181 @@ public final static String ARG_OUTFILE = "-out";
          }
          return doc;
       }
-      
+	   
+	   public static String getNodeValue(Node annode, String anodename)
+	   {
+	   NodeList nl = null;
+	   String anodevalue = null;
+
+	      if((annode == null) || ((nl = annode.getChildNodes()) == null))
+	            return anodevalue;
+	      try
+	      {
+	         for (int k = 0; k < nl.getLength(); k++)
+	         {
+	            if (nl.item(k).getNodeName().compareTo(anodename) == 0)
+	            {
+	               anodevalue = nl.item(k).getChildNodes().item(0).getNodeValue();
+	            }
+	         }
+	      }
+	      catch (Exception ex)
+	      {
+	         Logger.getLogger().logSpecific(Logger.LOW, "getNodeValue",
+	                                           "Failed to extract value of " + anodename + " from " + annode.getLocalName() + ex);
+	      }
+	      return anodevalue;
+	   }     
+
+	   // Returns null if the xpath is not valid.
+	   public static NodeList getNodesByPath(Node doc, String xpath)
+	   {
+	   NodeList nl = null;
+
+	      try
+	      {
+	         nl = XPathAPI.selectNodeList(doc, xpath);
+	      }
+	      catch(Exception ex)
+	      {
+	         Logger.getLogger().logSpecific(Logger.MEDIUM, "XMLUtilities.getNodeValueByPath",
+	                               "Error getting " + xpath + ex);
+
+	      }
+	      return nl;
+	   }
+
+	   public static String nodeToString( Node n ) throws TransformerConfigurationException, TransformerException
+	   {
+	   String strRet = null;
+
+	      // Prepare the DOM document for writing
+	      Source source = new DOMSource(n);
+
+	      // Prepare a large enough String Buffer to hold the XML file (Interact only supports up to 100k anyway)
+	      StringWriter myWriter = new StringWriter(110000);
+
+	      // Prepare the output stream
+	      Result result = new StreamResult(myWriter);
+
+	      // Write the DOM document to the file
+	      // Get Transformer
+	      TransformerFactory xfact = TransformerFactory.newInstance();
+	      //xfact.setAttribute("indent", "yes");
+
+	      Transformer xformer = xfact.newTransformer();
+
+	      // This doesn't appear to work correctly - nothing is actually indented
+	      xformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+	      // Write to a file
+	      xformer.transform(source, result);
+
+	      strRet = myWriter.toString();
+
+	      if (strRet.indexOf("<?") != -1)
+	      {
+	         int iPos = strRet.indexOf("?>");
+	         if (iPos > -1)
+	         {
+	            strRet = strRet.substring(iPos + 2);
+	         }
+	     }
+
+	     return strRet;
+	   }
+
+	   public static void outputNode( Node n, File f) throws Exception
+	   {
+	   	outputNode(n, new FileWriter(f));
+	   }
+	   
+	   public static void outputNode( Node n, Writer w) throws Exception
+	   {
+	      // Prepare the DOM document for writing
+	      Source source = new DOMSource(n);
+
+	      // Prepare the output stream
+	      Result result = new StreamResult(w);
+
+	      // Write the DOM document to the file
+	      // Get Transformer
+	      TransformerFactory xfact = TransformerFactory.newInstance();
+	      //xfact.setAttribute("indent", "yes");
+
+	      Transformer xformer = xfact.newTransformer();
+
+	      // This doesn't appear to work correctly - nothing is actually indented
+	      xformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+	      // Write to a file
+	      xformer.transform(source, result);
+	      w.close();
+	     return;
+	   }	
+	   
+	   public static Node getNodeByPath(Node doc, String xpath) throws TransformerException
+	   {
+	   NodeList nl = null;
+	   Node n = null;
+	      nl = XPathAPI.selectNodeList(doc, xpath);
+	      if((nl != null) && (nl.getLength() > 0))
+	      {
+	      	n = nl.item(0);
+	      }
+	      return n;
+	   }
+
+
+
+	   public static String getAttributeValue(Node n, String attrname)
+	   {
+	   NamedNodeMap attrs = n.getAttributes();
+	   Node attr = attrs.getNamedItem(attrname);
+	   String value = null;
+	   	if(attr != null)
+	   	{
+	   		value = attr.getNodeValue();
+	   	}
+	   	return value;
+	   }
+	   
+	   public void writeNodeToFile(Node n, String filename) throws Exception
+	   {
+	   String refxml = XMLTransform.nodeToString(n);
+
+	   // TODO get rid of this.....
+	   FileOutputStream fos = null;
+	   try
+	   {
+	      fos = new FileOutputStream(filename);
+	   }
+	   catch (Exception e)
+	   {
+	      System.out.println("writeUpdatedXMLTV: Exception thrown by FileOutputStream constructor:\n" +
+	                         e + "\nString to dump :\n" + refxml );
+	      return;
+	   }
+	   try
+	   {
+	      fos.write(refxml.getBytes("UTF-8"));
+	   }
+	   catch (Exception e)
+	   {
+	      System.out.println("writeUpdatedXMLTV:  Exception thrown by FileOutputStream::write() :\n" +
+	                         e + "\nString to dump :\n" + refxml );
+	   }
+	   try
+	   {
+	      fos.close();
+	   }
+	   catch (Exception e)
+	   {
+
+	   }
+
+	   return;	
+	   }	   
 }
 
 // Should be in a class of it's own really

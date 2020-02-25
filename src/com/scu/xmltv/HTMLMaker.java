@@ -34,7 +34,19 @@ public static void main(String[] args)
          MergeFiles.main(args);
          System.exit(0);
       }
-
+      else if(cmd.getArg(XMLTVSourceCombiner.ARG_OUTFILE) != null)
+      {
+      	try
+			{
+				XMLTVSourceCombiner.main(args);
+			}
+			catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+         System.exit(0);
+      }
       keys = cmd.getArgNames();
 
       

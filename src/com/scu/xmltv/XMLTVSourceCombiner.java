@@ -8,6 +8,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.scu.utils.CmdArgMgr;
 import com.scu.utils.NodeUtils;
 
 
@@ -27,6 +28,11 @@ import com.scu.utils.NodeUtils;
  */
 public class XMLTVSourceCombiner
 {
+public final static String ARG_OUTFILE = "-combine";
+private static final String ARG_REF = "-ref";
+private static final String ARG_ALT = "-alt";
+private static final String ARG_RESULT = "-res";	
+
 private final File refXMLTV;
 private final File altXMLTV;
 private final NodeUtils nu = NodeUtils.getNodeUtils();
@@ -110,4 +116,44 @@ public void writeUpdatedXMLTV(String filename) throws Exception
 	nu.outputNode(this.refDoc, new File(filename));
 }
 
+
+public static void main(String[] args) throws Exception
+{
+CmdArgMgr cmd = new CmdArgMgr();
+String ref = null;
+String alt = null;
+String result = null;
+String [] keys = null;
+	
+	cmd.parseArgs(args);
+	keys = cmd.getArgNames();
+	
+	
+	for(int i = 0; i<keys.length; i++)
+	{
+	   String val = cmd.getArg(keys[i]);
+	   if(ARG_REF.compareTo(keys[i]) == 0)
+	      ref = val;
+	   else if(ARG_ALT.compareTo(keys[i]) == 0)
+	      alt = val;
+	   else if(ARG_RESULT.compareTo(keys[i]) == 0)
+	      result = val;
+	}
+	
+	
+	if((ref==null) || (alt==null) || (result==null))
+	{
+	   System.out.println("Usage: HTMLMaker " + ARG_REF + "=<reference file> " +
+	   		ARG_ALT + "=<alternative file> " +
+	   		ARG_RESULT + "=<result> ");
+	   System.exit(1);
+	}
+	
+	
+	
+	XMLTVSourceCombiner sc = new XMLTVSourceCombiner(ref, alt);
+	sc.combineSource("sub-title");
+	sc.combineSource("episode-num");
+	sc.writeUpdatedXMLTV(result);
+}
 }

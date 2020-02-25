@@ -8,7 +8,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.scu.utils.XMLTransform;
+import com.scu.utils.NodeUtils;
 
 
 /**
@@ -29,9 +29,10 @@ public class XMLTVSourceCombiner
 {
 private final File refXMLTV;
 private final File altXMLTV;
-
+private final NodeUtils nu = NodeUtils.getNodeUtils();
 private Document refDoc = null;
 private Document altDoc = null;
+java.util.logging.Logger log = java.util.logging.Logger.getLogger(this.getClass().getName());
 
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
@@ -43,8 +44,8 @@ public void combineSource(String fieldname)
 {
 	if(refDoc == null)
 	{
-		refDoc = XMLTransform.parseXML(refXMLTV);
-		altDoc = XMLTransform.parseXML(altXMLTV);
+		refDoc = nu.parseXML(refXMLTV);
+		altDoc = nu.parseXML(altXMLTV);
 	}
 	
 	// Select all the /tv/programme nodes with no episode-num value
@@ -56,56 +57,57 @@ public void combineSource(String fieldname)
 	
 	
 	NodeList progs = null;
-	progs = XMLTransform.getNodesByPath(refDoc, "/tv/programme[not(" + fieldname + ")]");
+	progs = nu.getNodesByPath(refDoc, "/tv/programme[not(" + fieldname + ")]");
 	for(int i = 0; i <  progs.getLength(); i++)
 	{
 		Node refProg = progs.item(i);
-		String title = XMLTransform.getNodeValue(refProg, "title");
+		String title = nu.getNodeValue(refProg, "title");
 		
 		// Locate a matching node in altDoc with a fieldname
-		String starttime = XMLTransform.getAttributeValue(refProg, "start");
-		String chanid = XMLTransform.getAttributeValue(refProg, "channel");
+		String starttime = nu.getAttributeValue(refProg, "start");
+		String chanid = nu.getAttributeValue(refProg, "channel");
 		
 		
-		NodeList altprogs = XMLTransform.getNodesByPath(altDoc, "/tv/programme[@start='" + starttime + "' and @channel='" + chanid + "']");
+		NodeList altprogs = nu.getNodesByPath(altDoc, "/tv/programme[@start='" + starttime + "' and @channel='" + chanid + "']");
 		
 		if(altprogs == null || (altprogs.getLength() == 0))
 		{
-			System.out.println("No program found in alt source for: start=" + starttime + " and channel= " + chanid + " (title=" +  title + ")");
+			log.fine("combineSource: No program found in alt source for: start=" + starttime + " and channel= " + chanid + " (title=" +  title + ")");
 			continue;
 		}
 		else if(altprogs.getLength() > 1)
 		{
-			System.out.println("Multiple programs found in alt source for: start=" + starttime + " and channel= " + chanid + " (title=" +  title + ")");
+			log.info("combineSource: Multiple programs found in alt source for: start=" + starttime + " and channel= " + chanid + " (title=" +  title + ")");
 		}
 		
 		Node altProg = altprogs.item(0);
 		Node altFld = null;
 		try
 		{
-			altFld = XMLTransform.getNodeByPath(altProg, fieldname);
+			altFld = nu.getNodeByPath(altProg, fieldname);
 			if((altFld == null))
 			{
-				System.out.println("Alt source has no field '" + fieldname + "' for '" + title + "'");
+				log.fine("combineSource: Alt source has no field '" + fieldname + "' for '" + title + "'");
 				continue;
 			}
 		}
 		catch(TransformerException tex)
 		{
-			System.err.println("combineSource: exception finding field:" + fieldname + ": " + tex);
+			log.info("combineSource: exception finding field:" + fieldname + ": " + tex);
 			continue;
 		}
 
 		Node newNode = altFld.cloneNode(true);  // Create a duplicate node
 	   refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
 	   refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
+	   log.info("combineSource: updated '" + title + "' (" + starttime + " " + chanid + "): " + newNode.getTextContent());
 
 	}
 }
 
 public void writeUpdatedXMLTV(String filename) throws Exception
 {
-	XMLTransform.outputNode(this.refDoc, new File(filename));
+	nu.outputNode(this.refDoc, new File(filename));
 }
 
 }

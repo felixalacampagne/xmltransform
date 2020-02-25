@@ -7,7 +7,8 @@ public class DummyMain
 	{
 		XMLTVSourceCombiner sc = new XMLTVSourceCombiner(args[0], args[1]);
 		sc.combineSource("episode-num");
-		sc.writeUpdatedXMLTV(args[1] + ".upd");
+		sc.combineSource("sub-title");
+		sc.writeUpdatedXMLTV(args[2]);
 	}
 
 }

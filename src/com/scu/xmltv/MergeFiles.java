@@ -9,7 +9,7 @@ import java.util.List;
 import org.w3c.dom.Document;
 
 import com.scu.utils.CmdArgMgr;
-
+import com.scu.utils.NodeUtils;
 import com.scu.utils.XMLTransform;
 
 // Stupid class to merge multiple XMLTV files into one file for
@@ -22,7 +22,7 @@ public class MergeFiles
 public final static String ARG_OUTFILE = "-merge";
 private List<String> mFiles = new ArrayList<String>();
 private String mOutFile = null;
-
+final NodeUtils nu = NodeUtils.getNodeUtils();
 public MergeFiles(String outfile)
 {
    mOutFile = outfile;
@@ -96,7 +96,7 @@ int tve = 0;
    {
       try
       {
-         doc = XMLTransform.parseXML(new File(mFiles.get(i)));
+         doc = nu.parseXML(new File(mFiles.get(i)));
          inxmltv = XMLTransform.toXMLString(doc);
          chns = inxmltv.indexOf("<channel ");
          progs = inxmltv.indexOf("<programme ");

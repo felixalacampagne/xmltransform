@@ -5,6 +5,7 @@ import java.io.File;
 import org.w3c.dom.Document;
 
 import com.scu.utils.CmdArgMgr;
+import com.scu.utils.NodeUtils;
 import com.scu.utils.XMLTransform;
 
 
@@ -14,7 +15,7 @@ public final static String ARG_DOC1FILE = "-doc1";
 public final static String ARG_DOC2FILE = "-doc2";
 public final static String ARG_XSLTFILE = "-xsl";
 public final static String ARG_OUTDIR = "-out";
-
+final NodeUtils nu = NodeUtils.getNodeUtils();
 private String mdoc1 = null;
 private String mdoc2 = null;
 private String mxslt = null;
@@ -42,7 +43,7 @@ Document doc2 = null;
    try
    {
       // transform needs an input doc, so it can be DOC1
-      doc2 = XMLTransform.parseXML(new File(mdoc2));
+      doc2 = nu.parseXML(new File(mdoc2));
       xmlt.clearParameters();
       xmlt.addParameter("DOC_2", doc2);
 

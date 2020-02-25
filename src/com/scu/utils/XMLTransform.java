@@ -79,545 +79,290 @@ public final static String ARG_OUTFILE = "-out";
          System.exit(1);
       }
 
-
-
-      try
-      {
-
-         Logger.getLogger().log(BaseLogger.ALWAYS, " Transforming {0} with {1} into {2}", new Object[] {xmlfile, xsltfile, outfile});
-         xmlt.transformXML(xmlfile, xsltfile, outfile);
-      }
-     catch(Exception ex)
-     {
-        ex.printStackTrace();
-     }
-      catch(Error er)
-      {
-         er.printStackTrace();
+		try
+		{
+		
+		   Logger.getLogger().log(BaseLogger.ALWAYS, " Transforming {0} with {1} into {2}", new Object[] {xmlfile, xsltfile, outfile});
+		   xmlt.transformXML(xmlfile, xsltfile, outfile);
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		catch(Error er)
+		{
+         	er.printStackTrace();
       }
       Logger.getLogger().log(BaseLogger.ALWAYS, "Done!");
 	}
 
 
-	   public XMLTransform()
+	public XMLTransform()
+	{
+	   //System.err.println("XMLProcessor: default constructor");
+	   mParams = new HashMap<String,Object>();
+	}
+	
+	public XMLTransform(String srcxml, String xslurl)
+	{
+	   this(srcxml, xslurl, new File(new File(srcxml).getParentFile(), "output.xml").toString());
+	}
+	
+	public XMLTransform(String srcxml, String xslurl, String output)
+	{
+	   this();
+	   try
 	   {
-	      //System.err.println("XMLProcessor: default constructor");
-	      mParams = new HashMap<String,Object>();
+	      msrcfile = new FileInputStream(srcxml);
+	      mxslfile = new FileInputStream(xslurl);
+	      moutfile = new FileOutputStream(output);
 	   }
-
-	   public XMLTransform(String srcxml, String xslurl)
+	   catch(Exception ex) { ex.printStackTrace(); }
+	}
+	
+	public void setXMLstream(InputStream srcxml)
+	{
+	   msrcfile = srcxml;
+	}
+	
+	public void setXSLstream(InputStream srcxsl)
+	{
+	   mxslfile = srcxsl;
+	}
+	
+	public void setOutputstream(OutputStream output)
+	{
+	   moutfile = output;
+	}
+	
+	public void addParameter(String name, Object value)
+	{
+	   deleteParameter(name);
+	   mParams.put(name, value);
+	}
+	
+	
+	public void addParameter(String name, String value)
+	{
+	   deleteParameter(name);
+	   mParams.put(name, value);
+	}
+	
+	public void clearParameters()
+	{
+	   mParams.clear();
+	}
+	
+	public void deleteParameter(String name)
+	{
+	   try
 	   {
-	      this(srcxml, xslurl, new File(new File(srcxml).getParentFile(), "output.xml").toString());
+	      mParams.remove(name);
 	   }
-
-	   public XMLTransform(String srcxml, String xslurl, String output)
-	   {
-	      this();
-	      try
+	   catch(Exception ex) {};
+	}
+	
+	public void transformXML() throws Exception
+	{
+	   transformXML(msrcfile, mxslfile, moutfile);
+	}
+	public void transformXML(String srcfile, String xslfile, String outfile)
+	   throws Exception
+	{
+	InputStream isx = null;
+	InputStream ist = null;
+	OutputStream of = null;
+	
+	      isx = new FileInputStream(srcfile);
+	      ist = new FileInputStream(xslfile);
+	      if(outfile != null)
 	      {
-	         msrcfile = new FileInputStream(srcxml);
-	         mxslfile = new FileInputStream(xslurl);
-	         moutfile = new FileOutputStream(output);
+	         of = new FileOutputStream(outfile);
 	      }
-	      catch(Exception ex) { ex.printStackTrace(); }
-	   }
-
-	   public void setXMLstream(InputStream srcxml)
+	      transformXML(isx, ist, of);
+	}
+	
+	public void transformXML(InputStream srcfile, InputStream xslfile, OutputStream outfile)
+	   throws Exception
+	{
+	//System.err.println("XMLProcessor.transformXML: entry");
+	Document doc;
+	DOMSource xmlsrc = null;
+	StreamSource xslsrc = null;
+	StreamResult outrst = null;
+	TransformerFactory tf = null;
+	Transformer tx = null;
+	String skey = null;
+	
+	   // Construct the DOM from the XML text file
+	   try
 	   {
-	      msrcfile = srcxml;
-	   }
-
-	   public void setXSLstream(InputStream srcxsl)
-	   {
-	      mxslfile = srcxsl;
-	   }
-
-	   public void setOutputstream(OutputStream output)
-	   {
-	      moutfile = output;
-	   }
-
-      public void addParameter(String name, Object value)
-      {
-         deleteParameter(name);
-         mParams.put(name, value);
-      }
-      
-      
-	   public void addParameter(String name, String value)
-	   {
-	      deleteParameter(name);
-	      mParams.put(name, value);
-	   }
-
-	   public void clearParameters()
-	   {
-	      mParams.clear();
-	   }
-
-	   public void deleteParameter(String name)
-	   {
-	      try
-	      {
-	         mParams.remove(name);
-	      }
-	      catch(Exception ex) {};
-	   }
-
-	   public void transformXML() throws Exception
-	   {
-	      transformXML(msrcfile, mxslfile, moutfile);
-	   }
-      public void transformXML(String srcfile, String xslfile, String outfile)
-	      throws Exception
-	   {
-      InputStream isx = null;
-      InputStream ist = null;
-      OutputStream of = null;
-
-	         isx = new FileInputStream(srcfile);
-	         ist = new FileInputStream(xslfile);
-            if(outfile != null)
-            {
-               of = new FileOutputStream(outfile);
-            }
-	         transformXML(isx, ist, of);
-	   }
-
-	   public void transformXML(InputStream srcfile, InputStream xslfile, OutputStream outfile)
-	      throws Exception
-	   {
-	   //System.err.println("XMLProcessor.transformXML: entry");
-	   Document doc;
-	   DOMSource xmlsrc = null;
-	   StreamSource xslsrc = null;
-	   StreamResult outrst = null;
-      TransformerFactory tf = null;
-	   Transformer tx = null;
-	   String skey = null;
-
-	      // Construct the DOM from the XML text file
-	      try
-	      {
-	         //System.err.println("XMLProcessor.transformXML: get doc builder factory");
-            
-	         DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-            docBuilderFactory.setNamespaceAware(true);
-	         //System.err.println("XMLProcessor.transformXML: get new doc builder");
-	         DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-
-            // With Xalan parser it might be possible to prevent the 
-            // DOCTYPE dtd not found errors by setting this feature on the docbldfact to false
-            // http://apache.org/xml/features/nonvalidating/load-external-dtd
-            // The value is true by default. Don't know if this works for the default Java parser.
-            docBuilder.setEntityResolver(new IgnoreEntityResolver());
-            
-	         //System.err.println("XMLProcessor.transformXML: parse the source XML");
-	         doc = docBuilder.parse(srcfile);
-	         doc.normalize();
-
-	         //// normalize text representation - whatever that means - squash the spaces apparently!
-	         //doc.getDocumentElement().normalize();
-
-	         // This is not the root. The document itself is the root, at least
-	         // as far as the XSLT match="/" is concerned.
-	         //System.err.println("XMLProcessor.transformXML: find the root");
-	         //root = (Element) doc.getDocumentElement();
-	      }
-	      catch (Exception err)
-	      {
-	         mLastTxErr = err;
-	         throw err;
-	      }
-
-//	      xmlsrc = new DOMSource(root);
-	      xmlsrc = new DOMSource(doc);
-	      xslsrc = new StreamSource(xslfile);
-         if(outfile == null)
-         {
-            outrst = new StreamResult(new FileOutputStream(File.createTempFile("scu","xmlt")));
-         }
-         else
-         {
-            outrst = new StreamResult(outfile);
-         }
-
-         // Try to force use of Xalan even when JWSDP2 is installed in the endorsed folder.
-         System.setProperty("javax.xml.transform.TransformerFactory", "org.apache.xalan.processor.TransformerFactoryImpl"); 
+	      //System.err.println("XMLProcessor.transformXML: get doc builder factory");
 	      
-         //System.err.println("XMLProcessor.transformXML: get Transformer factory");
-         
-	      tf = TransformerFactory.newInstance();
-
-	      try
-	      {
-	         //System.err.println("XMLProcessor.transformXML: load XSL into the transformer");
-            
-	         tx = tf.newTransformer(xslsrc);
-
-	         //System.err.println("XMLProcessor.transformXML: add parameters to the transformer");
-            for(Iterator<String> it = mParams.keySet().iterator(); it.hasNext();)
-	         {
-               skey = it.next();
-	            tx.setParameter(skey, mParams.get(skey));
-	         }
-
-	         //System.err.println("XMLProcessor.transformXML: do the transformation");
-	         tx.transform(xmlsrc, outrst);
-	      }
-	      catch (Exception err)
-	      {
-	         mLastTxErr = err;
-	         throw err;
-	      }
-
-	      //System.err.println("XMLProcessor.transformXML: exit");
+	      DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+	      docBuilderFactory.setNamespaceAware(true);
+	      //System.err.println("XMLProcessor.transformXML: get new doc builder");
+	      DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+	
+	      // With Xalan parser it might be possible to prevent the 
+	      // DOCTYPE dtd not found errors by setting this feature on the docbldfact to false
+	      // http://apache.org/xml/features/nonvalidating/load-external-dtd
+	      // The value is true by default. Don't know if this works for the default Java parser.
+	      docBuilder.setEntityResolver(new IgnoreEntityResolver());
+	      
+	      //System.err.println("XMLProcessor.transformXML: parse the source XML");
+	      doc = docBuilder.parse(srcfile);
+	      doc.normalize();
+	
+	      //// normalize text representation - whatever that means - squash the spaces apparently!
+	      //doc.getDocumentElement().normalize();
+	
+	      // This is not the root. The document itself is the root, at least
+	      // as far as the XSLT match="/" is concerned.
+	      //System.err.println("XMLProcessor.transformXML: find the root");
+	      //root = (Element) doc.getDocumentElement();
 	   }
-
-      public static String toXMLString(Document doc)
-      {
-      StringWriter sw = new StringWriter();
-      StreamResult outrst = null;
-
-         outrst = new StreamResult(sw);
-         domToXML(doc, outrst);
-
-
-         return sw.toString();
-      }
-
-      public static void domToXML(Document doc, StreamResult sr)
-      {
-      DOMSource xmlsrc = null;
-      TransformerFactory tf = null;
-      Transformer tx = null;
-
-         xmlsrc = new DOMSource(doc);
-            
-         tf = TransformerFactory.newInstance();
-
-         try
-         {
-            //System.err.println("XMLProcessor.transformXML: load XSL into the transformer");
-            tx = tf.newTransformer();
-            tx.transform(xmlsrc, sr);
-         }
-         catch (Exception err)
-         {
-            err.printStackTrace();
-         }
-         
-         return;
-      }
-      
-      
-      
-	   public String getLastErrorDescription()
+	   catch (Exception err)
 	   {
-	   String desc = "";
-	      if(mLastTxErr == null)
+	      mLastTxErr = err;
+	      throw err;
+	   }
+	
+	//	      xmlsrc = new DOMSource(root);
+	   xmlsrc = new DOMSource(doc);
+	   xslsrc = new StreamSource(xslfile);
+	   if(outfile == null)
+	   {
+	      outrst = new StreamResult(new FileOutputStream(File.createTempFile("scu","xmlt")));
+	   }
+	   else
+	   {
+	      outrst = new StreamResult(outfile);
+	   }
+	
+	   // Try to force use of Xalan even when JWSDP2 is installed in the endorsed folder.
+	   System.setProperty("javax.xml.transform.TransformerFactory", "org.apache.xalan.processor.TransformerFactoryImpl"); 
+	   
+	   //System.err.println("XMLProcessor.transformXML: get Transformer factory");
+	   
+	   tf = TransformerFactory.newInstance();
+	
+	   try
+	   {
+	      //System.err.println("XMLProcessor.transformXML: load XSL into the transformer");
+	      
+	      tx = tf.newTransformer(xslsrc);
+	
+	      //System.err.println("XMLProcessor.transformXML: add parameters to the transformer");
+	      for(Iterator<String> it = mParams.keySet().iterator(); it.hasNext();)
 	      {
-	         return "";
+	         skey = it.next();
+	         tx.setParameter(skey, mParams.get(skey));
 	      }
-	      else if(TransformerException.class.equals(mLastTxErr.getClass()) == true)
+	
+	      //System.err.println("XMLProcessor.transformXML: do the transformation");
+	      tx.transform(xmlsrc, outrst);
+	   }
+	   catch (Exception err)
+	   {
+	      mLastTxErr = err;
+	      throw err;
+	   }
+	
+	   //System.err.println("XMLProcessor.transformXML: exit");
+	}
+	
+	public static String toXMLString(Document doc)
+	{
+	StringWriter sw = new StringWriter();
+	StreamResult outrst = null;
+	
+	   outrst = new StreamResult(sw);
+	   domToXML(doc, outrst);
+	
+	
+	   return sw.toString();
+	}
+	
+	public static void domToXML(Document doc, StreamResult sr)
+	{
+	DOMSource xmlsrc = null;
+	TransformerFactory tf = null;
+	Transformer tx = null;
+	
+	   xmlsrc = new DOMSource(doc);
+	      
+	   tf = TransformerFactory.newInstance();
+	
+	   try
+	   {
+	      //System.err.println("XMLProcessor.transformXML: load XSL into the transformer");
+	      tx = tf.newTransformer();
+	      tx.transform(xmlsrc, sr);
+	   }
+	   catch (Exception err)
+	   {
+	      err.printStackTrace();
+	   }
+	   
+	   return;
+	}
+	
+	
+	
+	public String getLastErrorDescription()
+	{
+	String desc = "";
+	   if(mLastTxErr == null)
+	   {
+	      return "";
+	   }
+	   else if(TransformerException.class.equals(mLastTxErr.getClass()) == true)
+	   {
+	      TransformerException tcex = (TransformerException) mLastTxErr;
+	      SourceLocator loc = tcex.getLocator();
+	      desc = "Transform failure: " +  tcex.getCause() + "\nFile: " + mxslfile ;
+	      if(loc != null)
 	      {
-	         TransformerException tcex = (TransformerException) mLastTxErr;
-	         SourceLocator loc = tcex.getLocator();
-	         desc = "Transform failure: " +  tcex.getCause() + "\nFile: " + mxslfile ;
-	         if(loc != null)
-	         {
-	            desc += "\nLine " + loc.getLineNumber() + " col " + loc.getColumnNumber();
-	         }
-	         else
-	         {
-	            desc += "\nNo location information available.";
-	         }
-	      }
-	      else if(SAXParseException.class.equals(mLastTxErr.getClass()) == true)
-	      {
-	         SAXParseException spex = (SAXParseException) mLastTxErr;
-	         desc = "** Parsing error" + ", line " + spex.getLineNumber ()
-	                                   + ", uri " + spex.getSystemId ()
-	                                   + "\n   " + spex.getMessage ();
+	         desc += "\nLine " + loc.getLineNumber() + " col " + loc.getColumnNumber();
 	      }
 	      else
 	      {
-	         desc = "Exception: " + mLastTxErr.getMessage();
+	         desc += "\nNo location information available.";
 	      }
-	      return desc;
 	   }
-
-	   public static String XMLEncode(String rawtxt)
+	   else if(SAXParseException.class.equals(mLastTxErr.getClass()) == true)
 	   {
-	   StringBuffer sb = new StringBuffer(rawtxt);
-	   int i = 0;
-	      while( i >= 0)
-	      {
-	         i = sb.toString().indexOf("&", i);
-	         if(i >= 0)
-	         {
-	            // Must be a better way than this but the StringBuffer has the
-	            // replace and the String has the indexOf function!!!
-	            sb.replace(i, i+1, "&amp;");
-	            i++;
-	         }
-	      }
-	      return sb.toString();
+	      SAXParseException spex = (SAXParseException) mLastTxErr;
+	      desc = "** Parsing error" + ", line " + spex.getLineNumber ()
+	                                + ", uri " + spex.getSystemId ()
+	                                + "\n   " + spex.getMessage ();
 	   }
-
-
-	   /**
-	    * Parses the XML string into an XML node. This is far more complex than
-	    * it should be. For reasons beyond me there is no straight forward method
-	    * for parsing a block of xml text into a node so a completely new
-	    * document has to be created and the root node of the new doc imported into the
-	    * existing doc.
-	    */
-	   public static Node parseXMLString(String xml, Document importDoc)
+	   else
 	   {
-	      try
-	      {
-	         Document doc;
-	         Element root = null;
-	         Node newnode = null;
-	         doc = parseXML(xml);
-	         // normalize text representation - whatever that means - squash the spaces apparently!
-	         doc.getDocumentElement().normalize ();
-	         root = doc.getDocumentElement();
-
-	         newnode = importDoc.importNode(root, true);
-	         return newnode;
-	      }
-	      catch (Throwable t)
-	      {
-	           t.printStackTrace ();
-	      }
-
-	      return null;
+	      desc = "Exception: " + mLastTxErr.getMessage();
 	   }
-
-      public static Document parseXML(File xmlfile)
-      {
-      Document doc = null;
-      
-         try
-         {
-            // Should not assume that the file is UTF-8 encoded
-            //in = new BufferedReader(new InputStreamReader(, "UTF-8"));
-            doc = parseXML(new InputSource(new FileInputStream(xmlfile)));
-         }
-         catch(Exception ex)
-         {
-            ex.printStackTrace();
-         }
-         return doc;
-      }
-      
-      public static Document parseXML(String xmlstring)
-      {
-         return parseXML(new InputSource(new StringReader(xmlstring)));      
-      }
-      
-	   public static Document parseXML(InputSource xmlstream)
-      {
-         Document doc= null;
-         try
-         {
-         DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-         
-         
-         docBuilderFactory.setNamespaceAware(true);
-         DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-         
-         // This causes the files specified in <DOCTYPE statements to 
-         // be ignored - which is a good thing. Don't know what the
-         // downside is though!!
-         docBuilder.setEntityResolver(new IgnoreEntityResolver());
-         
-         doc = docBuilder.parse(xmlstream);
-         doc.normalize();
-         }
-         catch(Exception ex)
-         {
-            ex.printStackTrace();
-         }
-         return doc;
-      }
+	   return desc;
+	}
+	
+	public static String XMLEncode(String rawtxt)
+	{
+	StringBuffer sb = new StringBuffer(rawtxt);
+	int i = 0;
+	   while( i >= 0)
+	   {
+	      i = sb.toString().indexOf("&", i);
+	      if(i >= 0)
+	      {
+	         // Must be a better way than this but the StringBuffer has the
+	         // replace and the String has the indexOf function!!!
+	         sb.replace(i, i+1, "&amp;");
+	         i++;
+	      }
+	   }
+	   return sb.toString();
+	}
 	   
-	   public static String getNodeValue(Node annode, String anodename)
-	   {
-	   NodeList nl = null;
-	   String anodevalue = null;
-
-	      if((annode == null) || ((nl = annode.getChildNodes()) == null))
-	            return anodevalue;
-	      try
-	      {
-	         for (int k = 0; k < nl.getLength(); k++)
-	         {
-	            if (nl.item(k).getNodeName().compareTo(anodename) == 0)
-	            {
-	               anodevalue = nl.item(k).getChildNodes().item(0).getNodeValue();
-	            }
-	         }
-	      }
-	      catch (Exception ex)
-	      {
-	         Logger.getLogger().logSpecific(Logger.LOW, "getNodeValue",
-	                                           "Failed to extract value of " + anodename + " from " + annode.getLocalName() + ex);
-	      }
-	      return anodevalue;
-	   }     
-
-	   // Returns null if the xpath is not valid.
-	   public static NodeList getNodesByPath(Node doc, String xpath)
-	   {
-	   NodeList nl = null;
-
-	      try
-	      {
-	         nl = XPathAPI.selectNodeList(doc, xpath);
-	      }
-	      catch(Exception ex)
-	      {
-	         Logger.getLogger().logSpecific(Logger.MEDIUM, "XMLUtilities.getNodeValueByPath",
-	                               "Error getting " + xpath + ex);
-
-	      }
-	      return nl;
-	   }
-
-	   public static String nodeToString( Node n ) throws TransformerConfigurationException, TransformerException
-	   {
-	   String strRet = null;
-
-	      // Prepare the DOM document for writing
-	      Source source = new DOMSource(n);
-
-	      // Prepare a large enough String Buffer to hold the XML file (Interact only supports up to 100k anyway)
-	      StringWriter myWriter = new StringWriter(110000);
-
-	      // Prepare the output stream
-	      Result result = new StreamResult(myWriter);
-
-	      // Write the DOM document to the file
-	      // Get Transformer
-	      TransformerFactory xfact = TransformerFactory.newInstance();
-	      //xfact.setAttribute("indent", "yes");
-
-	      Transformer xformer = xfact.newTransformer();
-
-	      // This doesn't appear to work correctly - nothing is actually indented
-	      xformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-	      // Write to a file
-	      xformer.transform(source, result);
-
-	      strRet = myWriter.toString();
-
-	      if (strRet.indexOf("<?") != -1)
-	      {
-	         int iPos = strRet.indexOf("?>");
-	         if (iPos > -1)
-	         {
-	            strRet = strRet.substring(iPos + 2);
-	         }
-	     }
-
-	     return strRet;
-	   }
-
-	   public static void outputNode( Node n, File f) throws Exception
-	   {
-	   	outputNode(n, new FileWriter(f));
-	   }
-	   
-	   public static void outputNode( Node n, Writer w) throws Exception
-	   {
-	      // Prepare the DOM document for writing
-	      Source source = new DOMSource(n);
-
-	      // Prepare the output stream
-	      Result result = new StreamResult(w);
-
-	      // Write the DOM document to the file
-	      // Get Transformer
-	      TransformerFactory xfact = TransformerFactory.newInstance();
-	      //xfact.setAttribute("indent", "yes");
-
-	      Transformer xformer = xfact.newTransformer();
-
-	      // This doesn't appear to work correctly - nothing is actually indented
-	      xformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-	      // Write to a file
-	      xformer.transform(source, result);
-	      w.close();
-	     return;
-	   }	
-	   
-	   public static Node getNodeByPath(Node doc, String xpath) throws TransformerException
-	   {
-	   NodeList nl = null;
-	   Node n = null;
-	      nl = XPathAPI.selectNodeList(doc, xpath);
-	      if((nl != null) && (nl.getLength() > 0))
-	      {
-	      	n = nl.item(0);
-	      }
-	      return n;
-	   }
-
-
-
-	   public static String getAttributeValue(Node n, String attrname)
-	   {
-	   NamedNodeMap attrs = n.getAttributes();
-	   Node attr = attrs.getNamedItem(attrname);
-	   String value = null;
-	   	if(attr != null)
-	   	{
-	   		value = attr.getNodeValue();
-	   	}
-	   	return value;
-	   }
-	   
-	   public void writeNodeToFile(Node n, String filename) throws Exception
-	   {
-	   String refxml = XMLTransform.nodeToString(n);
-
-	   // TODO get rid of this.....
-	   FileOutputStream fos = null;
-	   try
-	   {
-	      fos = new FileOutputStream(filename);
-	   }
-	   catch (Exception e)
-	   {
-	      System.out.println("writeUpdatedXMLTV: Exception thrown by FileOutputStream constructor:\n" +
-	                         e + "\nString to dump :\n" + refxml );
-	      return;
-	   }
-	   try
-	   {
-	      fos.write(refxml.getBytes("UTF-8"));
-	   }
-	   catch (Exception e)
-	   {
-	      System.out.println("writeUpdatedXMLTV:  Exception thrown by FileOutputStream::write() :\n" +
-	                         e + "\nString to dump :\n" + refxml );
-	   }
-	   try
-	   {
-	      fos.close();
-	   }
-	   catch (Exception e)
-	   {
-
-	   }
-
-	   return;	
-	   }	   
 }
 
 // Should be in a class of it's own really

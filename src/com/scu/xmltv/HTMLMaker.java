@@ -13,6 +13,14 @@ public final static String ARG_DEST = "-xfrm";
 
 
 private String mFavListFile = null;
+public String getFavListFile()
+{
+	return mFavListFile;
+}
+public void setFavListFile(String favListFile)
+{
+	mFavListFile = favListFile;
+}
 /**
  * @param args
  */
@@ -77,7 +85,7 @@ public static void main(String[] args)
       }
 
       HTMLMaker html = new HTMLMaker();
-      html.mFavListFile = inifile;
+      html.setFavListFile(inifile);
       
       html.doTransform(xmlfile, xsltfile, outdir, tfrmfile);
 

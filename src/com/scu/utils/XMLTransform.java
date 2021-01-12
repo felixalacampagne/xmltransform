@@ -170,6 +170,8 @@ public final static String ARG_OUTFILE = "-out";
 	InputStream ist = null;
 	OutputStream of = null;
 	
+		try
+		{
 	      isx = new FileInputStream(srcfile);
 	      ist = new FileInputStream(xslfile);
 	      if(outfile != null)
@@ -177,6 +179,13 @@ public final static String ARG_OUTFILE = "-out";
 	         of = new FileOutputStream(outfile);
 	      }
 	      transformXML(isx, ist, of);
+		}
+		finally
+		{
+			Utils.safeClose(isx);
+			Utils.safeClose(ist);
+			Utils.safeClose(of);
+		}
 	}
 	
 	public void transformXML(InputStream srcfile, InputStream xslfile, OutputStream outfile)

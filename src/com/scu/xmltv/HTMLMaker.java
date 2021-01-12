@@ -98,7 +98,7 @@ public void doTransform(String xmlfile, String xsltfile, String outdir)
 public void doTransform(String xmlfile, String xsltfile, String outdir, String tfrmfile)
 {
 XMLTransform xmlt = new XMLTransform();
-File f;
+File f=null;
    if(tfrmfile == null)
    {
       tfrmfile = "favorites.htm";
@@ -121,7 +121,8 @@ File f;
    catch(Error er)
    {
       er.printStackTrace();
-   }   
+   }  
+
 
 
 }

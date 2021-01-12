@@ -6,3 +6,4 @@ HTMLMaker.jar
 lib
 *.zip
 xmltv*.*
+/target/

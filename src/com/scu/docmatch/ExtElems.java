@@ -26,8 +26,7 @@ SerializationHandler origSerializationHandler = null;
 
    OutputProperties format = transf.getOutputFormat();
    boolean oldstanda = format.getXmlStandalone();
-   // TODO: I Think I need to change this to a 'text' output format instead
-   // of XML to avoid having the XML processing instruction added.
+
    format.setXmlStandalone(false);
    ByteArrayOutputStream ostream = new ByteArrayOutputStream();
    origSerializationHandler = transf.getSerializationHandler();

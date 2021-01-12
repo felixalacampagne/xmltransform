@@ -355,7 +355,6 @@ public class XSLTExtensions
       }
       catch(Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
       return xml;
@@ -553,7 +552,6 @@ public class XSLTExtensions
       }
       catch(Exception e)
       {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
       return nlfav;

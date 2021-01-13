@@ -3,7 +3,8 @@
   <groupId>com.felixalacampagne</groupId>
   <artifactId>xmltransform</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>XmlTransform</name>
+  <packaging>jar</packaging>
+  <name>xmltransform</name>
   <description>Perform enhanced XSLT transforms</description>
   <build>
     <sourceDirectory>src</sourceDirectory>

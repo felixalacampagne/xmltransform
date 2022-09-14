@@ -23,6 +23,7 @@ public final static String ARG_OUTFILE = "-merge";
 private List<String> mFiles = new ArrayList<String>();
 private String mOutFile = null;
 final NodeUtils nu = NodeUtils.getNodeUtils();
+
 public MergeFiles(String outfile)
 {
    mOutFile = outfile;
@@ -46,63 +47,26 @@ Document doc = null;
 int chns = 0;
 int progs = 0;
 int tve = 0;
-/*
-   // Might be better to parse the first doc, get the TV node and then add
-   // the programme and channel entries from the subsequent docs
-   //
-   // Then again, maybe not! No way to add a list of nodes except one at a time.
-   // Might be possible to simply append a new child TV nodes, would require
-   // the XSL to use XPaths to select from all possible TV nodes, which is probably the
-   // default anyway.
-    * Would have to make a new doc with a new root node. Then insert the tv nodes from the
-    * docs to be merged into the new doc and save it.
-   // 
-   Document doc1 = XMLTransform.parseXML(new File(mFiles.get(0)));
-   NodeList nl = null;
-   nl = doc1.getElementsByTagName("channel");
-   Node nlc = nl.item(nl.getLength()-1);
-   nl = doc1.getElementsByTagName("programme");
-   Node nlp = nl.item(nl.getLength()-1);
-   
-   for(int i = 1; i < mFiles.size(); i++)
-   {
-      doc = XMLTransform.parseXML(new File(mFiles.get(i)));
-      nl = doc.getElementsByTagName("channel");
-      for(int j = nl.getLength(); j < 0; j--)
-      {
-         Node nimp = doc1.importNode(nl.item(j), true);
-         doc1.insertBefore(nimp, nlc);
-      }
-      
-      nl = doc.getElementsByTagName("programme");
-      for(int j = nl.getLength(); j < 0; j--)
-      {
-         Node nimp = doc1.importNode(nl.item(j), true);
-         doc1.insertBefore(nimp, nlp);
-      }      
-   }
-   try
-   {
-      XMLTransform.domToXML(doc1, new StreamResult(new FileOutputStream( new File(mOutFile))));
-   }
-   catch(Exception ex)
-   {
-      ex.printStackTrace();
-   }
- */ 
-   
-   
+  
    for(int i = 0; i < mFiles.size(); i++)
    {
       try
       {
-         doc = nu.parseXML(new File(mFiles.get(i)));
-         inxmltv = XMLTransform.toXMLString(doc);
-         chns = inxmltv.indexOf("<channel ");
-         progs = inxmltv.indexOf("<programme ");
-         tve = inxmltv.indexOf("</tv");
-         sbchans.append(inxmltv.substring(chns, progs));
-         sbprogs.append(inxmltv.substring(progs, tve));
+         File mergeFile = new File(mFiles.get(i));
+         if(mergeFile.length() > 0L)
+         {
+            doc = nu.parseXML(mergeFile);
+            inxmltv = XMLTransform.toXMLString(doc);
+            chns = inxmltv.indexOf("<channel ");
+            progs = inxmltv.indexOf("<programme ");
+            tve = inxmltv.indexOf("</tv");
+            sbchans.append(inxmltv.substring(chns, progs));
+            sbprogs.append(inxmltv.substring(progs, tve));
+         }
+         else 
+         {
+            System.err.println("merge: File is zero length (or missing): " + mergeFile.getAbsolutePath());
+         }
       }
       catch(Exception ex)
       {

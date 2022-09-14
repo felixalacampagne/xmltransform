@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
 <jardesc>
-    <jar path="XMLTransform/HTMLMaker.jar"/>
-    <options buildIfNeeded="true" compress="true" descriptionLocation="/XMLTransform/HTMLMaker.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <jar path="xmltransform/HTMLMaker.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/xmltransform/HTMLMaker.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
-    <manifest generateManifest="false" mainClassHandleIdentifier="=XMLTransform/src&lt;com.scu.xmltv{HTMLMaker.java[HTMLMaker" manifestLocation="/XMLTransform/HTMLMAKER.mf" manifestVersion="1.0" reuseManifest="true" saveManifest="true" usesManifest="true">
+    <manifest generateManifest="false" mainClassHandleIdentifier="=xmltransform/src=/optional=/true=/=/maven.pomderived=/true=/&lt;com.scu.xmltv{HTMLMaker.java[HTMLMaker" manifestLocation="/xmltransform/HTMLMAKER.mf" manifestVersion="1.0" reuseManifest="true" saveManifest="true" usesManifest="true">
         <sealing sealJar="false">
             <packagesToSeal/>
             <packagesToUnSeal/>
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-        <javaElement handleIdentifier="=Utils/src"/>
-        <javaElement handleIdentifier="=XMLTransform/src"/>
+        <javaElement handleIdentifier="=xmltransform/src=/optional=/true=/=/maven.pomderived=/true=/"/>
+        <javaElement handleIdentifier="=scuutils/src=/optional=/true=/=/maven.pomderived=/true=/"/>
     </selectedElements>
 </jardesc>

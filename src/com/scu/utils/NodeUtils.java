@@ -142,7 +142,7 @@ String anodevalue = null;
    }
    catch (Exception ex)
    {
-      log.log(Level.WARNING, "getNodeValue: Failed to extract value of " + anodename + " from " + annode.getLocalName(), ex);
+      log.log(Level.INFO, "getNodeValue: Failed to extract value of " + anodename + " from " + annode.getLocalName(), ex);
    }
    return anodevalue;
 }  
@@ -318,4 +318,14 @@ public String calcDigest(String value)
 	return digest;
 }
 
+public String sanitizeTitle(String title)
+{
+String clean = "";
+
+	if(title != null)
+	{
+		clean = title.replace("(New Series)", "").replace("&", " And ").replace(".", "");
+	}
+	return clean;
+}
 }

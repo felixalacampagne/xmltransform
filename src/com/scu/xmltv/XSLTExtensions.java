@@ -548,6 +548,7 @@ public class XSLTExtensions
       catch(Exception ex)
       {
          ex.printStackTrace();
+         System.out.println("xmltextToNode: xml=" + xml);
       }
       
       return nlfav;
@@ -626,18 +627,14 @@ public class XSLTExtensions
    // Function for decoding episode information and returning various components of the
    // version for use in XSL variables. As the XSL has become more complex it has become
    // increasingly necessary to be able to get at episode number, season, title in a consistent
-   // way. Also the parsing of the various formats is really stretching my XSL capabilities
-   // to the breaking point. This function will hopefully make the XSL simpler and the output
-   // more consistent, especially where the use of default values, eg. for episdoe title, are concerned.
-   // NB. This is going to be really inefficient unless I can find a way to return all the components
-   // in a single structure. In theory it should be possible to return a multi tag block which could
-   // be queried using Xpath, a bit like I think the date range does...
-   //
-   // Ideally the a 'programme' node would be passed in here so the function can use what it likes to
-   // build the episode info... not sure how that will work though...
+   // way.
+   // Unfortunately using this is all the places the episode is parsed causes a dramatic performance
+   // degradation. Maybe a simpler version is needed which takes the episode-number and sub-title
+   // values and returns the 'SxNN title' as this is the one most commonly used
    public static Node getEpisodeInfo(Node prog)
    {
-      StringBuffer result = new StringBuffer();
+   	Node result = null;
+      StringBuffer xml = new StringBuffer();
       NodeUtils nu = NodeUtils.getNodeUtils();
       
       String eptitle = "";
@@ -645,15 +642,16 @@ public class XSLTExtensions
       String epnum  = "";
       String epshow = "";
       String recname = "";
+      String epinfx = "";
       String recep="";
       String sdate;
       try
       {
       	// System.out.println(nu.nodeToString(prog));
-      	epshow = nu.getNodeValue(prog, "title");
+      	epshow = nu.sanitizeTitle(nu.getNodeValue(prog, "title"));
       	sdate = nu.getAttributeValue(prog, "start");
       	
-      	Node epnumnode = nu.getNodeByPath(prog, "episode-num");
+      	Node epnumnode = nu.getNodeByPath(prog, "episode-num[@system='xmltv_ns']");
 
       	if(epnumnode != null)
       	{
@@ -670,42 +668,83 @@ public class XSLTExtensions
       			// Very ugly zero padding to two digits
       			epnum = ("0" + epnum);
       			epnum = epnum.substring(epnum.length()-2, epnum.length());
+      			if(epseason.isEmpty())
+      			{
+      				 epseason = "0";
+      			}
+      			epinfx = String.format("%sx%s ", epseason, epnum);
       		}
       		
-      		eptitle = nu.getNodeValue(prog, "sub-title");
-      		if(eptitle == null)
+      		eptitle = nu.sanitizeTitle(nu.getNodeValue(prog, "sub-title"));
+      		if(eptitle.isEmpty() && !epnum.isEmpty())
       		{
       			eptitle = "Episode " + epnum;
       		}
-      		
-      		
-      		
-      		recep = String.format(" %s %sx%s %s", formatDate(sdate, "yy-MM-dd"), 
-      				epseason, epnum, eptitle);
+      		epinfx = String.format("%sx%s", epseason, epnum);
+      		recep = String.format(" %s %s %s", formatDate(sdate, "yy-MM-dd"), 
+      				epinfx, eptitle);
       	}
       	
       	recname = epshow + recep;
       	recname = recname.replaceAll("[\"'?/\\*&:<>,.|]@", "");
    	
       	
-         result.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
-         result.append("<EPINFO>");
-         result.append("<EPTITLE>").append(eptitle).append("</EPTITLE>");
-         result.append("<EPSEASON>").append(epseason).append("</EPSEASON>");
-         result.append("<EPNUM>").append(epnum).append("</EPNUM>");
-         result.append("<EPSHOW>").append(epshow).append("</EPSHOW>");
-         result.append("<EPDATE>").append(formatDate(sdate, "yyyy-MM-dd")).append("</EPDATE>");
-         result.append("<UID>").append(nu.calcDigest(recname)).append("</UID>");
-         result.append("<RECNAME>").append(recname).append("</RECNAME>");
-         result.append("</EPINFO>");
+         xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
+         xml.append("<EPINFO>");
+         xml.append("<EPTITLE>").append(eptitle).append("</EPTITLE>");
+         xml.append("<EPSEASON>").append(epseason).append("</EPSEASON>");
+         xml.append("<EPNUM>").append(epnum).append("</EPNUM>");
+         xml.append("<EPSHOW>").append(epshow).append("</EPSHOW>");
+         xml.append("<EPDATE>").append(formatDate(sdate, "yyyy-MM-dd")).append("</EPDATE>");
+         xml.append("<EPFMTX>").append(epinfx).append("</EPFMTX>");
+         
+         xml.append("<UID>").append(nu.calcDigest(recname)).append("</UID>");
+         xml.append("<RECNAME>").append(recname).append("</RECNAME>");
+         xml.append("</EPINFO>");
+         
+         
+         result = xmltextToNode(xml.toString(), "//EPINFO");
       }
       catch(Exception ex)
       {
          ex.printStackTrace();
+         System.out.println(xml.toString());
       }
 
-      return xmltextToNode(result.toString(), "//EPINFO");
+      return result;
    }
    
-
+   // TODO Refactor so this and getEpisodeInfo share common code
+   public String getFullEpisodetitle(String episodenum, String subtitle)
+   {
+   	NodeUtils nu = NodeUtils.getNodeUtils();   	
+      String eptitle = "";
+      String epseason = "";
+      String epnum  = "";
+      String epinfx = "";
+		String [] parts = episodenum.split("[\\./]");
+		if(parts != null)
+		{
+   		epseason = "" + nu.stringAdd(parts[0], 1);
+   		epnum = ""  + nu.stringAdd(parts[1], 1);
+		}
+		if(!epnum.isEmpty())
+		{
+			// Very ugly zero padding to two digits
+			epnum = ("0" + epnum);
+			epnum = epnum.substring(epnum.length()-2, epnum.length());
+			if(epseason.isEmpty())
+			{
+				 epseason = "0";
+			}			
+			epinfx = String.format("%sx%s ", epseason, epnum); 
+		}
+		
+		eptitle = nu.sanitizeTitle(subtitle);
+		if(eptitle.isEmpty() && !epnum.isEmpty())
+		{
+			eptitle = "Episode " + epnum;
+		}
+		return epinfx + eptitle;  	
+   }
 }

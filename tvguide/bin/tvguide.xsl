@@ -4,6 +4,11 @@ xmlns:scu="//com.scu.xmltv.XSLTExtensions"
 xmlns:loc="local.values"
 version="1.0">
 <!--
+06 Nov 2022 Modified Java code to perform episode details extraction. It only supports the xmltv_ns episode numbering scheme
+            This is used for the NFO
+            output but it made the conversion far too slow when I tried to use it in the 'programme' template,
+            ie. use the Java function for every programme. It would be nice to have a single consistent
+            way to get these details but for now there isn't one.
 05 Nov 2022 Added NFO generation for favourites as a replacement for the DB eit files which seems
             to have stopped appearing for most programmes.
 09 Jan 2020 Add dummy episode title when non-present in the listings to try to improve Kodi behaviour
@@ -16,43 +21,12 @@ version="1.0">
 11 Jun 2018 Channel 4+1 name change
 31 May 2018 Channel id changes
 21 May 2018 Webgrabber started appending garbage at the end of programme titles. Took opportunity
-            to create a template for cleaing the title and to remove unused stuff, eg. skystar definitions
+            to create a template for cleaning the title and to remove unused stuff, eg. skystar definitions
  -->
 <xsl:output method="html" version="4.0"/>
 <xsl:preserve-space elements="*"/>
 <xsl:param name="FAVFILE" />
 <xsl:param name="OUTPATH" />
-<!-- Bloody Apple products can't find the machines using names!
-     Not entirely true, they can resolve names ending with .local.
-     The problem is that they, the aforementioned bloody Apple products,
-     wont respect OpenVPN DNS routing commands for the .local domain at
-     all. The VPN seems to work fine except for .local DNS lookups. The
-     sat boxes can be reached using the IP instead of a name so that is
-     what I'm back to using since exposing the server to the internet 
-     appears to have made it a target for hack attacks judging by the
-     number of unexpected access attempts in the log files. So I've turned
-     off the external access, but can still use the VPN (fingers crossed the
-     VPN server is secure!!) providing I can load the sat bax pages pointed to
-     by the tvguide.
-     
-     It should be possible to specify a default search domain as part of the DHCP 
-     setup of the DNS servers. Unfortunately it's not possible to specify this
-     with the Linksys router but the iPhone and iPad allow one to be manually
-     specified. With a defautl search domain of 'local' I can use a hostname
-     like 'vuultimo'. The OpenVPN 'domain' command is treated as a default search domain
-     so 'vuultimo' is interpreted as vuultimo.home and resolved by the DNS server running
-     on minnie. It should therefore be possible to just put the unqualified host names
-     in the tvguide pages... Only downside (s0 far) is I have to manually edit the wifi connection
-     on the iOS devices... thinking of installing a more configurable firmware on the Linksys
-     so I have better control and to avoid the manual config on the iOS devices. Apparently
-     the EA6700 is not supported by OpenWRT which I used on a DLink router to avoid 
-     problems with the Scarlet Box loosing the static IP configuration. DD-WRT does 
-     seem to work without problems, although the install requires a few hoops to jump through
-     as there might be some sort of block placed on installing non-Linksys firmware. Anyway,
-     this is not for today...
-     
-     
-  -->
 <xsl:variable name="DRMBOXSRV">dm7025</xsl:variable>
 <xsl:variable name="VUPUSRV">vuultimo</xsl:variable>
 <xsl:variable name="FAVCRIT" select="document($FAVFILE)/node()" />
@@ -863,10 +837,12 @@ version="1.0">
   
 </xsl:template>
 
+<!-- Tried using the Java function to extract episode details for all programmes but it made the conversion much too slow. -->
 <xsl:template match="programme">
 <xsl:param name="OUTDOC" />
 <xsl:param name="dbref" />
 <xsl:param name="vuref" />
+
 <xsl:variable name="channel" select="@channel"/>
 <xsl:variable name="ctitle"><xsl:call-template name="cleantitle"><xsl:with-param name="rawtitle" select="title" /></xsl:call-template></xsl:variable>
 <xsl:variable name="matctitle"><xsl:value-of select="$ctitle" />=<xsl:apply-templates select="episode-num" mode="fav" /></xsl:variable>
@@ -904,6 +880,9 @@ version="1.0">
    a default episode title based on the episode number.
    06 Jul 2016 when episode-num is present sub-title is still required for the episode title
    If episode-num is present then must not take number from sub-title, hence the special "mode"
+   
+   Tried using the Java funciton to extract episode info but it made
+   the conversion VERY VERY slow
 -->
    <xsl:choose>
       <xsl:when test="boolean(episode-num)">
@@ -1220,7 +1199,7 @@ version="1.0">
 <xsl:param name="prog"/>
 <xsl:param name="dbref" />
 <xsl:param name="stbhost" />
-
+<!-- Using java for ep extraction makes conversion too slow -->
 <xsl:if test="$dbref">
 <xsl:variable name="ctitle">
    <xsl:call-template name="cleantitle"><xsl:with-param name="rawtitle" select="$prog/title" /></xsl:call-template>

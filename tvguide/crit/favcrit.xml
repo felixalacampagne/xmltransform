@@ -1,86 +1,59 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <CRITS>
-<CRIT>Angela.*Eyes</CRIT>
-<CRIT>Battlestar Galactica</CRIT>
-<CRIT>The Chase</CRIT>
-<CRIT>The Closer$</CRIT>
-<CRIT>Desperate Housewives</CRIT>
-<CRIT>Earth.*Final Conflict</CRIT>
-<CRIT>Eureka</CRIT>
-<CRIT>Extras</CRIT>
-<CRIT>First Wave</CRIT>
-<CRIT>Ghost Whisperer</CRIT>
-<CRIT>^Invasion$</CRIT>
-<CRIT>^Jericho$</CRIT>
-<CRIT>Lead Balloon</CRIT>
-<CRIT>^Lost$</CRIT>
-<CRIT>Medium$</CRIT>
-<CRIT>Nip.*Tuck</CRIT>
-<CRIT>Numb3rs</CRIT>
-<CRIT>Prison Break</CRIT>
-<CRIT>Robin Hood</CRIT>
-<CRIT>Silent Witness</CRIT>
-<CRIT>Sinchronicity</CRIT>
-<CRIT>Sleepwalkers</CRIT>
-<CRIT>^Spooks$</CRIT>
-<CRIT>State Within</CRIT>
-<CRIT>Supernatural</CRIT>
-<CRIT>Surface</CRIT>
-<CRIT>Threshold</CRIT>
-<CRIT>The 4400</CRIT>
-<CRIT>Torchwood</CRIT>
-<CRIT>Sleeper Cell</CRIT>
-<CRIT>American Gothic</CRIT>
-<CRIT>^Dirt$</CRIT>
-<CRIT>Waking the Dead</CRIT>
-<CRIT>Judge John Deed</CRIT>
-<CRIT>The O[ .]*C</CRIT>
-<CRIT>Lilies</CRIT>
-<CRIT>Primeval</CRIT>
-<CRIT>Life on Mars</CRIT>
-<CRIT>Hotel Babylon</CRIT>
-<CRIT>Friday Night Lights</CRIT>
-<CRIT>Wild at Heart</CRIT>
-<CRIT>Grey.*Anatomy</CRIT>
-<CRIT>Blood Ties</CRIT>
-<CRIT>Haunted$</CRIT>
-<CRIT>Friday Night with Jonathan Ross</CRIT>
-<CRIT>^Shark$</CRIT>
-<CRIT>Stargate</CRIT>
-<CRIT>^Angel$</CRIT>
-<CRIT>^Heroes$</CRIT>
-<CRIT>The Dead Zone</CRIT>
-<CRIT>Sea of Souls</CRIT>
-<CRIT>corset</CRIT>
-<CRIT>Doctor Who$</CRIT>
-<CRIT>^Hustle</CRIT>
-<CRIT>Six Feet Under</CRIT>
-<CRIT>Seven Ages of Rock</CRIT>
-<CRIT>Hogfather</CRIT>
-<CRIT>Wire in the Blood</CRIT>
-<CRIT>Little Devil</CRIT>
-<CRIT>Drop Dead Gorgeous</CRIT>
+	
 <CRIT>David Gilmour</CRIT>
 <CRIT>Pink Floyd</CRIT>
-<CRIT>^24$</CRIT>
-<CRIT>Californication</CRIT>
-<CRIT>Brothers </CRIT>
-<CRIT>^Brothers .* Sisters$</CRIT>
-<CRIT>Top Gear</CRIT>
-<CRIT>The Gadget Show</CRIT>
-<CRIT>Damages</CRIT>
-<CRIT>Mistresses</CRIT>
-<CRIT>Messiah</CRIT>
-<CRIT>Kingdom</CRIT>
-<CRIT>Film 2008 with Jonathan Ross</CRIT>
-<CRIT>Ashes to Ashes</CRIT>
-<CRIT>The Last Enemy</CRIT>
-<CRIT>Private Practice</CRIT>
-<CRIT>Bionic Woman</CRIT>
-<CRIT>Ugly Betty</CRIT>
-<CRIT>Dirty Sexy Money</CRIT>
-<CRIT>Gossip Girl</CRIT>
-<CRIT>Love Soup</CRIT>
-<CRIT>Dollhouse</CRIT>
-<CRIT>Sarah Connor Chronicles</CRIT>
-<CRIT>Spooks. Code 9</CRIT></CRITS>
+<CRIT>orset</CRIT>
+<CRIT>The A Word</CRIT>
+<CRIT>The Blacklist=[56789]x</CRIT>
+<CRIT>Silent Witness=2[3-9]x</CRIT>
+<CRIT>His Dark Materials</CRIT>
+<CRIT>The Americans=[4789]x</CRIT>
+<CRIT>Grey's Anatomy=1[6789]x</CRIT>
+<CRIT>Last Tango in Halifax</CRIT>
+<CRIT>The Graham Norton Show=2[789]x</CRIT>
+<CRIT>Cold Feet=1[0-9]x</CRIT>
+<CRIT>Cardinal=[5-9]x</CRIT>
+<CRIT>The Sinner=[3-9]x</CRIT>
+<CRIT>Liar=[3-9]x</CRIT>
+<CRIT>Big Little Lies=[3-9]x</CRIT>
+<CRIT>^Us=2x</CRIT>
+<CRIT>ZeroZeroZero=[^1]x</CRIT>
+<CRIT>Better Things=[56789]x</CRIT>
+<CRIT>Craith=[3456789]x</CRIT>
+<CRIT>Innocent=[3-9]x</CRIT>
+<CRIT>Raised By Wolves</CRIT>
+<CRIT>The Handmaid's Tale=[56789]x</CRIT>
+<CRIT>Doctor Who</CRIT>
+<CRIT>Picard</CRIT>
+<CRIT>This Is Going to Hurt</CRIT>
+<CRIT>The Split</CRIT>
+<CRIT>Deadline</CRIT>
+<CRIT>Close To Me</CRIT>
+<CRIT>The Bay=[5-9]x</CRIT>
+<CRIT>^Sherwood=</CRIT>
+<CRIT>^PRU=</CRIT>
+<CRIT>State of the Union=[3-9]x</CRIT>
+<CRIT>The Undeclared War</CRIT>
+<CRIT>The Control Room</CRIT>
+<CRIT>The Newsreader</CRIT>
+<CRIT>The Secrets She Keeps</CRIT>
+<CRIT>Capture</CRIT>
+<CRIT>Ridley</CRIT>
+<CRIT>^Marriage=</CRIT>
+<CRIT>Killing Eve=[567]x</CRIT>
+<CRIT>The Suspect</CRIT>
+<CRIT>Crossfire</CRIT>
+<CRIT>Bloodlands</CRIT>
+<CRIT>Inside Man</CRIT>
+<CRIT>DI Ray=[2-9]x</CRIT>
+<CRIT>^Grace=[3-9]x</CRIT>
+<CRIT>The Graham Norton Show</CRIT>
+<CRIT>Am I Being Unreasonable</CRIT>
+<CRIT>The Fades</CRIT>
+<CRIT>This England</CRIT>
+<CRIT>Mood</CRIT>
+<CRIT>The Pact</CRIT>
+<CRIT>The Secret Genius of Modern Life</CRIT>
+<CRIT>Louis Theroux Interviews</CRIT>
+<CRIT>Somewhere Boy=[23]x</CRIT></CRITS>

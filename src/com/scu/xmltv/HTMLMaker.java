@@ -112,7 +112,7 @@ File f=null;
 
       System.out.println("Generating listings."); 
       xmlt.transformXML(xmlfile, xsltfile, f.getAbsolutePath());
-
+      System.out.println("Done."); 
    }
    catch(Exception ex)
    {

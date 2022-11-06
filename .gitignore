@@ -7,3 +7,5 @@ lib
 *.zip
 xmltv*.*
 /target/
+tvguide/*
+!tvguide/tvguide.xsl

@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Class-Path: xalan.jar serializer.jar
-Main-Class: com.scu.xmltv.HTMLMaker
-

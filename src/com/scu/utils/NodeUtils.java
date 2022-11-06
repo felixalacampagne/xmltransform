@@ -7,6 +7,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -143,6 +145,25 @@ String anodevalue = null;
       log.log(Level.WARNING, "getNodeValue: Failed to extract value of " + anodename + " from " + annode.getLocalName(), ex);
    }
    return anodevalue;
+}  
+
+// Get the value of a simple node as returned by getNodeByPath eg. the text between the start tag and the end tag
+public String getNodeValue(Node annode)
+{
+NodeList nl = null;
+String anodevalue = null;
+
+   if((annode == null) || ((nl = annode.getChildNodes()) == null))
+         return anodevalue;
+   try
+   {
+   	anodevalue = nl.item(0).getNodeValue();
+   }
+   catch (Exception ex)
+   {
+      log.log(Level.WARNING, "getNodeValue: Failed to extract value from " + annode.getLocalName(), ex);
+   }
+   return anodevalue;
 }     
 
 // Returns null if the xpath is not valid.
@@ -246,6 +267,55 @@ String value = null;
 		value = attr.getNodeValue();
 	}
 	return value;
+}
+
+public String stringAdd(String str, int add)
+{
+	String result = "";
+	try
+	{
+		if(str != null)
+		{
+			result = "" + (Integer.parseInt(str.trim()) + add);
+		}
+	}
+	catch(Exception ex)
+	{
+		// its a 'safe' method, ignore all exceptions
+	}
+	return result;
+}
+
+public String bytesToHex(byte[] bs)
+{
+   if((bs == null) || (bs.length < 1))
+   {
+      return null;
+   }
+   StringBuffer sb = new StringBuffer();
+   for (byte b : bs) 
+   {
+   	sb.append(String.format("%02x", b & 0xff));
+   }          
+   return sb.toString();
+}
+
+public String calcDigest(String value)
+{
+	String digest="";
+	MessageDigest md;
+	try
+	{
+		md = MessageDigest.getInstance("MD5");
+		md.reset(); 
+		byte[] mdbytes = md.digest(value.getBytes("UTF-8"));
+		digest = bytesToHex(mdbytes);		
+	}
+	catch (Exception e)
+	{
+		e.printStackTrace();
+	}
+	return digest;
 }
 
 }

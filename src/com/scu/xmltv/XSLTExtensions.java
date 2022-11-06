@@ -3,10 +3,12 @@ import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 
 import com.scu.utils.FileTools;
+import com.scu.utils.NodeUtils;
 
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.net.URLEncoder;
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,6 +16,8 @@ import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -150,31 +154,6 @@ public class XSLTExtensions
       }
       return false;
    }      
-   
-   
-   // Attempt to work around the ArrayIndexOutOfBoundsException seen with the default Java 1.5
-   // XSLT processor...
-   public static boolean isMatchAlt(String value, Node crits)
-   {
-      
-      if(crits == null)
-         return false;
-      try
-      {
-         NodeList critnl = null;
-         //critnl = crits.getChildNodes();
-         return isMatch(value, critnl);
-      }
-      catch(ArrayIndexOutOfBoundsException aiex)
-      {
-         System.err.println("" + aiex.getClass().getName() + ": An incompatible XML parser is being used - the Xalan parser is required. "
-               +"\n Please ensure there are no other xalan.jar files in the classpath,"
-               +"\n especially in the endorsed directory of the Java installation.");         
-      }
-      
-      return false;
-   }
-   
    
    public static String currentDate(String format)
    {
@@ -339,7 +318,42 @@ public class XSLTExtensions
       }
       return rb;
    }
+   
+   
+   // NB This is used for writing the HTML listing pages so it probably
+   // shouldn't be messed around with too much to get it to do things specific to XML
    public static String nodeToXmltext(Node node)
+   {
+   StreamResult sr = null;
+   StringWriter sw = null;
+   String xml = "";
+    
+      try
+      {
+         sw = new StringWriter();
+         sr = new StreamResult(sw);
+         Transformer tfmr = TransformerFactory.newInstance().newTransformer();
+         tfmr.transform(new DOMSource(node), sr);
+         xml = sw.toString();
+      }
+      catch(Exception e)
+      {
+         e.printStackTrace();
+      }
+      return xml;
+   }
+   
+   // Writes the serialized Node to a file as Text, ie. no indentation etc.
+   public static String writeToFile(Node value, String file)
+   {
+   String xml =  null;
+
+      xml = nodeToXmltext(value);
+      FileTools.writeStringToFile(file, xml);
+      return "";
+   }
+
+   public static String nodeToXml(Node node)
    {
    StreamResult sr = null;
    StringWriter sw = null;
@@ -350,7 +364,15 @@ public class XSLTExtensions
       {
          sw = new StringWriter();
          sr = new StreamResult(sw);
-         TransformerFactory.newInstance().newTransformer().transform(new DOMSource(node), sr);
+         Transformer tfmr = TransformerFactory.newInstance().newTransformer();
+         tfmr.setOutputProperty(OutputKeys.MEDIA_TYPE, "text/xml"); 
+         tfmr.setOutputProperty(OutputKeys.INDENT, "yes"); // This doesn't give indenting
+         
+         // This gives unrecognised property exception, with or without xalan: prefix.
+         // Google revealed the weird URL format to me which doesn't give an error
+         // however there is still no sign of indentation....
+         tfmr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "3");  
+         tfmr.transform(new DOMSource(node), sr);
          xml = sw.toString();
       }
       catch(Exception e)
@@ -360,14 +382,17 @@ public class XSLTExtensions
       return xml;
    }
    
-   public static String writeToFile(Node value, String file)
+   // Writes the serialized Node to a file as XML, ie. attempts to 
+   // pretty print the output, etc.
+   public static String writeXMLToFile(Node value, String file)
    {
    String xml =  null;
 
-      xml = nodeToXmltext(value);
+      xml = nodeToXml(value);
       FileTools.writeStringToFile(file, xml);
       return "";
-   }
+   }   
+   
    
    /**
     * 
@@ -597,5 +622,90 @@ public class XSLTExtensions
       }
       return encurl;
    }
+
+   // Function for decoding episode information and returning various components of the
+   // version for use in XSL variables. As the XSL has become more complex it has become
+   // increasingly necessary to be able to get at episode number, season, title in a consistent
+   // way. Also the parsing of the various formats is really stretching my XSL capabilities
+   // to the breaking point. This function will hopefully make the XSL simpler and the output
+   // more consistent, especially where the use of default values, eg. for episdoe title, are concerned.
+   // NB. This is going to be really inefficient unless I can find a way to return all the components
+   // in a single structure. In theory it should be possible to return a multi tag block which could
+   // be queried using Xpath, a bit like I think the date range does...
+   //
+   // Ideally the a 'programme' node would be passed in here so the function can use what it likes to
+   // build the episode info... not sure how that will work though...
+   public static Node getEpisodeInfo(Node prog)
+   {
+      StringBuffer result = new StringBuffer();
+      NodeUtils nu = NodeUtils.getNodeUtils();
+      
+      String eptitle = "";
+      String epseason = "";
+      String epnum  = "";
+      String epshow = "";
+      String recname = "";
+      String recep="";
+      String sdate;
+      try
+      {
+      	// System.out.println(nu.nodeToString(prog));
+      	epshow = nu.getNodeValue(prog, "title");
+      	sdate = nu.getAttributeValue(prog, "start");
+      	
+      	Node epnumnode = nu.getNodeByPath(prog, "episode-num");
+
+      	if(epnumnode != null)
+      	{
+      		// <episode-num system="xmltv_ns">19 . 14/99 . </episode-num>
+      		String xmltvns = nu.getNodeValue(epnumnode);
+      		String [] parts = xmltvns.split("[\\./]");
+      		if(parts != null)
+      		{
+	      		epseason = "" + nu.stringAdd(parts[0], 1);
+	      		epnum = ""  + nu.stringAdd(parts[1], 1);
+      		}
+      		if(!epnum.isEmpty())
+      		{
+      			// Very ugly zero padding to two digits
+      			epnum = ("0" + epnum);
+      			epnum = epnum.substring(epnum.length()-2, epnum.length());
+      		}
+      		
+      		eptitle = nu.getNodeValue(prog, "sub-title");
+      		if(eptitle == null)
+      		{
+      			eptitle = "Episode " + epnum;
+      		}
+      		
+      		
+      		
+      		recep = String.format(" %s %sx%s %s", formatDate(sdate, "yy-MM-dd"), 
+      				epseason, epnum, eptitle);
+      	}
+      	
+      	recname = epshow + recep;
+      	recname = recname.replaceAll("[\"'?/\\*&:<>,.|]@", "");
+   	
+      	
+         result.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
+         result.append("<EPINFO>");
+         result.append("<EPTITLE>").append(eptitle).append("</EPTITLE>");
+         result.append("<EPSEASON>").append(epseason).append("</EPSEASON>");
+         result.append("<EPNUM>").append(epnum).append("</EPNUM>");
+         result.append("<EPSHOW>").append(epshow).append("</EPSHOW>");
+         result.append("<EPDATE>").append(formatDate(sdate, "yyyy-MM-dd")).append("</EPDATE>");
+         result.append("<UID>").append(nu.calcDigest(recname)).append("</UID>");
+         result.append("<RECNAME>").append(recname).append("</RECNAME>");
+         result.append("</EPINFO>");
+      }
+      catch(Exception ex)
+      {
+         ex.printStackTrace();
+      }
+
+      return xmltextToNode(result.toString(), "//EPINFO");
+   }
+   
 
 }

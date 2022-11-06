@@ -1,6 +1,7 @@
 <?php
-//define("ROOTPATH", "file://C:/Documents and Settings/All Users/Documents/Website/tvguide/crit/");
-define("ROOTPATH", "file://D:/htmlstuff/tvguide/crit/");
+include_once 'logger.php';
+// See README_CPA for extension loading problems
+define("ROOTPATH", "file://C:/Development/website/tvguide/crit/");
 define("FCXML", "favcrit.xml");
 define("FCXSL", "critlist.xsl");
 define("ALLOWEDTAGS", '<a><em><strong><b><i><img>');
@@ -75,10 +76,17 @@ function addChildNode($name, $value, $rootElement, $domdoc)
   //$encvalue = htmlentities($value, ENT_COMPAT, ISO-8859-1);
   //$childNode = $domdoc->createElement($name, $value);
   //$rootElement->appendChild($childNode);
-  $childNode = $domdoc->create_element($name);
-  $textnode = $domdoc->create_text_node($value);
-  $childNode->append_child($textnode);
-  $rootElement->append_child($childNode);
+  
+  // PHP4
+  //$childNode = $domdoc->create_element($name);
+  //$textnode = $domdoc->create_text_node($value);
+  //$childNode->append_child($textnode);
+  //$rootElement->append_child($childNode);
+
+  $childNode = $domdoc->createElement($name);
+  $textnode = $domdoc->createTextNode($value);
+  $childNode->appendChild($textnode);
+  $rootElement->appendChild($childNode);
 
 }
 
@@ -96,7 +104,12 @@ function loadCritXML($filename)
       $contents .= '<CRITS>' . "\n";
       $contents .= '</CRITS>' . "\n";
    }
-   $domdoc = domxml_open_mem($contents);
+
+   // PHP4
+   //$domdoc = domxml_open_mem($contents);
+
+   $domdoc = new DOMDocument();
+   $domdoc->loadXML($contents);
 
    $domdoc->formatOutput = true;
 	return $domdoc;	
@@ -113,9 +126,11 @@ function addXMLDOMCrit($crit)
 
 	$domdoc = loadCritXML($filename);
 
-   $crits = $domdoc->get_elements_by_tagname("CRITS");
-
-   addChildNode("CRIT", $crit, $crits[0], $domdoc);
+   //$crits = $domdoc->get_elements_by_tagname("CRITS");
+   $crits = $domdoc->getElementsByTagName("CRITS");
+   
+   //echo "Length of crits is: " . $crits->length;
+   addChildNode("CRIT", $crit, $crits->item(0), $domdoc);
 
 	saveCritXML($domdoc, $filename);
    return 1;
@@ -125,27 +140,39 @@ function addXMLDOMCrit($crit)
 function delXMLDOMCrit($crit)
 {
    $filename = FCXML;
-	$domdoc = loadCritXML($filename);
+   $domdoc = loadCritXML($filename);
+   $xpath = new DomXPath($domdoc);
+   Logger::log(Lvl::DEBUG, "scufns.delXMLDOMCrit", "Looking for CRIT = [" . $crit . "]");
 
-	$xpath = xpath_new_context($domdoc);
-	$node = xpath_eval_expression($xpath, "/CRITS/CRIT[.='" . $crit . "']");
-	
-	//var_dump($node);
+   // NB. There is no way to encode a quote in a quote delimited predicate, or a double-quote in 
+   // a double-quote delimited predicate. So the query text cannot contain both quotes and double-quotes.
+   // To avoid a whole heap of shirt I've decided to NOT support deleting CRITs which contain double-quotes.
+   // In practice I have never used a CRIT containing double-quotes, whereas there are many instances of
+   // CRITs with a single quote (aka apostrophy!!), eg. Grey's Anaotomy, The Handmaid's Tale.
 
-	if(count($node->nodeset) > 0)
-	{
-		echo $node->nodeset[0]->get_content() . "\n";
-		$parent = $node->nodeset[0]->parent_node();
-		$parent->remove_child($node->nodeset[0]);
-		saveCritXML($domdoc, $filename);
-	}
-	else
-	{
-		echo "Failed to find CRIT = [" . $crit . "]\n";
-	}
+   $query = "/CRITS/CRIT[.=\"" . $crit . "\"]";
+   echo "XPath query: " . $query;
+   $nodelist = $xpath->query($query);
+   var_dump($nodelist);
+
+   if(($nodelist!= FALSE) && ($nodelist->length > 0))
+   {
+      Logger::log(Lvl::DEBUG, "scufns.delXMLDOMCrit", "Found " . $nodelist->length . " CRITs = [" . $crit . "]");
+      for($i=0; $i < $nodelist->length; $i++)
+      {
+         $node = $nodelist->item($i);
+         $parent = $node->parentNode;
+         Logger::log(Lvl::DEBUG, "scufns.delXMLDOMCrit", "Removing matching CRIT[" . $i ."]");
+         $parent->removeChild($node);
+      }
+      Logger::log(Lvl::DEBUG, "scufns.delXMLDOMCrit", "Saving updated crit file: " . $filename);
+      saveCritXML($domdoc, $filename);
+   }
+   else
+   {
+      Logger::log(Lvl::INFO, "scufns.delXMLDOMCrit", "Failed to find CRIT = [" . $crit . "]");
+   }
    return 1;
-
-	
 }
 
 
@@ -154,8 +181,8 @@ function saveCritXML($domdoc, $filename)
    // Even though formatted output is selected - the new stuff always
    // appears on the same line as everything else. So crudely put a line
    // break between each entry
-   //$contents = $domdoc->saveXML();
-   $contents = $domdoc->dump_mem(true);
+   //$contents = $domdoc->dump_mem(true); // PHP4
+   $contents = $domdoc->saveXML();
    if($contents)
    {
       $contents = preg_replace('/\n\n/', "", $contents);
@@ -177,7 +204,7 @@ function saveCritXML($domdoc, $filename)
 	
 }
 
-function xml2html($xmldata, $xsl)
+function xml2htmlPHP4($xmldata, $xsl)
 {
    $arguments = array('/_xml' => $xmldata);
    $xsltproc = xslt_create();
@@ -192,7 +219,48 @@ function xml2html($xmldata, $xsl)
    return $html;
 }
 
+function xml2html($xmldata, $xsl)
+{
+   $arguments = array('/_xml' => $xmldata);
+   $xsltproc = new XSLTProcessor();
+   $dom = new DOMDocument();
+   $dom->load($xsl);
+   $xsl->importStyleSheet($dom);
+   
+   $xmldoc = new DOMDocument();
+   if($xmldoc->loadXML($xmldata))
+   {
+      $html = $xsl->transformToXML($xmldoc);
+   }   
+   $html =
+       xslt_process($xsltproc, 'arg:/_xml', "file://$xsl", NULL, $arguments);
+
+   if (empty($html)) {
+      die('XSLT processing error: '. xslt_error($xsltproc));
+   }
+
+   return $html;
+}
+
 function xmlfile2html($xmlfile, $xslfile)
+{
+   $xsltproc = new XSLTProcessor();
+   $dom = new DOMDocument();
+   $dom->load($xslfile);
+   $xsltproc->importStyleSheet($dom);
+   
+   $xmldoc = new DOMDocument();
+   if($xmldoc->load($xmlfile))
+   {
+      $html = $xsltproc->transformToXML($xmldoc);
+   }   
+
+   if (empty($html)) {
+      die('XSLT processing error');
+   }
+   return $html;
+}
+function xmlfile2htmlPHP4($xmlfile, $xslfile)
 {
    $xsltproc = xslt_create();
    xslt_set_encoding($xsltproc, 'ISO-8859-1');
@@ -342,12 +410,25 @@ function addHTMLGuestBookEntry($oname, $message, $catname, $lang, $ip)
 function removeEvilTags($source)
 {
    $source = strip_tags($source, ALLOWEDTAGS);
-   return preg_replace('/<(.*?)>/ie', "'<'.removeEvilAttributes('\\1').'>'", $source);
+   
+   // Keep getting warnings about /e and preg_replace being deprecated. This is the
+   // only place I can see anything like a /e. Apparently it means execute the 
+   // replacement string as PHP code with the match group expanded. So what it is
+   // doing appears to be to replace certain tags with the word 'forbidden' and allow
+   // others through.
+   // Couldn't be bothered to try and reimplement this so will settle for replacing
+   // all tags - no reason to have tags anyway, and this is code only used by
+   // FALC, which will retire soon! Although maybe I should massage the values used in
+   // the AccountAPI code in a similar way....
+      
+   //return preg_replace('/<(.*?)>/ie', "'<'.removeEvilAttributes('\\1').'>'", $source);
+   return preg_replace('/(<.*?>)/i', "html-forbidden", $source);
 }
-function removeEvilAttributes($tagSource)
-{
-   return stripslashes(preg_replace("/" . STRIPATTRIB . "/i", 'forbidden', $tagSource));
-}
+
+//function removeEvilAttributes($tagSource)
+//{
+//   return stripslashes(preg_replace("/" . STRIPATTRIB . "/i", 'forbidden', $tagSource));
+//}
 
 // End joanna's guestbook stuff
 

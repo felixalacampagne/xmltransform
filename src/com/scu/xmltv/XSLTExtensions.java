@@ -686,7 +686,7 @@ public class XSLTExtensions
       	}
       	
       	recname = epshow + recep;
-      	recname = recname.replaceAll("[\"'?/\\*&:<>,.|]@", "");
+      	recname = recname.replaceAll("[\"'?/\\*&:<>,.|@]", "");
    	
       	
          xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");

@@ -8,7 +8,6 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -33,8 +32,8 @@ import org.xml.sax.InputSource;
 public class NodeUtils
 {
 public final static String XML_DEFAULT_ENCODING = "UTF-8";
-java.util.logging.Logger log = java.util.logging.Logger.getLogger(this.getClass().getName()); 
-private final static NodeUtils singleton = new NodeUtils(); 
+java.util.logging.Logger log = java.util.logging.Logger.getLogger(this.getClass().getName());
+private final static NodeUtils singleton = new NodeUtils();
 
 public static NodeUtils getNodeUtils()
 {
@@ -91,10 +90,10 @@ Document doc = null;
    }
    return doc;
 }
-   
+
 public Document parseXML(String xmlstring)
 {
-   return parseXML(new InputSource(new StringReader(xmlstring)));      
+   return parseXML(new InputSource(new StringReader(xmlstring)));
 }
 
 public Document parseXML(InputSource xmlstream)
@@ -103,16 +102,16 @@ public Document parseXML(InputSource xmlstream)
    try
    {
    DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-   
-   
+
+
    docBuilderFactory.setNamespaceAware(true);
    DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-   
-   // This causes the files specified in <DOCTYPE statements to 
+
+   // This causes the files specified in <DOCTYPE statements to
    // be ignored - which is a good thing. Don't know what the
    // downside is though!!
    docBuilder.setEntityResolver(new IgnoreEntityResolver());
-   
+
    doc = docBuilder.parse(xmlstream);
    doc.normalize();
    }
@@ -121,7 +120,7 @@ public Document parseXML(InputSource xmlstream)
       ex.printStackTrace();
    }
    return doc;
-}	
+}
 
 public String getNodeValue(Node annode, String anodename)
 {
@@ -145,7 +144,7 @@ String anodevalue = null;
       log.log(Level.INFO, "getNodeValue: Failed to extract value of " + anodename + " from " + annode.getLocalName(), ex);
    }
    return anodevalue;
-}  
+}
 
 // Get the value of a simple node as returned by getNodeByPath eg. the text between the start tag and the end tag
 public String getNodeValue(Node annode)
@@ -164,7 +163,7 @@ String anodevalue = null;
       log.log(Level.WARNING, "getNodeValue: Failed to extract value from " + annode.getLocalName(), ex);
    }
    return anodevalue;
-}     
+}
 
 // Returns null if the xpath is not valid.
 public NodeList getNodesByPath(Node doc, String xpath)
@@ -189,7 +188,7 @@ String strRet = null;
 
    // Prepare a large enough String Buffer to hold the XML file
    StringWriter strwriter = new StringWriter(110000);
-   outputNode(n, strwriter); 
+   outputNode(n, strwriter);
 
    strRet = strwriter.toString();
 
@@ -232,18 +231,18 @@ public void outputNode( Node n, Writer w) throws Exception
 
    // This doesn't appear to work correctly - nothing is actually indented
    xformer.setOutputProperty(OutputKeys.INDENT, "yes");
-   
+
    // This either doesn't work or is only intended to define what goes into the processing
    // instruction. The output is not actually UTF8 encoded even though the PI says it should be.
    // I guess it is upto the Writer to perform the real encoding.
-   xformer.setOutputProperty(OutputKeys.ENCODING, XML_DEFAULT_ENCODING); 
+   xformer.setOutputProperty(OutputKeys.ENCODING, XML_DEFAULT_ENCODING);
    xformer.setOutputProperty(OutputKeys.METHOD, "xml");
 
    // Write to a file
    xformer.transform(source, result);
    w.close();
    return;
-}	
+}
 
 public Node getNodeByPath(Node doc, String xpath) throws TransformerException
 {
@@ -269,14 +268,22 @@ String value = null;
 	return value;
 }
 
-public String stringAdd(String str, int add)
+// Methods below are not really Node utilities but are specific to
+// XSLTExtensions and the processing of XMLTV files.
+
+// Highly specialised function for use with XMLTV episode numbers to safely
+// convert a string to a +ve integer and to return -9999 if the string
+// is null or cannot be parsed to a number. -9999 is chosen so the caller can
+// determine that the value is missing even after incrementing to get the
+// real value
+public int stringToInt(String str)
 {
-	String result = "";
+	int result = -9999;
 	try
 	{
 		if(str != null)
 		{
-			result = "" + (Integer.parseInt(str.trim()) + add);
+			result = Integer.parseInt(str.trim());
 		}
 	}
 	catch(Exception ex)
@@ -293,10 +300,10 @@ public String bytesToHex(byte[] bs)
       return null;
    }
    StringBuffer sb = new StringBuffer();
-   for (byte b : bs) 
+   for (byte b : bs)
    {
    	sb.append(String.format("%02x", b & 0xff));
-   }          
+   }
    return sb.toString();
 }
 
@@ -307,9 +314,9 @@ public String calcDigest(String value)
 	try
 	{
 		md = MessageDigest.getInstance("MD5");
-		md.reset(); 
+		md.reset();
 		byte[] mdbytes = md.digest(value.getBytes("UTF-8"));
-		digest = bytesToHex(mdbytes);		
+		digest = bytesToHex(mdbytes);
 	}
 	catch (Exception e)
 	{
@@ -324,8 +331,52 @@ String clean = "";
 
 	if(title != null)
 	{
-		clean = title.replace("(New Series)", "").replace("&", " And ").replace(".", "");
+		clean = title.replace("(New Series)", "").replace("&", " And ").replaceAll("[\"'?/\\*&:;!$%<>,.|@]", "");;
 	}
 	return clean;
+}
+
+public class EpisodeInfo
+{
+	public String eptitle = "";
+   public String epseason = "";
+   public String epnum  = "";
+   public String epinfx = "";
+}
+
+public EpisodeInfo getEpisodeInfo(String episodenum, String subtitle)
+{
+	EpisodeInfo ei = new EpisodeInfo();
+	int iepnum = -1;
+	int iepseason = -1;
+
+	if(episodenum!=null)
+	{
+		String [] parts = episodenum.split("[\\./]");
+		// If there aren't at least two parts then it is not a valid episodenum
+		if((parts != null) && (parts.length > 1))
+		{
+			iepseason = stringToInt(parts[0]) + 1;
+			iepnum =    stringToInt(parts[1]) + 1;
+		}
+	}
+
+	if(iepnum > 0)
+	{
+		ei.epnum = String.format("%02d", iepnum);
+		if(iepseason < 0)
+		{
+			iepseason = 0;
+		}
+		ei.epseason = String.valueOf(iepseason);
+		ei.epinfx = String.format("%sx%s ", ei.epseason, ei.epnum);
+	}
+
+	ei.eptitle = sanitizeTitle(subtitle);
+	if(ei.eptitle.isEmpty() && !ei.epnum.isEmpty())
+	{
+		ei.eptitle = "Episode " + ei.epnum;
+	}
+	return ei;
 }
 }

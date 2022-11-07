@@ -28,11 +28,6 @@
   		<groupId>xalan</groupId>
   		<artifactId>serializer</artifactId>
   	</dependency>
-  	<dependency>
-  		<groupId>com.felixalacampagne</groupId>
-  		<artifactId>scuutils</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
   </dependencies>
   <dependencyManagement>
   	<dependencies>

@@ -1,14 +1,7 @@
 package com.scu.xmltv;
-import org.w3c.dom.*;
-import org.xml.sax.InputSource;
-
-import com.scu.utils.FileTools;
-import com.scu.utils.NodeUtils;
-
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.net.URLEncoder;
-import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,22 +18,30 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
+import com.scu.utils.FileTools;
+import com.scu.utils.NodeUtils;
+import com.scu.utils.NodeUtils.EpisodeInfo;
+
 public class XSLTExtensions
 {
 
    /**
     * Test whether a value matches one of a list
-    * of regular expressions. 
-    * 
+    * of regular expressions.
+    *
     * The idea is for regexps to contain the list of TV programme favorites. Matching values
     * can then be decorated in a suitable manner. This would avoid requiring the decoration
-    * to be done in code which is currently the case. It would be nice to return a list of 
+    * to be done in code which is currently the case. It would be nice to return a list of
     * matching program nodes but only way I think of doing that is to do a second pass....
-    * 
+    *
     * Not sure what the format of regexps will need to be - probably something like
     * <CRIT>regexp1</CRIT>
     * <CRIT>regexp2</CRIT>
-    * 
+    *
     * The favorites will probably be need to supplied to the stylesheet as a
     * parameter to keep the entry of favorites simple. Still need
     * @param value
@@ -52,7 +53,7 @@ public class XSLTExtensions
 		// Implement the 'new' behaviour by default
 		return isMatch(value, regexps, true);
 	}
-	
+
    public static boolean isMatch(String value, NodeList regexps, boolean igncase)
    {
   // Matcher match = null;
@@ -64,12 +65,12 @@ public class XSLTExtensions
       try
       {
          //System.out.println("isMatch: Checking " + regexps.getLength() + " reg.exps.");
-         
-         
+
+
          //while((node = regexps.nextNode()) != null)
          for(int ir = 0; ir < regexps.getLength(); ir++)
          {
-            node = (Node) regexps.item(ir);
+            node = regexps.item(ir);
             String crit = null;
             try
             {
@@ -77,17 +78,17 @@ public class XSLTExtensions
             }
             catch(ArrayIndexOutOfBoundsException aiex)
             {
-               // With default Java XMl implementation and Java Web Services 2.0 pack getTextContent 
+               // With default Java XMl implementation and Java Web Services 2.0 pack getTextContent
                // gives an ArrayIndexOutOfBoundsException.
                // It only seems to be a problem when a NodeList is supplied as a parameter,
                // the isMatchOneNode works as expected.
                //
                // No idea know why...
                // Seems it might be a bug in the Xalan implementation used by JE 1.5, which is
-               // probably why I started using a local copy of xalan and serializer. 
+               // probably why I started using a local copy of xalan and serializer.
             }
-            
-            
+
+
             if(crit == null)
             {
                // More XSL weirdness. If the CRITs are created in code and supplied to a
@@ -135,7 +136,7 @@ public class XSLTExtensions
    {
    	return isMatch(value, regexp, true);
    }
-   
+
    public static boolean isMatch(String value, String regexp, boolean igncase)
    {
    	Matcher match = null;
@@ -143,7 +144,7 @@ public class XSLTExtensions
       if(igncase)
       {
       	flags = Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE;
-      } 
+      }
       if(regexp != null)
       {
          match = Pattern.compile(regexp, flags).matcher(value);
@@ -153,25 +154,25 @@ public class XSLTExtensions
          }
       }
       return false;
-   }      
-   
+   }
+
    public static String currentDate(String format)
    {
    Date d = new Date();
    String rs = "";
    SimpleDateFormat sdf = new SimpleDateFormat();
-   
+
       try
       {
          sdf.applyPattern(format);
          rs = sdf.format(d);
       }
       catch(Exception ex) {}
-      
+
       return rs;
-  
+
    }
-   
+
    public static String formatDate(String xmltvdatetime, String format)
    {
       String rs = "";
@@ -187,11 +188,11 @@ public class XSLTExtensions
             rs = sdf.format(dt);
          }
          catch(Exception ex) {}
-         
+
          return rs;
 
    }
-   
+
    public static String getTime(String xmltvdatetime)
    {
    String rs = "";
@@ -207,9 +208,9 @@ public class XSLTExtensions
          rs = sdf.format(dt);
       }
       catch(Exception ex) {}
-      
+
       return rs;
-   
+
    }
 
    public static String getLongDate(String xmltvdatetime)
@@ -229,14 +230,14 @@ public class XSLTExtensions
          sdf.applyPattern("EEE, d MMM yyyy");
          rs = sdf.format(dt);
       }
-      catch(Exception ex) 
+      catch(Exception ex)
       {
          ex.printStackTrace();
       }
-      
+
       return rs;
-   
-   }   
+
+   }
 
    public static String getShortDate(String xmltvdatetime)
    {
@@ -253,23 +254,23 @@ public class XSLTExtensions
          rs = sdf.format(dt);
       }
       catch(Exception ex) {}
-      
+
       return rs;
-   
-   }   
-   
+
+   }
+
    /**
     * SimpleDateFormat is too stupid to realise that not all of a date has been passed in,
     * ie 20060728 instead of 20060728000000 +0000.
     * So this method adjusts the pattern to fit the number of fields which have been supplied.
-    * The string must contain an integral number of fields or an exception will still result 
+    * The string must contain an integral number of fields or an exception will still result
     * @param xmltvdatetime
     * @return
     */
    private static String getXMLTVDateFormat(String xmltvdatetime)
    {
    String pattern="";
-   
+
       switch(xmltvdatetime.length())
       {
       case 4:
@@ -299,7 +300,7 @@ public class XSLTExtensions
       }
       return pattern;
    }
-      
+
    public static boolean isDateInRange(String mindate, String maxdate, String xmltvdatetime)
    {
    boolean rb = false;
@@ -318,8 +319,8 @@ public class XSLTExtensions
       }
       return rb;
    }
-   
-   
+
+
    // NB This is used for writing the HTML listing pages so it probably
    // shouldn't be messed around with too much to get it to do things specific to XML
    public static String nodeToXmltext(Node node)
@@ -327,7 +328,7 @@ public class XSLTExtensions
    StreamResult sr = null;
    StringWriter sw = null;
    String xml = "";
-    
+
       try
       {
          sw = new StringWriter();
@@ -342,7 +343,7 @@ public class XSLTExtensions
       }
       return xml;
    }
-   
+
    // Writes the serialized Node to a file as Text, ie. no indentation etc.
    public static String writeToFile(Node value, String file)
    {
@@ -358,20 +359,20 @@ public class XSLTExtensions
    StreamResult sr = null;
    StringWriter sw = null;
    String xml = "";
-   
-   
+
+
       try
       {
          sw = new StringWriter();
          sr = new StreamResult(sw);
          Transformer tfmr = TransformerFactory.newInstance().newTransformer();
-         tfmr.setOutputProperty(OutputKeys.MEDIA_TYPE, "text/xml"); 
+         tfmr.setOutputProperty(OutputKeys.MEDIA_TYPE, "text/xml");
          tfmr.setOutputProperty(OutputKeys.INDENT, "yes"); // This doesn't give indenting
-         
+
          // This gives unrecognised property exception, with or without xalan: prefix.
          // Google revealed the weird URL format to me which doesn't give an error
          // however there is still no sign of indentation....
-         tfmr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "3");  
+         tfmr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "3");
          tfmr.transform(new DOMSource(node), sr);
          xml = sw.toString();
       }
@@ -381,8 +382,8 @@ public class XSLTExtensions
       }
       return xml;
    }
-   
-   // Writes the serialized Node to a file as XML, ie. attempts to 
+
+   // Writes the serialized Node to a file as XML, ie. attempts to
    // pretty print the output, etc.
    public static String writeXMLToFile(Node value, String file)
    {
@@ -391,11 +392,11 @@ public class XSLTExtensions
       xml = nodeToXml(value);
       FileTools.writeStringToFile(file, xml);
       return "";
-   }   
-   
-   
+   }
+
+
    /**
-    * 
+    *
     * @param xmltvdate One of the supported XMLTV based dates (see getXMLTVDateFormat)
     * @param field     One of 'DAY', 'MONTH', 'YEAR', 'HOUR', 'MINUTE'
     * @param value     A numeric value to be added to the date (can be negative!)
@@ -415,7 +416,7 @@ public class XSLTExtensions
          sdf.applyPattern(stmp);
          dt = sdf.parse(xmltvdate);
          cal.setTime(dt);
-         
+
          // No easy way to map field from XSL into Calendar field code (could
          // have used a Map but this is just as good!
          if("DAY".compareToIgnoreCase(field) == 0)
@@ -428,9 +429,9 @@ public class XSLTExtensions
             fieldcode = Calendar.HOUR;
          else if("MINUTE".compareToIgnoreCase(field) == 0)
             fieldcode = Calendar.MINUTE;
-         
+
          //ivalue = Integer.parseInt(value);
-         
+
          cal.add(fieldcode, ivalue);
          sdf.applyPattern("yyyyMMddHHmm");
          stmp = sdf.format(cal.getTime());
@@ -439,22 +440,22 @@ public class XSLTExtensions
       {
          ex.printStackTrace();
       }
-   
+
       return stmp;
    }
-   
+
    /**
     * test function to return the min/max dates, formatted as XMLTV dates for the seven
     * days starting from today. This is an attempt to use the XSLT document() function
     * to perform the date loop in the XSLT rather than in the HTMLMaker Java.
-    * 
+    *
     * If this works then it could also be used to feed the favorite criteria into
     * the xslt - they would need to be stored in XML format.
-    * 
+    *
     * Once the whole week is processed with a single pass through the XSLT is might
     * be possible to generate the favorites page as part of that pass, if the faves can
     * be added to a seperate output document as they are found.
-    * 
+    *
     * Don't really understand the description for the document() function so for now
     * this returns a string of XML of the form:
     * <RANGES>
@@ -463,9 +464,9 @@ public class XSLTExtensions
     *       <END>YYYYMMDDHHMM</END>
     *    <RANGE>
     * </RANGES>
-    * 
+    *
     * Returning a string containing an xml fragment didn't work... now trying to return a Node created
-    * in same way is the favorite criteria node is. 
+    * in same way is the favorite criteria node is.
     * So the Node thing worked - without the document() function being required. So, still don't know how the
     * document function is supposed to work!!
     * @return
@@ -495,7 +496,7 @@ public class XSLTExtensions
                cal.set(Calendar.MINUTE, 0);
                cal.set(Calendar.SECOND, 0);
                cal.add(Calendar.DAY_OF_MONTH, di);
-               
+
                sdf.applyPattern("yyyyMMddHH");
                mindate = sdf.format(cal.getTime());
 
@@ -504,7 +505,7 @@ public class XSLTExtensions
                result.append("<START>");
                result.append(mindate + "00");
                result.append("</START>");
-                  
+
                result.append("<END>");
                result.append(maxdate + "00");
                result.append("</END>");
@@ -519,14 +520,14 @@ public class XSLTExtensions
 
          return xmltextToNode(result.toString(), "//RANGES");
    }
-   
+
    /**
     * Converts xml formatted text into a node which can be
     * assigned to a variable in a stylesheet and queried with XPath,
     * apply-templates to etc.
-    * 
+    *
     * Not really useful for calling directly as it appears that XSL will
-    * convert such an XML formatted string into something which only 
+    * convert such an XML formatted string into something which only
     * contains the values, no tags etc. Use convertRTFtoNode from
     * within a stylesheet.
     * @param xml
@@ -540,24 +541,24 @@ public class XSLTExtensions
       {
          InputSource is = null;
          XPath xp = XPathFactory.newInstance().newXPath();
-         
+
          is = new InputSource(  new StringReader(xml));
 //               new ByteArrayInputStream(xml.getBytes()));
-         nlfav = (Node) xp.evaluate(xpath, is, XPathConstants.NODE);      
+         nlfav = (Node) xp.evaluate(xpath, is, XPathConstants.NODE);
       }
       catch(Exception ex)
       {
          ex.printStackTrace();
          System.out.println("xmltextToNode: xml=" + xml);
       }
-      
+
       return nlfav;
    }
-   
+
    /**
     *  Converts XML added into an XSL variable into a node which can then be processes by the XSL.
-    *  Well, that's the idea. 
-    *  
+    *  Well, that's the idea.
+    *
     *  rtf - the value of the variable containing the XML
     *  xpath - the nodes to select from the XML.
     */
@@ -566,7 +567,7 @@ public class XSLTExtensions
    Node nlfav = null;
    StreamResult sr = null;
    StringWriter sw = null;
-   
+
       try
       {
          sw = new StringWriter();
@@ -574,7 +575,7 @@ public class XSLTExtensions
          TransformerFactory.newInstance().newTransformer().transform(new DOMSource(rtf), sr);
 
          nlfav = xmltextToNode(sw.toString(), xpath);
-      
+
       }
       catch(Exception e)
       {
@@ -582,11 +583,11 @@ public class XSLTExtensions
       }
       return nlfav;
    }
-   
+
    public static String replaceStr(String body, String target, String replacement)
    {
       String newbody = body;
-      
+
       try
       {
          newbody = body.replace(target, replacement);
@@ -595,10 +596,10 @@ public class XSLTExtensions
       {
          ex.printStackTrace();
       }
-      
+
       return newbody;
    }
-   
+
    public static String urlencode(String url)
    {
    String encurl = url;
@@ -613,7 +614,7 @@ public class XSLTExtensions
          // do not go into much detail about how to handle the 'query' part.
          // So I'll convert the +s into %20s for now
          encurl = URLEncoder.encode(url,"UTF-8");
-         
+
          // Seems the pluses are OK with the DreamBox
          //encurl = encurl.replace("+", "%20");
       }
@@ -636,13 +637,9 @@ public class XSLTExtensions
    	Node result = null;
       StringBuffer xml = new StringBuffer();
       NodeUtils nu = NodeUtils.getNodeUtils();
-      
-      String eptitle = "";
-      String epseason = "";
-      String epnum  = "";
+      EpisodeInfo ei = nu.new EpisodeInfo();
       String epshow = "";
       String recname = "";
-      String epinfx = "";
       String recep="";
       String sdate;
       try
@@ -650,59 +647,36 @@ public class XSLTExtensions
       	// System.out.println(nu.nodeToString(prog));
       	epshow = nu.sanitizeTitle(nu.getNodeValue(prog, "title"));
       	sdate = nu.getAttributeValue(prog, "start");
-      	
+
       	Node epnumnode = nu.getNodeByPath(prog, "episode-num[@system='xmltv_ns']");
 
       	if(epnumnode != null)
       	{
       		// <episode-num system="xmltv_ns">19 . 14/99 . </episode-num>
-      		String xmltvns = nu.getNodeValue(epnumnode);
-      		String [] parts = xmltvns.split("[\\./]");
-      		if(parts != null)
-      		{
-	      		epseason = "" + nu.stringAdd(parts[0], 1);
-	      		epnum = ""  + nu.stringAdd(parts[1], 1);
-      		}
-      		if(!epnum.isEmpty())
-      		{
-      			// Very ugly zero padding to two digits
-      			epnum = ("0" + epnum);
-      			epnum = epnum.substring(epnum.length()-2, epnum.length());
-      			if(epseason.isEmpty())
-      			{
-      				 epseason = "0";
-      			}
-      			epinfx = String.format("%sx%s ", epseason, epnum);
-      		}
-      		
-      		eptitle = nu.sanitizeTitle(nu.getNodeValue(prog, "sub-title"));
-      		if(eptitle.isEmpty() && !epnum.isEmpty())
-      		{
-      			eptitle = "Episode " + epnum;
-      		}
-      		epinfx = String.format("%sx%s", epseason, epnum);
-      		recep = String.format(" %s %s %s", formatDate(sdate, "yy-MM-dd"), 
-      				epinfx, eptitle);
+      		String episodenum = nu.getNodeValue(epnumnode);
+      		String subtitle = nu.getNodeValue(prog, "sub-title");
+      		ei = nu.getEpisodeInfo(episodenum, subtitle);
+      		recep = String.format(" %s %s %s", formatDate(sdate, "yy-MM-dd"),
+      				ei.epinfx, ei.eptitle);
       	}
-      	
+
       	recname = epshow + recep;
       	recname = recname.replaceAll("[\"'?/\\*&:<>,.|@]", "");
-   	
-      	
+
          xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
          xml.append("<EPINFO>");
-         xml.append("<EPTITLE>").append(eptitle).append("</EPTITLE>");
-         xml.append("<EPSEASON>").append(epseason).append("</EPSEASON>");
-         xml.append("<EPNUM>").append(epnum).append("</EPNUM>");
+         xml.append("<EPTITLE>").append(ei.eptitle).append("</EPTITLE>");
+         xml.append("<EPSEASON>").append(ei.epseason).append("</EPSEASON>");
+         xml.append("<EPNUM>").append(ei.epnum).append("</EPNUM>");
          xml.append("<EPSHOW>").append(epshow).append("</EPSHOW>");
          xml.append("<EPDATE>").append(formatDate(sdate, "yyyy-MM-dd")).append("</EPDATE>");
-         xml.append("<EPFMTX>").append(epinfx).append("</EPFMTX>");
-         
+         xml.append("<EPFMTX>").append(ei.epinfx).append("</EPFMTX>");
+
          xml.append("<UID>").append(nu.calcDigest(recname)).append("</UID>");
          xml.append("<RECNAME>").append(recname).append("</RECNAME>");
          xml.append("</EPINFO>");
-         
-         
+
+
          result = xmltextToNode(xml.toString(), "//EPINFO");
       }
       catch(Exception ex)
@@ -713,38 +687,15 @@ public class XSLTExtensions
 
       return result;
    }
-   
-   // TODO Refactor so this and getEpisodeInfo share common code
+
+   // Returns the episode title with the SxE prefix
    public String getFullEpisodetitle(String episodenum, String subtitle)
    {
-   	NodeUtils nu = NodeUtils.getNodeUtils();   	
-      String eptitle = "";
-      String epseason = "";
-      String epnum  = "";
-      String epinfx = "";
-		String [] parts = episodenum.split("[\\./]");
-		if(parts != null)
-		{
-   		epseason = "" + nu.stringAdd(parts[0], 1);
-   		epnum = ""  + nu.stringAdd(parts[1], 1);
-		}
-		if(!epnum.isEmpty())
-		{
-			// Very ugly zero padding to two digits
-			epnum = ("0" + epnum);
-			epnum = epnum.substring(epnum.length()-2, epnum.length());
-			if(epseason.isEmpty())
-			{
-				 epseason = "0";
-			}			
-			epinfx = String.format("%sx%s ", epseason, epnum); 
-		}
-		
-		eptitle = nu.sanitizeTitle(subtitle);
-		if(eptitle.isEmpty() && !epnum.isEmpty())
-		{
-			eptitle = "Episode " + epnum;
-		}
-		return epinfx + eptitle;  	
+   	NodeUtils nu = NodeUtils.getNodeUtils();
+   	EpisodeInfo ei = nu.getEpisodeInfo(episodenum, subtitle);
+
+   	// NB epinfx includes the trailing space if it is set
+		return ei.epinfx + ei.eptitle;
    }
+
 }

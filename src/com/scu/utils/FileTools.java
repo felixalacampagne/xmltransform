@@ -86,7 +86,8 @@ FileOutputStream fos=null;
             outfile = new File(aFnameS);
         }
 
-
+        outfile.getParentFile().mkdirs();
+        
        fos = new FileOutputStream(outfile);
        if(encoding == null)
           fos.write(aToWriteS.getBytes());

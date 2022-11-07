@@ -1112,7 +1112,7 @@ version="1.0">
          
          <FAV>
             <PROG><xsl:value-of select="$ctitle" /></PROG>
-            <EPISODE><xsl:call-template name="eptitle"><xsl:with-param name="pnode" select="." /></xsl:call-template></EPISODE>
+            <EPISODE><xsl:call-template name="eptitle_templ"><xsl:with-param name="pnode" select="." /></xsl:call-template></EPISODE>
             <START><xsl:value-of select="@start" /></START>
             <CHANNEL><xsl:value-of select="$CHNREF/channel[@id=$xmltvid]/display-name" /></CHANNEL>
             <IDX><xsl:value-of select="generate-id()" /></IDX>
@@ -1169,7 +1169,7 @@ version="1.0">
       <xsl:if test="scu:isMatch($matctitle,$NEWSERIESCRIT/CRIT) and not(scu:isMatch($category,$NEWSERIESEXCL/CRIT))">
          <FAV>
             <PROG><xsl:value-of select="$ctitle" /></PROG>
-            <EPISODE><xsl:call-template name="eptitle"><xsl:with-param name="pnode" select="." /></xsl:call-template></EPISODE>
+            <EPISODE><xsl:call-template name="eptitle_templ"><xsl:with-param name="pnode" select="." /></xsl:call-template></EPISODE>
             <START><xsl:value-of select="@start" /></START>
             <CHANNEL><xsl:value-of select="$CHNREF/channel[@id=$xmltvid]/display-name" /></CHANNEL>
             <IDX><xsl:value-of select="generate-id()" /></IDX>
@@ -1207,7 +1207,7 @@ version="1.0">
 <xsl:variable name="ostart" select="scu:addToDate($prog/@start, 'MINUTE', -10)" />
 <xsl:variable name="oend"><xsl:call-template name="stopoff"><xsl:with-param name="pnode" select="$prog" /></xsl:call-template></xsl:variable>
 <xsl:variable name="pref"><xsl:value-of select="$dbref/dbref" /></xsl:variable>
-<xsl:variable name="epinfo"><xsl:call-template name="eptitle"><xsl:with-param name="pnode" select="$prog" /></xsl:call-template></xsl:variable>
+<xsl:variable name="epinfo"><xsl:call-template name="eptitle_templ"><xsl:with-param name="pnode" select="$prog" /></xsl:call-template></xsl:variable>
 
 <!-- event is title combined with date, episode number and name, if episode details are present -->
 <xsl:variable name="event">
@@ -1216,7 +1216,7 @@ version="1.0">
          <xsl:value-of select="$ctitle" />
          <xsl:if test="$epinfo != ''">
             <xsl:text> </xsl:text>
-            <xsl:value-of select="scu:formatDate($ostart, 'yy')" />-<xsl:value-of select="scu:formatDate($ostart, 'MM')" />-<xsl:value-of select="scu:formatDate($ostart, 'dd')" />
+            <xsl:value-of select="scu:formatDate($ostart, 'yy-MM-dd')" />
             <xsl:text> </xsl:text>
             <xsl:value-of select="$epinfo"/>
          </xsl:if>
@@ -1292,38 +1292,9 @@ version="1.0">
 </xsl:template>
 
 <!-- Should be called with a programme node -->
-<xsl:template name="eptitle">
+<xsl:template name="eptitle_templ">
 <xsl:param name="pnode"/>
-   <xsl:choose>
-      <xsl:when test="boolean($pnode/episode-num)">
-         <xsl:variable name="sxe"><xsl:apply-templates select="$pnode/episode-num" mode="fav" /></xsl:variable>
-         <xsl:variable name="defsubtitle">Episode <xsl:value-of select="substring-after($sxe,'x')" /></xsl:variable>
-         <xsl:value-of select="$sxe" />
-            <xsl:choose>
-               <!-- Kodi appears to have issues when there is no episode title in the file name, eg. most BBC programs. -->
-               <xsl:when test="$pnode/sub-title and $pnode/sub-title[normalize-space()]">
-                  <xsl:apply-templates select="$pnode/sub-title" mode="fav">
-                     <xsl:with-param name="noepisode">true</xsl:with-param>
-                     <xsl:with-param name="defsubtitle"><xsl:value-of select="$defsubtitle" /></xsl:with-param>
-                  </xsl:apply-templates>
-               </xsl:when>
-               <xsl:otherwise>
-                  <!-- Really only want the episode number, and having the season/episode string twice will 
-                       probably fork up the highly temperamental kodi parser. Easiest to use the 'x'
-                       in the formatted episode-num value to get the episode number rather than creating a whole
-                       new (duplicate) episode-num parser just for the number. Behaviour might be odd if there
-                       is no 'x', but that would mean the parser is not working correctly.
-                       -->
-                  <xsl:text disable-output-escaping="yes"> </xsl:text><xsl:value-of select="$defsubtitle" />
-               </xsl:otherwise>
-            </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-         <xsl:apply-templates select="$pnode/sub-title">
-            <xsl:with-param name="defsubtitle">Episode X</xsl:with-param>
-         </xsl:apply-templates>         
-      </xsl:otherwise>
-   </xsl:choose>
+   <xsl:value-of select="scu:getFullEpisodetitle( $pnode/episode-num[@system='xmltv_ns'], $pnode/sub-title)" />
 </xsl:template>
 
 <!-- Effectively a duplicate of template  -->

@@ -656,7 +656,7 @@ public class XSLTExtensions
       		String episodenum = nu.getNodeValue(epnumnode);
       		String subtitle = nu.getNodeValue(prog, "sub-title");
       		ei = nu.getEpisodeInfo(episodenum, subtitle);
-      		recep = String.format(" %s %s %s", formatDate(sdate, "yy-MM-dd"),
+      		recep = String.format(" %s %s%s", formatDate(sdate, "yy-MM-dd"),
       				ei.epinfx, ei.eptitle);
       	}
 

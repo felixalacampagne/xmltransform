@@ -9,6 +9,8 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.w3c.dom.*;
 import org.xml.sax.EntityResolver;
@@ -23,6 +25,7 @@ import javax.xml.transform.stream.*;
 
 public class XMLTransform
 {
+	public final static Logger LOG = Logger.getLogger(XMLTransform.class.getName());
 public final static String ARG_XMLFILE = "-xml";
 public final static String ARG_XSLTFILE = "-xsl";
 public final static String ARG_OUTFILE = "-out";
@@ -79,7 +82,7 @@ public final static String ARG_OUTFILE = "-out";
 		try
 		{
 		
-		   Logger.getLogger().log(BaseLogger.ALWAYS, " Transforming {0} with {1} into {2}", new Object[] {xmlfile, xsltfile, outfile});
+			LOG.log(Level.ALL, " Transforming {0} with {1} into {2}", new Object[] {xmlfile, xsltfile, outfile});
 		   xmlt.transformXML(xmlfile, xsltfile, outfile);
 		}
 		catch(Exception ex)
@@ -90,7 +93,7 @@ public final static String ARG_OUTFILE = "-out";
 		{
          	er.printStackTrace();
       }
-      Logger.getLogger().log(BaseLogger.ALWAYS, "Done!");
+		LOG.log(Level.ALL, "Done!");
 	}
 
 

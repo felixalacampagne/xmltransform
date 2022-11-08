@@ -9,5 +9,7 @@ xmltv*.*
 /target/
 tvguide/**
 !tvguide/tvguide.xsl
+!tvguide/bin
+!tvguide/bin/tvguide.xsl
 !tvguide/xml
 !tvguide/xml/mergexmltv.xmltv

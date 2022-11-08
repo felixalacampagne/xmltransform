@@ -336,47 +336,4 @@ String clean = "";
 	return clean;
 }
 
-public class EpisodeInfo
-{
-	public String eptitle = "";
-   public String epseason = "";
-   public String epnum  = "";
-   public String epinfx = "";
-}
-
-public EpisodeInfo getEpisodeInfo(String episodenum, String subtitle)
-{
-	EpisodeInfo ei = new EpisodeInfo();
-	int iepnum = -1;
-	int iepseason = -1;
-
-	if(episodenum!=null)
-	{
-		String [] parts = episodenum.split("[\\./]");
-		// If there aren't at least two parts then it is not a valid episodenum
-		if((parts != null) && (parts.length > 1))
-		{
-			iepseason = stringToInt(parts[0]) + 1;
-			iepnum =    stringToInt(parts[1]) + 1;
-		}
-	}
-
-	if(iepnum > 0)
-	{
-		ei.epnum = String.format("%02d", iepnum);
-		if(iepseason < 0)
-		{
-			iepseason = 0;
-		}
-		ei.epseason = String.valueOf(iepseason);
-		ei.epinfx = String.format("%sx%s ", ei.epseason, ei.epnum);
-	}
-
-	ei.eptitle = sanitizeTitle(subtitle);
-	if(ei.eptitle.isEmpty() && !ei.epnum.isEmpty())
-	{
-		ei.eptitle = "Episode " + ei.epnum;
-	}
-	return ei;
-}
 }

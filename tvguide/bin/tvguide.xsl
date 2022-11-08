@@ -1290,7 +1290,7 @@ version="1.0">
 <xsl:attribute name="HREF"><xsl:value-of select="$href" /></xsl:attribute><img vspace="4" hspace="4" alt="Add to VU+ Ultimo timers" border="0" src="../vup.png" /></xsl:element>
 </xsl:if>
 </xsl:template>
-
+ 
 <!-- Should be called with a programme node -->
 <xsl:template name="eptitle_templ">
 <xsl:param name="pnode"/>

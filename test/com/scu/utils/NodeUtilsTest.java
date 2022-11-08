@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import com.scu.utils.NodeUtils.EpisodeInfo;
+import com.scu.xmltv.EpisodeInfo;
+
 
 class NodeUtilsTest
 {
@@ -19,39 +20,39 @@ class NodeUtilsTest
 		String subtitle = null;
 		EpisodeInfo ei;
 
-		ei = nu.getEpisodeInfo(episodenum, subtitle);
+		ei = new EpisodeInfo(episodenum, subtitle);
 
 		assertTrue(ei != null);
-		assertTrue(ei.eptitle != null);
-		assertTrue(ei.eptitle.isEmpty());
+		assertTrue(ei.getEptitle() != null);
+		assertTrue(ei.getEptitle().isEmpty());
 
 		subtitle = "Title for episode";
 		episodenum = "19 . 14/99 . ";
-		ei = nu.getEpisodeInfo(episodenum, subtitle);
+		ei = new EpisodeInfo(episodenum, subtitle);
 
-		assertEquals("20x15 ", ei.epinfx);
-		assertEquals(subtitle, ei.eptitle);
+		assertEquals("20x15 ", ei.getEpinfx());
+		assertEquals(subtitle, ei.getEptitle());
 
 		subtitle = "";
 		episodenum = " 0 . 0/99 . ";
-		ei = nu.getEpisodeInfo(episodenum, subtitle);
+		ei = new EpisodeInfo(episodenum, subtitle);
 
-		assertEquals("1x01 ", ei.epinfx);
-		assertEquals("Episode 01", ei.eptitle);
+		assertEquals("1x01 ", ei.getEpinfx());
+		assertEquals("Episode 01", ei.getEptitle());
 
 		subtitle = null;
 		episodenum = " 0 . 0/99 . ";
-		ei = nu.getEpisodeInfo(episodenum, subtitle);
+		ei = new EpisodeInfo(episodenum, subtitle);
 
-		assertEquals("1x01 ", ei.epinfx);
-		assertEquals("Episode 01", ei.eptitle);
+		assertEquals("1x01 ", ei.getEpinfx());
+		assertEquals("Episode 01", ei.getEptitle());
 
 		subtitle = "Title&for:w.t,f;<is>this?";
 		episodenum = " 0 . 0/99 . ";
-		ei = nu.getEpisodeInfo(episodenum, subtitle);
+		ei = new EpisodeInfo(episodenum, subtitle);
 
-		assertEquals("1x01 ", ei.epinfx);
-		assertEquals("Title And forwtfisthis", ei.eptitle);
+		assertEquals("1x01 ", ei.getEpinfx());
+		assertEquals("Title And forwtfisthis", ei.getEptitle());
 
 
 	}

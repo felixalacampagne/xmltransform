@@ -24,7 +24,7 @@ import org.xml.sax.InputSource;
 
 import com.scu.utils.FileTools;
 import com.scu.utils.NodeUtils;
-import com.scu.utils.NodeUtils.EpisodeInfo;
+
 
 public class XSLTExtensions
 {
@@ -637,7 +637,7 @@ public class XSLTExtensions
    	Node result = null;
       StringBuffer xml = new StringBuffer();
       NodeUtils nu = NodeUtils.getNodeUtils();
-      EpisodeInfo ei = nu.new EpisodeInfo();
+      EpisodeInfo ei = new EpisodeInfo();
       String epshow = "";
       String recname = "";
       String recep="";
@@ -655,9 +655,9 @@ public class XSLTExtensions
       		// <episode-num system="xmltv_ns">19 . 14/99 . </episode-num>
       		String episodenum = nu.getNodeValue(epnumnode);
       		String subtitle = nu.getNodeValue(prog, "sub-title");
-      		ei = nu.getEpisodeInfo(episodenum, subtitle);
+      		ei = new EpisodeInfo(episodenum, subtitle);
       		recep = String.format(" %s %s%s", formatDate(sdate, "yy-MM-dd"),
-      				ei.epinfx, ei.eptitle);
+      				ei.getEpinfx(), ei.getEptitle());
       	}
 
       	recname = epshow + recep;
@@ -665,12 +665,12 @@ public class XSLTExtensions
 
          xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
          xml.append("<EPINFO>");
-         xml.append("<EPTITLE>").append(ei.eptitle).append("</EPTITLE>");
-         xml.append("<EPSEASON>").append(ei.epseason).append("</EPSEASON>");
-         xml.append("<EPNUM>").append(ei.epnum).append("</EPNUM>");
+         xml.append("<EPTITLE>").append(ei.getEptitle()).append("</EPTITLE>");
+         xml.append("<EPSEASON>").append(ei.getEpseason()).append("</EPSEASON>");
+         xml.append("<EPNUM>").append(ei.getEpnum()).append("</EPNUM>");
          xml.append("<EPSHOW>").append(epshow).append("</EPSHOW>");
          xml.append("<EPDATE>").append(formatDate(sdate, "yyyy-MM-dd")).append("</EPDATE>");
-         xml.append("<EPFMTX>").append(ei.epinfx).append("</EPFMTX>");
+         xml.append("<EPFMTX>").append(ei.getEpinfx()).append("</EPFMTX>");
 
          xml.append("<UID>").append(nu.calcDigest(recname)).append("</UID>");
          xml.append("<RECNAME>").append(recname).append("</RECNAME>");
@@ -692,10 +692,10 @@ public class XSLTExtensions
    public String getFullEpisodetitle(String episodenum, String subtitle)
    {
    	NodeUtils nu = NodeUtils.getNodeUtils();
-   	EpisodeInfo ei = nu.getEpisodeInfo(episodenum, subtitle);
+   	EpisodeInfo ei = new EpisodeInfo(episodenum, subtitle);
 
    	// NB epinfx includes the trailing space if it is set
-		return ei.epinfx + ei.eptitle;
+		return ei.getEpinfx() + ei.getEptitle();
    }
 
 }

@@ -11,5 +11,6 @@ tvguide/**
 !tvguide/tvguide.xsl
 !tvguide/bin
 !tvguide/bin/tvguide.xsl
+!tvguide/bin/doTVGuide.cmd
 !tvguide/xml
 !tvguide/xml/mergexmltv.xmltv

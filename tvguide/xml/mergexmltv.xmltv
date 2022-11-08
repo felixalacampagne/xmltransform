@@ -1,137 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tv>
-  <channel id="74.tvguide.co.uk">
-    <display-name lang="en">BBC One London</display-name>
+  <channel id="XMLTVTestChannel">
+    <display-name lang="en">ATV Channel</display-name>
   </channel>
-  <programme channel="74.tvguide.co.uk" start="20221107234500 +0000" stop="20221108034500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221107234500 +0000" stop="20221108034500 +0000">
     <title lang="en">Have I Got a Bit More News for You</title>
     <desc lang="en">Gary Neville hosts an extended episode of the current affairs quiz, with comedian Maisie Adam and presenter Richard Madeley joining team captains Paul Merton and Ian Hislop.</desc>
     <category lang="en">Comedy</category>
-    <url>https://www.tvguide.co.uk/detail/4869229/78460988/have-i-got-a-bit-more-news-for-you</url>
+    <url>https://www.bla.blady.bla/detail/4869229/78460988/have-i-got-a-bit-more-news-for-you</url>
     <episode-num system="xmltv_ns">63 . 8/9 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/have_I_got_news.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/have_I_got_news.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108060000 +0000" stop="20221108091500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108060000 +0000" stop="20221108091500 +0000">
     <title lang="en">Breakfast</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">A round-up of national and international news, plus current affairs, arts and entertainment, and weather.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864167/78479621/breakfast</url>
+    <url>https://www.bla.blady.bla/detail/4864167/78479621/breakfast</url>
     <episode-num system="xmltv_ns">2021 .  . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>2.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108091500 +0000" stop="20221108100000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108091500 +0000" stop="20221108100000 +0000">
     <title lang="en">Morning Live</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">Weekday magazine show featuring a mixture of topical chat and expert advice, presented by Gethin Jones and Sam Quek.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4864168/78479626/morning-live</url>
+    <url>https://www.bla.blady.bla/detail/4864168/78479626/morning-live</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108100000 +0000" stop="20221108104500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108100000 +0000" stop="20221108104500 +0000">
     <title lang="en">Critical Incident</title>
     <desc lang="en">A Warwickshire police officer who used his medical training to save the lives of two stab victims and a mountain bike paramedic violently attacked in Manchester city centre.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4869586/78479610/critical-incident</url>
+    <url>https://www.bla.blady.bla/detail/4869586/78479610/critical-incident</url>
     <episode-num system="xmltv_ns">2 . 11/15 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108104500 +0000" stop="20221108111500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108104500 +0000" stop="20221108111500 +0000">
     <title lang="en">Dirty Rotten Scammers</title>
     <sub-title lang="en">Episode 7- Short</sub-title>
     <desc lang="en">A man who received a fraudulent text that ended in him being fleeced for a five-figure sum - and finding himself embroiled in an investigation with the National Crime Agency.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4865923/78479630/dirty-rotten-scammers</url>
+    <url>https://www.bla.blady.bla/detail/4865923/78479630/dirty-rotten-scammers</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.1/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108111500 +0000" stop="20221108121500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108111500 +0000" stop="20221108121500 +0000">
     <title lang="en">Homes Under the Hammer</title>
     <desc lang="en">Martin Roberts and the team are in Scotland and the north of England to follow renovations in Paisley, Coventry and Bradford.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4865875/78479615/homes-under-the-hammer</url>
+    <url>https://www.bla.blady.bla/detail/4865875/78479615/homes-under-the-hammer</url>
     <episode-num system="xmltv_ns">24 . 61/80 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>4.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Homes-Under.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Homes-Under.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108121500 +0000" stop="20221108130000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108121500 +0000" stop="20221108130000 +0000">
     <title lang="en">Bargain Hunt</title>
     <sub-title lang="en">Sawbridgeworth 10</sub-title>
     <desc lang="en">Roo Irvine and Tim Weeks help the red and blue teams in Sawbridgeworth, Hertfordshire, where they hope to bag bargains to take to auction to sell at a profit. Presenter Charlie Ross also finds out about the fascinating world of espionage and uncovers some everyday objects that aren't quite what they seem.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/3675103/78479620/bargain-hunt</url>
+    <url>https://www.bla.blady.bla/detail/3675103/78479620/bargain-hunt</url>
     <episode-num system="xmltv_ns">55 . 10/32 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.7/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Bargain-Hunt.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Bargain-Hunt.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108130000 +0000" stop="20221108133000 +0000">
-    <title lang="en">BBC News at One; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221108130000 +0000" stop="20221108133000 +0000">
+    <title lang="en">ATV News at One; Weather</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">A round-up of the latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864170/78479617/bbc-news-at-one-weather</url>
+    <url>https://www.bla.blady.bla/detail/4864170/78479617/bbc-news-at-one-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108133000 +0000" stop="20221108134500 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221108133000 +0000" stop="20221108134500 +0000">
+    <title lang="en">ATV News; Weather</title>
     <sub-title lang="en">08/11/2022 - Lunch</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4866090/78479608/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4866090/78479608/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108134500 +0000" stop="20221108141500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108134500 +0000" stop="20221108141500 +0000">
     <title lang="en">Doctors</title>
     <sub-title lang="en">Entitlement - Part Two</sub-title>
     <desc lang="en">Ruhma's first date does not go as planned and Sid gets involved with his neighbour's conflict.</desc>
     <category lang="en">Soap</category>
-    <url>https://www.tvguide.co.uk/detail/4865494/78479622/doctors</url>
+    <url>https://www.bla.blady.bla/detail/4865494/78479622/doctors</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Doctors3.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Doctors3.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108141500 +0000" stop="20221108150000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108141500 +0000" stop="20221108150000 +0000">
     <title lang="en">Money for Nothing</title>
     <desc lang="en">Jacqui Joseph heads to Walsall Recycling Centre, where she rescues a bamboo chair, a hand-made sideboard and a pair of solid wood bedside tables. With the help of upholsterer Simion Hawtin-Smith and screen print artist Daniel Heath, the tired trio of items have the chance to shine once more.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4132117/78479616/money-for-nothing</url>
+    <url>https://www.bla.blady.bla/detail/4132117/78479616/money-for-nothing</url>
     <episode-num system="xmltv_ns">9 . 4/20 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
@@ -139,181 +139,181 @@
       <value>7.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108150000 +0000" stop="20221108154500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108150000 +0000" stop="20221108154500 +0000">
     <title lang="en">Escape to the Country</title>
     <sub-title lang="en">Anglesey</sub-title>
     <desc lang="en">Jules Hudson helps a couple from Cheshire to find their dream home on Anglesey. He also heads to the Welsh mainland to catch up with a farmer, Gareth Wyn Jones, whose family has been working the land for 375 years.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4866148/78479604/escape-to-the-country</url>
+    <url>https://www.bla.blady.bla/detail/4866148/78479604/escape-to-the-country</url>
     <episode-num system="xmltv_ns">22 . 16/55 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>5.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Escape.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Escape.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108154500 +0000" stop="20221108163000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108154500 +0000" stop="20221108163000 +0000">
     <title lang="en">The Repair Shop</title>
     <desc lang="en">Jay Blades and the team restore a homemade radio from the Second World War, a set of dinner gongs from a farmhouse and a musical carousel.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4869197/78479619/the-repair-shop</url>
+    <url>https://www.bla.blady.bla/detail/4869197/78479619/the-repair-shop</url>
     <episode-num system="xmltv_ns">8 . 31/40 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108163000 +0000" stop="20221108171500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108163000 +0000" stop="20221108171500 +0000">
     <title lang="en">The Travelling Auctioneers</title>
     <desc lang="en">Christina Trevanion and Will Kirk travel to Northumbria to help retired school teachers Mike and Carole declutter and raise money for a trip abroad to visit their grandchild.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4865460/78479607/the-travelling-auctioneers</url>
+    <url>https://www.bla.blady.bla/detail/4865460/78479607/the-travelling-auctioneers</url>
     <episode-num system="xmltv_ns">0 . 6/15 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108171500 +0000" stop="20221108180000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108171500 +0000" stop="20221108180000 +0000">
     <title lang="en">Pointless</title>
     <desc lang="en">Contestants try to score the fewest points possible by giving the least obvious correct answers to questions. Presented by Alexander Armstrong, with Richard Osman.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4458328/78479624/pointless</url>
+    <url>https://www.bla.blady.bla/detail/4458328/78479624/pointless</url>
     <episode-num system="xmltv_ns">25 . 50/55 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.5/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/pointless.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/pointless.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108180000 +0000" stop="20221108183000 +0000">
-    <title lang="en">BBC News at Six; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221108180000 +0000" stop="20221108183000 +0000">
+    <title lang="en">ATV News at Six; Weather</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">The latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864173/78479627/bbc-news-at-six-weather</url>
+    <url>https://www.bla.blady.bla/detail/4864173/78479627/bbc-news-at-six-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108183000 +0000" stop="20221108190000 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221108183000 +0000" stop="20221108190000 +0000">
+    <title lang="en">ATV News; Weather</title>
     <sub-title lang="en">08/11/2022 - Evening</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4866093/78479623/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4866093/78479623/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108190000 +0000" stop="20221108193000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108190000 +0000" stop="20221108193000 +0000">
     <title lang="en">The One Show</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">Alex Jones and Rylan present another mix of nationwide reports and live studio-based chat.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4866073/78479618/the-one-show</url>
+    <url>https://www.bla.blady.bla/detail/4866073/78479618/the-one-show</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>4/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/The-One-Show.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/The-One-Show.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108193000 +0000" stop="20221108200000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108193000 +0000" stop="20221108200000 +0000">
     <title lang="en">EastEnders</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">The highs and lows of life with the residents of Albert Square, Walford.</desc>
     <category lang="en">Soap</category>
-    <url>https://www.tvguide.co.uk/detail/4862739/78479606/eastenders</url>
+    <url>https://www.bla.blady.bla/detail/4862739/78479606/eastenders</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>5/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/eastenders.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/eastenders.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108200000 +0000" stop="20221108210000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108200000 +0000" stop="20221108210000 +0000">
     <title lang="en">Trawlermen: Hunting the Catch</title>
     <sub-title lang="en">(New Series)</sub-title>
     <desc lang="en">Storm Arwen hits the UK and the skippers have tough decisions to make. Boats start to roll in the North Sea, putting Victory Rose and Our Lass at risk of collision. Skipper Darren has just three days of crabbing time before the storm pushes the boat back to the harbour and George Jack considers venturing in to the storm in search of a new species of prawn.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4869190/78479612/trawlermen-hunting-the-catch</url>
+    <url>https://www.bla.blady.bla/detail/4869190/78479612/trawlermen-hunting-the-catch</url>
     <episode-num system="xmltv_ns">0 . 5/6 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/trawlermen.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/trawlermen.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108210000 +0000" stop="20221108220000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108210000 +0000" stop="20221108220000 +0000">
     <title lang="en">Mariupol: The People's Story</title>
     <desc lang="en">Before the war in Ukraine, Mariupol was a thriving city, home to 430,000 people. In a little under three months, most of its citizens had fled Putin's army and thousands had been killed. This Panorama special, filmed and told by residents, is the story of their loss, bravery, determination, and incredible daring in making their escape. They were among those who sought refuge in the Mariupol Theatre, only for it to be bombed, the maternity hospital which was also hit and the Azovstal Steelworks, where hundreds hid in bunkers and Ukrainian forces made their last stand.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4868986/78479609/mariupol-the-peoples-story</url>
+    <url>https://www.bla.blady.bla/detail/4868986/78479609/mariupol-the-peoples-story</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>10/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108220000 +0000" stop="20221108223000 +0000">
-    <title lang="en">BBC News at Ten</title>
+  <programme channel="XMLTVTestChannel" start="20221108220000 +0000" stop="20221108223000 +0000">
+    <title lang="en">ATV News at Ten</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">A round-up of today's headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864191/78479628/bbc-news-at-ten</url>
+    <url>https://www.bla.blady.bla/detail/4864191/78479628/bbc-news-at-ten</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108223000 +0000" stop="20221108224000 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221108223000 +0000" stop="20221108224000 +0000">
+    <title lang="en">ATV News; Weather</title>
     <sub-title lang="en">08/11/2022 - Late</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4866094/78479629/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4866094/78479629/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108224000 +0000" stop="20221108233500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108224000 +0000" stop="20221108233500 +0000">
     <title lang="en">Industry</title>
     <sub-title lang="en">Lone Wolf and Cub</sub-title>
     <desc lang="en">Harper, Eric and Rishi form a cabal in a plan to jump banks before Pierpoint find out they have gone rogue. Venetia crashes a client dinner between Robert and Nicole which has serious consequences. Yasmin questions how her own actions mirror her father's and wonders if she can finally be honest with Celeste.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4869378/78479625/industry</url>
+    <url>https://www.bla.blady.bla/detail/4869378/78479625/industry</url>
     <episode-num system="xmltv_ns">1 . 6/8 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221108233500 +0000" stop="20221109003500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221108233500 +0000" stop="20221109003500 +0000">
     <title lang="en">Industry</title>
     <sub-title lang="en">Jerusalem</sub-title>
     <desc lang="en">Harper inadvertently reveals information that leads to massive consequences. Yasmin finally confronts her father and exercises her boundaries with Celeste but fears what she stands to lose in the process. Robert's moral compass is put to the test when his biggest success comes through Nicole and he faces the law.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4823189/78479611/industry</url>
+    <url>https://www.bla.blady.bla/detail/4823189/78479611/industry</url>
     <episode-num system="xmltv_ns">1 . 7/8 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109003500 +0000" stop="20221109012500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109003500 +0000" stop="20221109012500 +0000">
     <title lang="en">Mood</title>
     <sub-title lang="en">Hannibal</sub-title>
     <desc lang="en">Sasha thinks she has found a best friend in Carly and her life is on the up - until she makes a decision she never thought she would.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4538528/78479723/mood</url>
+    <url>https://www.bla.blady.bla/detail/4538528/78479723/mood</url>
     <episode-num system="xmltv_ns">0 . 2/6 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
@@ -321,15 +321,15 @@
       <value>0.7/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109012500 +0000" stop="20221109021000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109012500 +0000" stop="20221109021000 +0000">
     <title lang="en">Mood</title>
     <sub-title lang="en">Get That Schmoneyyy</sub-title>
-    <desc lang="en">Sasha visits her family and the studio with Kobi, and she struggles when her old and new worlds collide. Drama, starring Nicôle Lecky.</desc>
+    <desc lang="en">Sasha visits her family and the studio with Kobi, and she struggles when her old and new worlds collide. Drama, starring NicÃ´le Lecky.</desc>
     <credits>
-      <actor>Nicôle Lecky</actor>
+      <actor>NicÃ´le Lecky</actor>
     </credits>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4541031/78479711/mood</url>
+    <url>https://www.bla.blady.bla/detail/4541031/78479711/mood</url>
     <episode-num system="xmltv_ns">0 . 3/6 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
@@ -337,270 +337,270 @@
       <value>0.7/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109021000 +0000" stop="20221109021500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109021000 +0000" stop="20221109021500 +0000">
     <title lang="en">Weather for the Week Ahead</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">A look ahead to the latest forecast.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864197/78479712/weather-for-the-week-ahead</url>
+    <url>https://www.bla.blady.bla/detail/4864197/78479712/weather-for-the-week-ahead</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109021500 +0000" stop="20221109060000 +0000">
-    <title lang="en">BBC News</title>
+  <programme channel="XMLTVTestChannel" start="20221109021500 +0000" stop="20221109060000 +0000">
+    <title lang="en">ATV News</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864198/78479722/bbc-news</url>
+    <url>https://www.bla.blady.bla/detail/4864198/78479722/bbc-news</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/BBC-News.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/ATV-News.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109060000 +0000" stop="20221109091500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109060000 +0000" stop="20221109091500 +0000">
     <title lang="en">Breakfast</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">A round-up of national and international news, plus current affairs, arts and entertainment, and weather.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864199/78554722/breakfast</url>
+    <url>https://www.bla.blady.bla/detail/4864199/78554722/breakfast</url>
     <episode-num system="xmltv_ns">2021 .  . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>2.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109091500 +0000" stop="20221109100000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109091500 +0000" stop="20221109100000 +0000">
     <title lang="en">Morning Live</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">Weekday magazine show featuring a mixture of topical chat and expert advice presented by Gethin Jones and Sam Quek.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4864200/78554738/morning-live</url>
+    <url>https://www.bla.blady.bla/detail/4864200/78554738/morning-live</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109100000 +0000" stop="20221109104500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109100000 +0000" stop="20221109104500 +0000">
     <title lang="en">Critical Incident</title>
     <desc lang="en">Jim Johnson shares the stories of travel police who had their car hit by a thief and a paramedic who struggled with mental health issues after being assaulted.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4869574/78554721/critical-incident</url>
+    <url>https://www.bla.blady.bla/detail/4869574/78554721/critical-incident</url>
     <episode-num system="xmltv_ns">2 . 12/15 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109104500 +0000" stop="20221109111500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109104500 +0000" stop="20221109111500 +0000">
     <title lang="en">Dirty Rotten Scammers</title>
     <sub-title lang="en">Episode 8 - Short</sub-title>
-    <desc lang="en">How a call from a fraud department turned out to be part of a scam in which a woman lost £2,000. Cameras also follow police as they install blocking technology in a victim's home.</desc>
+    <desc lang="en">How a call from a fraud department turned out to be part of a scam in which a woman lost Â£2,000. Cameras also follow police as they install blocking technology in a victim's home.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4865926/78554724/dirty-rotten-scammers</url>
+    <url>https://www.bla.blady.bla/detail/4865926/78554724/dirty-rotten-scammers</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.1/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109111500 +0000" stop="20221109121500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109111500 +0000" stop="20221109121500 +0000">
     <title lang="en">Homes Under the Hammer</title>
     <desc lang="en">Martin Roberts, Dion Dublin and Jacqui Joseph follow the fortunes of a terrace in Aberdare, south Wales, a slice of land in Glasgow and an end terrace in Rochester, Kent.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4568611/78554725/homes-under-the-hammer</url>
+    <url>https://www.bla.blady.bla/detail/4568611/78554725/homes-under-the-hammer</url>
     <episode-num system="xmltv_ns">24 . 11/80 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>4.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Homes-Under.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Homes-Under.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109121500 +0000" stop="20221109130000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109121500 +0000" stop="20221109130000 +0000">
     <title lang="en">Bargain Hunt</title>
     <desc lang="en">Two teams are challenged to scour an antiques fair and pick up bargains to sell for profit at auction.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/10126/78554715/bargain-hunt</url>
+    <url>https://www.bla.blady.bla/detail/10126/78554715/bargain-hunt</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Bargain-Hunt.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Bargain-Hunt.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109130000 +0000" stop="20221109133000 +0000">
-    <title lang="en">BBC News at One; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221109130000 +0000" stop="20221109133000 +0000">
+    <title lang="en">ATV News at One; Weather</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">A round-up of the latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864203/78554733/bbc-news-at-one-weather</url>
+    <url>https://www.bla.blady.bla/detail/4864203/78554733/bbc-news-at-one-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109133000 +0000" stop="20221109134500 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221109133000 +0000" stop="20221109134500 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">09/11/2022 - Lunch</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4866190/78554720/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4866190/78554720/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109134500 +0000" stop="20221109141500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109134500 +0000" stop="20221109141500 +0000">
     <title lang="en">Doctors</title>
     <sub-title lang="en">Flawless</sub-title>
     <desc lang="en">Al drives everyone mad by wallowing in his celebration. A fashion designer reveals her secret identity but her medical condition has other plans for the day.</desc>
     <category lang="en">Soap</category>
-    <url>https://www.tvguide.co.uk/detail/4865525/78554713/doctors</url>
+    <url>https://www.bla.blady.bla/detail/4865525/78554713/doctors</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Doctors3.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Doctors3.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109141500 +0000" stop="20221109150000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109141500 +0000" stop="20221109150000 +0000">
     <title lang="en">Money for Nothing</title>
     <desc lang="en">Sarah Moore visits Beaconsfield recycling centre to find items to upcycle. She enlists the help of Ollie Clueit, Saurabh Kalra and Fernando Donadel to fix up a sofa, a school desk and some metal legs in the hope of selling them on for a profit..</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4869168/78554736/money-for-nothing</url>
+    <url>https://www.bla.blady.bla/detail/4869168/78554736/money-for-nothing</url>
     <episode-num system="xmltv_ns">12 . 10/20 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109150000 +0000" stop="20221109154500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109150000 +0000" stop="20221109154500 +0000">
     <title lang="en">Escape to the Country</title>
     <sub-title lang="en">Monmouthshire</sub-title>
-    <desc lang="en">Sonali Shah helps a couple from London with a budget of £325,000 to find a new home in the Monmouthshire countryside. She also visits a market garden with an unusual growing method.</desc>
+    <desc lang="en">Sonali Shah helps a couple from London with a budget of Â£325,000 to find a new home in the Monmouthshire countryside. She also visits a market garden with an unusual growing method.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4490079/78554716/escape-to-the-country</url>
+    <url>https://www.bla.blady.bla/detail/4490079/78554716/escape-to-the-country</url>
     <episode-num system="xmltv_ns">21 . 20/55 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>5.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Escape.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Escape.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109154500 +0000" stop="20221109163000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109154500 +0000" stop="20221109163000 +0000">
     <title lang="en">The Repair Shop</title>
     <desc lang="en">Jay Blades and the team restore a pair of ice hockey skates and gloves, a cork-lined motorbike helmet and a 54-year-old teddy bear.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4869214/78554714/the-repair-shop</url>
+    <url>https://www.bla.blady.bla/detail/4869214/78554714/the-repair-shop</url>
     <episode-num system="xmltv_ns">8 . 32/40 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109163000 +0000" stop="20221109171500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109163000 +0000" stop="20221109171500 +0000">
     <title lang="en">The Travelling Auctioneers</title>
     <desc lang="en">Christina Trevanion and Will Kirk travel to Berkshire to help Tony and Kerry Cradock sort the contents of Tony's childhood home after the death of his adoptive parents.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4865466/78554734/the-travelling-auctioneers</url>
+    <url>https://www.bla.blady.bla/detail/4865466/78554734/the-travelling-auctioneers</url>
     <episode-num system="xmltv_ns">0 . 7/15 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109171500 +0000" stop="20221109180000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109171500 +0000" stop="20221109180000 +0000">
     <title lang="en">Pointless</title>
     <desc lang="en">Quiz in which contestants try to score the fewest points possible by giving the least obvious correct answers to questions. Presented by Alexander Armstrong, with Richard Osman.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4472290/78554728/pointless</url>
+    <url>https://www.bla.blady.bla/detail/4472290/78554728/pointless</url>
     <episode-num system="xmltv_ns">25 . 51/55 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.5/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/pointless.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/pointless.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109180000 +0000" stop="20221109183000 +0000">
-    <title lang="en">BBC News at Six; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221109180000 +0000" stop="20221109183000 +0000">
+    <title lang="en">ATV News at Six; Weather</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">The latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864209/78554727/bbc-news-at-six-weather</url>
+    <url>https://www.bla.blady.bla/detail/4864209/78554727/bbc-news-at-six-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109183000 +0000" stop="20221109190000 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221109183000 +0000" stop="20221109190000 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">09/11/2022 - Evening</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4866191/78554729/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4866191/78554729/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109190000 +0000" stop="20221109193000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109190000 +0000" stop="20221109193000 +0000">
     <title lang="en">The One Show</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">Alex Jones and Jermaine Jenas present the magazine show, with stories of interest from around the UK, plus celebrity guests in the studio.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4866183/78554717/the-one-show</url>
+    <url>https://www.bla.blady.bla/detail/4866183/78554717/the-one-show</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>4/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/The-One-Show.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/The-One-Show.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109193000 +0000" stop="20221109200000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109193000 +0000" stop="20221109200000 +0000">
     <title lang="en">EastEnders</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">Kheerat sees red as shocking revelations come to light and he goes to drastic lengths to save his mother. But will it be enough? Sam is left feeling hopeless when Zack refuses to help her. Linda's blind date fails to show, so Alfie steps in and buys her a drink, annoying Mick in the process.</desc>
     <category lang="en">Soap</category>
-    <url>https://www.tvguide.co.uk/detail/4862740/78554739/eastenders</url>
+    <url>https://www.bla.blady.bla/detail/4862740/78554739/eastenders</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>5/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/eastenders.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/eastenders.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109200000 +0000" stop="20221109203000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109200000 +0000" stop="20221109203000 +0000">
     <title lang="en">Countryfile</title>
-    <sub-title lang="en">Countryfile Ramble for BBC Children in Need 2022</sub-title>
+    <sub-title lang="en">Countryfile Ramble for ATV Children in Need 2022</sub-title>
     <desc lang="en">Matt Baker and the team showcase this year's Big Ramble for Children in Need, and meet some inspirational young people to discover how they have been helped by the charity.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4868617/78554732/countryfile</url>
+    <url>https://www.bla.blady.bla/detail/4868617/78554732/countryfile</url>
     <episode-num system="xmltv_ns">2021 . 42/52 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.2/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Countryfile.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Countryfile.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109203000 +0000" stop="20221109210000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109203000 +0000" stop="20221109210000 +0000">
     <title lang="en">The Repair Shop</title>
-    <desc lang="en">Metalworker Dominic Chinea uses all his expertise to make a dilapidated and unsafe go-kart roadworthy once again. Master saddlemaker Suzie Fletcher is called upon to restore a hand-crafted leather gun slip, while ceramics conservator Kirsten Ramsay faces an unusual challenge in the shape of a charming little papier-maché cat figurine. Presented by Jay Blades.</desc>
+    <desc lang="en">Metalworker Dominic Chinea uses all his expertise to make a dilapidated and unsafe go-kart roadworthy once again. Master saddlemaker Suzie Fletcher is called upon to restore a hand-crafted leather gun slip, while ceramics conservator Kirsten Ramsay faces an unusual challenge in the shape of a charming little papier-machÃ© cat figurine. Presented by Jay Blades.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4354831/78554735/the-repair-shop</url>
+    <url>https://www.bla.blady.bla/detail/4354831/78554735/the-repair-shop</url>
     <episode-num system="xmltv_ns">3 . 4 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
@@ -608,186 +608,186 @@
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109210000 +0000" stop="20221109220000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109210000 +0000" stop="20221109220000 +0000">
     <title lang="en">MasterChef: The Professionals</title>
     <desc lang="en">Four new chefs compete to impress judges Anna Haugh, Marcus Wareing and Gregg Wallace and take their place in the quarter-final. The infamous skills test see the chefs perfecting their pasta-making skills with ravioli, and filleting fish with finesse in just 20 minutes. In their final chance to impress, the competitors serve up their personal signature dishes.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4863039/78554740/masterchef-the-professionals</url>
+    <url>https://www.bla.blady.bla/detail/4863039/78554740/masterchef-the-professionals</url>
     <episode-num system="xmltv_ns">14 . 3/18 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/masterchef_professionals.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/masterchef_professionals.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109220000 +0000" stop="20221109223000 +0000">
-    <title lang="en">BBC News at Ten</title>
+  <programme channel="XMLTVTestChannel" start="20221109220000 +0000" stop="20221109223000 +0000">
+    <title lang="en">ATV News at Ten</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">A round-up of today's headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864222/78554731/bbc-news-at-ten</url>
+    <url>https://www.bla.blady.bla/detail/4864222/78554731/bbc-news-at-ten</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109223000 +0000" stop="20221109224000 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221109223000 +0000" stop="20221109224000 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">09/11/2022 - Late</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4866192/78554719/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4866192/78554719/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109224000 +0000" stop="20221109233000 +0000">
-    <title lang="en">BBC New Comedy Awards</title>
+  <programme channel="XMLTVTestChannel" start="20221109224000 +0000" stop="20221109233000 +0000">
+    <title lang="en">ATV New Comedy Awards</title>
     <sub-title lang="en">(New Series)</sub-title>
-    <desc lang="en">Kerry Godliman hosts as the six finalists take to the stage at the National Concert Hall of Wales where judges Fern Brady, Rosie Jones and Nabil Abdulrashid choose the BBC New Comedian of 2022. The grand final also features the award for Best New Digital Comedy 2022.</desc>
+    <desc lang="en">Kerry Godliman hosts as the six finalists take to the stage at the National Concert Hall of Wales where judges Fern Brady, Rosie Jones and Nabil Abdulrashid choose the ATV New Comedian of 2022. The grand final also features the award for Best New Digital Comedy 2022.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4869583/78554726/bbc-new-comedy-awards</url>
+    <url>https://www.bla.blady.bla/detail/4869583/78554726/bbc-new-comedy-awards</url>
     <episode-num system="xmltv_ns">2021 . 6/7 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221109233000 +0000" stop="20221110033000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221109233000 +0000" stop="20221110033000 +0000">
     <title lang="en">Louis Theroux Interviews</title>
     <sub-title lang="en">Louis Theroux Interviews - Yungblud</sub-title>
     <desc lang="en">Louis spends time with Dominic Harrison - aka singer and musician Yungblud - as he joins him during his whirlwind tour. Along the way, Louis meets fans who follow Yungblud with almost religious intensity, before sitting down with the singer to discuss a range of topics including his mental health, his sexuality and his response to outspoken critics.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4866194/78554723/louis-theroux-interviews</url>
+    <url>https://www.bla.blady.bla/detail/4866194/78554723/louis-theroux-interviews</url>
     <episode-num system="xmltv_ns">0 . 2/6 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.7/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/louis-theroux.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/louis-theroux.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110060000 +0000" stop="20221110091500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110060000 +0000" stop="20221110091500 +0000">
     <title lang="en">Breakfast</title>
     <sub-title lang="en">10/11/2022</sub-title>
     <desc lang="en">A round-up of national and international news, plus current affairs, arts and entertainment, and weather.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864253/78624332/breakfast</url>
+    <url>https://www.bla.blady.bla/detail/4864253/78624332/breakfast</url>
     <episode-num system="xmltv_ns">2021 .  . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>2.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110091500 +0000" stop="20221110100000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110091500 +0000" stop="20221110100000 +0000">
     <title lang="en">Morning Live</title>
     <sub-title lang="en">10/11/2022</sub-title>
     <desc lang="en">Weekday magazine show featuring a mixture of topical chat and expert advice.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4864257/78624331/morning-live</url>
+    <url>https://www.bla.blady.bla/detail/4864257/78624331/morning-live</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110100000 +0000" stop="20221110104500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110100000 +0000" stop="20221110104500 +0000">
     <title lang="en">Critical Incident</title>
     <desc lang="en">When a woman is stabbed in Coventry, a police officer uses his first aid skills to help save her life. Cameras reveal what it takes to become a police horse in the Avon &amp; Somerset Mounted Section and witness a specialist task force in action tackling crime in the Greater Manchester area.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4869198/78624342/critical-incident</url>
+    <url>https://www.bla.blady.bla/detail/4869198/78624342/critical-incident</url>
     <episode-num system="xmltv_ns">2 . 13/15 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110104500 +0000" stop="20221110111500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110104500 +0000" stop="20221110111500 +0000">
     <title lang="en">Dirty Rotten Scammers</title>
     <sub-title lang="en">Episode 9 - Short</sub-title>
     <desc lang="en">How opera singer Alexander got more than he bargained for when he thought he was paying for parcel delivery. Plus, the secrets of the hackers that have been on fact-finding missions.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4866040/78624350/dirty-rotten-scammers</url>
+    <url>https://www.bla.blady.bla/detail/4866040/78624350/dirty-rotten-scammers</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110111500 +0000" stop="20221110121500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110111500 +0000" stop="20221110121500 +0000">
     <title lang="en">Homes Under the Hammer</title>
     <desc lang="en">Martin Roberts, Dion Dublin and Martel Maxwell follow the stories of three more renovations. The auction buys in Cardiff, Preston and Wolverhampton are bought by families of property developers and two of the projects are destined to be the developers' homes while the third is given a top end refurbishment for the rental market.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4865849/78624336/homes-under-the-hammer</url>
+    <url>https://www.bla.blady.bla/detail/4865849/78624336/homes-under-the-hammer</url>
     <episode-num system="xmltv_ns">24 . 62/80 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>4.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Homes-Under.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Homes-Under.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110121500 +0000" stop="20221110130000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110121500 +0000" stop="20221110130000 +0000">
     <title lang="en">Bargain Hunt</title>
     <sub-title lang="en">Naseby 15</sub-title>
     <desc lang="en">Roo Irvine presents from Naseby Antiques Fair, Northamptonshire, where experts Gary Pe and Tim Weeks offer up their expertise to assist two teams as they search for profitable items to take to auction. Roo also visits the Leicestershire town of Market Harborough to learn about the history of corsetry.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4869309/78624341/bargain-hunt</url>
+    <url>https://www.bla.blady.bla/detail/4869309/78624341/bargain-hunt</url>
     <episode-num system="xmltv_ns">62 . 15/32 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Bargain-Hunt.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Bargain-Hunt.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110130000 +0000" stop="20221110133000 +0000">
-    <title lang="en">BBC News at One; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221110130000 +0000" stop="20221110133000 +0000">
+    <title lang="en">ATV News at One; Weather</title>
     <sub-title lang="en">10/11/2022</sub-title>
     <desc lang="en">A round-up of the latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864259/78624339/bbc-news-at-one-weather</url>
+    <url>https://www.bla.blady.bla/detail/4864259/78624339/bbc-news-at-one-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110133000 +0000" stop="20221110134500 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221110133000 +0000" stop="20221110134500 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">10/11/2022 - Lunch</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4867854/78624338/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4867854/78624338/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110134500 +0000" stop="20221110141500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110134500 +0000" stop="20221110141500 +0000">
     <title lang="en">Doctors</title>
     <sub-title lang="en">Signs</sub-title>
     <desc lang="en">Daniel is dismayed as Izzie cause more strife at home. Emma and Rob struggle to help a wife in extreme denial.</desc>
     <category lang="en">Soap</category>
-    <url>https://www.tvguide.co.uk/detail/4871228/78624344/doctors</url>
+    <url>https://www.bla.blady.bla/detail/4871228/78624344/doctors</url>
     <episode-num system="xmltv_ns">22 . 117/165 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Doctors3.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Doctors3.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110141500 +0000" stop="20221110150000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110141500 +0000" stop="20221110150000 +0000">
     <title lang="en">Money for Nothing</title>
     <desc lang="en">Jacqui Joseph visits Earlswood Recycling Centre searching for three items she hopes can be revived and sold on for a profit. There's an oil heater that's on the brink of being binned, a pair of patterned armchairs and a homemade dollhouse. Upholsterer Leigh-Anne Treadwell and blacksmith Kev Paxton set to work helping Jacqui transform her finds.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4381419/78624345/money-for-nothing</url>
+    <url>https://www.bla.blady.bla/detail/4381419/78624345/money-for-nothing</url>
     <episode-num system="xmltv_ns">10 . 17/20 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
@@ -795,450 +795,450 @@
       <value>7.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110150000 +0000" stop="20221110154500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110150000 +0000" stop="20221110154500 +0000">
     <title lang="en">Escape to the Country</title>
     <sub-title lang="en">Dorset</sub-title>
-    <desc lang="en">Nicki Chapman helps an animal-loving house hunter from a town in Oxfordshire, who has a generous budget of £700,000 to find a new village community in Dorset, ideally close to the coast. Making the most of the seaside locale, Nicki visits a luxury yacht manufacturer to experience how the other half set sail in serious style.</desc>
+    <desc lang="en">Nicki Chapman helps an animal-loving house hunter from a town in Oxfordshire, who has a generous budget of Â£700,000 to find a new village community in Dorset, ideally close to the coast. Making the most of the seaside locale, Nicki visits a luxury yacht manufacturer to experience how the other half set sail in serious style.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/3839710/78624351/escape-to-the-country</url>
+    <url>https://www.bla.blady.bla/detail/3839710/78624351/escape-to-the-country</url>
     <episode-num system="xmltv_ns">20 . 0/53 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>5.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Escape.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Escape.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110154500 +0000" stop="20221110163000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110154500 +0000" stop="20221110163000 +0000">
     <title lang="en">The Repair Shop</title>
     <desc lang="en">Helen Giltrow presents a miniature silver kettle, hoping that silversmith Brenton West can get it singing again. A cherished violin and a 1950s toy rocket that's lost its spark are also restored. Presented by Jay Blades.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4868516/78624335/the-repair-shop</url>
+    <url>https://www.bla.blady.bla/detail/4868516/78624335/the-repair-shop</url>
     <episode-num system="xmltv_ns">8 . 33/40 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110163000 +0000" stop="20221110171500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110163000 +0000" stop="20221110171500 +0000">
     <title lang="en">The Travelling Auctioneers</title>
     <desc lang="en">Christina Trevanion and Will Kirk travel to Shropshire to meet Andrea and her son James. Andrea has MS and finds it difficult to negotiate her home in a motorised wheelchair. James has moved back in to care for her and both are aware of the need to declutter their packed farmhouse. Christina is confronted with a house and barn overflowing with antiques collected over the years and piles of things stored for friends and family. Will restores some damaged furniture that he hopes can make big money under the gavel. Andrea wants the auction will raise cash to make the necessary wheelchair friendly improvements and alterations to her home.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4866323/78624340/the-travelling-auctioneers</url>
+    <url>https://www.bla.blady.bla/detail/4866323/78624340/the-travelling-auctioneers</url>
     <episode-num system="xmltv_ns">0 . 8/15 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110171500 +0000" stop="20221110180000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110171500 +0000" stop="20221110180000 +0000">
     <title lang="en">Pointless</title>
     <desc lang="en">Quiz in which contestants try to score the fewest points possible by giving the least obvious correct answers to questions. Presented by Alexander Armstrong, with Richard Osman.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4472318/78624354/pointless</url>
+    <url>https://www.bla.blady.bla/detail/4472318/78624354/pointless</url>
     <episode-num system="xmltv_ns">25 . 52/55 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.5/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/pointless.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/pointless.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110180000 +0000" stop="20221110183000 +0000">
-    <title lang="en">BBC News at Six; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221110180000 +0000" stop="20221110183000 +0000">
+    <title lang="en">ATV News at Six; Weather</title>
     <sub-title lang="en">10/11/2022</sub-title>
     <desc lang="en">The latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864268/78624334/bbc-news-at-six-weather</url>
+    <url>https://www.bla.blady.bla/detail/4864268/78624334/bbc-news-at-six-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110183000 +0000" stop="20221110190000 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221110183000 +0000" stop="20221110190000 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">10/11/2022 - Evening</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4867856/78624347/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4867856/78624347/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110190000 +0000" stop="20221110193000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110190000 +0000" stop="20221110193000 +0000">
     <title lang="en">The One Show</title>
     <sub-title lang="en">10/11/2022</sub-title>
     <desc lang="en">Alex Jones and Roman Kemp host the magazine show featuring a mixture of celebrity chat and stories of interest.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4866178/78624337/the-one-show</url>
+    <url>https://www.bla.blady.bla/detail/4866178/78624337/the-one-show</url>
     <episode-num system="xmltv_ns">2021 .  . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>4/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/The-One-Show.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/The-One-Show.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110193000 +0000" stop="20221110200000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110193000 +0000" stop="20221110200000 +0000">
     <title lang="en">EastEnders</title>
     <sub-title lang="en">10/11/2022</sub-title>
     <desc lang="en">Mick tells Alfie he is no longer needed at the Vic, so before he leaves Alfie gives the landlord some food for thought about his relationship with Janine. Zack is in deep thought after a proposition from Sam, so Whitney offers him a shoulder to lean on.</desc>
     <category lang="en">Soap</category>
-    <url>https://www.tvguide.co.uk/detail/4862741/78624330/eastenders</url>
+    <url>https://www.bla.blady.bla/detail/4862741/78624330/eastenders</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>5/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/eastenders.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/eastenders.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110200000 +0000" stop="20221110210000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110200000 +0000" stop="20221110210000 +0000">
     <title lang="en">Unbreakable</title>
     <sub-title lang="en">(New Series)</sub-title>
     <desc lang="en">The final sees the three remaining couples face electric shocks, a walk on broken glass and a tattoo parlour in the ultimate bid to prove their relationship deserves the crown. Rob Beckett, Anjula Mutanda and Maria McErlane reflect with the couples on each of their journeys, before emotions reach an all-time high in the last vow ceremony of the series and the winning couple is announced.</desc>
     <category lang="en">Show</category>
     <category lang="en">Game Show</category>
-    <url>https://www.tvguide.co.uk/detail/4868522/78624328/unbreakable</url>
+    <url>https://www.bla.blady.bla/detail/4868522/78624328/unbreakable</url>
     <episode-num system="xmltv_ns">0 . 5/6 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.7/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Unbreakable.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Unbreakable.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110210000 +0000" stop="20221110220000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110210000 +0000" stop="20221110220000 +0000">
     <title lang="en">MasterChef: The Professionals</title>
     <desc lang="en">Four new chefs compete for a place in the quarter-final. Two of the contestants hope to impress judges Gregg Wallace, Anna Haugh and Marcus Wareing by preparing and cooking rabbit, while the others prepare crab in two different ways for the judges to taste. Their last chance to impress is with their own perfected signature dish.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4863068/78624329/masterchef-the-professionals</url>
+    <url>https://www.bla.blady.bla/detail/4863068/78624329/masterchef-the-professionals</url>
     <episode-num system="xmltv_ns">14 . 4/18 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/masterchef_professionals.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/masterchef_professionals.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110220000 +0000" stop="20221110223000 +0000">
-    <title lang="en">BBC News at Ten</title>
+  <programme channel="XMLTVTestChannel" start="20221110220000 +0000" stop="20221110223000 +0000">
+    <title lang="en">ATV News at Ten</title>
     <sub-title lang="en">10/11/2022</sub-title>
     <desc lang="en">A round-up of today's headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864274/78624348/bbc-news-at-ten</url>
+    <url>https://www.bla.blady.bla/detail/4864274/78624348/bbc-news-at-ten</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110223000 +0000" stop="20221110224000 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221110223000 +0000" stop="20221110224000 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">10/11/2022 - Late</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4867857/78624353/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4867857/78624353/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110224000 +0000" stop="20221110234000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110224000 +0000" stop="20221110234000 +0000">
     <title lang="en">Question Time</title>
     <sub-title lang="en">10/11/2022</sub-title>
     <desc lang="en">Fiona Bruce presents the topical debate from Wells, Somerset, inviting a panel of politicians and other guests to answer questions from an invited audience on subjects that have made the headlines over the past week.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4866181/78624349/question-time</url>
+    <url>https://www.bla.blady.bla/detail/4866181/78624349/question-time</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.2/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Question-Time.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Question-Time.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221110234000 +0000" stop="20221111034000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221110234000 +0000" stop="20221111034000 +0000">
     <title lang="en">Ros Atkins on the Week</title>
     <sub-title lang="en">10/11/2022</sub-title>
-    <desc lang="en">BBC News's analysis editor sets the record straight about the biggest national and international stories. In a world where disinformation and fake news are on the rise, Ros draws on video evidence, data, documents and interviews gathered from far and wide, to establish the facts.</desc>
+    <desc lang="en">ATV News's analysis editor sets the record straight about the biggest national and international stories. In a world where disinformation and fake news are on the rise, Ros draws on video evidence, data, documents and interviews gathered from far and wide, to establish the facts.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4866493/78624346/ros-atkins-on-the-week</url>
+    <url>https://www.bla.blady.bla/detail/4866493/78624346/ros-atkins-on-the-week</url>
     <episode-num system="xmltv_ns">0 . 3 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.9/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111060000 +0000" stop="20221111091500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111060000 +0000" stop="20221111091500 +0000">
     <title lang="en">Breakfast</title>
     <sub-title lang="en">11/11/2022</sub-title>
     <desc lang="en">A round-up of national and international news, plus current affairs, arts and entertainment, and weather.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864288/78709005/breakfast</url>
+    <url>https://www.bla.blady.bla/detail/4864288/78709005/breakfast</url>
     <episode-num system="xmltv_ns">2021 .  . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>2.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111091500 +0000" stop="20221111101000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111091500 +0000" stop="20221111101000 +0000">
     <title lang="en">Morning Live</title>
     <sub-title lang="en">11/11/2022</sub-title>
     <desc lang="en">Weekday magazine show featuring a mixture of topical chat and expert advice.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4864291/78708998/morning-live</url>
+    <url>https://www.bla.blady.bla/detail/4864291/78708998/morning-live</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111101000 +0000" stop="20221111105500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111101000 +0000" stop="20221111105500 +0000">
     <title lang="en">Critical Incident</title>
     <sub-title lang="en">(New Series)</sub-title>
     <desc lang="en">With assaults on police officers at an all-time high, this edition examines how anything can become a weapon in the wrong hands. Cameras observe a busy time for Avon &amp; Somerset Police when they work the night-time shift in Bristol. Plus, a North Wales PC talks about the difficulties faced as a visible minority in the force.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4869204/78708987/critical-incident</url>
+    <url>https://www.bla.blady.bla/detail/4869204/78708987/critical-incident</url>
     <episode-num system="xmltv_ns">2 . 14/15 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111105500 +0000" stop="20221111110500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111105500 +0000" stop="20221111110500 +0000">
     <title lang="en">Two Minutes Silence</title>
     <sub-title lang="en">11/11/2022</sub-title>
     <desc lang="en">Pause to remember those who have given their lives in war.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4864311/78708999/two-minutes-silence</url>
+    <url>https://www.bla.blady.bla/detail/4864311/78708999/two-minutes-silence</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111110500 +0000" stop="20221111113500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111110500 +0000" stop="20221111113500 +0000">
     <title lang="en">Dirty Rotten Scammers</title>
     <sub-title lang="en">Episode 10 - Short</sub-title>
     <desc lang="en">The newlywed who had her house deposit stolen by crooks pretending to be from her bank's fraud team. They persuaded her to move thousands of pounds to a safe account that was nothing of the sort. Presented by Michelle and Mavis Ackerley.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4866049/78708983/dirty-rotten-scammers</url>
+    <url>https://www.bla.blady.bla/detail/4866049/78708983/dirty-rotten-scammers</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111113500 +0000" stop="20221111120500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111113500 +0000" stop="20221111120500 +0000">
     <title lang="en">Homes Under the Hammer</title>
     <desc lang="en">Dion Dublin and Martel Maxwell meet the new owners of a third-floor flat in Walworth, central London, and a block of flats in Hengoed in South Wales.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/3206024/78708996/homes-under-the-hammer</url>
+    <url>https://www.bla.blady.bla/detail/3206024/78708996/homes-under-the-hammer</url>
     <episode-num system="xmltv_ns">20 . 7 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>4.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Homes-Under.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Homes-Under.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111120500 +0000" stop="20221111130000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111120500 +0000" stop="20221111130000 +0000">
     <title lang="en">Bargain Hunt</title>
     <sub-title lang="en">Anglesey</sub-title>
     <desc lang="en">Charlie Ross and the teams shop for antiques in Anglesey, with help from experts Roo Irvine and Richard Madley.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4871204/78708979/bargain-hunt</url>
+    <url>https://www.bla.blady.bla/detail/4871204/78708979/bargain-hunt</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Bargain-Hunt.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Bargain-Hunt.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111130000 +0000" stop="20221111133000 +0000">
-    <title lang="en">BBC News at One; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221111130000 +0000" stop="20221111133000 +0000">
+    <title lang="en">ATV News at One; Weather</title>
     <sub-title lang="en">11/11/2022</sub-title>
     <desc lang="en">A round-up of the latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864317/78708980/bbc-news-at-one-weather</url>
+    <url>https://www.bla.blady.bla/detail/4864317/78708980/bbc-news-at-one-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111133000 +0000" stop="20221111134500 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221111133000 +0000" stop="20221111134500 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">11/11/2022 - Lunch</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4867972/78708986/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4867972/78708986/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111134500 +0000" stop="20221111141500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111134500 +0000" stop="20221111141500 +0000">
     <title lang="en">Doctors</title>
     <sub-title lang="en">Family Man</sub-title>
     <desc lang="en">Gareth's boring day gets a bit more eventful than he would like, while Daniel's plan to ease family tensions doesn't go as smoothly as he would have wished.</desc>
     <category lang="en">Soap</category>
-    <url>https://www.tvguide.co.uk/detail/4881592/78709003/doctors</url>
+    <url>https://www.bla.blady.bla/detail/4881592/78709003/doctors</url>
     <episode-num system="xmltv_ns">22 . 115/165 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Doctors3.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Doctors3.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111141500 +0000" stop="20221111150000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111141500 +0000" stop="20221111150000 +0000">
     <title lang="en">Money for Nothing</title>
     <desc lang="en">Jacqui Joseph scours Altrincham recycling centre for three potential-packed objects that can be saved, spruced up and sold on for profit. She enlists the help of blacksmith Kev Paxton and upholsterer Leigh-Anne Treadwell to rejuvenate a metal shelving unit and a reclining chair, whilst Jacqui herself attempts to give an old watering can a new lease of life.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4869523/78709002/money-for-nothing</url>
+    <url>https://www.bla.blady.bla/detail/4869523/78709002/money-for-nothing</url>
     <episode-num system="xmltv_ns">12 . 11/20 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111150000 +0000" stop="20221111154500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111150000 +0000" stop="20221111154500 +0000">
     <title lang="en">Escape to the Country</title>
     <sub-title lang="en">Surrey</sub-title>
-    <desc lang="en">Alistair Appleton helps recent newlyweds to quit London in search of a perfect country home. They have a budget of £1.5million and have chosen Surrey as the location for their future family life. Taking time out of the property hunt, Alistair stops by the British Wildlife Centre, where he learns about the ongoing conservation work to protect the country's most important native species.</desc>
+    <desc lang="en">Alistair Appleton helps recent newlyweds to quit London in search of a perfect country home. They have a budget of Â£1.5million and have chosen Surrey as the location for their future family life. Taking time out of the property hunt, Alistair stops by the British Wildlife Centre, where he learns about the ongoing conservation work to protect the country's most important native species.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/3561863/78708989/escape-to-the-country</url>
+    <url>https://www.bla.blady.bla/detail/3561863/78708989/escape-to-the-country</url>
     <episode-num system="xmltv_ns">19 . 7/25 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>5.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Escape.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Escape.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111154500 +0000" stop="20221111163000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111154500 +0000" stop="20221111163000 +0000">
     <title lang="en">The Repair Shop</title>
     <desc lang="en">Amanda Fisher presents a shattered jewellery box that she is praying Will Kirk can somehow salvage. The 1960s red velvet-lined box was her mother's and gifted to Amanda on her 16th birthday. A toy flying saucer and miniature library of Shakespeare's works are also afforded some much-needed attention. Presented by Jay Blades.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4868509/78708982/the-repair-shop</url>
+    <url>https://www.bla.blady.bla/detail/4868509/78708982/the-repair-shop</url>
     <episode-num system="xmltv_ns">8 . 34/40 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111163000 +0000" stop="20221111171500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111163000 +0000" stop="20221111171500 +0000">
     <title lang="en">The Travelling Auctioneers</title>
     <desc lang="en">Christina Trevanion and Will Kirk travel to Bicester in Oxfordshire to sort through Louise and Paul's furniture filled home to help de-clutter after the couple inherited generations' worth of family heirlooms. Their modern house is swamped with large brown furniture that is literally cramping their style. The Victorian and Edwardian dressers, chests of drawers and cabinets, vases, ornaments and jewellery are out of place for these two self-confessed geeks, who would rather make room for cosplay outfits than clocks and crockery.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4866309/78708978/the-travelling-auctioneers</url>
+    <url>https://www.bla.blady.bla/detail/4866309/78708978/the-travelling-auctioneers</url>
     <episode-num system="xmltv_ns">0 . 9/15 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>5.9/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111171500 +0000" stop="20221111180000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111171500 +0000" stop="20221111180000 +0000">
     <title lang="en">Pointless</title>
     <desc lang="en">Quiz in which contestants try to score the fewest points possible by giving the least obvious correct answers to questions. Presented by Alexander Armstrong, with Richard Osman.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4472385/78709004/pointless</url>
+    <url>https://www.bla.blady.bla/detail/4472385/78709004/pointless</url>
     <episode-num system="xmltv_ns">25 . 53/55 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.6/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/pointless.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/pointless.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111180000 +0000" stop="20221111183000 +0000">
-    <title lang="en">BBC News at Six; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221111180000 +0000" stop="20221111183000 +0000">
+    <title lang="en">ATV News at Six; Weather</title>
     <sub-title lang="en">11/11/2022</sub-title>
     <desc lang="en">The latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864323/78708993/bbc-news-at-six-weather</url>
+    <url>https://www.bla.blady.bla/detail/4864323/78708993/bbc-news-at-six-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111183000 +0000" stop="20221111190000 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221111183000 +0000" stop="20221111190000 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">11/11/2022 - Evening</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4867973/78709001/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4867973/78709001/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111190000 +0000" stop="20221111193000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111190000 +0000" stop="20221111193000 +0000">
     <title lang="en">The One Show</title>
     <sub-title lang="en">11/11/2022</sub-title>
     <desc lang="en">Alex Jones, Roman Kemp and Ronan Keating present the usual mix of celebrity guests and stories about people in extraordinary circumstances.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4866170/78708990/the-one-show</url>
+    <url>https://www.bla.blady.bla/detail/4866170/78708990/the-one-show</url>
     <episode-num system="xmltv_ns">2021 .  . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>4/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/The-One-Show.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/The-One-Show.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111193000 +0000" stop="20221111200000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111193000 +0000" stop="20221111200000 +0000">
     <title lang="en">We Are England</title>
     <sub-title lang="en">Our Big Beauty Business - We Are England</sub-title>
     <desc lang="en">Cameras enjoy rare access into a major cosmetics factory, revealing the glamorous but tough-as-rocks world of the beauty industry. This documentary focuses on one of Britain's last family owned firms in the sector, currently in its 40th year of operation, and reveals how it is beating some of its big-name rivals.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4869237/78708984/we-are-england</url>
+    <url>https://www.bla.blady.bla/detail/4869237/78708984/we-are-england</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.9/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/we-are-england.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/we-are-england.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111200000 +0000" stop="20221111210000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111200000 +0000" stop="20221111210000 +0000">
     <title lang="en">MasterChef: The Professionals</title>
     <desc lang="en">The winners of this week's heat return for the quarter-final, beginning with an invention test, in which the judges throw out a twist at the chefs. Using a well stocked larder, the competitors have 70 minutes to create a plate full of contrasting textures. In a final bid for a place in the semi-final the chefs try to impress food critics Leyla Kazim, William Sitwell and Grace Dent with two courses of their own creation rustled up in just 75 minutes.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4863120/78708992/masterchef-the-professionals</url>
+    <url>https://www.bla.blady.bla/detail/4863120/78708992/masterchef-the-professionals</url>
     <episode-num system="xmltv_ns">14 . 5/18 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/masterchef_professionals.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/masterchef_professionals.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111210000 +0000" stop="20221111213000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111210000 +0000" stop="20221111213000 +0000">
     <title lang="en">Have I Got News for You</title>
     <sub-title lang="en">Compilation</sub-title>
     <desc lang="en">Team captains Paul Merton and Ian Hislop are joined by a variety of guest hosts and panellists in this compilation edition revisiting the big news stories of 2022.</desc>
     <category lang="en">Comedy</category>
-    <url>https://www.tvguide.co.uk/detail/4868897/78708976/have-i-got-news-for-you</url>
+    <url>https://www.bla.blady.bla/detail/4868897/78708976/have-i-got-news-for-you</url>
     <episode-num system="xmltv_ns">63 . 7/8 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/have_I_got_news.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/have_I_got_news.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111213000 +0000" stop="20221111220000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111213000 +0000" stop="20221111220000 +0000">
     <title lang="en">Peter Kay's Stand-Up Comedy Shuffle</title>
     <desc lang="en">The stand-up comedian relives his finest career moments from the last 25 years, taking in his stage shows, theatre work and hit sitcoms including Phoenix Nights and Car Share.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/3843748/78708995/peter-kays-stand-up-comedy-shuffle</url>
+    <url>https://www.bla.blady.bla/detail/3843748/78708995/peter-kays-stand-up-comedy-shuffle</url>
     <episode-num system="xmltv_ns">0 . 2/3 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
@@ -1246,47 +1246,47 @@
       <value>7.8/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111220000 +0000" stop="20221111223000 +0000">
-    <title lang="en">BBC News at Ten</title>
+  <programme channel="XMLTVTestChannel" start="20221111220000 +0000" stop="20221111223000 +0000">
+    <title lang="en">ATV News at Ten</title>
     <sub-title lang="en">11/11/2022</sub-title>
     <desc lang="en">A round-up of today's headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4864328/78709000/bbc-news-at-ten</url>
+    <url>https://www.bla.blady.bla/detail/4864328/78709000/bbc-news-at-ten</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111223000 +0000" stop="20221111224000 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221111223000 +0000" stop="20221111224000 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">11/11/2022 - Late</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4867975/78708988/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4867975/78708988/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111224000 +0000" stop="20221111233000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111224000 +0000" stop="20221111233000 +0000">
     <title lang="en">The Graham Norton Show</title>
     <desc lang="en">Bruce Springsteen joins the host, promoting his new album Only the Strong Survive. Queen's Gambit star Anya Taylor-Joy talks about her role in horror-comedy The Menu and comedian Mo Gilligan also appears. Florence + the Machine perform their new single Dream Girl Evil, while more audience members take on the Big Red Chair challenge.</desc>
     <category lang="en">Comedy</category>
-    <url>https://www.tvguide.co.uk/detail/4868496/78708997/the-graham-norton-show</url>
+    <url>https://www.bla.blady.bla/detail/4868496/78708997/the-graham-norton-show</url>
     <episode-num system="xmltv_ns">29 . 6/21 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.5/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/graham_norton.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/graham_norton.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221111233000 +0000" stop="20221112033000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221111233000 +0000" stop="20221112033000 +0000">
     <title lang="en">RuPaul's Drag Race UK</title>
     <desc lang="en">This week the queens' over-acting skills are put to the test as they star in The Squirrel Games - a murderous twist on a reality TV classic. Celebrity chef Lorraine Pascale guest judges alongside Michelle Visage and Alan Carr.</desc>
     <category lang="en">Show</category>
     <category lang="en">Game Show</category>
-    <url>https://www.tvguide.co.uk/detail/4869220/78708985/rupauls-drag-race-uk</url>
+    <url>https://www.bla.blady.bla/detail/4869220/78708985/rupauls-drag-race-uk</url>
     <episode-num system="xmltv_ns">3 . 7/10 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
@@ -1294,387 +1294,387 @@
       <value>6.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112060000 +0000" stop="20221112091500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112060000 +0000" stop="20221112091500 +0000">
     <title lang="en">Breakfast</title>
     <sub-title lang="en">12/11/2022</sub-title>
     <desc lang="en">A round-up of national and international news, plus sports reports, weather forecasts and arts and entertainment features.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4873035/78709030/breakfast</url>
+    <url>https://www.bla.blady.bla/detail/4873035/78709030/breakfast</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>2.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112091500 +0000" stop="20221112104500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112091500 +0000" stop="20221112104500 +0000">
     <title lang="en">Saturday Kitchen Live</title>
     <sub-title lang="en">12/11/2022</sub-title>
     <desc lang="en">Angela Hartnett is joined by chefs Nathan Outlaw and Karan Gokani, plus special guest Gary Barlow. Helen McGinn picks the wines to go with the studio dishes.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4873042/78709036/saturday-kitchen-live</url>
+    <url>https://www.bla.blady.bla/detail/4873042/78709036/saturday-kitchen-live</url>
     <episode-num system="xmltv_ns">2021 .  . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.2/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Saturday_kitchen_live.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Saturday_kitchen_live.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112104500 +0000" stop="20221112120000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112104500 +0000" stop="20221112120000 +0000">
     <title lang="en">The Lord Mayor's Show</title>
     <sub-title lang="en">2022</sub-title>
     <desc lang="en">Coverage of the annual ceremonial parade through London, as the Lord Mayor of London is inaugurated.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4879549/78709043/the-lord-mayors-show</url>
+    <url>https://www.bla.blady.bla/detail/4879549/78709043/the-lord-mayors-show</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.7/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112120000 +0000" stop="20221112130000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112120000 +0000" stop="20221112130000 +0000">
     <title lang="en">Football Focus</title>
     <sub-title lang="en">12/11/2022</sub-title>
     <desc lang="en">Alex Scott and guests look ahead to the weekend's fixtures, including Newcastle United v Chelsea. Plus, news from Manchester City v Brentford in the lunchtime kick-off. Plus, a preview of the World Cup.</desc>
     <category lang="en">Sports</category>
-    <url>https://www.tvguide.co.uk/detail/4871566/78709046/football-focus</url>
+    <url>https://www.bla.blady.bla/detail/4871566/78709046/football-focus</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.4/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/football_focus.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/football_focus.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112130000 +0000" stop="20221112131000 +0000">
-    <title lang="en">BBC News</title>
+  <programme channel="XMLTVTestChannel" start="20221112130000 +0000" stop="20221112131000 +0000">
+    <title lang="en">ATV News</title>
     <sub-title lang="en">12/11/2022</sub-title>
     <desc lang="en">A round-up of the latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4873049/78709048/bbc-news</url>
+    <url>https://www.bla.blady.bla/detail/4873049/78709048/bbc-news</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/BBC-News.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/ATV-News.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112131000 +0000" stop="20221112131500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112131000 +0000" stop="20221112131500 +0000">
     <title lang="en">Weather</title>
     <desc lang="en">Preview of the UK's weather.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/1518468/78709042/weather</url>
+    <url>https://www.bla.blady.bla/detail/1518468/78709042/weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112131500 +0000" stop="20221112134500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112131500 +0000" stop="20221112134500 +0000">
     <title lang="en">Bargain Hunt</title>
     <sub-title lang="en">York</sub-title>
     <desc lang="en">Eric Knowles is joined in York by experts Nick Hall and Jonathan Pratt. The reds and blues have the choice of two antique centres from which to buy three items.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/3823403/78709034/bargain-hunt</url>
+    <url>https://www.bla.blady.bla/detail/3823403/78709034/bargain-hunt</url>
     <episode-num system="xmltv_ns">46 .  . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Bargain-Hunt.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Bargain-Hunt.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112134500 +0000" stop="20221112163000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112134500 +0000" stop="20221112163000 +0000">
     <title lang="en">Live Men's Rugby League World Cup</title>
     <sub-title lang="en">Second Semi-Final</sub-title>
     <desc lang="en">All the action from the second semi-final (Kick-off 2.30pm), which comes from Emirates Stadium in London. England edged past Tonga 20-18 in the corresponding match of the 2017 tournament in Auckland to set up a showdown with Australia in the final, and they will hope to be involved at this stage once again after some dominant displays in the group stage.</desc>
     <category lang="en">Sports</category>
-    <url>https://www.tvguide.co.uk/detail/4871486/78709038/live-mens-rugby-league-world-cup</url>
+    <url>https://www.bla.blady.bla/detail/4871486/78709038/live-mens-rugby-league-world-cup</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.6/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/rugby.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/rugby.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112163000 +0000" stop="20221112171000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112163000 +0000" stop="20221112171000 +0000">
     <title lang="en">Final Score</title>
     <sub-title lang="en">12/11/2022</sub-title>
     <desc lang="en">Jason Mohammad presents a round-up of the results and this afternoon's news from the Premier League, EFL and Scotland.</desc>
     <category lang="en">Sports</category>
-    <url>https://www.tvguide.co.uk/detail/4871461/78709032/final-score</url>
+    <url>https://www.bla.blady.bla/detail/4871461/78709032/final-score</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.4/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/final_score.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/final_score.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112171000 +0000" stop="20221112172000 +0000">
-    <title lang="en">BBC News</title>
+  <programme channel="XMLTVTestChannel" start="20221112171000 +0000" stop="20221112172000 +0000">
+    <title lang="en">ATV News</title>
     <desc lang="en">A round-up of the latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/2272505/78709029/bbc-news</url>
+    <url>https://www.bla.blady.bla/detail/2272505/78709029/bbc-news</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/BBC-News.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/ATV-News.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112172000 +0000" stop="20221112172500 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221112172000 +0000" stop="20221112172500 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">12/11/2022 - Evening</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874511/78709044/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4874511/78709044/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112172500 +0000" stop="20221112173000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112172500 +0000" stop="20221112173000 +0000">
     <title lang="en">Weather</title>
     <desc lang="en">Preview of the UK's weather.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/1518468/78709040/weather</url>
+    <url>https://www.bla.blady.bla/detail/1518468/78709040/weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112173000 +0000" stop="20221112180000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112173000 +0000" stop="20221112180000 +0000">
     <title lang="en">Celebrity Mastermind</title>
-    <desc lang="en">Clive Myrie ushers celebrity contestants BBC News correspondent Emma Vardy, Cheryl Baker from the pop group Bucks Fizz, actor Nikesh Patel, and comedian and author David O'Doherty to take to the black chair to be put to the test on their chosen specialist subjects, which are the history of surfing, classic Disney films, Scrubs, and the Tour de France in the 20th century. The second round sees them tackling general knowledge questions in a bid to carry off the commemorative trophy.</desc>
+    <desc lang="en">Clive Myrie ushers celebrity contestants ATV News correspondent Emma Vardy, Cheryl Baker from the pop group Bucks Fizz, actor Nikesh Patel, and comedian and author David O'Doherty to take to the black chair to be put to the test on their chosen specialist subjects, which are the history of surfing, classic Disney films, Scrubs, and the Tour de France in the 20th century. The second round sees them tackling general knowledge questions in a bid to carry off the commemorative trophy.</desc>
     <category lang="en">Show</category>
     <category lang="en">Game Show</category>
-    <url>https://www.tvguide.co.uk/detail/4876284/78709031/celebrity-mastermind</url>
+    <url>https://www.bla.blady.bla/detail/4876284/78709031/celebrity-mastermind</url>
     <episode-num system="xmltv_ns">19 . 1/14 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.4/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/mastermind.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/mastermind.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112180000 +0000" stop="20221112185500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112180000 +0000" stop="20221112185500 +0000">
     <title lang="en">Michael McIntyre's The Wheel</title>
     <desc lang="en">The comedian hosts the Saturday-night gameshow, in which contestants take on a colossal spinning wheel and answer questions in the hope of securing a cash prize. Tonight's expert celebrity advice comes from Chris Moyles on breakfast radio, Clare Balding on Wimbledon, Josh Widdicombe on Neighbours, Yung Filly on YouTube, Frankie Bridge on girl groups, Owain Wyn Evans on weather and Rustie Lee on food.</desc>
     <category lang="en">Show</category>
     <category lang="en">Game Show</category>
-    <url>https://www.tvguide.co.uk/detail/4874221/78709049/michael-mcintyres-the-wheel</url>
+    <url>https://www.bla.blady.bla/detail/4874221/78709049/michael-mcintyres-the-wheel</url>
     <episode-num system="xmltv_ns">2 . 3/12 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/michael-mcintyres-wheel.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/michael-mcintyres-wheel.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112185500 +0000" stop="20221112202500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112185500 +0000" stop="20221112202500 +0000">
     <title lang="en">Strictly Come Dancing</title>
     <sub-title lang="en">Week 8</sub-title>
     <desc lang="en">Tess Daly and Claudia Winkleman host the pro-celebrity contest in which sets of partners battle it out on the dance floor to convince judges and viewers they can trip the light fantastic.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4879558/78709037/strictly-come-dancing</url>
+    <url>https://www.bla.blady.bla/detail/4879558/78709037/strictly-come-dancing</url>
     <episode-num system="xmltv_ns">19 . 14 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>9.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/strictly1.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/strictly1.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112202500 +0000" stop="20221112210000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112202500 +0000" stop="20221112210000 +0000">
     <title lang="en">Blankety Blank</title>
     <desc lang="en">Bradley Walsh hosts the revival of the comedy quiz show, with panellists Konnie Huq, Sara Davies, Bruno Tonioli, Jo Brand, Jamie Laing and Natalie Cassidy helping contestants win some brilliant prizes by filling in the blanks.</desc>
     <category lang="en">Show</category>
     <category lang="en">Game Show</category>
-    <url>https://www.tvguide.co.uk/detail/4876283/78709033/blankety-blank</url>
+    <url>https://www.bla.blady.bla/detail/4876283/78709033/blankety-blank</url>
     <episode-num system="xmltv_ns">2021 . 7/10 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.7/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/blankety-blank.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/blankety-blank.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112210000 +0000" stop="20221112224000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112210000 +0000" stop="20221112224000 +0000">
     <title lang="en">Royal British Legion Festival of Remembrance 2022</title>
     <desc lang="en">Huw Edwards presents coverage of the annual service from the Royal Albert Hall, attended by the King, the Queen Consort and members of the royal family. Among those appearing are Andrea Bocelli, his son Matteo and daughter Virginia, Luke Evans, Hannah Waddingham, Marisha Wallace, who perform alongside the Band of the Royal Marines, the Royal Air Force Squadronaires, and the Bach Choir. The conclusion of the festival features actress Shona McGarty alongside the Fourth Choir, together with spoken-word artist Jaspreet Kaur.</desc>
     <category lang="en">Arts</category>
     <category lang="en">Culture (without music)</category>
-    <url>https://www.tvguide.co.uk/detail/4873167/78709028/royal-british-legion-festival-of-remembrance-2022</url>
+    <url>https://www.bla.blady.bla/detail/4873167/78709028/royal-british-legion-festival-of-remembrance-2022</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>10/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112224000 +0000" stop="20221112225500 +0000">
-    <title lang="en">BBC News</title>
+  <programme channel="XMLTVTestChannel" start="20221112224000 +0000" stop="20221112225500 +0000">
+    <title lang="en">ATV News</title>
     <desc lang="en">A round-up of the latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/2272505/78709050/bbc-news</url>
+    <url>https://www.bla.blady.bla/detail/2272505/78709050/bbc-news</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/BBC-News.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/ATV-News.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112225500 +0000" stop="20221112230000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112225500 +0000" stop="20221112230000 +0000">
     <title lang="en">Weather</title>
     <desc lang="en">Preview of the UK's weather.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/1518468/78709047/weather</url>
+    <url>https://www.bla.blady.bla/detail/1518468/78709047/weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221112230000 +0000" stop="20221113030000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221112230000 +0000" stop="20221113030000 +0000">
     <title lang="en">Match of the Day</title>
     <sub-title lang="en">12/11/2022</sub-title>
     <desc lang="en">Gary Lineker presents highlights of the latest Premier League matches, including Newcastle United v Chelsea at St James' Park and Wolverhampton Wanderers v Arsenal at Molineux. Newcastle and the Blues were two of the biggest spenders in the summer and their results so far this term suggested this could have been a closely contested fixture. Meanwhile, Arsenal continued their title challenge against a team that has struggled at the other end of the table. Plus, Manchester City v Brentford, Bournemouth v Everton, Liverpool v Southampton, Nottingham Forest v Crystal Palace and West Ham United v Leicester City.</desc>
     <category lang="en">Sports</category>
-    <url>https://www.tvguide.co.uk/detail/4871560/78709035/match-of-the-day</url>
+    <url>https://www.bla.blady.bla/detail/4871560/78709035/match-of-the-day</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.2/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/motd.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/motd.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113060000 +0000" stop="20221113072500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113060000 +0000" stop="20221113072500 +0000">
     <title lang="en">Breakfast</title>
     <sub-title lang="en">13/11/2022</sub-title>
     <desc lang="en">A round-up of national and international news, plus current affairs, arts and entertainment, and weather.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874460/78794106/breakfast</url>
+    <url>https://www.bla.blady.bla/detail/4874460/78794106/breakfast</url>
     <episode-num system="xmltv_ns">2021 .  . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>2.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113072500 +0000" stop="20221113090000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113072500 +0000" stop="20221113090000 +0000">
     <title lang="en">Match of the Day</title>
     <sub-title lang="en">12/11/2022</sub-title>
     <desc lang="en">Gary Lineker presents highlights of the latest Premier League matches, including Newcastle United v Chelsea at St James' Park and Wolverhampton Wanderers v Arsenal at Molineux. Newcastle and the Blues were two of the biggest spenders in the summer and their results so far this term suggested this could have been a closely contested fixture. Meanwhile, Arsenal continued their title challenge against a team that has struggled at the other end of the table. Plus, Manchester City v Brentford, Bournemouth v Everton, Liverpool v Southampton, Nottingham Forest v Crystal Palace and West Ham United v Leicester City.</desc>
     <category lang="en">Sports</category>
-    <url>https://www.tvguide.co.uk/detail/4871560/78794101/match-of-the-day</url>
+    <url>https://www.bla.blady.bla/detail/4871560/78794101/match-of-the-day</url>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.2/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/motd.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/motd.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113090000 +0000" stop="20221113101500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113090000 +0000" stop="20221113101500 +0000">
     <title lang="en">Sunday with Laura Kuenssberg</title>
     <sub-title lang="en">13/11/2022</sub-title>
     <desc lang="en">Interviews with key politicians and public figures.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4879565/78794094/sunday-with-laura-kuenssberg</url>
+    <url>https://www.bla.blady.bla/detail/4879565/78794094/sunday-with-laura-kuenssberg</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113101500 +0000" stop="20221113123000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113101500 +0000" stop="20221113123000 +0000">
     <title lang="en">Remembrance Sunday</title>
     <sub-title lang="en">Remembrance Sunday: The Cenotaph</sub-title>
     <desc lang="en">David Dimbleby presents live coverage from London. The King leads the Remembrance Sunday commemorations at the Cenotaph for the first time as Monarch, joined on Whitehall by other Members of the Royal Family, the Government, and the Armed Forces alongside representatives of the Commonwealth and faith communities. Sophie Raworth is on Horse Guards to hear from those marching as they share their own personal stories.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4876276/78794110/remembrance-sunday</url>
+    <url>https://www.bla.blady.bla/detail/4876276/78794110/remembrance-sunday</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>9.1/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113123000 +0000" stop="20221113130000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113123000 +0000" stop="20221113130000 +0000">
     <title lang="en">Bargain Hunt</title>
     <sub-title lang="en">Kedleston (Shortened)</sub-title>
     <desc lang="en">Natasha Raskin Sharp presents the show from the historic grounds of Kedleston Hall in Derbyshire. Experts John Cameron and Tim Weeks help the teams find some bargains.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4879578/78794091/bargain-hunt</url>
+    <url>https://www.bla.blady.bla/detail/4879578/78794091/bargain-hunt</url>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Bargain-Hunt.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Bargain-Hunt.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113130000 +0000" stop="20221113131000 +0000">
-    <title lang="en">BBC News</title>
+  <programme channel="XMLTVTestChannel" start="20221113130000 +0000" stop="20221113131000 +0000">
+    <title lang="en">ATV News</title>
     <sub-title lang="en">13/11/2022 - 1</sub-title>
     <desc lang="en">A round-up of the latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874461/78794108/bbc-news</url>
+    <url>https://www.bla.blady.bla/detail/4874461/78794108/bbc-news</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/BBC-News.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/ATV-News.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113131000 +0000" stop="20221113131500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113131000 +0000" stop="20221113131500 +0000">
     <title lang="en">Weather for the Week Ahead</title>
     <sub-title lang="en">13/11/2022</sub-title>
     <desc lang="en">A look ahead to the latest forecast.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874462/78794099/weather-for-the-week-ahead</url>
+    <url>https://www.bla.blady.bla/detail/4874462/78794099/weather-for-the-week-ahead</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113131500 +0000" stop="20221113135000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113131500 +0000" stop="20221113135000 +0000">
     <title lang="en">Songs of Praise</title>
     <sub-title lang="en">Songs of Praise: Remembrance from Portsmouth</sub-title>
     <desc lang="en">For Remembrance, the Rev Kate Bottley is in Portsmouth meeting Christians in the Armed Forces, and Pam Rhodes joins a service of prayer for all three branches of the military.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4874463/78794100/songs-of-praise</url>
+    <url>https://www.bla.blady.bla/detail/4874463/78794100/songs-of-praise</url>
     <episode-num system="xmltv_ns">2021 .  . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Songs-of-Praise.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Songs-of-Praise.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113135000 +0000" stop="20221113140000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113135000 +0000" stop="20221113140000 +0000">
     <title lang="en">Lifeline</title>
     <sub-title lang="en">Independent Age</sub-title>
     <desc lang="en">Sue Johnston appeals on behalf of Independent Age, a charity working with older people, providing advice and support for those facing loneliness and financial hardship.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4879579/78794109/lifeline</url>
+    <url>https://www.bla.blady.bla/detail/4879579/78794109/lifeline</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.7/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113140000 +0000" stop="20221113171000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113140000 +0000" stop="20221113171000 +0000">
     <title lang="en">Live Snooker: UK Championship</title>
     <sub-title lang="en">2022 Day Two: Afternoon Session</sub-title>
     <desc lang="en">Coverage of the afternoon session on day two of the ranking tournament at York Barbican, featuring Neil Robertson and Luca Brecel's respective first-round matches against qualifiers, played over the best of 11 frames. Robertson has won this title on three occasions, most recently in 2020, while Brecel was a runner-up to Zhao Xintong last year.</desc>
     <category lang="en">Sports</category>
-    <url>https://www.tvguide.co.uk/detail/4871588/78794103/live-snooker-uk-championship</url>
+    <url>https://www.bla.blady.bla/detail/4871588/78794103/live-snooker-uk-championship</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>4.9/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113171000 +0000" stop="20221113175500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113171000 +0000" stop="20221113175500 +0000">
     <title lang="en">Garden Rescue</title>
     <sub-title lang="en">Thatcham</sub-title>
     <desc lang="en">Arit Anderson and the Rich brothers create a garden in Thatcham, Berkshire, for widower Lee, who wants a space where his children can have fun and play, but also remember their mum.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/3685318/78794092/garden-rescue</url>
+    <url>https://www.bla.blady.bla/detail/3685318/78794092/garden-rescue</url>
     <episode-num system="xmltv_ns">4 . 5/35 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
@@ -1682,130 +1682,130 @@
       <value>8/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113175500 +0000" stop="20221113181000 +0000">
-    <title lang="en">BBC News</title>
+  <programme channel="XMLTVTestChannel" start="20221113175500 +0000" stop="20221113181000 +0000">
+    <title lang="en">ATV News</title>
     <sub-title lang="en">13/11/2022 - 2</sub-title>
     <desc lang="en">A round-up of the latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874464/78794104/bbc-news</url>
+    <url>https://www.bla.blady.bla/detail/4874464/78794104/bbc-news</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/BBC-News.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/ATV-News.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113181000 +0000" stop="20221113181500 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221113181000 +0000" stop="20221113181500 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">13/11/2022 - Evening</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874477/78794093/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4874477/78794093/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113181500 +0000" stop="20221113182000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113181500 +0000" stop="20221113182000 +0000">
     <title lang="en">Weather</title>
     <sub-title lang="en">13/11/2022</sub-title>
     <desc lang="en">Preview of the UK's weather.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874465/78794097/weather</url>
+    <url>https://www.bla.blady.bla/detail/4874465/78794097/weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113182000 +0000" stop="20221113192000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113182000 +0000" stop="20221113192000 +0000">
     <title lang="en">Countryfile</title>
     <sub-title lang="en">Military Vets</sub-title>
-    <desc lang="en">Margherita Taylor marks Remembrance Sunday from Mount Edgcumbe Country Park in Cornwall, discovering how forces veterans are being helped to heal old wounds and develop new skills. Charlotte Smith meets farmers dealing with rising energy costs, while Adam Henson reveals who will be crowned Countryfile Young Countryside Champion of the Year at the BBC Food &amp; Farming awards. Plus, chef and food writer Romy Gill meets some inspiring young countryside cooks.</desc>
+    <desc lang="en">Margherita Taylor marks Remembrance Sunday from Mount Edgcumbe Country Park in Cornwall, discovering how forces veterans are being helped to heal old wounds and develop new skills. Charlotte Smith meets farmers dealing with rising energy costs, while Adam Henson reveals who will be crowned Countryfile Young Countryside Champion of the Year at the ATV Food &amp; Farming awards. Plus, chef and food writer Romy Gill meets some inspiring young countryside cooks.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4879580/78794111/countryfile</url>
+    <url>https://www.bla.blady.bla/detail/4879580/78794111/countryfile</url>
     <episode-num system="xmltv_ns">2021 . 43/52 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.2/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Countryfile.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Countryfile.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113192000 +0000" stop="20221113200000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113192000 +0000" stop="20221113200000 +0000">
     <title lang="en">Strictly Come Dancing</title>
     <sub-title lang="en">Strictly Come Dancing: The Results</sub-title>
     <desc lang="en">Tess Daly and Claudia Winkleman announce the results of the judges' scores and viewers' votes, with the two couples with the lowest combined scores taking part in a dance-off to decide who will be next to leave the contest. Plus, a guest music performance by Sheku and Zak, and a group number by the professional dancers to mark Remembrance Sunday.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4879581/78794102/strictly-come-dancing</url>
+    <url>https://www.bla.blady.bla/detail/4879581/78794102/strictly-come-dancing</url>
     <episode-num system="xmltv_ns">19 . 15 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>9.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/strictly1.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/strictly1.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113200000 +0000" stop="20221113210000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113200000 +0000" stop="20221113210000 +0000">
     <title lang="en">Top Gear</title>
     <desc lang="en">Freddie Flintoff samples the brutal, full-contact motorsport of F1 stock cars, while Chris Harris gets to grips with Mercedes' F1 car for the road, the fearsomely complicated AMG One. Paddy McGuinness takes a ride in the luxurious new Range Rover.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4879584/78794098/top-gear</url>
+    <url>https://www.bla.blady.bla/detail/4879584/78794098/top-gear</url>
     <episode-num system="xmltv_ns">32 . 2/5 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>5.4/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/topgearnew.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/topgearnew.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113210000 +0000" stop="20221113220000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113210000 +0000" stop="20221113220000 +0000">
     <title lang="en">SAS Rogue Heroes</title>
     <desc lang="en">After a period of throwing themselves into the sand from scaffold towers and training in the blistering desert heat, the newly-recruited members of the SAS are preparing to embark on their first ever operation to parachute into the desert. The mission is an unmitigated disaster, leading most of the soldiers involved dead - but the survivors remain determined to try again.</desc>
     <category lang="en">Historical</category>
     <category lang="en">Period Drama</category>
-    <url>https://www.tvguide.co.uk/detail/4866943/78794105/sas-rogue-heroes</url>
+    <url>https://www.bla.blady.bla/detail/4866943/78794105/sas-rogue-heroes</url>
     <episode-num system="xmltv_ns">0 . 2/6 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113220000 +0000" stop="20221113222500 +0000">
-    <title lang="en">BBC News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221113220000 +0000" stop="20221113222500 +0000">
+    <title lang="en">ATV News; Weather</title>
     <sub-title lang="en">13/11/2022</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874466/78794112/bbc-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4874466/78794112/bbc-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.7/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/BBC-News.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/ATV-News.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113222500 +0000" stop="20221113223000 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221113222500 +0000" stop="20221113223000 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">13/11/2022 - Late</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874478/78794107/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4874478/78794107/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113223000 +0000" stop="20221113233000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113223000 +0000" stop="20221113233000 +0000">
     <title lang="en">Match of the Day 2</title>
     <sub-title lang="en">13/11/2022</sub-title>
     <desc lang="en">Mark Chapman reviews the day's Premier League action, featuring Fulham v Manchester United at Craven Cottage and Brighton &amp; Hove Albion v Aston Villa at Amex Stadium. United were looking to extend an unbeaten run against Fulham that spans back to 2009. Villa did the double over Brighton last term, but the Seagulls will have been hopeful of avenging those defeats given the strong campaign they have enjoyed so far. Plus, a round-up of yesterday's goals.</desc>
     <category lang="en">Sports</category>
-    <url>https://www.tvguide.co.uk/detail/4879265/78794095/match-of-the-day-2</url>
+    <url>https://www.bla.blady.bla/detail/4879265/78794095/match-of-the-day-2</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.1/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221113233000 +0000" stop="20221114033000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221113233000 +0000" stop="20221114033000 +0000">
     <title lang="en">A Fish Called Wanda (1988)</title>
     <desc lang="en">A stuffy English barrister representing a jewel thief is targeted by his client's partners in crime - a seductive American crook and her dim-witted would-be philosopher lover who will go to any lengths to discover where the diamonds from their last heist have been hidden. Crime comedy, starring John Cleese, Jamie Lee Curtis, Kevin Kline, Michael Palin and Tom Georgeson.</desc>
     <credits>
@@ -1818,313 +1818,313 @@
     <date>1988</date>
     <category lang="en">Film</category>
     <category lang="en">Films</category>
-    <url>https://www.tvguide.co.uk/detail/231645/78794096/a-fish-called-wanda</url>
+    <url>https://www.bla.blady.bla/detail/231645/78794096/a-fish-called-wanda</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.6/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114060000 +0000" stop="20221114091500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114060000 +0000" stop="20221114091500 +0000">
     <title lang="en">Breakfast</title>
     <sub-title lang="en">14/11/2022</sub-title>
     <desc lang="en">A round-up of national and international news, plus current affairs, arts and entertainment, and weather.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874515/78794144/breakfast</url>
+    <url>https://www.bla.blady.bla/detail/4874515/78794144/breakfast</url>
     <episode-num system="xmltv_ns">2021 .  . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>2.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114091500 +0000" stop="20221114100000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114091500 +0000" stop="20221114100000 +0000">
     <title lang="en">Morning Live</title>
     <sub-title lang="en">14/11/2022</sub-title>
     <desc lang="en">Kym Marsh and Gethin Jones host the weekday magazine show featuring a mixture of topical chat and expert advice.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4874516/78794163/morning-live</url>
+    <url>https://www.bla.blady.bla/detail/4874516/78794163/morning-live</url>
     <episode-num system="xmltv_ns">3 . 114 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114100000 +0000" stop="20221114103000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114100000 +0000" stop="20221114103000 +0000">
     <title lang="en">Expert Witness</title>
     <sub-title lang="en">Shallow Graves: Unearthing A Serial Killer</sub-title>
     <desc lang="en">A wide range of expert witnesses help in the hunt for serial killer Peter Tobin, after the police investigations led to two additional murders that remained unsolved.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4879470/78794160/expert-witness</url>
+    <url>https://www.bla.blady.bla/detail/4879470/78794160/expert-witness</url>
     <episode-num system="xmltv_ns">1 . 0/15 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.6/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114103000 +0000" stop="20221114111500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114103000 +0000" stop="20221114111500 +0000">
     <title lang="en">Dirty Rotten Scammers</title>
-    <desc lang="en">A woman who had never used online banking prior to the pandemic, but decided to try. However, after just one attempt she was contacted by fraudsters who fleeced her out of £30,000</desc>
+    <desc lang="en">A woman who had never used online banking prior to the pandemic, but decided to try. However, after just one attempt she was contacted by fraudsters who fleeced her out of Â£30,000</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4693824/78794155/dirty-rotten-scammers</url>
+    <url>https://www.bla.blady.bla/detail/4693824/78794155/dirty-rotten-scammers</url>
     <episode-num system="xmltv_ns">0 . 10/15 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114111500 +0000" stop="20221114121500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114111500 +0000" stop="20221114121500 +0000">
     <title lang="en">Homes Under the Hammer</title>
     <desc lang="en">Martel Maxwell, Tommy Walsh and Dion Dublin follow the progress of a one-bedroom flat in Dalry, Ayrshire, a former office in Norwich, Norfolk, and flats in Walton, Liverpool.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4638352/78794138/homes-under-the-hammer</url>
+    <url>https://www.bla.blady.bla/detail/4638352/78794138/homes-under-the-hammer</url>
     <episode-num system="xmltv_ns">24 . 14/80 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>4.3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Homes-Under.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Homes-Under.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114121500 +0000" stop="20221114130000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114121500 +0000" stop="20221114130000 +0000">
     <title lang="en">Bargain Hunt</title>
     <sub-title lang="en">Bargain Hunt Football Special</sub-title>
     <desc lang="en">Caroline Hawley presents today's football-themed show from Detling. Experts Tim Weeks and Nick Hall lead two teams of fans as they battle it out to win the Bargain Hunt trophy.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4879490/78794139/bargain-hunt</url>
+    <url>https://www.bla.blady.bla/detail/4879490/78794139/bargain-hunt</url>
     <episode-num system="xmltv_ns">63 . 5/32 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Bargain-Hunt.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Bargain-Hunt.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114130000 +0000" stop="20221114133000 +0000">
-    <title lang="en">BBC News at One; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221114130000 +0000" stop="20221114133000 +0000">
+    <title lang="en">ATV News at One; Weather</title>
     <sub-title lang="en">14/11/2022</sub-title>
     <desc lang="en">A round-up of the latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874517/78794157/bbc-news-at-one-weather</url>
+    <url>https://www.bla.blady.bla/detail/4874517/78794157/bbc-news-at-one-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114133000 +0000" stop="20221114134500 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221114133000 +0000" stop="20221114134500 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">14/11/2022 - Lunch</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874536/78794143/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4874536/78794143/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114134500 +0000" stop="20221114141500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114134500 +0000" stop="20221114141500 +0000">
     <title lang="en">Doctors</title>
     <sub-title lang="en">The Long Game</sub-title>
     <desc lang="en">Ruhma is dreading her second date, and Jimmi has an unexpected battle on his hands as a partner storms into his session to confront his counselling patient.</desc>
     <category lang="en">Soap</category>
-    <url>https://www.tvguide.co.uk/detail/4873638/78794140/doctors</url>
+    <url>https://www.bla.blady.bla/detail/4873638/78794140/doctors</url>
     <episode-num system="xmltv_ns">22 . 116/165 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>3/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Doctors3.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Doctors3.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114141500 +0000" stop="20221114150000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114141500 +0000" stop="20221114150000 +0000">
     <title lang="en">Money for Nothing</title>
     <desc lang="en">JJ Chalmers calls on upcycler Sarah Peterson and woodturner Chris Fisher to help transform a rattan unit, a monkey puzzle tree stump, and some old golf clubs.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4879591/78794161/money-for-nothing</url>
+    <url>https://www.bla.blady.bla/detail/4879591/78794161/money-for-nothing</url>
     <episode-num system="xmltv_ns">12 . 12/20 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114150000 +0000" stop="20221114154500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114150000 +0000" stop="20221114154500 +0000">
     <title lang="en">Escape to the Country</title>
     <sub-title lang="en">South Devon</sub-title>
     <desc lang="en">Nicki Chapman helps someone who has been living in Canada for 23 years to find a new home in Devon, although the client has never set foot in the county before.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4879482/78794156/escape-to-the-country</url>
+    <url>https://www.bla.blady.bla/detail/4879482/78794156/escape-to-the-country</url>
     <episode-num system="xmltv_ns">22 . 17/55 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>5.8/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Escape.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Escape.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114154500 +0000" stop="20221114163000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114154500 +0000" stop="20221114163000 +0000">
     <title lang="en">The Repair Shop</title>
     <desc lang="en">Jay Blades and the team work wonders to revive a treasured leather braid bracelet, a painted shop front sign, and a stone statue of a dancing bear.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4879592/78794162/the-repair-shop</url>
+    <url>https://www.bla.blady.bla/detail/4879592/78794162/the-repair-shop</url>
     <episode-num system="xmltv_ns">8 . 35/40 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114163000 +0000" stop="20221114171500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114163000 +0000" stop="20221114171500 +0000">
     <title lang="en">The Travelling Auctioneers</title>
     <desc lang="en">Will Kirk and Christina Trevanion head to Northumberland to help a couple of avid antiquers raise money for a trip to the USA to meet their new grandson.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
-    <url>https://www.tvguide.co.uk/detail/4869627/78794141/the-travelling-auctioneers</url>
+    <url>https://www.bla.blady.bla/detail/4869627/78794141/the-travelling-auctioneers</url>
     <episode-num system="xmltv_ns">0 . 10/15 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>5.9/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114171500 +0000" stop="20221114180000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114171500 +0000" stop="20221114180000 +0000">
     <title lang="en">Pointless</title>
     <desc lang="en">Quiz in which contestants try to score the fewest points by giving the least obvious correct answers. Presented by Alexander Armstrong and Richard Osman.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4546944/78794159/pointless</url>
+    <url>https://www.bla.blady.bla/detail/4546944/78794159/pointless</url>
     <episode-num system="xmltv_ns">25 . 54/55 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.6/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/pointless.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/pointless.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114180000 +0000" stop="20221114183000 +0000">
-    <title lang="en">BBC News at Six; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221114180000 +0000" stop="20221114183000 +0000">
+    <title lang="en">ATV News at Six; Weather</title>
     <sub-title lang="en">14/11/2022</sub-title>
     <desc lang="en">The latest headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874519/78794148/bbc-news-at-six-weather</url>
+    <url>https://www.bla.blady.bla/detail/4874519/78794148/bbc-news-at-six-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114183000 +0000" stop="20221114190000 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221114183000 +0000" stop="20221114190000 +0000">
+    <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">14/11/2022 - Evening</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874537/78794145/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4874537/78794145/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114190000 +0000" stop="20221114193000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114190000 +0000" stop="20221114193000 +0000">
     <title lang="en">The One Show</title>
     <sub-title lang="en">14/11/2022</sub-title>
     <desc lang="en">Lauren Laverne and Jermaine Jenas present the first visit of the week to the One Show studio, featuring the usual mix of topical stories and celebrity chat.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4873634/78794154/the-one-show</url>
+    <url>https://www.bla.blady.bla/detail/4873634/78794154/the-one-show</url>
     <episode-num system="xmltv_ns">2021 .  . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>4/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/The-One-Show.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/The-One-Show.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114193000 +0000" stop="20221114200000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114193000 +0000" stop="20221114200000 +0000">
     <title lang="en">EastEnders</title>
     <sub-title lang="en">14/11/2022</sub-title>
     <desc lang="en">The highs and lows of life with the residents of Albert Square, Walford.</desc>
     <category lang="en">Soap</category>
-    <url>https://www.tvguide.co.uk/detail/4877250/78794152/eastenders</url>
+    <url>https://www.bla.blady.bla/detail/4877250/78794152/eastenders</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>5/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/eastenders.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/eastenders.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114200000 +0000" stop="20221114203000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114200000 +0000" stop="20221114203000 +0000">
     <title lang="en">Panorama</title>
     <sub-title lang="en">Why Is Food So Expensive? - Panorama</sub-title>
     <desc lang="en">Food prices are rising at their fastest rate in more than 40 years. As the cost-of-living crisis continues to squeeze household budgets, this documentary explores why food prices are so high and looks at the impact food inflation is having on our pockets and on our health. Reporter Kate Quilton asks whether supermarkets, food producers and the Government are doing enough to help shoppers. She also examines what people can do to help make food bills more affordable.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4881879/78794142/panorama</url>
+    <url>https://www.bla.blady.bla/detail/4881879/78794142/panorama</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.2/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/Panorama.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Panorama.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114203000 +0000" stop="20221114210000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114203000 +0000" stop="20221114210000 +0000">
     <title lang="en">We Are England</title>
     <sub-title lang="en">Becoming Dad - We Are England</sub-title>
     <desc lang="en">One in 10 men in the UK struggles with mental health following the birth of a child. Unlike mothers, postnatal depression in fathers often goes unacknowledged and undiagnosed, leaving them to struggle with difficult emotions that can impact the well-being of the entire family. This film follows a campaign to get mental health support for dads. Young father Elliott Rae reveals how the traumatic birth of his daughter led him to set up an online community for fathers struggling with PTSD and postnatal depression.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
-    <url>https://www.tvguide.co.uk/detail/4879674/78794149/we-are-england</url>
+    <url>https://www.bla.blady.bla/detail/4879674/78794149/we-are-england</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>7.9/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/we-are-england.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/we-are-england.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114210000 +0000" stop="20221114220000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114210000 +0000" stop="20221114220000 +0000">
     <title lang="en">The Pact</title>
     <desc lang="en">After the devastating events at Megan's wedding, Christine takes charge and brings the Rees family together to make a momentous pact - one that sets them on a risky path. Determined to find answers, Beth follows her husband to a secret meet-up. Her investigation into the Rees' father finally proves fruitful, which leads to Megan and Jamie finally getting some answers about Connor.</desc>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4859557/78794158/the-pact</url>
+    <url>https://www.bla.blady.bla/detail/4859557/78794158/the-pact</url>
     <episode-num system="xmltv_ns">1 . 3/6 . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.7/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/the-pact.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/the-pact.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114220000 +0000" stop="20221114223000 +0000">
-    <title lang="en">BBC News at Ten</title>
+  <programme channel="XMLTVTestChannel" start="20221114220000 +0000" stop="20221114223000 +0000">
+    <title lang="en">ATV News at Ten</title>
     <sub-title lang="en">14/11/2022</sub-title>
     <desc lang="en">A round-up of today's headlines.</desc>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874521/78794137/bbc-news-at-ten</url>
+    <url>https://www.bla.blady.bla/detail/4874521/78794137/bbc-news-at-ten</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114223000 +0000" stop="20221114224000 +0000">
-    <title lang="en">BBC London News; Weather</title>
+  <programme channel="XMLTVTestChannel" start="20221114223000 +0000" stop="20221114224000 +0000">
+    <title lang="en">ATV News; Weather</title>
     <sub-title lang="en">14/11/2022 - Late</sub-title>
     <category lang="en">News</category>
     <category lang="en">Current Affairs</category>
-    <url>https://www.tvguide.co.uk/detail/4874538/78794151/bbc-london-news-weather</url>
+    <url>https://www.bla.blady.bla/detail/4874538/78794151/bbc-london-news-weather</url>
     <subtitles type="teletext"/>
     <star-rating>
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114224000 +0000" stop="20221114234000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114224000 +0000" stop="20221114234000 +0000">
     <title lang="en">Imagine</title>
     <sub-title lang="en">Imagine: Douglas Stuart - Love, Hope and Grit</sub-title>
     <desc lang="en">Alan Yentob meets Douglas Stuart, author of the Booker Prize-winning novel Shuggie Bain, which was based on his troubled upbringing amid poverty and addiction in 1980s Glasgow. Alan retraces Stuart's remarkable journey in New York, where he was now able to be open about his sexuality, having faced isolation and homophobia growing up. Contributors include Alan Cumming, Val McDermid and Lulu.</desc>
     <category lang="en">Arts</category>
     <category lang="en">Culture (without music)</category>
-    <url>https://www.tvguide.co.uk/detail/4879603/78794153/imagine</url>
+    <url>https://www.bla.blady.bla/detail/4879603/78794153/imagine</url>
     <episode-num system="xmltv_ns">2021 .  . </episode-num>
     <subtitles type="teletext"/>
     <star-rating>
       <value>8.1/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/imagine.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/imagine.jpg</image>
   </programme>
-  <programme channel="74.tvguide.co.uk" start="20221114234000 +0000" stop="20221115034000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221114234000 +0000" stop="20221115034000 +0000">
     <title lang="en">The English</title>
     <sub-title lang="en">What You Want &amp; What You Need</sub-title>
     <desc lang="en">Released from long-term army service in 1890 Oklahoma, Pawnee scout Eli Whipp is intent on returning north to his ancestral homelands in Nebraska to stake a legal land claim. Incarcerated in violent circumstances, Eli meets Lady Cornelia Locke, an Englishwoman who is also looking to travel north with the sole intent of taking revenge against the man she believes is responsible for the death of her child. Drama, starring Emily Blunt and Chaske Spencer.</desc>
@@ -2133,13 +2133,13 @@
       <actor>Chaske Spencer</actor>
     </credits>
     <category lang="en">General</category>
-    <url>https://www.tvguide.co.uk/detail/4869164/78794147/the-english</url>
+    <url>https://www.bla.blady.bla/detail/4869164/78794147/the-english</url>
     <episode-num system="xmltv_ns">0 . 0/6 . </episode-num>
     <previously-shown/>
     <subtitles type="teletext"/>
     <star-rating>
       <value>0.7/10</value>
     </star-rating>
-    <image system="tvguide" type="backdrop">https://cdn.tvguide.co.uk/HighlightImages/Large/the-english.jpg</image>
+    <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/the-english.jpg</image>
   </programme>
 </tv>  

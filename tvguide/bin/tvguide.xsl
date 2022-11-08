@@ -210,14 +210,14 @@ version="1.0">
       <display-name>ARTE</display-name>
       <vuuname>arte HD</vuuname>
    </channel>
+   
+<!--  Channel id used by the test data -->
+<channel id="XMLTVTestChannel">
+   <display-name>BBC1</display-name>
+   <dbname>BBC One Lon</dbname>
+   <vuuname>BBC One Lon</vuuname>
+</channel>
 
-<!--
-   ***************************************************************
-   Channel ids for opensource xmltv - listings from tvguide.co.uk
-   Same ids used for WebGrabber plus, although some listings come
-   from radio times - want to use the WG and XMLTV output without needing
-   to update the XSL
--->   
 <channel id="74.tvguide.co.uk">
    <display-name>BBC1</display-name>
    <dbname>BBC One Lon</dbname>
@@ -883,7 +883,12 @@ version="1.0">
    
    Tried using the Java funciton to extract episode info but it made
    the conversion VERY VERY slow
--->
+   Try with the function taking string parameters.
+   
+   Aaaahh. Can't just call the java function because the episode-num template also adds the formatting, if
+   the node is actually present, likewise for the sub-title.
+   
+   Not really sure why I have the choose here..
    <xsl:choose>
       <xsl:when test="boolean(episode-num)">
          <xsl:apply-templates select="episode-num" />
@@ -896,7 +901,20 @@ version="1.0">
             <xsl:with-param name="defsubtitle">Episode YY</xsl:with-param>
          </xsl:apply-templates>          
       </xsl:otherwise>
-   </xsl:choose>
+   </xsl:choose>   
+   so will remove it for now while trying to think of a way to handle the formatting and
+   using the java function 
+   
+   Only thing I can think of is to use the java function with a separator and then
+   use a choose to either apply formatting or not
+-->
+<xsl:variable name="eptitle" select="scu:getFullEpisodetitle( episode-num[@system='xmltv_ns'], sub-title, '. ')" />
+
+
+<xsl:if test="boolean($eptitle)">
+   <xsl:text> </xsl:text>
+   <span class="episode"><xsl:value-of select="$eptitle" /></span>.<xsl:text> </xsl:text>
+</xsl:if>
 <xsl:value-of select="desc" />
 <xsl:if test="length">
  <xsl:text> (</xsl:text><xsl:value-of select="length"/><xsl:value-of select="substring(length/@units,1,3)"/>
@@ -928,49 +946,6 @@ version="1.0">
 </TR>
 </xsl:template>
 
-<!-- <episode-num system="xmltv_ns">3 . 8 . </episode-num> -->
-<!-- 4x09 -->
-<!-- episode-num system="xmltv_ns">.20/0.</episode-num -->
-<!-- <episode-num system="onscreen">S7 E18</episode-num> In the WG+ output -->
-<!-- sometimes 
-     <episode-num system="onscreen">S7 E18/NN</episode-num> In the WG+ output -->
-<!-- sometimes 
-     <episode-num system="onscreen">S7</episode-num> In the WG+ output -->
-<!-- Kludges to handle the second format: 
-     - Missing season results in a 'NaN' value, use this to modify the display
-     - replace / with . when extracting episode. Should probably append a '.' to
-       ensure there is one - is this actually done - it needs to be when using m,tvguide.co.uk....
-     Kludge for the third format:
-     - append a space to ensure there is always a space after the season string
-  -->
-<xsl:template name="extract_onscreen">
-<xsl:param name="rawonscreen" />
-   <xsl:variable name="season" select="number(translate(substring-before(concat($rawonscreen, ' '), ' '), 'S',''))" />
-   <xsl:variable name="episode" select="concat('0',  number( translate( substring-before( substring-after($rawonscreen, ' ') ,'/'), 'E','') ) )" />
-   <xsl:choose>
-      <!-- Apparently NaN is never equal to anything, including itself, so number($x)=number($x) is the most reliable test for a number!! -->
-      <xsl:when test="number($season)=number($season)"><xsl:value-of select="$season" />x</xsl:when>
-      <xsl:otherwise>Ep.</xsl:otherwise>
-   </xsl:choose>
-   <xsl:choose>
-      <!-- Apparently NaN is never equal to anything, including itself, so number($x)=number($x) is the most reliable test for a number!! -->
-      <xsl:when test="number($episode)=number($episode)"><xsl:value-of select="substring($episode, string-length($episode)-1)" /></xsl:when>
-      <xsl:otherwise>0</xsl:otherwise>
-   </xsl:choose>
-</xsl:template>
-
-<xsl:template match="episode-num[@system='onscreen']">
-   <xsl:text> </xsl:text>
-   <span class="episode">
-      <xsl:call-template name="extract_onscreen"><xsl:with-param name="rawonscreen" select="." /></xsl:call-template>
-   </span>.<xsl:text> </xsl:text>
-</xsl:template>
-
-<!-- same as nomode but without the formating -->
-<xsl:template match="episode-num[@system='onscreen']" mode="fav">
-   <xsl:call-template name="extract_onscreen"><xsl:with-param name="rawonscreen" select="." /></xsl:call-template>
-</xsl:template>
-
 <xsl:template name="extract_xmltvns">
 <xsl:param name="rawxmltvns" />
    <xsl:variable name="season" select="number(translate(substring-before($rawxmltvns, '.'), ' ',''))+1" />
@@ -983,7 +958,7 @@ version="1.0">
                   '/','.'), 
                '.' ),
             ' ','')
-         )+1)" />
+         )+1)" /> 
    <xsl:choose>
       <!-- Apparently NaN is never equal to anything, including itself, so number($x)=number($x) is the most reliable test for a number!! -->
       <xsl:when test="number($season)=number($season)"><xsl:value-of select="$season" />x</xsl:when>
@@ -995,98 +970,11 @@ version="1.0">
    </xsl:choose>   
 </xsl:template>
 
-<xsl:template match="episode-num[@system='xmltv_ns']">
-   <xsl:text> </xsl:text>
-   <span class="episode">
-      <xsl:call-template name="extract_xmltvns"><xsl:with-param name="rawxmltvns" select="." /></xsl:call-template>
-   </span>.<xsl:text> </xsl:text>
-</xsl:template>
-
 <!-- same as nomode but without the formating -->
 <!-- TODO do the season/episode extraction in a common function, as for the onscreen format -->
 <xsl:template match="episode-num[@system='xmltv_ns']" mode="fav">
    <xsl:call-template name="extract_xmltvns"><xsl:with-param name="rawxmltvns" select="." /></xsl:call-template>
 </xsl:template>
-
-<xsl:template match="sub-title">
-   <xsl:param name="noepisode">false</xsl:param>
-   <xsl:param name="defsubtitle">Dummy episode title</xsl:param>
-   <xsl:choose>
-      <xsl:when test="contains(.,'series')">
-         <xsl:if test="$noepisode='false'">
-            <xsl:variable name="episode" select="concat('0',substring-before(translate(.,',','/'), '/'))" />
-            <xsl:text> </xsl:text><span class="episode"><xsl:value-of select="normalize-space(substring-after(., 'series'))" />x<xsl:value-of select="substring($episode, string-length($episode)-1)" /></span>.<xsl:text> </xsl:text>
-         </xsl:if>
-      </xsl:when>
-      <xsl:otherwise>
-         <xsl:variable name="clean_eptitle">
-            <xsl:call-template name="eptitle_clean"><xsl:with-param name="eptitle" select="." /></xsl:call-template>
-         </xsl:variable>         
-         <xsl:text> </xsl:text>
-         <span class="episode">
-            <xsl:choose>
-               <xsl:when test="not($clean_eptitle = '')">
-                  <xsl:value-of select="$clean_eptitle" />
-               </xsl:when>
-               <xsl:otherwise>
-                  <xsl:value-of select="$defsubtitle" />
-               </xsl:otherwise>
-            </xsl:choose>           
-         </span>.<xsl:text> </xsl:text>
-     </xsl:otherwise>
-   </xsl:choose>
-</xsl:template>
-
-<xsl:template match="sub-title" mode="fav">
-   <xsl:param name="noepisode">false</xsl:param>
-   <xsl:param name="defsubtitle">Dummy sub-title</xsl:param>
-   <xsl:choose>
-      <xsl:when test="contains(.,'series')">
-         <xsl:if test="$noepisode='false'">
-            <!-- usually somthing like
-                     3/16, series 6
-                  but sometimes it can be
-                     3, series 6
-                  For the second case maybe faking the / by translating the , into a / will work, that's if
-                  translate works by just changing , into / and leaving everything else unchanged, which I doubt
-             -->
-            <xsl:variable name="episode" select="concat('0',substring-before(translate(.,',','/'), '/'))" />
-            <xsl:text> </xsl:text><xsl:value-of select="normalize-space(substring-after(., 'series'))" />x<xsl:value-of select="substring($episode, string-length($episode)-1)" />
-         </xsl:if>
-      </xsl:when>
-      <xsl:otherwise>
-         <xsl:text> </xsl:text>
-         <xsl:variable name="clean_eptitle">
-            <xsl:call-template name="eptitle_clean"><xsl:with-param name="eptitle" select="." /></xsl:call-template>
-         </xsl:variable>
-         <xsl:choose>
-            <!-- Kodi appears to have issues when there is no episode title in the file name, eg. most BBC programs. -->
-            <xsl:when test="not($clean_eptitle = '')">
-               <xsl:value-of select="$clean_eptitle" />
-            </xsl:when>
-            <xsl:otherwise>
-               <xsl:value-of select="$defsubtitle" />
-            </xsl:otherwise>
-         </xsl:choose>         
-      </xsl:otherwise>
-   </xsl:choose>
-
-</xsl:template>
-
-<xsl:template name="eptitle_clean">
-<xsl:param name="eptitle" />
-   <xsl:choose>
-   <!-- Need to remove '(New Series)' substring-before(substring-after( . ,'(New Series)'),'(New Series)')   -->
-   <xsl:when test="contains($eptitle,'(New Series)')">
-      <xsl:variable name="eptitlecl" select="substring-before(substring-after( . ,'(New Series)'),'(New Series)')" /> 
-      <xsl:value-of select="translate($eptitlecl , '.', '')" /> 
-   </xsl:when>
-   <xsl:otherwise>
-      <xsl:value-of select="translate($eptitle , '.', '')" />
-   </xsl:otherwise>      
-   </xsl:choose> 
-</xsl:template>
-
 
 <!-- Create the a favorite list entry for the specified list of programmes (from the xmltv file) -->
 <!-- PROGS must be a list of programme elements to check for favorites -->
@@ -1112,7 +1000,7 @@ version="1.0">
          
          <FAV>
             <PROG><xsl:value-of select="$ctitle" /></PROG>
-            <EPISODE><xsl:call-template name="eptitle_templ"><xsl:with-param name="pnode" select="." /></xsl:call-template></EPISODE>
+            <EPISODE><xsl:value-of select="scu:getFullEpisodetitle( episode-num[@system='xmltv_ns'], sub-title)" /></EPISODE>
             <START><xsl:value-of select="@start" /></START>
             <CHANNEL><xsl:value-of select="$CHNREF/channel[@id=$xmltvid]/display-name" /></CHANNEL>
             <IDX><xsl:value-of select="generate-id()" /></IDX>
@@ -1169,7 +1057,7 @@ version="1.0">
       <xsl:if test="scu:isMatch($matctitle,$NEWSERIESCRIT/CRIT) and not(scu:isMatch($category,$NEWSERIESEXCL/CRIT))">
          <FAV>
             <PROG><xsl:value-of select="$ctitle" /></PROG>
-            <EPISODE><xsl:call-template name="eptitle_templ"><xsl:with-param name="pnode" select="." /></xsl:call-template></EPISODE>
+            <EPISODE><xsl:value-of select="scu:getFullEpisodetitle( episode-num[@system='xmltv_ns'], sub-title)" /></EPISODE>
             <START><xsl:value-of select="@start" /></START>
             <CHANNEL><xsl:value-of select="$CHNREF/channel[@id=$xmltvid]/display-name" /></CHANNEL>
             <IDX><xsl:value-of select="generate-id()" /></IDX>
@@ -1199,30 +1087,18 @@ version="1.0">
 <xsl:param name="prog"/>
 <xsl:param name="dbref" />
 <xsl:param name="stbhost" />
-<!-- Using java for ep extraction makes conversion too slow -->
+
 <xsl:if test="$dbref">
-<xsl:variable name="ctitle">
-   <xsl:call-template name="cleantitle"><xsl:with-param name="rawtitle" select="$prog/title" /></xsl:call-template>
-</xsl:variable>
+<!-- Using java getEpisodeInfo for ep extraction makes conversion too slow .
+     Maybe using dedicated function to build the 'event' name from extracted values 
+     would be mor efficient. This will mean supplying the showname (prog/title),
+     the start time and the episode number info...
+-->
 <xsl:variable name="ostart" select="scu:addToDate($prog/@start, 'MINUTE', -10)" />
+<xsl:variable name="epnum" select="$prog/episode-num[@system='xmltv_ns']" />
+<xsl:variable name="event"><xsl:value-of select="scu:getEventName($epnum, $prog/sub-title, $prog/title, $ostart)" /></xsl:variable>
 <xsl:variable name="oend"><xsl:call-template name="stopoff"><xsl:with-param name="pnode" select="$prog" /></xsl:call-template></xsl:variable>
 <xsl:variable name="pref"><xsl:value-of select="$dbref/dbref" /></xsl:variable>
-<xsl:variable name="epinfo"><xsl:call-template name="eptitle_templ"><xsl:with-param name="pnode" select="$prog" /></xsl:call-template></xsl:variable>
-
-<!-- event is title combined with date, episode number and name, if episode details are present -->
-<xsl:variable name="event">
-   <xsl:call-template name="filesafe">
-      <xsl:with-param name="instr">   
-         <xsl:value-of select="$ctitle" />
-         <xsl:if test="$epinfo != ''">
-            <xsl:text> </xsl:text>
-            <xsl:value-of select="scu:formatDate($ostart, 'yy-MM-dd')" />
-            <xsl:text> </xsl:text>
-            <xsl:value-of select="$epinfo"/>
-         </xsl:if>
-      </xsl:with-param>
-   </xsl:call-template>
-</xsl:variable>
 
 <xsl:variable name="href">
 <xsl:text>http://</xsl:text><xsl:value-of select="$stbhost" /><xsl:text>/static/cpa/timerlist.htm?</xsl:text>
@@ -1237,8 +1113,8 @@ version="1.0">
 <xsl:text>&amp;ehour=</xsl:text><xsl:value-of select="scu:formatDate($oend, 'HH')" />
 <xsl:text>&amp;emin=</xsl:text><xsl:value-of select="scu:formatDate($oend, 'mm')" />
 <xsl:text>&amp;sref=</xsl:text><xsl:value-of select="scu:urlencode($pref)" />
-<xsl:text>&amp;name=</xsl:text><xsl:value-of select="scu:urlencode(scu:replaceStr($event, '&amp;', 'and'))" />
-<xsl:if test="$epinfo != ''">
+<xsl:text>&amp;name=</xsl:text><xsl:value-of select="scu:urlencode($event)" />
+<xsl:if test="$epnum != ''">
    <!-- repeated: Monday=1, Tuesday=2, Wednesday=4, Thursday=8, Friday=16, Saturday=32, Sunday=64 -->
    <xsl:variable name="dayofweek" select="scu:formatDate($ostart, 'E')" />
    <xsl:text>&amp;repeated=</xsl:text>
@@ -1291,46 +1167,6 @@ version="1.0">
 </xsl:if>
 </xsl:template>
  
-<!-- Should be called with a programme node -->
-<xsl:template name="eptitle_templ">
-<xsl:param name="pnode"/>
-   <xsl:value-of select="scu:getFullEpisodetitle( $pnode/episode-num[@system='xmltv_ns'], $pnode/sub-title)" />
-</xsl:template>
-
-<!-- Effectively a duplicate of template  -->
-<xsl:template name="eptitlenfo">
-<xsl:param name="pnode"/>
-   <xsl:choose>
-      <xsl:when test="boolean($pnode/episode-num)">
-         <xsl:variable name="sxe"><xsl:apply-templates select="$pnode/episode-num" mode="fav" /></xsl:variable>
-         <xsl:variable name="defsubtitle">Episode <xsl:value-of select="substring-after($sxe,'x')" /></xsl:variable>
-         <xsl:value-of select="$sxe" />
-            <xsl:choose>
-               <!-- Kodi appears to have issues when there is no episode title in the file name, eg. most BBC programs. -->
-               <xsl:when test="$pnode/sub-title and $pnode/sub-title[normalize-space()]">
-                  <xsl:apply-templates select="$pnode/sub-title" mode="fav">
-                     <xsl:with-param name="noepisode">true</xsl:with-param>
-                     <xsl:with-param name="defsubtitle"><xsl:value-of select="$defsubtitle" /></xsl:with-param>
-                  </xsl:apply-templates>
-               </xsl:when>
-               <xsl:otherwise>
-                  <!-- Really only want the episode number, and having the season/episode string twice will 
-                       probably fork up the highly temperamental kodi parser. Easiest to use the 'x'
-                       in the formatted episode-num value to get the episode number rather than creating a whole
-                       new (duplicate) episode-num parser just for the number. Behaviour might be odd if there
-                       is no 'x', but that would mean the parser is not working correctly.
-                       -->
-                  <xsl:text disable-output-escaping="yes"> </xsl:text><xsl:value-of select="$defsubtitle" />
-               </xsl:otherwise>
-            </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-         <xsl:apply-templates select="$pnode/sub-title">
-            <xsl:with-param name="defsubtitle">Episode X</xsl:with-param>
-         </xsl:apply-templates>         
-      </xsl:otherwise>
-   </xsl:choose>
-</xsl:template>
 
 <!-- Should be called with a programme node 
  Calculates the stoptime allowing for missing stoptime attribute.

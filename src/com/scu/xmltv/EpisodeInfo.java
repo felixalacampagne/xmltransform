@@ -8,12 +8,18 @@ public class EpisodeInfo
    private String epseason = "";
    private String epnum  = "";
    private String epinfx = "";
-   
+   private String epfulltitle = "";
+
    public EpisodeInfo()
    {
    }
-   
+
    public EpisodeInfo(String episodenum, String subtitle)
+   {
+      this(episodenum, subtitle, " ");
+   }
+
+   public EpisodeInfo(String episodenum, String subtitle, String separator)
    {
       NodeUtils nu = NodeUtils.getNodeUtils();
       int iepnum = -1;
@@ -38,33 +44,47 @@ public class EpisodeInfo
             iepseason = 0;
          }
          epseason = String.valueOf(iepseason);
-         epinfx = String.format("%sx%s ", epseason, epnum);
+         epinfx = String.format("%sx%s", epseason, epnum);
       }
 
       eptitle = nu.sanitizeTitle(subtitle);
       if(eptitle.isEmpty() && !epnum.isEmpty())
       {
          eptitle = "Episode " + epnum;
-      }      
+      }
+
+      if(epinfx.isEmpty())
+      {
+         separator = "";
+      }
+      epfulltitle = epinfx + separator + eptitle;
    }
-   
+
    public String getEptitle()
    {
       return eptitle;
    }
+
    public String getEpseason()
    {
       return epseason;
    }
+
    public String getEpnum()
    {
       return epnum;
    }
+
    public String getEpinfx()
    {
       return epinfx;
    }
-   
-   
+
+   public String getEpfulltitle()
+   {
+      return epfulltitle;
+   }
+
+
 }
 

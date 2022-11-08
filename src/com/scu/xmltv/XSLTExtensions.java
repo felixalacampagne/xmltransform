@@ -640,7 +640,6 @@ public class XSLTExtensions
       EpisodeInfo ei = new EpisodeInfo();
       String epshow = "";
       String recname = "";
-      String recep="";
       String sdate;
       try
       {
@@ -656,12 +655,9 @@ public class XSLTExtensions
       		String episodenum = nu.getNodeValue(epnumnode);
       		String subtitle = nu.getNodeValue(prog, "sub-title");
       		ei = new EpisodeInfo(episodenum, subtitle);
-      		recep = String.format(" %s %s%s", formatDate(sdate, "yy-MM-dd"),
-      				ei.getEpinfx(), ei.getEptitle());
       	}
 
-      	recname = epshow + recep;
-      	recname = recname.replaceAll("[\"'?/\\*&:<>,.|@]", "");
+      	recname = getEventName(epshow, sdate, ei.getEpfulltitle());
 
          xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
          xml.append("<EPINFO>");
@@ -689,13 +685,41 @@ public class XSLTExtensions
    }
 
    // Returns the episode title with the SxE prefix
-   public String getFullEpisodetitle(String episodenum, String subtitle)
+   public static String getFullEpisodetitle(String episodenum, String subtitle)
    {
-   	NodeUtils nu = NodeUtils.getNodeUtils();
-   	EpisodeInfo ei = new EpisodeInfo(episodenum, subtitle);
-
-   	// NB epinfx includes the trailing space if it is set
-		return ei.getEpinfx() + ei.getEptitle();
+      return getFullEpisodetitle(episodenum, subtitle, " ");
    }
 
+   public static String getFullEpisodetitle(String episodenum, String subtitle, String separator)
+   {
+   	EpisodeInfo ei = new EpisodeInfo(episodenum, subtitle, separator);
+		return ei.getEpfulltitle();
+   }
+
+   /**
+    *
+    * @param episodenum episode number in xmltv_ns format
+    * @param subtitle the title of the episode
+    * @param show the name of the show
+    * @param start the start time in xmltv format
+    * @return
+    */
+   public static String getEventName(String episodenum, String subtitle, String show, String start)
+   {
+      String epinfo = getFullEpisodetitle(episodenum, subtitle);
+      return getEventName(show, start, epinfo);
+   }
+
+   public static String getEventName(String show, String start, String epfulltitle)
+   {
+      NodeUtils nu = NodeUtils.getNodeUtils();
+      String event = nu.sanitizeTitle(show);
+
+      if(!epfulltitle.isEmpty())
+      {
+         String edate = formatDate(start, "yy-MM-dd");
+         event = String.format("%s %s %s", event, edate, epfulltitle);
+      }
+      return event;
+   }
 }

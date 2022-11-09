@@ -4,24 +4,11 @@ xmlns:scu="//com.scu.xmltv.XSLTExtensions"
 xmlns:loc="local.values"
 version="1.0">
 <!--
-06 Nov 2022 Modified Java code to perform episode details extraction. It only supports the xmltv_ns episode numbering scheme
-            This is used for the NFO
-            output but it made the conversion far too slow when I tried to use it in the 'programme' template,
-            ie. use the Java function for every programme. It would be nice to have a single consistent
-            way to get these details but for now there isn't one.
+06 Nov 2022 Modified Java code to perform episode details extraction for consistency. 
+            It only supports the xmltv_ns episode numbering scheme. Support for older number schemes has been removed.
 05 Nov 2022 Added NFO generation for favourites as a replacement for the DB eit files which seems
             to have stopped appearing for most programmes.
-09 Jan 2020 Add dummy episode title when non-present in the listings to try to improve Kodi behaviour
-28 Apr 2020 Changed vu+ to use SD BBC 1 and 2 instead of the HD channels because the
-            HD channels block off too many other channels and 99% of the time I don't
-            care about HD since the programmes rarely have surround sound.
-17 Nov 2018 Added the exclude category to the new series criteria as the result was 
-            constantly overwhelming!
-13 Oct 2018 Implemented "new series starting" page. Removed old comments
-11 Jun 2018 Channel 4+1 name change
-31 May 2018 Channel id changes
-21 May 2018 Webgrabber started appending garbage at the end of programme titles. Took opportunity
-            to create a template for cleaning the title and to remove unused stuff, eg. skystar definitions
+13 Oct 2018 Implemented "new series starting" page.
  -->
 <xsl:output method="html" version="4.0"/>
 <xsl:preserve-space elements="*"/>

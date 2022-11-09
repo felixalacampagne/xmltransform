@@ -52,13 +52,11 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
     */
 	public static boolean isMatch(String value, NodeList regexps)
 	{
-		// Implement the 'new' behaviour by default
 		return isMatch(value, regexps, true);
 	}
 
    public static boolean isMatch(String value, NodeList regexps, boolean igncase)
    {
-  // Matcher match = null;
    Node node = null;
 
       if(regexps == null)
@@ -66,10 +64,6 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
 
       try
       {
-         //System.out.println("isMatch: Checking " + regexps.getLength() + " reg.exps.");
-
-
-         //while((node = regexps.nextNode()) != null)
          for(int ir = 0; ir < regexps.getLength(); ir++)
          {
             node = regexps.item(ir);
@@ -116,15 +110,9 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
             }
 
             if(isMatch(value, crit, igncase))
+            {
             	return true;
-//            if(crit != null)
-//            {
-//               match = Pattern.compile(crit, flags).matcher(value);
-//               if(match.find())
-//               {
-//                  return true;
-//               }
-//            }
+            }
          }
       }
       catch(Exception ex)
@@ -325,7 +313,7 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
    }
 
 
-   // NB This is used for writing the HTML listing pages so it probably
+   // This is used for writing the HTML listing pages so it probably
    // shouldn't be messed around with too much to get it to do things specific to XML
    public static String nodeToXmltext(Node node)
    {
@@ -374,8 +362,8 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
          tfmr.setOutputProperty(OutputKeys.INDENT, "yes"); // This doesn't give indenting
 
          // This gives unrecognised property exception, with or without xalan: prefix.
-         // Google revealed the weird URL format to me which doesn't give an error
-         // however there is still no sign of indentation....
+         // Google revealed the weird URL format to me which doesn't give an error.
+         // The indentation only appears if the output type is set to XML.
          tfmr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "3");
          tfmr.transform(new DOMSource(node), sr);
          xml = sw.toString();
@@ -547,7 +535,6 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
          XPath xp = XPathFactory.newInstance().newXPath();
 
          is = new InputSource(  new StringReader(xml));
-//               new ByteArrayInputStream(xml.getBytes()));
          nlfav = (Node) xp.evaluate(xpath, is, XPathConstants.NODE);
       }
       catch(Exception ex)

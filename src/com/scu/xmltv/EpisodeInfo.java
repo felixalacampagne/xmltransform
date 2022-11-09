@@ -78,13 +78,7 @@ public class EpisodeInfo
             epinfx = String.format("%s%s%s", epseason, sep, epnum);
 
          }
-
-
       }
-
-
-
-
 
       eptitle = nu.sanitizeTitle(subtitle);
       if(eptitle.isEmpty() && !epnum.isEmpty())

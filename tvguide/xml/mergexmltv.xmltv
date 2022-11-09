@@ -3,7 +3,7 @@
   <channel id="XMLTVTestChannel">
     <display-name lang="en">ATV Channel</display-name>
   </channel>
-  <programme channel="XMLTVTestChannel" start="20221107234500 +0000" stop="20221108034500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221107234500 +0000" stop="20221115034500 +0000">
     <title lang="en">Have I Got a Bit More News for You</title>
     <desc lang="en">Gary Neville hosts an extended episode of the current affairs quiz, with comedian Maisie Adam and presenter Richard Madeley joining team captains Paul Merton and Ian Hislop.</desc>
     <category lang="en">Comedy</category>
@@ -15,7 +15,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/have_I_got_news.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108060000 +0000" stop="20221108091500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115060000 +0000" stop="20221115091500 +0000">
     <title lang="en">Breakfast</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">A round-up of national and international news, plus current affairs, arts and entertainment, and weather.</desc>
@@ -28,7 +28,7 @@
       <value>2.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108091500 +0000" stop="20221108100000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115091500 +0000" stop="20221115100000 +0000">
     <title lang="en">Morning Live</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">Weekday magazine show featuring a mixture of topical chat and expert advice, presented by Gethin Jones and Sam Quek.</desc>
@@ -39,7 +39,7 @@
       <value>3.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108100000 +0000" stop="20221108104500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115100000 +0000" stop="20221115104500 +0000">
     <title lang="en">Critical Incident</title>
     <desc lang="en">A Warwickshire police officer who used his medical training to save the lives of two stab victims and a mountain bike paramedic violently attacked in Manchester city centre.</desc>
     <category lang="en">Education</category>
@@ -52,7 +52,7 @@
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108104500 +0000" stop="20221108111500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115104500 +0000" stop="20221115111500 +0000">
     <title lang="en">Dirty Rotten Scammers</title>
     <sub-title lang="en">Episode 7- Short</sub-title>
     <desc lang="en">A man who received a fraudulent text that ended in him being fleeced for a five-figure sum - and finding himself embroiled in an investigation with the National Crime Agency.</desc>
@@ -65,7 +65,7 @@
       <value>8.1/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108111500 +0000" stop="20221108121500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115111500 +0000" stop="20221115121500 +0000">
     <title lang="en">Homes Under the Hammer</title>
     <desc lang="en">Martin Roberts and the team are in Scotland and the north of England to follow renovations in Paisley, Coventry and Bradford.</desc>
     <category lang="en">Leisure</category>
@@ -78,7 +78,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Homes-Under.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108121500 +0000" stop="20221108130000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115121500 +0000" stop="20221115130000 +0000">
     <title lang="en">Bargain Hunt</title>
     <sub-title lang="en">Sawbridgeworth 10</sub-title>
     <desc lang="en">Roo Irvine and Tim Weeks help the red and blue teams in Sawbridgeworth, Hertfordshire, where they hope to bag bargains to take to auction to sell at a profit. Presenter Charlie Ross also finds out about the fascinating world of espionage and uncovers some everyday objects that aren't quite what they seem.</desc>
@@ -93,7 +93,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Bargain-Hunt.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108130000 +0000" stop="20221108133000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115130000 +0000" stop="20221115133000 +0000">
     <title lang="en">ATV News at One; Weather</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">A round-up of the latest headlines.</desc>
@@ -102,7 +102,7 @@
     <url>https://www.bla.blady.bla/detail/4864170/78479617/bbc-news-at-one-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108133000 +0000" stop="20221108134500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115133000 +0000" stop="20221115134500 +0000">
     <title lang="en">ATV News; Weather</title>
     <sub-title lang="en">08/11/2022 - Lunch</sub-title>
     <category lang="en">News</category>
@@ -113,7 +113,7 @@
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108134500 +0000" stop="20221108141500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115134500 +0000" stop="20221115141500 +0000">
     <title lang="en">Doctors</title>
     <sub-title lang="en">Entitlement - Part Two</sub-title>
     <desc lang="en">Ruhma's first date does not go as planned and Sid gets involved with his neighbour's conflict.</desc>
@@ -125,7 +125,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Doctors3.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108141500 +0000" stop="20221108150000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115141500 +0000" stop="20221115150000 +0000">
     <title lang="en">Money for Nothing</title>
     <desc lang="en">Jacqui Joseph heads to Walsall Recycling Centre, where she rescues a bamboo chair, a hand-made sideboard and a pair of solid wood bedside tables. With the help of upholsterer Simion Hawtin-Smith and screen print artist Daniel Heath, the tired trio of items have the chance to shine once more.</desc>
     <category lang="en">Education</category>
@@ -139,7 +139,7 @@
       <value>7.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108150000 +0000" stop="20221108154500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115150000 +0000" stop="20221115154500 +0000">
     <title lang="en">Escape to the Country</title>
     <sub-title lang="en">Anglesey</sub-title>
     <desc lang="en">Jules Hudson helps a couple from Cheshire to find their dream home on Anglesey. He also heads to the Welsh mainland to catch up with a farmer, Gareth Wyn Jones, whose family has been working the land for 375 years.</desc>
@@ -153,7 +153,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Escape.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108154500 +0000" stop="20221108163000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115154500 +0000" stop="20221115163000 +0000">
     <title lang="en">The Repair Shop</title>
     <desc lang="en">Jay Blades and the team restore a homemade radio from the Second World War, a set of dinner gongs from a farmhouse and a musical carousel.</desc>
     <category lang="en">Leisure</category>
@@ -165,7 +165,7 @@
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108163000 +0000" stop="20221108171500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115163000 +0000" stop="20221115171500 +0000">
     <title lang="en">The Travelling Auctioneers</title>
     <desc lang="en">Christina Trevanion and Will Kirk travel to Northumbria to help retired school teachers Mike and Carole declutter and raise money for a trip abroad to visit their grandchild.</desc>
     <category lang="en">Leisure</category>
@@ -177,7 +177,7 @@
       <value>6.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108171500 +0000" stop="20221108180000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115171500 +0000" stop="20221115180000 +0000">
     <title lang="en">Pointless</title>
     <desc lang="en">Contestants try to score the fewest points possible by giving the least obvious correct answers to questions. Presented by Alexander Armstrong, with Richard Osman.</desc>
     <category lang="en">General</category>
@@ -190,7 +190,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/pointless.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108180000 +0000" stop="20221108183000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115180000 +0000" stop="20221115183000 +0000">
     <title lang="en">ATV News at Six; Weather</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">The latest headlines.</desc>
@@ -199,7 +199,7 @@
     <url>https://www.bla.blady.bla/detail/4864173/78479627/bbc-news-at-six-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108183000 +0000" stop="20221108190000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115183000 +0000" stop="20221115190000 +0000">
     <title lang="en">ATV News; Weather</title>
     <sub-title lang="en">08/11/2022 - Evening</sub-title>
     <category lang="en">News</category>
@@ -210,7 +210,7 @@
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108190000 +0000" stop="20221108193000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115190000 +0000" stop="20221115193000 +0000">
     <title lang="en">The One Show</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">Alex Jones and Rylan present another mix of nationwide reports and live studio-based chat.</desc>
@@ -224,7 +224,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/The-One-Show.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108193000 +0000" stop="20221108200000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115193000 +0000" stop="20221115200000 +0000">
     <title lang="en">EastEnders</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">The highs and lows of life with the residents of Albert Square, Walford.</desc>
@@ -236,7 +236,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/eastenders.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108200000 +0000" stop="20221108210000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115200000 +0000" stop="20221115210000 +0000">
     <title lang="en">Trawlermen: Hunting the Catch</title>
     <sub-title lang="en">(New Series)</sub-title>
     <desc lang="en">Storm Arwen hits the UK and the skippers have tough decisions to make. Boats start to roll in the North Sea, putting Victory Rose and Our Lass at risk of collision. Skipper Darren has just three days of crabbing time before the storm pushes the boat back to the harbour and George Jack considers venturing in to the storm in search of a new species of prawn.</desc>
@@ -250,7 +250,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/trawlermen.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108210000 +0000" stop="20221108220000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115210000 +0000" stop="20221115220000 +0000">
     <title lang="en">Mariupol: The People's Story</title>
     <desc lang="en">Before the war in Ukraine, Mariupol was a thriving city, home to 430,000 people. In a little under three months, most of its citizens had fled Putin's army and thousands had been killed. This Panorama special, filmed and told by residents, is the story of their loss, bravery, determination, and incredible daring in making their escape. They were among those who sought refuge in the Mariupol Theatre, only for it to be bombed, the maternity hospital which was also hit and the Azovstal Steelworks, where hundreds hid in bunkers and Ukrainian forces made their last stand.</desc>
     <category lang="en">News</category>
@@ -261,7 +261,7 @@
       <value>10/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108220000 +0000" stop="20221108223000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115220000 +0000" stop="20221115223000 +0000">
     <title lang="en">ATV News at Ten</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">A round-up of today's headlines.</desc>
@@ -273,7 +273,7 @@
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108223000 +0000" stop="20221108224000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115223000 +0000" stop="20221115224000 +0000">
     <title lang="en">ATV News; Weather</title>
     <sub-title lang="en">08/11/2022 - Late</sub-title>
     <category lang="en">News</category>
@@ -284,7 +284,7 @@
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108224000 +0000" stop="20221108233500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115224000 +0000" stop="20221115233500 +0000">
     <title lang="en">Industry</title>
     <sub-title lang="en">Lone Wolf and Cub</sub-title>
     <desc lang="en">Harper, Eric and Rishi form a cabal in a plan to jump banks before Pierpoint find out they have gone rogue. Venetia crashes a client dinner between Robert and Nicole which has serious consequences. Yasmin questions how her own actions mirror her father's and wonders if she can finally be honest with Celeste.</desc>
@@ -296,7 +296,7 @@
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221108233500 +0000" stop="20221109003500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221115233500 +0000" stop="20221116003500 +0000">
     <title lang="en">Industry</title>
     <sub-title lang="en">Jerusalem</sub-title>
     <desc lang="en">Harper inadvertently reveals information that leads to massive consequences. Yasmin finally confronts her father and exercises her boundaries with Celeste but fears what she stands to lose in the process. Robert's moral compass is put to the test when his biggest success comes through Nicole and he faces the law.</desc>
@@ -308,7 +308,7 @@
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109003500 +0000" stop="20221109012500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116003500 +0000" stop="20221116012500 +0000">
     <title lang="en">Mood</title>
     <sub-title lang="en">Hannibal</sub-title>
     <desc lang="en">Sasha thinks she has found a best friend in Carly and her life is on the up - until she makes a decision she never thought she would.</desc>
@@ -321,12 +321,12 @@
       <value>0.7/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109012500 +0000" stop="20221109021000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116012500 +0000" stop="20221116021000 +0000">
     <title lang="en">Mood</title>
     <sub-title lang="en">Get That Schmoneyyy</sub-title>
-    <desc lang="en">Sasha visits her family and the studio with Kobi, and she struggles when her old and new worlds collide. Drama, starring NicÃ´le Lecky.</desc>
+    <desc lang="en">Sasha visits her family and the studio with Kobi, and she struggles when her old and new worlds collide. Drama, starring NicÃƒÂ´le Lecky.</desc>
     <credits>
-      <actor>NicÃ´le Lecky</actor>
+      <actor>NicÃƒÂ´le Lecky</actor>
     </credits>
     <category lang="en">General</category>
     <url>https://www.bla.blady.bla/detail/4541031/78479711/mood</url>
@@ -337,7 +337,7 @@
       <value>0.7/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109021000 +0000" stop="20221109021500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116021000 +0000" stop="20221116021500 +0000">
     <title lang="en">Weather for the Week Ahead</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <desc lang="en">A look ahead to the latest forecast.</desc>
@@ -349,7 +349,7 @@
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109021500 +0000" stop="20221109060000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116021500 +0000" stop="20221116060000 +0000">
     <title lang="en">ATV News</title>
     <sub-title lang="en">08/11/2022</sub-title>
     <category lang="en">News</category>
@@ -361,7 +361,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/ATV-News.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109060000 +0000" stop="20221109091500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116060000 +0000" stop="20221116091500 +0000">
     <title lang="en">Breakfast</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">A round-up of national and international news, plus current affairs, arts and entertainment, and weather.</desc>
@@ -374,7 +374,7 @@
       <value>2.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109091500 +0000" stop="20221109100000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116091500 +0000" stop="20221116100000 +0000">
     <title lang="en">Morning Live</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">Weekday magazine show featuring a mixture of topical chat and expert advice presented by Gethin Jones and Sam Quek.</desc>
@@ -385,7 +385,7 @@
       <value>3.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109100000 +0000" stop="20221109104500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116100000 +0000" stop="20221116104500 +0000">
     <title lang="en">Critical Incident</title>
     <desc lang="en">Jim Johnson shares the stories of travel police who had their car hit by a thief and a paramedic who struggled with mental health issues after being assaulted.</desc>
     <category lang="en">Education</category>
@@ -398,10 +398,10 @@
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109104500 +0000" stop="20221109111500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116104500 +0000" stop="20221116111500 +0000">
     <title lang="en">Dirty Rotten Scammers</title>
     <sub-title lang="en">Episode 8 - Short</sub-title>
-    <desc lang="en">How a call from a fraud department turned out to be part of a scam in which a woman lost Â£2,000. Cameras also follow police as they install blocking technology in a victim's home.</desc>
+    <desc lang="en">How a call from a fraud department turned out to be part of a scam in which a woman lost Ã‚Â£2,000. Cameras also follow police as they install blocking technology in a victim's home.</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>
@@ -411,7 +411,7 @@
       <value>8.1/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109111500 +0000" stop="20221109121500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116111500 +0000" stop="20221116121500 +0000">
     <title lang="en">Homes Under the Hammer</title>
     <desc lang="en">Martin Roberts, Dion Dublin and Jacqui Joseph follow the fortunes of a terrace in Aberdare, south Wales, a slice of land in Glasgow and an end terrace in Rochester, Kent.</desc>
     <category lang="en">Leisure</category>
@@ -425,7 +425,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Homes-Under.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109121500 +0000" stop="20221109130000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116121500 +0000" stop="20221116130000 +0000">
     <title lang="en">Bargain Hunt</title>
     <desc lang="en">Two teams are challenged to scour an antiques fair and pick up bargains to sell for profit at auction.</desc>
     <category lang="en">Leisure</category>
@@ -437,7 +437,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Bargain-Hunt.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109130000 +0000" stop="20221109133000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116130000 +0000" stop="20221116133000 +0000">
     <title lang="en">ATV News at One; Weather</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">A round-up of the latest headlines.</desc>
@@ -446,7 +446,7 @@
     <url>https://www.bla.blady.bla/detail/4864203/78554733/bbc-news-at-one-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109133000 +0000" stop="20221109134500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116133000 +0000" stop="20221116134500 +0000">
     <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">09/11/2022 - Lunch</sub-title>
     <category lang="en">News</category>
@@ -457,7 +457,7 @@
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109134500 +0000" stop="20221109141500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116134500 +0000" stop="20221116141500 +0000">
     <title lang="en">Doctors</title>
     <sub-title lang="en">Flawless</sub-title>
     <desc lang="en">Al drives everyone mad by wallowing in his celebration. A fashion designer reveals her secret identity but her medical condition has other plans for the day.</desc>
@@ -469,7 +469,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Doctors3.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109141500 +0000" stop="20221109150000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116141500 +0000" stop="20221116150000 +0000">
     <title lang="en">Money for Nothing</title>
     <desc lang="en">Sarah Moore visits Beaconsfield recycling centre to find items to upcycle. She enlists the help of Ollie Clueit, Saurabh Kalra and Fernando Donadel to fix up a sofa, a school desk and some metal legs in the hope of selling them on for a profit..</desc>
     <category lang="en">Education</category>
@@ -482,10 +482,10 @@
       <value>7.2/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109150000 +0000" stop="20221109154500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116150000 +0000" stop="20221116154500 +0000">
     <title lang="en">Escape to the Country</title>
     <sub-title lang="en">Monmouthshire</sub-title>
-    <desc lang="en">Sonali Shah helps a couple from London with a budget of Â£325,000 to find a new home in the Monmouthshire countryside. She also visits a market garden with an unusual growing method.</desc>
+    <desc lang="en">Sonali Shah helps a couple from London with a budget of Ã‚Â£325,000 to find a new home in the Monmouthshire countryside. She also visits a market garden with an unusual growing method.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
     <url>https://www.bla.blady.bla/detail/4490079/78554716/escape-to-the-country</url>
@@ -497,7 +497,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Escape.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109154500 +0000" stop="20221109163000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116154500 +0000" stop="20221116163000 +0000">
     <title lang="en">The Repair Shop</title>
     <desc lang="en">Jay Blades and the team restore a pair of ice hockey skates and gloves, a cork-lined motorbike helmet and a 54-year-old teddy bear.</desc>
     <category lang="en">Leisure</category>
@@ -509,7 +509,7 @@
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109163000 +0000" stop="20221109171500 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116163000 +0000" stop="20221116171500 +0000">
     <title lang="en">The Travelling Auctioneers</title>
     <desc lang="en">Christina Trevanion and Will Kirk travel to Berkshire to help Tony and Kerry Cradock sort the contents of Tony's childhood home after the death of his adoptive parents.</desc>
     <category lang="en">Leisure</category>
@@ -521,7 +521,7 @@
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109171500 +0000" stop="20221109180000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116171500 +0000" stop="20221116180000 +0000">
     <title lang="en">Pointless</title>
     <desc lang="en">Quiz in which contestants try to score the fewest points possible by giving the least obvious correct answers to questions. Presented by Alexander Armstrong, with Richard Osman.</desc>
     <category lang="en">General</category>
@@ -534,7 +534,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/pointless.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109180000 +0000" stop="20221109183000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116180000 +0000" stop="20221116183000 +0000">
     <title lang="en">ATV News at Six; Weather</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">The latest headlines.</desc>
@@ -543,7 +543,7 @@
     <url>https://www.bla.blady.bla/detail/4864209/78554727/bbc-news-at-six-weather</url>
     <subtitles type="teletext"/>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109183000 +0000" stop="20221109190000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116183000 +0000" stop="20221116190000 +0000">
     <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">09/11/2022 - Evening</sub-title>
     <category lang="en">News</category>
@@ -554,7 +554,7 @@
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109190000 +0000" stop="20221109193000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116190000 +0000" stop="20221116193000 +0000">
     <title lang="en">The One Show</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">Alex Jones and Jermaine Jenas present the magazine show, with stories of interest from around the UK, plus celebrity guests in the studio.</desc>
@@ -568,7 +568,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/The-One-Show.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109193000 +0000" stop="20221109200000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116193000 +0000" stop="20221116200000 +0000">
     <title lang="en">EastEnders</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">Kheerat sees red as shocking revelations come to light and he goes to drastic lengths to save his mother. But will it be enough? Sam is left feeling hopeless when Zack refuses to help her. Linda's blind date fails to show, so Alfie steps in and buys her a drink, annoying Mick in the process.</desc>
@@ -580,7 +580,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/eastenders.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109200000 +0000" stop="20221109203000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116200000 +0000" stop="20221116203000 +0000">
     <title lang="en">Countryfile</title>
     <sub-title lang="en">Countryfile Ramble for ATV Children in Need 2022</sub-title>
     <desc lang="en">Matt Baker and the team showcase this year's Big Ramble for Children in Need, and meet some inspirational young people to discover how they have been helped by the charity.</desc>
@@ -595,9 +595,9 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Countryfile.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109203000 +0000" stop="20221109210000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116203000 +0000" stop="20221116210000 +0000">
     <title lang="en">The Repair Shop</title>
-    <desc lang="en">Metalworker Dominic Chinea uses all his expertise to make a dilapidated and unsafe go-kart roadworthy once again. Master saddlemaker Suzie Fletcher is called upon to restore a hand-crafted leather gun slip, while ceramics conservator Kirsten Ramsay faces an unusual challenge in the shape of a charming little papier-machÃ© cat figurine. Presented by Jay Blades.</desc>
+    <desc lang="en">Metalworker Dominic Chinea uses all his expertise to make a dilapidated and unsafe go-kart roadworthy once again. Master saddlemaker Suzie Fletcher is called upon to restore a hand-crafted leather gun slip, while ceramics conservator Kirsten Ramsay faces an unusual challenge in the shape of a charming little papier-machÃƒÂ© cat figurine. Presented by Jay Blades.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
     <url>https://www.bla.blady.bla/detail/4354831/78554735/the-repair-shop</url>
@@ -608,7 +608,7 @@
       <value>8.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109210000 +0000" stop="20221109220000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116210000 +0000" stop="20221116220000 +0000">
     <title lang="en">MasterChef: The Professionals</title>
     <desc lang="en">Four new chefs compete to impress judges Anna Haugh, Marcus Wareing and Gregg Wallace and take their place in the quarter-final. The infamous skills test see the chefs perfecting their pasta-making skills with ravioli, and filleting fish with finesse in just 20 minutes. In their final chance to impress, the competitors serve up their personal signature dishes.</desc>
     <category lang="en">Leisure</category>
@@ -621,7 +621,7 @@
     </star-rating>
     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/masterchef_professionals.jpg</image>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109220000 +0000" stop="20221109223000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116220000 +0000" stop="20221116223000 +0000">
     <title lang="en">ATV News at Ten</title>
     <sub-title lang="en">09/11/2022</sub-title>
     <desc lang="en">A round-up of today's headlines.</desc>
@@ -633,7 +633,7 @@
       <value>8.3/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109223000 +0000" stop="20221109224000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116223000 +0000" stop="20221116224000 +0000">
     <title lang="en">ATV London News; Weather</title>
     <sub-title lang="en">09/11/2022 - Late</sub-title>
     <category lang="en">News</category>
@@ -644,7 +644,7 @@
       <value>6.4/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109224000 +0000" stop="20221109233000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116224000 +0000" stop="20221116233000 +0000">
     <title lang="en">ATV New Comedy Awards</title>
     <sub-title lang="en">(New Series)</sub-title>
     <desc lang="en">Kerry Godliman hosts as the six finalists take to the stage at the National Concert Hall of Wales where judges Fern Brady, Rosie Jones and Nabil Abdulrashid choose the ATV New Comedian of 2022. The grand final also features the award for Best New Digital Comedy 2022.</desc>
@@ -656,7 +656,7 @@
       <value>7.5/10</value>
     </star-rating>
   </programme>
-  <programme channel="XMLTVTestChannel" start="20221109233000 +0000" stop="20221110033000 +0000">
+  <programme channel="XMLTVTestChannel" start="20221116233000 +0000" stop="20221110033000 +0000">
     <title lang="en">Louis Theroux Interviews</title>
     <sub-title lang="en">Louis Theroux Interviews - Yungblud</sub-title>
     <desc lang="en">Louis spends time with Dominic Harrison - aka singer and musician Yungblud - as he joins him during his whirlwind tour. Along the way, Louis meets fans who follow Yungblud with almost religious intensity, before sitting down with the singer to discuss a range of topics including his mental health, his sexuality and his response to outspoken critics.</desc>
@@ -798,7 +798,7 @@
   <programme channel="XMLTVTestChannel" start="20221110150000 +0000" stop="20221110154500 +0000">
     <title lang="en">Escape to the Country</title>
     <sub-title lang="en">Dorset</sub-title>
-    <desc lang="en">Nicki Chapman helps an animal-loving house hunter from a town in Oxfordshire, who has a generous budget of Â£700,000 to find a new village community in Dorset, ideally close to the coast. Making the most of the seaside locale, Nicki visits a luxury yacht manufacturer to experience how the other half set sail in serious style.</desc>
+    <desc lang="en">Nicki Chapman helps an animal-loving house hunter from a town in Oxfordshire, who has a generous budget of Ã‚Â£700,000 to find a new village community in Dorset, ideally close to the coast. Making the most of the seaside locale, Nicki visits a luxury yacht manufacturer to experience how the other half set sail in serious style.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
     <url>https://www.bla.blady.bla/detail/3839710/78624351/escape-to-the-country</url>
@@ -1110,7 +1110,7 @@
   <programme channel="XMLTVTestChannel" start="20221111150000 +0000" stop="20221111154500 +0000">
     <title lang="en">Escape to the Country</title>
     <sub-title lang="en">Surrey</sub-title>
-    <desc lang="en">Alistair Appleton helps recent newlyweds to quit London in search of a perfect country home. They have a budget of Â£1.5million and have chosen Surrey as the location for their future family life. Taking time out of the property hunt, Alistair stops by the British Wildlife Centre, where he learns about the ongoing conservation work to protect the country's most important native species.</desc>
+    <desc lang="en">Alistair Appleton helps recent newlyweds to quit London in search of a perfect country home. They have a budget of Ã‚Â£1.5million and have chosen Surrey as the location for their future family life. Taking time out of the property hunt, Alistair stops by the British Wildlife Centre, where he learns about the ongoing conservation work to protect the country's most important native species.</desc>
     <category lang="en">Leisure</category>
     <category lang="en">Hobbies</category>
     <url>https://www.bla.blady.bla/detail/3561863/78708989/escape-to-the-country</url>
@@ -1865,7 +1865,7 @@
   </programme>
   <programme channel="XMLTVTestChannel" start="20221114103000 +0000" stop="20221114111500 +0000">
     <title lang="en">Dirty Rotten Scammers</title>
-    <desc lang="en">A woman who had never used online banking prior to the pandemic, but decided to try. However, after just one attempt she was contacted by fraudsters who fleeced her out of Â£30,000</desc>
+    <desc lang="en">A woman who had never used online banking prior to the pandemic, but decided to try. However, after just one attempt she was contacted by fraudsters who fleeced her out of Ã‚Â£30,000</desc>
     <category lang="en">Education</category>
     <category lang="en">Science</category>
     <category lang="en">Factual</category>

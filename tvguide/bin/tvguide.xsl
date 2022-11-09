@@ -946,7 +946,10 @@ version="1.0">
 </TR>
 </xsl:template>
 
-<xsl:template name="extract_xmltvns">
+<!-- Appears that this is still used to determine the string used for fovourites matching with episode number
+     so can't be removed. Add a dedicated function to get the SxN value from Java.
+-->
+<!-- xsl:template name="extract_xmltvns">
 <xsl:param name="rawxmltvns" />
    <xsl:variable name="season" select="number(translate(substring-before($rawxmltvns, '.'), ' ',''))+1" />
    <xsl:variable name="episode" select="concat('0',
@@ -960,7 +963,7 @@ version="1.0">
             ' ','')
          )+1)" /> 
    <xsl:choose>
-      <!-- Apparently NaN is never equal to anything, including itself, so number($x)=number($x) is the most reliable test for a number!! -->
+      < ! - - Apparently NaN is never equal to anything, including itself, so number($x)=number($x) is the most reliable test for a number!! - - >
       <xsl:when test="number($season)=number($season)"><xsl:value-of select="$season" />x</xsl:when>
       <xsl:otherwise>Ep.</xsl:otherwise>
    </xsl:choose>
@@ -968,12 +971,11 @@ version="1.0">
       <xsl:when test="number($episode)=number($episode)"><xsl:value-of select="substring($episode, string-length($episode)-1)" /></xsl:when>
       <xsl:otherwise>00</xsl:otherwise>
    </xsl:choose>   
-</xsl:template>
+</xsl:template -->
 
-<!-- same as nomode but without the formating -->
-<!-- TODO do the season/episode extraction in a common function, as for the onscreen format -->
+<!-- Use for the favourites match target to allow episdoe number matching-->
 <xsl:template match="episode-num[@system='xmltv_ns']" mode="fav">
-   <xsl:call-template name="extract_xmltvns"><xsl:with-param name="rawxmltvns" select="." /></xsl:call-template>
+   <xsl:value-of select="scu:getEpisodeSxN(.)" />
 </xsl:template>
 
 <!-- Create the a favorite list entry for the specified list of programmes (from the xmltv file) -->

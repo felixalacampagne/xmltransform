@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +30,7 @@ import com.scu.utils.NodeUtils;
 
 public class XSLTExtensions
 {
-
+static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
    /**
     * Test whether a value matches one of a list
     * of regular expressions.
@@ -148,7 +150,9 @@ public class XSLTExtensions
       if(regexp != null)
       {
          match = Pattern.compile(regexp, flags).matcher(value);
-         if(match.find())
+         boolean found = match.find();
+         LOG.log(Level.FINEST, "value:{0} expression:{1} match:{2}", new Object[] {value, regexp, found});
+         if(found)
          {
             return true;
          }
@@ -721,5 +725,11 @@ public class XSLTExtensions
          event = String.format("%s %s %s", event, edate, epfulltitle);
       }
       return event;
+   }
+
+   public static String getEpisodeSxN(String episodenum)
+   {
+      EpisodeInfo ei = new EpisodeInfo(episodenum);
+      return ei.getEpinfx();
    }
 }

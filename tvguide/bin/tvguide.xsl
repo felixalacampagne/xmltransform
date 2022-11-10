@@ -199,25 +199,15 @@ version="1.0">
    </channel>
    
 <!--  Channel id used by the test data -->
-<channel id="XMLTVTestChannel">
+<!-- channel id="XMLTVTestChannel">
    <display-name>BBC1</display-name>
    <dbname>BBC One Lon</dbname>
    <vuuname>BBC One Lon</vuuname>
-</channel>
+</channel -->
 
-<channel id="74.tvguide.co.uk">
-   <display-name>BBC1</display-name>
-   <dbname>BBC One Lon</dbname>
-   <vuuname>BBC One Lon</vuuname>
-</channel>
 <channel id="683.tvguide.co.uk">
    <display-name>BBC1HD</display-name>
    <vuuname>BBC One HD</vuuname>
-</channel>
-<channel id="89.tvguide.co.uk">
-   <display-name>BBC2</display-name>
-   <dbname>BBC Two</dbname>
-   <vuuname>BBC Two</vuuname>
 </channel>
 <channel id="387.tvguide.co.uk">
    <display-name>BBC2HD</display-name>
@@ -226,6 +216,33 @@ version="1.0">
 <channel id="1728.tvguide.co.uk">
    <display-name>BBC3HD</display-name>
    <vuuname>BBC Three HD</vuuname>
+</channel>
+<channel id="893.tvguide.co.uk">
+   <display-name>BBC4HD</display-name>
+   <vuuname>BBC Four HD</vuuname>
+</channel>
+<channel id="642.tvguide.co.uk">
+   <display-name>ITV1HD</display-name>
+   <vuuname>ITV HD</vuuname>
+</channel>
+<channel id="476.tvguide.co.uk">
+   <display-name>Channel4HD</display-name>
+   <vuuname>Channel 4 HD</vuuname>
+</channel>
+<channel id="657.tvguide.co.uk">
+   <display-name>FiveHD</display-name>
+   <vuuname>Channel 5 HD</vuuname>
+</channel>
+
+<channel id="74.tvguide.co.uk">
+   <display-name>BBC1</display-name>
+   <dbname>BBC One Lon</dbname>
+   <vuuname>BBC One Lon</vuuname>
+</channel>
+<channel id="89.tvguide.co.uk">
+   <display-name>BBC2</display-name>
+   <dbname>BBC Two</dbname>
+   <vuuname>BBC Two</vuuname>
 </channel>
 <channel id="1763.tvguide.co.uk">
    <display-name>BBC3</display-name>
@@ -237,18 +254,20 @@ version="1.0">
    <dbname>BBC Four</dbname>
    <vuuname>BBC Four</vuuname>
 </channel>
-<channel id="893.tvguide.co.uk">
-   <display-name>BBC4HD</display-name>
-   <vuuname>BBC Four HD</vuuname>
-</channel>
 <channel id="172.tvguide.co.uk">
    <display-name>ITV1</display-name>
    <dbname>ITV</dbname>
    <vuuname>ITV</vuuname>
 </channel>
-<channel id="642.tvguide.co.uk">
-   <display-name>ITV1HD</display-name>
-   <vuuname>ITV HD</vuuname>
+<channel id="121.tvguide.co.uk">
+   <display-name>Channel4</display-name>
+   <dbname>Channel 4</dbname>
+   <vuuname>Channel 4</vuuname>
+</channel>
+<channel id="148.tvguide.co.uk">
+   <display-name>Five</display-name>
+   <dbname>Channel 5</dbname>
+   <vuuname>Channel 5</vuuname>
 </channel>
 <channel id="180.tvguide.co.uk">
    <display-name>ITV2</display-name>
@@ -265,15 +284,6 @@ version="1.0">
    <dbname>ITV4</dbname>
    <vuuname>ITV4</vuuname>
 </channel>
-<channel id="121.tvguide.co.uk">
-   <display-name>Channel4</display-name>
-   <dbname>Channel 4</dbname>
-   <vuuname>Channel 4</vuuname>
-</channel>
-<channel id="476.tvguide.co.uk">
-   <display-name>Channel4HD</display-name>
-   <vuuname>Channel 4 HD</vuuname>
-</channel>
 <channel id="139.tvguide.co.u">
    <display-name>E4</display-name>
    <dbname>E4</dbname>
@@ -289,15 +299,6 @@ version="1.0">
    <dbname>Film4</dbname>
    <vuuname>Film4</vuuname>
 </channel>
-<channel id="148.tvguide.co.uk">
-   <display-name>Five</display-name>
-   <dbname>Channel 5</dbname>
-   <vuuname>Channel 5</vuuname>
-</channel>
-<channel id="657.tvguide.co.uk">
-   <display-name>FiveHD</display-name>
-   <vuuname>Channel 5 HD</vuuname>
-</channel>
 <channel id="375.tvguide.co.uk">
    <display-name>5USA</display-name>
    <dbname>5 USA</dbname>
@@ -307,13 +308,20 @@ version="1.0">
    <display-name>5STAR</display-name>
    <dbname>5STAR</dbname>
    <vuuname>5STAR</vuuname></channel>
-<channel id="TVG.5STARalt">
-   <display-name></display-name>
-</channel>
 <channel id="697.tvguide.co.uk">
    <display-name>ITV1+1</display-name>
    <dbname>ITV+1</dbname>
    <vuuname>ITV+1</vuuname>
+</channel>
+<channel id="428.tvguide.co.uk">
+   <display-name>Channel4+1</display-name>
+   <dbname>Channel 4+1</dbname>
+   <vuuname>Channel 4+1</vuuname>
+</channel>
+<channel id="729.tvguide.co.uk">
+   <display-name>Five+1</display-name>
+   <dbname>Channel 5+1</dbname>
+   <vuuname>Channel 5+1</vuuname>
 </channel>
 <channel id="376.tvguide.co.uk">
    <display-name>ITV2+1</display-name>
@@ -330,11 +338,6 @@ version="1.0">
    <dbname>ITV4+1</dbname>
    <vuuname>ITV4+1</vuuname>
 </channel>
-<channel id="428.tvguide.co.uk">
-   <display-name>Channel4+1</display-name>
-   <dbname>Channel 4+1</dbname>
-   <vuuname>Channel 4+1</vuuname>
-</channel>
 <channel id="371.tvguide.co.uk">
    <display-name>E4+1</display-name>
    <dbname>E4+1</dbname>
@@ -350,11 +353,6 @@ version="1.0">
    <dbname>Film4+1</dbname>
    <vuuname>Film4+1</vuuname>
 </channel>
-<channel id="729.tvguide.co.uk">
-   <display-name>Five+1</display-name>
-   <dbname>Channel 5+1</dbname>
-   <vuuname>Channel 5+1</vuuname>
-</channel>
 <channel id="572.tvguide.co.uk">
    <display-name>5USA+1</display-name>
    <dbname>5USA+1</dbname>
@@ -366,7 +364,7 @@ version="1.0">
    <vuuname>5STAR+1</vuuname>
 </channel>
 
-
+<!-- Maybe one day I'll figure out how to do the channel id mapping for the Perl xmltv grabber...
 
 <channel id="TVG.BBC1">
    <display-name>BBC1</display-name>
@@ -551,7 +549,7 @@ version="1.0">
 <channel id="TVG.BBCRB2">
    <display-name>BBCRB2</display-name>
 </channel>
-
+-->
 
 </CHANID_TO_DB_CHAN_REFS>
 </xsl:variable>
@@ -568,8 +566,7 @@ version="1.0">
    required that a new extension function was added which converts the XML text in a variable into a nodeset.
 
    The FAVCRITs are loaded directly from an Xml file.
-[not(normalize-space(display-name) = '')]
-  -->
+-->
 
 <xsl:template name="nxtchan">
 <xsl:param name="curchn" />
@@ -820,11 +817,8 @@ version="1.0">
 <xsl:value-of select="$cname" /> on <xsl:value-of select="scu:getLongDate($MINDATEL)" /><BR />
     </BODY>
   </HTML>
-  
-  
 </xsl:template>
 
-<!-- Tried using the Java function to extract episode details for all programmes but it made the conversion much too slow. -->
 <xsl:template match="programme">
 <xsl:param name="OUTDOC" />
 <xsl:param name="dbref" />
@@ -859,45 +853,7 @@ version="1.0">
 </xsl:choose>
 </TD><xsl:text>
 </xsl:text><TD class="desc">
-<!-- 
-   27 Aug 2022 'sub-title' template needs to know the episode number in order to provide a default value
-   when the content evaluates to an empty string. This will require much refactoring to separate the formation
-   of the season/episode string from the formatting since currently the 'episode-num' templates
-   extracts the episdoe info and applies the span formatting so it's output can't be parsed here to supply
-   a default episode title based on the episode number.
-   06 Jul 2016 when episode-num is present sub-title is still required for the episode title
-   If episode-num is present then must not take number from sub-title, hence the special "mode"
-   
-   Tried using the Java funciton to extract episode info but it made
-   the conversion VERY VERY slow
-   Try with the function taking string parameters.
-   
-   Aaaahh. Can't just call the java function because the episode-num template also adds the formatting, if
-   the node is actually present, likewise for the sub-title.
-   
-   Not really sure why I have the choose here..
-   <xsl:choose>
-      <xsl:when test="boolean(episode-num)">
-         <xsl:apply-templates select="episode-num" />
-         <xsl:apply-templates select="sub-title" >
-            <xsl:with-param name="defsubtitle">Episode XX</xsl:with-param>
-         </xsl:apply-templates>
-      </xsl:when>
-      <xsl:otherwise>
-         <xsl:apply-templates select="sub-title" >
-            <xsl:with-param name="defsubtitle">Episode YY</xsl:with-param>
-         </xsl:apply-templates>          
-      </xsl:otherwise>
-   </xsl:choose>   
-   so will remove it for now while trying to think of a way to handle the formatting and
-   using the java function 
-   
-   Only thing I can think of is to use the java function with a separator and then
-   use a choose to either apply formatting or not
--->
 <xsl:variable name="eptitle" select="scu:getFullEpisodetitle( episode-num[@system='xmltv_ns'], sub-title, '. ')" />
-
-
 <xsl:if test="boolean($eptitle)">
    <xsl:text> </xsl:text>
    <span class="episode"><xsl:value-of select="$eptitle" /></span>.<xsl:text> </xsl:text>
@@ -913,7 +869,7 @@ version="1.0">
    <xsl:if test="not(scu:isMatch($matctitle,$FAVCRIT/CRIT))">
       <A href="../crit/addcrit.php?CRIT={$ctitle}&amp;NPAGE=critlist.php" class="fav"><img vspace="4" hspace="2" alt="Add to favorites" border="0" src="../heart.png" /></A>
    </xsl:if>
-   <!-- Insert link to add program to  DreamBox timer list (only useful if my DreamBox is available!!) -->
+   <!-- Insert link to add program to DreamBox timer list (only useful if my DreamBox is available!!) -->
    <xsl:call-template name="addDBlink"><xsl:with-param name="href"><xsl:call-template name="makeVUhref">
       <xsl:with-param name="prog" select="."/>
       <xsl:with-param name="dbref" select="$dbref" />
@@ -933,34 +889,7 @@ version="1.0">
 </TR>
 </xsl:template>
 
-<!-- Appears that this is still used to determine the string used for fovourites matching with episode number
-     so can't be removed. Add a dedicated function to get the SxN value from Java.
--->
-<!-- xsl:template name="extract_xmltvns">
-<xsl:param name="rawxmltvns" />
-   <xsl:variable name="season" select="number(translate(substring-before($rawxmltvns, '.'), ' ',''))+1" />
-   <xsl:variable name="episode" select="concat('0',
-      number(
-         translate( 
-            substring-before( 
-               translate( 
-                  substring-after($rawxmltvns, '.'), 
-                  '/','.'), 
-               '.' ),
-            ' ','')
-         )+1)" /> 
-   <xsl:choose>
-      < ! - - Apparently NaN is never equal to anything, including itself, so number($x)=number($x) is the most reliable test for a number!! - - >
-      <xsl:when test="number($season)=number($season)"><xsl:value-of select="$season" />x</xsl:when>
-      <xsl:otherwise>Ep.</xsl:otherwise>
-   </xsl:choose>
-   <xsl:choose>
-      <xsl:when test="number($episode)=number($episode)"><xsl:value-of select="substring($episode, string-length($episode)-1)" /></xsl:when>
-      <xsl:otherwise>00</xsl:otherwise>
-   </xsl:choose>   
-</xsl:template -->
-
-<!-- Use for the favourites match target to allow episdoe number matching-->
+<!-- Used for the favourites match target to allow episdoe number matching-->
 <xsl:template match="episode-num[@system='xmltv_ns']" mode="fav">
    <xsl:value-of select="scu:getEpisodeSxN(.)" />
 </xsl:template>
@@ -1017,6 +946,11 @@ version="1.0">
 </xsl:for-each>
 </xsl:template>
 
+
+<xsl:template match="category">
+  <xsl:value-of select="." /><xsl:text> </xsl:text>
+</xsl:template>
+
 <!-- Copy of listfavs but with a fixed criteria to select for "season 1 episode 1" 
      Not sure about how to specify the criteria, might have to make a dummy list with
      just the one crit - scu:isMatch does not accept a simple string as a pattern. 
@@ -1029,11 +963,6 @@ version="1.0">
      often multiple category tags so need a way to merge them into a single value. Could
      maybe highlight certain categories as being most wothy of attention!
   -->
-
-<xsl:template match="category">
-  <xsl:value-of select="." /><xsl:text> </xsl:text>
-</xsl:template>
-
 <xsl:template name="listnewseries">
 <xsl:param name="ST" />
 <xsl:param name="PROGS" />
@@ -1078,11 +1007,6 @@ version="1.0">
 <xsl:param name="stbhost" />
 
 <xsl:if test="$dbref">
-<!-- Using java getEpisodeInfo for ep extraction makes conversion too slow .
-     Maybe using dedicated function to build the 'event' name from extracted values 
-     would be mor efficient. This will mean supplying the showname (prog/title),
-     the start time and the episode number info...
--->
 <xsl:variable name="ostart" select="scu:addToDate($prog/@start, 'MINUTE', -10)" />
 <xsl:variable name="epnum" select="$prog/episode-num[@system='xmltv_ns']" />
 <xsl:variable name="event"><xsl:value-of select="scu:getEventName($epnum, $prog/sub-title, $prog/title, $ostart)" /></xsl:variable>
@@ -1158,22 +1082,8 @@ version="1.0">
  
 
 <!-- Should be called with a programme node 
- Calculates the stoptime allowing for missing stoptime attribute.
- When tv-sort is applied it is only the last programme of the "day"
- which has no stoptime. As a temporary workaround (probably end up being
- permanent) add two hours to the starttime. Probably not going to be recording the
- last program so often.
- 
- 28-Dec-2020 Lately been recording the last program (Mr.Robot) with ridiculous recording
- lengths. Assume this is due to the presence of a stop time which is set to the
- first program of the next day by the grabber... ie. prog starts at 00:50 which
- is probably valid, but the stop time is set to 07:50 (when the next days programming
- starts) which is not valid. So need to sanity check the actual stop time. Can do this with
- the existing code by adding 2 hours to the start and checking if the stop time is in this 
- two hour range, if not the two hour end is used as the programme end.
- Will just need to remember to check the times when recording late night films which may need
- a longer recording time than 2 hours. Needless to say I forgot to check a movie, which wasn't even
- at the end of the programming, and consequently missed the end... increased the cutoff to 3hours.
+ If stoptime is missing a programme length of three hours is assumed.
+ Stoptime is usually only missing for the last programme of the day.
  -->
 <xsl:template name="stopoff">
 <xsl:param name="pnode"/>
@@ -1195,11 +1105,6 @@ version="1.0">
 </xsl:choose>
 </xsl:template>
 
-<!-- NB. this is also used for the show title in the
-     individual listings pages, ie. not just for the recording enty. This might result
-     in a difference between the title displayed and the title used for favourite matching
-     (although it appears to be OK at the moment...)
-      -->
 <xsl:template name="cleantitle">
    <xsl:param name="rawtitle"/>
    <xsl:choose>
@@ -1214,19 +1119,6 @@ version="1.0">
          <xsl:value-of select="$rawtitle" />
       </xsl:otherwise>
    </xsl:choose>
-</xsl:template>
-
-<!-- Remove non-filename chars (?\\/*:&lt;>|) from the input string 
-     Should also remove quote and double quote but I can't figure out how to escape them,
-     the obvious ways don't work, ie. &apos;, variable containing ', doubled up quotes, backslash quote...
-     So switching the delimiters appears to have worked, ie. the RHS of the select is surrounded by '
-     instead of " and the translate parameters use " instead of '. Now \&apos; doesn't cause weird compile
-     errors amd the 's are removed from the string: Grey's Anatomy -> Greys Anatomy.
-     Adding \&quot after the apos causes the wierd errors - too bad if I ever need to remove double quote, I guess...
--->
-<xsl:template name="filesafe">
-   <xsl:param name="instr"/>
-   <xsl:value-of select='translate($instr, "\&apos;?\\/*:&lt;&gt;|!.,", "")' />
 </xsl:template>
 
 

@@ -4,24 +4,11 @@ xmlns:scu="//com.scu.xmltv.XSLTExtensions"
 xmlns:loc="local.values"
 version="1.0">
 <!--
-06 Nov 2022 Modified Java code to perform episode details extraction. It only supports the xmltv_ns episode numbering scheme
-            This is used for the NFO
-            output but it made the conversion far too slow when I tried to use it in the 'programme' template,
-            ie. use the Java function for every programme. It would be nice to have a single consistent
-            way to get these details but for now there isn't one.
+06 Nov 2022 Modified Java code to perform episode details extraction for consistency. 
+            It only supports the xmltv_ns episode numbering scheme. Support for older number schemes has been removed.
 05 Nov 2022 Added NFO generation for favourites as a replacement for the DB eit files which seems
             to have stopped appearing for most programmes.
-09 Jan 2020 Add dummy episode title when non-present in the listings to try to improve Kodi behaviour
-28 Apr 2020 Changed vu+ to use SD BBC 1 and 2 instead of the HD channels because the
-            HD channels block off too many other channels and 99% of the time I don't
-            care about HD since the programmes rarely have surround sound.
-17 Nov 2018 Added the exclude category to the new series criteria as the result was 
-            constantly overwhelming!
-13 Oct 2018 Implemented "new series starting" page. Removed old comments
-11 Jun 2018 Channel 4+1 name change
-31 May 2018 Channel id changes
-21 May 2018 Webgrabber started appending garbage at the end of programme titles. Took opportunity
-            to create a template for cleaning the title and to remove unused stuff, eg. skystar definitions
+13 Oct 2018 Implemented "new series starting" page.
  -->
 <xsl:output method="html" version="4.0"/>
 <xsl:preserve-space elements="*"/>
@@ -946,7 +933,10 @@ version="1.0">
 </TR>
 </xsl:template>
 
-<xsl:template name="extract_xmltvns">
+<!-- Appears that this is still used to determine the string used for fovourites matching with episode number
+     so can't be removed. Add a dedicated function to get the SxN value from Java.
+-->
+<!-- xsl:template name="extract_xmltvns">
 <xsl:param name="rawxmltvns" />
    <xsl:variable name="season" select="number(translate(substring-before($rawxmltvns, '.'), ' ',''))+1" />
    <xsl:variable name="episode" select="concat('0',
@@ -960,7 +950,7 @@ version="1.0">
             ' ','')
          )+1)" /> 
    <xsl:choose>
-      <!-- Apparently NaN is never equal to anything, including itself, so number($x)=number($x) is the most reliable test for a number!! -->
+      < ! - - Apparently NaN is never equal to anything, including itself, so number($x)=number($x) is the most reliable test for a number!! - - >
       <xsl:when test="number($season)=number($season)"><xsl:value-of select="$season" />x</xsl:when>
       <xsl:otherwise>Ep.</xsl:otherwise>
    </xsl:choose>
@@ -968,12 +958,11 @@ version="1.0">
       <xsl:when test="number($episode)=number($episode)"><xsl:value-of select="substring($episode, string-length($episode)-1)" /></xsl:when>
       <xsl:otherwise>00</xsl:otherwise>
    </xsl:choose>   
-</xsl:template>
+</xsl:template -->
 
-<!-- same as nomode but without the formating -->
-<!-- TODO do the season/episode extraction in a common function, as for the onscreen format -->
+<!-- Use for the favourites match target to allow episdoe number matching-->
 <xsl:template match="episode-num[@system='xmltv_ns']" mode="fav">
-   <xsl:call-template name="extract_xmltvns"><xsl:with-param name="rawxmltvns" select="." /></xsl:call-template>
+   <xsl:value-of select="scu:getEpisodeSxN(.)" />
 </xsl:template>
 
 <!-- Create the a favorite list entry for the specified list of programmes (from the xmltv file) -->

@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +30,7 @@ import com.scu.utils.NodeUtils;
 
 public class XSLTExtensions
 {
-
+static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
    /**
     * Test whether a value matches one of a list
     * of regular expressions.
@@ -50,13 +52,11 @@ public class XSLTExtensions
     */
 	public static boolean isMatch(String value, NodeList regexps)
 	{
-		// Implement the 'new' behaviour by default
 		return isMatch(value, regexps, true);
 	}
 
    public static boolean isMatch(String value, NodeList regexps, boolean igncase)
    {
-  // Matcher match = null;
    Node node = null;
 
       if(regexps == null)
@@ -64,10 +64,6 @@ public class XSLTExtensions
 
       try
       {
-         //System.out.println("isMatch: Checking " + regexps.getLength() + " reg.exps.");
-
-
-         //while((node = regexps.nextNode()) != null)
          for(int ir = 0; ir < regexps.getLength(); ir++)
          {
             node = regexps.item(ir);
@@ -114,15 +110,9 @@ public class XSLTExtensions
             }
 
             if(isMatch(value, crit, igncase))
+            {
             	return true;
-//            if(crit != null)
-//            {
-//               match = Pattern.compile(crit, flags).matcher(value);
-//               if(match.find())
-//               {
-//                  return true;
-//               }
-//            }
+            }
          }
       }
       catch(Exception ex)
@@ -148,7 +138,9 @@ public class XSLTExtensions
       if(regexp != null)
       {
          match = Pattern.compile(regexp, flags).matcher(value);
-         if(match.find())
+         boolean found = match.find();
+         LOG.log(Level.FINEST, "value:{0} expression:{1} match:{2}", new Object[] {value, regexp, found});
+         if(found)
          {
             return true;
          }
@@ -321,7 +313,7 @@ public class XSLTExtensions
    }
 
 
-   // NB This is used for writing the HTML listing pages so it probably
+   // This is used for writing the HTML listing pages so it probably
    // shouldn't be messed around with too much to get it to do things specific to XML
    public static String nodeToXmltext(Node node)
    {
@@ -370,8 +362,8 @@ public class XSLTExtensions
          tfmr.setOutputProperty(OutputKeys.INDENT, "yes"); // This doesn't give indenting
 
          // This gives unrecognised property exception, with or without xalan: prefix.
-         // Google revealed the weird URL format to me which doesn't give an error
-         // however there is still no sign of indentation....
+         // Google revealed the weird URL format to me which doesn't give an error.
+         // The indentation only appears if the output type is set to XML.
          tfmr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "3");
          tfmr.transform(new DOMSource(node), sr);
          xml = sw.toString();
@@ -543,7 +535,6 @@ public class XSLTExtensions
          XPath xp = XPathFactory.newInstance().newXPath();
 
          is = new InputSource(  new StringReader(xml));
-//               new ByteArrayInputStream(xml.getBytes()));
          nlfav = (Node) xp.evaluate(xpath, is, XPathConstants.NODE);
       }
       catch(Exception ex)
@@ -721,5 +712,11 @@ public class XSLTExtensions
          event = String.format("%s %s %s", event, edate, epfulltitle);
       }
       return event;
+   }
+
+   public static String getEpisodeSxN(String episodenum)
+   {
+      EpisodeInfo ei = new EpisodeInfo(episodenum);
+      return ei.getEpinfx();
    }
 }

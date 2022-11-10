@@ -18,7 +18,6 @@ class NodeUtilsTest
       EpisodeInfo ei;
 
       ei = new EpisodeInfo(episodenum, subtitle);
-
       assertTrue(ei != null);
       assertTrue(ei.getEptitle() != null);
       assertTrue(ei.getEptitle().isEmpty());
@@ -26,37 +25,44 @@ class NodeUtilsTest
       subtitle = "Title for episode";
       episodenum = "19 . 14/99 . ";
       ei = new EpisodeInfo(episodenum, subtitle);
-
       assertEquals("20x15", ei.getEpinfx());
       assertEquals(subtitle, ei.getEptitle());
 
       subtitle = "";
       episodenum = " 0 . 0/99 . ";
       ei = new EpisodeInfo(episodenum, subtitle);
-
       assertEquals("1x01", ei.getEpinfx());
       assertEquals("Episode 01", ei.getEptitle());
 
       subtitle = null;
       episodenum = " 0 . 0/99 . ";
       ei = new EpisodeInfo(episodenum, subtitle);
-
       assertEquals("1x01", ei.getEpinfx());
       assertEquals("Episode 01", ei.getEptitle());
 
       subtitle = "Title&for:w.t,f;<is>this?";
       episodenum = " 0 . 0/99 . ";
       ei = new EpisodeInfo(episodenum, subtitle);
-
       assertEquals("1x01", ei.getEpinfx());
       assertEquals("Title And forwtfisthis", ei.getEptitle());
 
       subtitle = "Title&for:w.t,f;<is>this?";
       episodenum = "3 . 114 . ";
       ei = new EpisodeInfo(episodenum, subtitle);
-
       assertEquals("4x115", ei.getEpinfx());
       assertEquals("Title And forwtfisthis", ei.getEptitle());
+
+      subtitle = "Title for episode";
+      episodenum = null;
+      ei = new EpisodeInfo(episodenum, subtitle);
+      assertEquals("", ei.getEpinfx());
+      assertEquals("Title for episode", ei.getEptitle());
+
+      subtitle = "Title for episode";
+      episodenum = "";
+      ei = new EpisodeInfo(episodenum, subtitle);
+      assertEquals("", ei.getEpinfx());
+      assertEquals("Title for episode", ei.getEptitle());
 
    }
 

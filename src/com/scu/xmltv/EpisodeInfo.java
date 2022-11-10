@@ -33,7 +33,7 @@ public class EpisodeInfo
       if(!((episodenum==null) || episodenum.isEmpty()))
       {
          String [] parts = episodenum.split("[\\./]");
-         // If there aren't at least two parts then it is not a valid episodenum
+
          if((parts != null))
          {
             if(parts.length > 0)
@@ -76,15 +76,8 @@ public class EpisodeInfo
             }
 
             epinfx = String.format("%s%s%s", epseason, sep, epnum);
-
          }
-
-
       }
-
-
-
-
 
       eptitle = nu.sanitizeTitle(subtitle);
       if(eptitle.isEmpty() && !epnum.isEmpty())
@@ -123,7 +116,4 @@ public class EpisodeInfo
    {
       return epfulltitle;
    }
-
-
 }
-

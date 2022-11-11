@@ -616,6 +616,25 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
       return encurl;
    }
 
+   
+   /**
+    * Gathers all the info needed to create the NFO files into one block.
+    * Originally it was passed a PROGRAMME node and it did the extraction but this
+    * turned out to be quite slow. Extracting the values in the stylesheet and passing
+    * them to the method seems to work better. 
+    * 
+    * Getting the returned XML block to be included in the FAV block took a great deal of
+    * experimentation. The method which works at the moment is to convert the XML string into
+    * a Node. The children of the Node are then added to the FAV by using the 'copy-of' function
+    * instead of 'value-of'. This is not ideal as the conversion to a Node is quite a heavy
+    * process but at least now it is not necessary to copy the value from the returned object
+    * into a new node with the same name in the XSLT.
+    * @param show    - the show name
+    * @param start   - the start time in XMLTV format
+    * @param episodenum - the episode number in xmltv format or empty string
+    * @param subtitle   - the episdoe title or empty string
+    * @return
+    */
    public static Node getEpisodeInfo(String show, String start, String episodenum, String subtitle)
    {
       Node result = null;
@@ -628,8 +647,6 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
       
       ei = new EpisodeInfo(episodenum, subtitle);
       recname = getEventName(epshow, sdate, ei.getEpfulltitle());
- 
-  
       
       xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
       xml.append("<EPINFO>");
@@ -642,71 +659,11 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
       xml.append("<RECNAME>").append(recname).append("</RECNAME>");
       xml.append("<UID>").append(nu.calcDigest(recname)).append("</UID>");
       xml.append("</EPINFO>");
+      
       result = xmltextToNode(xml.toString(), "//EPINFO");
       return result;
-//      return xml.toString();
    }
    
-   // Function for decoding episode information and returning various components of the
-   // version for use in XSL variables. As the XSL has become more complex it has become
-   // increasingly necessary to be able to get at episode number, season, title in a consistent
-   // way.
-   // Unfortunately using this is all the places the episode is parsed causes a dramatic performance
-   // degradation. Maybe a simpler version is needed which takes the episode-number and sub-title
-   // values and returns the 'SxNN title' as this is the one most commonly used   
-   public static Node getEpisodeInfo(Node prog)
-   {
-   	Node result = null;
-      StringBuffer xml = new StringBuffer();
-      NodeUtils nu = NodeUtils.getNodeUtils();
-      EpisodeInfo ei = new EpisodeInfo();
-      String epshow = "";
-      String recname = "";
-      String sdate;
-      try
-      {
-      	// System.out.println(nu.nodeToString(prog));
-      	epshow = nu.sanitizeTitle(nu.getNodeValue(prog, "title"));
-      	sdate = nu.getAttributeValue(prog, "start");
-
-      	Node epnumnode = nu.getNodeByPath(prog, "episode-num[@system='xmltv_ns']");
-
-      	if(epnumnode != null)
-      	{
-      		// <episode-num system="xmltv_ns">19 . 14/99 . </episode-num>
-      		String episodenum = nu.getNodeValue(epnumnode);
-      		String subtitle = nu.getNodeValue(prog, "sub-title");
-      		ei = new EpisodeInfo(episodenum, subtitle);
-      	}
-
-      	recname = getEventName(epshow, sdate, ei.getEpfulltitle());
-
-//         xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
-         xml.append("<EPINFO>");
-         xml.append("<EPTITLE>").append(ei.getEptitle()).append("</EPTITLE>");
-         xml.append("<EPSEASON>").append(ei.getEpseason()).append("</EPSEASON>");
-         xml.append("<EPNUM>").append(ei.getEpnum()).append("</EPNUM>");
-         xml.append("<EPSHOW>").append(epshow).append("</EPSHOW>");
-         xml.append("<EPDATE>").append(formatDate(sdate, "yyyy-MM-dd")).append("</EPDATE>");
-         xml.append("<EPFMTX>").append(ei.getEpinfx()).append("</EPFMTX>");
-
-         xml.append("<UID>").append(nu.calcDigest(recname)).append("</UID>");
-         xml.append("<RECNAME>").append(recname).append("</RECNAME>");
-         xml.append("</EPINFO>");
-
-
-         result = xmltextToNode(xml.toString(), "//EPINFO");
-      }
-      catch(Exception ex)
-      {
-         ex.printStackTrace();
-         System.out.println(xml.toString());
-      }
-
-      return result;
-//      return xml.toString();
-   }
-
    // Returns the episode title with the SxE prefix
    public static String getFullEpisodetitle(String episodenum, String subtitle)
    {
@@ -750,5 +707,28 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
    {
       EpisodeInfo ei = new EpisodeInfo(episodenum);
       return ei.getEpinfx();
+   }
+   
+   public static String dumpNode(Node node)
+   {
+   	StringBuffer result = new StringBuffer();
+   	
+   	result.append("Node name: ").append(node.getNodeName());
+   	if(node.hasChildNodes())
+   	{
+   		result.append("  No. children: "). append(node.getChildNodes().getLength()).append("\n");
+   	}
+   	else
+   	{
+   		result.append("  Value: ").append(node.getNodeValue()).append("\n");
+   	}
+   	for(int childno=0 ; childno <node.getChildNodes().getLength(); childno++)
+   	{
+   		Node child = node.getChildNodes().item(childno);
+   		result.append( dumpNode(child) );
+   	}
+   	LOG.info(result.toString());
+   	
+   	return result.toString();
    }
 }

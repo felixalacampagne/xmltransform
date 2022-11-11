@@ -624,11 +624,12 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
     * them to the method seems to work better. 
     * 
     * Getting the returned XML block to be included in the FAV block took a great deal of
-    * experimentation. The method which works at the moment is to convert the XML string into
-    * a Node. The children of the Node are then added to the FAV by using the 'copy-of' function
+    * experimentation. Eventually arrived at a solution which works by converting the XML string into
+    * a Node. The children of the Node are then added to the FAV using the 'copy-of' function
     * instead of 'value-of'. This is not ideal as the conversion to a Node is quite a heavy
     * process but at least now it is not necessary to copy the value from the returned object
-    * into a new node with the same name in the XSLT.
+    * into a new node with the same name in the XSLT, ie. fields can be added here without the
+    * need to change the stylesheet besides where the fields are to be used.
     * @param show    - the show name
     * @param start   - the start time in XMLTV format
     * @param episodenum - the episode number in xmltv format or empty string
@@ -648,7 +649,7 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
       ei = new EpisodeInfo(episodenum, subtitle);
       recname = getEventName(epshow, sdate, ei.getEpfulltitle());
       
-      xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
+//      xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
       xml.append("<EPINFO>");
       xml.append("<EPSHOW>").append(epshow).append("</EPSHOW>");
       xml.append("<EPSEASON>").append(ei.getEpseason()).append("</EPSEASON>");
@@ -711,12 +712,20 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
    
    public static String dumpNode(Node node)
    {
+   	String result = "";
+   	result = dumpNode(node, "");
+   	LOG.info("\n" + result.toString());
+   	return result;   	
+   }
+   
+   public static String dumpNode(Node node, String indent)
+   {
    	StringBuffer result = new StringBuffer();
    	
-   	result.append("Node name: ").append(node.getNodeName());
+   	result.append(indent).append(node.getNodeName());
    	if(node.hasChildNodes())
    	{
-   		result.append("  No. children: "). append(node.getChildNodes().getLength()).append("\n");
+   		result.append("  Children: "). append(node.getChildNodes().getLength()).append("\n");
    	}
    	else
    	{
@@ -725,10 +734,9 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
    	for(int childno=0 ; childno <node.getChildNodes().getLength(); childno++)
    	{
    		Node child = node.getChildNodes().item(childno);
-   		result.append( dumpNode(child) );
+   		result.append( dumpNode(child, indent + "   ") );
    	}
-   	LOG.info(result.toString());
-   	
+ 	
    	return result.toString();
    }
 }

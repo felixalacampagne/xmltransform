@@ -641,14 +641,15 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
       Node result = null;
       StringBuffer xml = new StringBuffer();
       NodeUtils nu = NodeUtils.getNodeUtils();
-      EpisodeInfo ei = new EpisodeInfo();
-      String epshow = nu.sanitizeTitle(show);
-      String recname = "";
-      String sdate = start;
+      EpisodeShow ei = null;
+
+
       
-      ei = new EpisodeInfo(episodenum, subtitle);
-      recname = getEventName(epshow, sdate, ei.getEpfulltitle());
-      
+      ei = new EpisodeShow(show, start, episodenum, subtitle);
+//      recname = getEventName(epshow, sdate, ei.getEpfulltitle());
+      String recname = ei.getEventName();
+      String sdate = start;  
+      String epshow = ei.getCleanshow();
 //      xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
       xml.append("<EPINFO>");
       xml.append("<EPSHOW>").append(epshow).append("</EPSHOW>");
@@ -673,7 +674,7 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
 
    public static String getFullEpisodetitle(String episodenum, String subtitle, String separator)
    {
-   	EpisodeInfo ei = new EpisodeInfo(episodenum, subtitle, separator);
+   	EpisodeTitle ei = new EpisodeTitle(episodenum, subtitle, separator);
 		return ei.getEpfulltitle();
    }
 
@@ -687,26 +688,28 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
     */
    public static String getEventName(String episodenum, String subtitle, String show, String start)
    {
-      String epinfo = getFullEpisodetitle(episodenum, subtitle);
-      return getEventName(show, start, epinfo);
+//      String epinfo = getFullEpisodetitle(episodenum, subtitle);
+//      return getEventName(show, start, epinfo);
+   	EpisodeShow eps = new EpisodeShow(show, start, episodenum, subtitle);
+   	return eps.getEventName();
    }
 
-   public static String getEventName(String show, String start, String epfulltitle)
-   {
-      NodeUtils nu = NodeUtils.getNodeUtils();
-      String event = nu.sanitizeTitle(show);
-
-      if(!epfulltitle.isEmpty())
-      {
-         String edate = formatDate(start, "yy-MM-dd");
-         event = String.format("%s %s %s", event, edate, epfulltitle);
-      }
-      return event;
-   }
+//   public static String getEventName(String show, String start, String epfulltitle)
+//   {
+//      NodeUtils nu = NodeUtils.getNodeUtils();
+//      String event = nu.sanitizeTitle(show);
+//
+//      if(!epfulltitle.isEmpty())
+//      {
+//         String edate = formatDate(start, "yy-MM-dd");
+//         event = String.format("%s %s %s", event, edate, epfulltitle);
+//      }
+//      return event;
+//   }
 
    public static String getEpisodeSxN(String episodenum)
    {
-      EpisodeInfo ei = new EpisodeInfo(episodenum);
+   	EpisodeNumber ei = new EpisodeNumber(episodenum);
       return ei.getEpinfx();
    }
    

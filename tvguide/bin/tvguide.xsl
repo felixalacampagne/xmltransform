@@ -199,11 +199,11 @@ version="1.0">
    </channel>
    
 <!--  Channel id used by the test data -->
-<!-- channel id="XMLTVTestChannel">
+<channel id="XMLTVTestChannel">
    <display-name>BBC1</display-name>
    <dbname>BBC One Lon</dbname>
    <vuuname>BBC One Lon</vuuname>
-</channel -->
+</channel>
 
 <channel id="683.tvguide.co.uk">
    <display-name>BBC1HD</display-name>
@@ -1157,28 +1157,29 @@ version="1.0">
 
 <xsl:template name="nfoinfoforfav">
    <xsl:param name="prog"/>
-   
-   <xsl:variable name="epinffromjava" select="scu:getEpisodeInfo($prog)" />
-   <xsl:variable name="epseason">
-      <xsl:value-of select="$epinffromjava/EPSEASON"/>
-   </xsl:variable>
-   <xsl:variable name="epnum">
-      <xsl:value-of select="$epinffromjava/EPNUM"/>
-   </xsl:variable>
-   <xsl:variable name="eptitle">
-      <xsl:value-of select="$epinffromjava/EPTITLE"/>
-   </xsl:variable>
-   
-   
-   <EPSEASON><xsl:value-of select="$epseason"/></EPSEASON>
-   <EPNUM><xsl:value-of select="$epnum"/></EPNUM>
-   <EPTITLE><xsl:value-of select="$eptitle"/></EPTITLE>
+   <xsl:variable name="epinffromjava" select="scu:getEpisodeInfo($prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" />
+
+   <!-- 
+     Wanted to return the episode tags directly from getEpisodeInfo to avoid needing to duplicate them here but
+     no way could I get the return value to be treated as tags in the value returned from here.
+     The response was either XML encoded, ie. with &gt; etc. or with the tag names removed.
+     So for now getEpisodeInfo must convert the XML string into a Node and then the node must be
+     re-read into tags explicitly given here which is really annoying and very slow.
+     
+     Still don't really understand why the return string or the returned node are not treated 
+     tags like the PLOT text is... very frustrating that there is no way to debug XSLT!!!
+     
+     Might be interesting to call a Java function with the FAVORITE to try to see exactly what is in it... 
+    -->
+   <EPSEASON><xsl:value-of select="$epinffromjava/EPSEASON"/></EPSEASON>
+   <EPNUM><xsl:value-of select="$epinffromjava/EPNUM"/></EPNUM>
+   <EPTITLE> <xsl:value-of select="$epinffromjava/EPTITLE"/></EPTITLE>
    <EPDATE><xsl:value-of select="$epinffromjava/EPDATE" /></EPDATE>
    <RECNAME><xsl:value-of select="$epinffromjava/RECNAME" /></RECNAME>
    <UID><xsl:value-of select="$epinffromjava/UID" /></UID>
-   <PLOT><xsl:value-of select="$prog/desc" /></PLOT>            
-
+   <PLOT><xsl:value-of select="$prog/desc" /></PLOT>   
 </xsl:template>
+
 <!-- This is the default template which matches any text. It is a built in template
      but I've included it here to remind me how to modify the default
 

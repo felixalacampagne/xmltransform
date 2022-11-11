@@ -616,13 +616,44 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
       return encurl;
    }
 
+   public static Node getEpisodeInfo(String show, String start, String episodenum, String subtitle)
+   {
+      Node result = null;
+      StringBuffer xml = new StringBuffer();
+      NodeUtils nu = NodeUtils.getNodeUtils();
+      EpisodeInfo ei = new EpisodeInfo();
+      String epshow = nu.sanitizeTitle(show);
+      String recname = "";
+      String sdate = start;
+      
+      ei = new EpisodeInfo(episodenum, subtitle);
+      recname = getEventName(epshow, sdate, ei.getEpfulltitle());
+ 
+  
+      
+      xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
+      xml.append("<EPINFO>");
+      xml.append("<EPSHOW>").append(epshow).append("</EPSHOW>");
+      xml.append("<EPSEASON>").append(ei.getEpseason()).append("</EPSEASON>");
+      xml.append("<EPNUM>").append(ei.getEpnum()).append("</EPNUM>");
+      xml.append("<EPTITLE>").append(ei.getEptitle()).append("</EPTITLE>");
+      xml.append("<EPDATE>").append(formatDate(sdate, "yyyy-MM-dd")).append("</EPDATE>");
+      xml.append("<EPFMTX>").append(ei.getEpinfx()).append("</EPFMTX>");
+      xml.append("<RECNAME>").append(recname).append("</RECNAME>");
+      xml.append("<UID>").append(nu.calcDigest(recname)).append("</UID>");
+      xml.append("</EPINFO>");
+      result = xmltextToNode(xml.toString(), "//EPINFO");
+      return result;
+//      return xml.toString();
+   }
+   
    // Function for decoding episode information and returning various components of the
    // version for use in XSL variables. As the XSL has become more complex it has become
    // increasingly necessary to be able to get at episode number, season, title in a consistent
    // way.
    // Unfortunately using this is all the places the episode is parsed causes a dramatic performance
    // degradation. Maybe a simpler version is needed which takes the episode-number and sub-title
-   // values and returns the 'SxNN title' as this is the one most commonly used
+   // values and returns the 'SxNN title' as this is the one most commonly used   
    public static Node getEpisodeInfo(Node prog)
    {
    	Node result = null;
@@ -650,7 +681,7 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
 
       	recname = getEventName(epshow, sdate, ei.getEpfulltitle());
 
-         xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
+//         xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
          xml.append("<EPINFO>");
          xml.append("<EPTITLE>").append(ei.getEptitle()).append("</EPTITLE>");
          xml.append("<EPSEASON>").append(ei.getEpseason()).append("</EPSEASON>");
@@ -673,6 +704,7 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
       }
 
       return result;
+//      return xml.toString();
    }
 
    // Returns the episode title with the SxE prefix

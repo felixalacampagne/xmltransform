@@ -658,7 +658,14 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
       // Returning an XML string and using
       // <xsl:value-of disable-output-escaping="yes"> seems to work although the output from dumpNode 
       // looks weird which suggests it might be a more luck than by design! But I'll keep it for now!! 
-      
+      // NB. Might need to xmlencode the field content which actually only applies to the description
+      // since the other fields are sanitized to make them filename compatible... and the description
+      // is not actually handled here!! Anyway, this is what the Perl functions does
+      // $tr =~ s/&/&amp;/g;
+      // $str =~ s/\>/&gt;/g;
+      // $str =~ s/\</&lt;/g;
+      // $str =~ s/\"/&quot;/g;
+      // $str =~ s/\'/&apos;/g;
       return xml.toString();
    }
    

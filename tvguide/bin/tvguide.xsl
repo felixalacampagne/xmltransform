@@ -1158,13 +1158,9 @@ version="1.0">
 
 <xsl:template name="nfoinfoforfav">
    <xsl:param name="prog"/>
-   <!--
-      If the disable-output-escaping trick stops working or is unreliable then revert to using
-      a node via getEpisodeInfoNode and extracting the fields with xsl:copy of.
-   <xsl:variable name="epinffromjava" select="scu:getEpisodeInfoNode($prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" />
+   <!-- xsl:value-of disable-output-escaping="yes" select="scu:getEpisodeInfo($prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" / -->
+   <xsl:variable name="epinffromjava" select="scu:getEpisodeInfo(., $prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" />
    <xsl:copy-of select="$epinffromjava/*"></xsl:copy-of>
-   -->
-   <xsl:value-of disable-output-escaping="yes" select="scu:getEpisodeInfo($prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" />
    <PLOT><xsl:value-of select="$prog/desc" /></PLOT>   
 </xsl:template>
 

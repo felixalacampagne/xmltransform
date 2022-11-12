@@ -20,6 +20,8 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -630,12 +632,72 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
     * process but at least now it is not necessary to copy the value from the returned object
     * into a new node with the same name in the XSLT, ie. fields can be added here without the
     * need to change the stylesheet besides where the fields are to be used.
+    * 
+    * Well bugger me - I thought I'd give it one last go to return a Node instead of strings and
+    * the risk that disable-output-escaping stops working - and it works. The trick is perhaps the
+    * use of a DocumentFragment. The problem is that a DocumentFragment can only created by a Document
+    * and it's not obvious where that comes from. My solution is currently to pass in a Node from the
+    * XSLT, the '.' inside a template appears to be good enough, and it's OwnerDocument is used
+    * to create the DocumentFragment. The episode info inserted into the DocumentFragment has Element child nodes
+    * with the value set via setTextContent and lo! they appear in the output of dumpNode just like the
+    * other elements in the FAV! 
     * @param show    - the show name
     * @param start   - the start time in XMLTV format
     * @param episodenum - the episode number in xmltv format or empty string
     * @param subtitle   - the episdoe title or empty string
     * @return
     */
+
+   public static Node getEpisodeInfo(Node any, String show, String start, String episodenum, String subtitle)
+   {
+      NodeUtils nu = NodeUtils.getNodeUtils();
+      EpisodeShow ei = null;
+      
+      ei = new EpisodeShow(show, start, episodenum, subtitle);
+      String recname = ei.getEventName();
+      String sdate = start;  
+      String epshow = ei.getCleanshow();
+      
+      Document doc = any.getOwnerDocument();
+      DocumentFragment topNode = any.getOwnerDocument().createDocumentFragment();
+      
+      Node node;
+      
+      node = doc.createElement("EPSHOW");
+      node.setTextContent(epshow);
+      topNode.appendChild(node);
+      
+      node = doc.createElement("EPSEASON");
+      node.setTextContent(ei.getEpseason());
+      topNode.appendChild(node);
+      
+      node = doc.createElement("EPNUM");
+      node.setTextContent(ei.getEpnum());
+      topNode.appendChild(node);
+      
+      node = doc.createElement("EPTITLE");
+      node.setTextContent(ei.getEptitle());
+      topNode.appendChild(node);
+      
+      node = doc.createElement("EPDATE");
+      node.setTextContent(formatDate(sdate, "yyyy-MM-dd"));
+      topNode.appendChild(node);
+      
+      node = doc.createElement("EPFMTX");
+      node.setTextContent(ei.getEpinfx());
+      topNode.appendChild(node);
+      
+      node = doc.createElement("RECNAME");
+      node.setTextContent(recname);
+      topNode.appendChild(node);
+      
+      node = doc.createElement("UID");
+      node.setTextContent(nu.calcDigest(recname));
+      topNode.appendChild(node);
+      
+      return topNode;
+   }
+   
    public static String getEpisodeInfo(String show, String start, String episodenum, String subtitle)
    {
       StringBuffer xml = new StringBuffer();
@@ -756,4 +818,7 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
  	
    	return result.toString();
    }
+
+
+
 }

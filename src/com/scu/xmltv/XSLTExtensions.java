@@ -636,22 +636,16 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
     * @param subtitle   - the episdoe title or empty string
     * @return
     */
-   public static Node getEpisodeInfo(String show, String start, String episodenum, String subtitle)
+   public static String getEpisodeInfo(String show, String start, String episodenum, String subtitle)
    {
-      Node result = null;
       StringBuffer xml = new StringBuffer();
       NodeUtils nu = NodeUtils.getNodeUtils();
       EpisodeShow ei = null;
-
-
       
       ei = new EpisodeShow(show, start, episodenum, subtitle);
-//      recname = getEventName(epshow, sdate, ei.getEpfulltitle());
       String recname = ei.getEventName();
       String sdate = start;  
       String epshow = ei.getCleanshow();
-//      xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
-      xml.append("<EPINFO>");
       xml.append("<EPSHOW>").append(epshow).append("</EPSHOW>");
       xml.append("<EPSEASON>").append(ei.getEpseason()).append("</EPSEASON>");
       xml.append("<EPNUM>").append(ei.getEpnum()).append("</EPNUM>");
@@ -660,10 +654,23 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
       xml.append("<EPFMTX>").append(ei.getEpinfx()).append("</EPFMTX>");
       xml.append("<RECNAME>").append(recname).append("</RECNAME>");
       xml.append("<UID>").append(nu.calcDigest(recname)).append("</UID>");
-      xml.append("</EPINFO>");
       
-      result = xmltextToNode(xml.toString(), "//EPINFO");
-      return result;
+      // Returning an XML string and using
+      // <xsl:value-of disable-output-escaping="yes"> seems to work although the output from dumpNode 
+      // looks weird which suggests it might be a more luck than by design! But I'll keep it for now!! 
+      
+      return xml.toString();
+   }
+   
+   // If the disable-output-escaping stops working or is unreliable then revert to use
+   // a node via this method.
+   public Node getEpisodeInfoAsNode(String show, String start, String episodenum, String subtitle)
+   {
+   StringBuffer xml = new StringBuffer();
+      xml.append("<EPINFO>");
+      xml.append(getEpisodeInfo(show, start, episodenum, subtitle));
+      xml.append("</EPINFO>");
+      return xmltextToNode(xml.toString(), "//EPINFO");
    }
    
    // Returns the episode title with the SxE prefix

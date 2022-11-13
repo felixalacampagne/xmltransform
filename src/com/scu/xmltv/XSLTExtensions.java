@@ -20,6 +20,8 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -616,65 +618,130 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
       return encurl;
    }
 
-   // Function for decoding episode information and returning various components of the
-   // version for use in XSL variables. As the XSL has become more complex it has become
-   // increasingly necessary to be able to get at episode number, season, title in a consistent
-   // way.
-   // Unfortunately using this is all the places the episode is parsed causes a dramatic performance
-   // degradation. Maybe a simpler version is needed which takes the episode-number and sub-title
-   // values and returns the 'SxNN title' as this is the one most commonly used
-   public static Node getEpisodeInfo(Node prog)
+   
+   /**
+    * Gathers all the info needed to create the NFO files into one block.
+    * Originally it was passed a PROGRAMME node and it did the extraction but this
+    * turned out to be quite slow. Extracting the values in the stylesheet and passing
+    * them to the method seems to work better. 
+    * 
+    * Getting the returned XML block to be included in the FAV block took a great deal of
+    * experimentation. Eventually arrived at a solution which works by converting the XML string into
+    * a Node. The children of the Node are then added to the FAV using the 'copy-of' function
+    * instead of 'value-of'. This is not ideal as the conversion to a Node is quite a heavy
+    * process but at least now it is not necessary to copy the value from the returned object
+    * into a new node with the same name in the XSLT, ie. fields can be added here without the
+    * need to change the stylesheet besides where the fields are to be used.
+    * 
+    * Well bugger me - I thought I'd give it one last go to return a Node instead of strings and
+    * the risk that disable-output-escaping stops working - and it works. The trick is perhaps the
+    * use of a DocumentFragment. The problem is that a DocumentFragment can only created by a Document
+    * and it's not obvious where that comes from. My solution is currently to pass in a Node from the
+    * XSLT, the '.' inside a template appears to be good enough, and it's OwnerDocument is used
+    * to create the DocumentFragment. The episode info inserted into the DocumentFragment has Element child nodes
+    * with the value set via setTextContent and lo! they appear in the output of dumpNode just like the
+    * other elements in the FAV! 
+    * @param show    - the show name
+    * @param start   - the start time in XMLTV format
+    * @param episodenum - the episode number in xmltv format or empty string
+    * @param subtitle   - the episdoe title or empty string
+    * @return
+    */
+
+   public static Node getEpisodeInfo(Node any, String show, String start, String episodenum, String subtitle)
    {
-   	Node result = null;
+      NodeUtils nu = NodeUtils.getNodeUtils();
+      EpisodeShow ei = null;
+      
+      ei = new EpisodeShow(show, start, episodenum, subtitle);
+      String recname = ei.getEventName();
+      String sdate = start;  
+      String epshow = ei.getCleanshow();
+      
+      Document doc = any.getOwnerDocument();
+      DocumentFragment topNode = any.getOwnerDocument().createDocumentFragment();
+      
+      Node node;
+      
+      node = doc.createElement("EPSHOW");
+      node.setTextContent(epshow);
+      topNode.appendChild(node);
+      
+      node = doc.createElement("EPSEASON");
+      node.setTextContent(ei.getEpseason());
+      topNode.appendChild(node);
+      
+      node = doc.createElement("EPNUM");
+      node.setTextContent(ei.getEpnum());
+      topNode.appendChild(node);
+      
+      node = doc.createElement("EPTITLE");
+      node.setTextContent(ei.getEptitle());
+      topNode.appendChild(node);
+      
+      node = doc.createElement("EPDATE");
+      node.setTextContent(formatDate(sdate, "yyyy-MM-dd"));
+      topNode.appendChild(node);
+      
+      node = doc.createElement("EPFMTX");
+      node.setTextContent(ei.getEpinfx());
+      topNode.appendChild(node);
+      
+      node = doc.createElement("RECNAME");
+      node.setTextContent(recname);
+      topNode.appendChild(node);
+      
+      node = doc.createElement("UID");
+      node.setTextContent(nu.calcDigest(recname));
+      topNode.appendChild(node);
+      
+      return topNode;
+   }
+   
+   public static String getEpisodeInfo(String show, String start, String episodenum, String subtitle)
+   {
       StringBuffer xml = new StringBuffer();
       NodeUtils nu = NodeUtils.getNodeUtils();
-      EpisodeInfo ei = new EpisodeInfo();
-      String epshow = "";
-      String recname = "";
-      String sdate;
-      try
-      {
-      	// System.out.println(nu.nodeToString(prog));
-      	epshow = nu.sanitizeTitle(nu.getNodeValue(prog, "title"));
-      	sdate = nu.getAttributeValue(prog, "start");
-
-      	Node epnumnode = nu.getNodeByPath(prog, "episode-num[@system='xmltv_ns']");
-
-      	if(epnumnode != null)
-      	{
-      		// <episode-num system="xmltv_ns">19 . 14/99 . </episode-num>
-      		String episodenum = nu.getNodeValue(epnumnode);
-      		String subtitle = nu.getNodeValue(prog, "sub-title");
-      		ei = new EpisodeInfo(episodenum, subtitle);
-      	}
-
-      	recname = getEventName(epshow, sdate, ei.getEpfulltitle());
-
-         xml.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
-         xml.append("<EPINFO>");
-         xml.append("<EPTITLE>").append(ei.getEptitle()).append("</EPTITLE>");
-         xml.append("<EPSEASON>").append(ei.getEpseason()).append("</EPSEASON>");
-         xml.append("<EPNUM>").append(ei.getEpnum()).append("</EPNUM>");
-         xml.append("<EPSHOW>").append(epshow).append("</EPSHOW>");
-         xml.append("<EPDATE>").append(formatDate(sdate, "yyyy-MM-dd")).append("</EPDATE>");
-         xml.append("<EPFMTX>").append(ei.getEpinfx()).append("</EPFMTX>");
-
-         xml.append("<UID>").append(nu.calcDigest(recname)).append("</UID>");
-         xml.append("<RECNAME>").append(recname).append("</RECNAME>");
-         xml.append("</EPINFO>");
-
-
-         result = xmltextToNode(xml.toString(), "//EPINFO");
-      }
-      catch(Exception ex)
-      {
-         ex.printStackTrace();
-         System.out.println(xml.toString());
-      }
-
-      return result;
+      EpisodeShow ei = null;
+      
+      ei = new EpisodeShow(show, start, episodenum, subtitle);
+      String recname = ei.getEventName();
+      String sdate = start;  
+      String epshow = ei.getCleanshow();
+      xml.append("<EPSHOW>").append(epshow).append("</EPSHOW>");
+      xml.append("<EPSEASON>").append(ei.getEpseason()).append("</EPSEASON>");
+      xml.append("<EPNUM>").append(ei.getEpnum()).append("</EPNUM>");
+      xml.append("<EPTITLE>").append(ei.getEptitle()).append("</EPTITLE>");
+      xml.append("<EPDATE>").append(formatDate(sdate, "yyyy-MM-dd")).append("</EPDATE>");
+      xml.append("<EPFMTX>").append(ei.getEpinfx()).append("</EPFMTX>");
+      xml.append("<RECNAME>").append(recname).append("</RECNAME>");
+      xml.append("<UID>").append(nu.calcDigest(recname)).append("</UID>");
+      
+      // Returning an XML string and using
+      // <xsl:value-of disable-output-escaping="yes"> seems to work although the output from dumpNode 
+      // looks weird which suggests it might be a more luck than by design! But I'll keep it for now!! 
+      // NB. Might need to xmlencode the field content which actually only applies to the description
+      // since the other fields are sanitized to make them filename compatible... and the description
+      // is not actually handled here!! Anyway, this is what the Perl functions does
+      // $tr =~ s/&/&amp;/g;
+      // $str =~ s/\>/&gt;/g;
+      // $str =~ s/\</&lt;/g;
+      // $str =~ s/\"/&quot;/g;
+      // $str =~ s/\'/&apos;/g;
+      return xml.toString();
    }
-
+   
+   // If the disable-output-escaping stops working or is unreliable then revert to use
+   // a node via this method.
+   public Node getEpisodeInfoAsNode(String show, String start, String episodenum, String subtitle)
+   {
+   StringBuffer xml = new StringBuffer();
+      xml.append("<EPINFO>");
+      xml.append(getEpisodeInfo(show, start, episodenum, subtitle));
+      xml.append("</EPINFO>");
+      return xmltextToNode(xml.toString(), "//EPINFO");
+   }
+   
    // Returns the episode title with the SxE prefix
    public static String getFullEpisodetitle(String episodenum, String subtitle)
    {
@@ -683,7 +750,7 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
 
    public static String getFullEpisodetitle(String episodenum, String subtitle, String separator)
    {
-   	EpisodeInfo ei = new EpisodeInfo(episodenum, subtitle, separator);
+   	EpisodeTitle ei = new EpisodeTitle(episodenum, subtitle, separator);
 		return ei.getEpfulltitle();
    }
 
@@ -697,26 +764,61 @@ static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
     */
    public static String getEventName(String episodenum, String subtitle, String show, String start)
    {
-      String epinfo = getFullEpisodetitle(episodenum, subtitle);
-      return getEventName(show, start, epinfo);
+//      String epinfo = getFullEpisodetitle(episodenum, subtitle);
+//      return getEventName(show, start, epinfo);
+   	EpisodeShow eps = new EpisodeShow(show, start, episodenum, subtitle);
+   	return eps.getEventName();
    }
 
-   public static String getEventName(String show, String start, String epfulltitle)
-   {
-      NodeUtils nu = NodeUtils.getNodeUtils();
-      String event = nu.sanitizeTitle(show);
-
-      if(!epfulltitle.isEmpty())
-      {
-         String edate = formatDate(start, "yy-MM-dd");
-         event = String.format("%s %s %s", event, edate, epfulltitle);
-      }
-      return event;
-   }
+//   public static String getEventName(String show, String start, String epfulltitle)
+//   {
+//      NodeUtils nu = NodeUtils.getNodeUtils();
+//      String event = nu.sanitizeTitle(show);
+//
+//      if(!epfulltitle.isEmpty())
+//      {
+//         String edate = formatDate(start, "yy-MM-dd");
+//         event = String.format("%s %s %s", event, edate, epfulltitle);
+//      }
+//      return event;
+//   }
 
    public static String getEpisodeSxN(String episodenum)
    {
-      EpisodeInfo ei = new EpisodeInfo(episodenum);
+   	EpisodeNumber ei = new EpisodeNumber(episodenum);
       return ei.getEpinfx();
    }
+   
+   public static String dumpNode(Node node)
+   {
+   	String result = "";
+   	result = dumpNode(node, "");
+   	LOG.info("\n" + result.toString());
+   	return result;   	
+   }
+   
+   public static String dumpNode(Node node, String indent)
+   {
+   	StringBuffer result = new StringBuffer();
+   	
+   	result.append(indent).append(node.getNodeName());
+   	if(node.hasChildNodes())
+   	{
+   		result.append("  Children: "). append(node.getChildNodes().getLength()).append("\n");
+   	}
+   	else
+   	{
+   		result.append("  Value: ").append(node.getNodeValue()).append("\n");
+   	}
+   	for(int childno=0 ; childno <node.getChildNodes().getLength(); childno++)
+   	{
+   		Node child = node.getChildNodes().item(childno);
+   		result.append( dumpNode(child, indent + "   ") );
+   	}
+ 	
+   	return result.toString();
+   }
+
+
+
 }

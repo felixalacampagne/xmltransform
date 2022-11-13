@@ -199,11 +199,11 @@ version="1.0">
    </channel>
    
 <!--  Channel id used by the test data -->
-<!-- channel id="XMLTVTestChannel">
+<channel id="XMLTVTestChannel">
    <display-name>BBC1</display-name>
    <dbname>BBC One Lon</dbname>
    <vuuname>BBC One Lon</vuuname>
-</channel -->
+</channel>
 
 <channel id="683.tvguide.co.uk">
    <display-name>BBC1HD</display-name>
@@ -284,7 +284,7 @@ version="1.0">
    <dbname>ITV4</dbname>
    <vuuname>ITV4</vuuname>
 </channel>
-<channel id="139.tvguide.co.u">
+<channel id="139.tvguide.co.uk">
    <display-name>E4</display-name>
    <dbname>E4</dbname>
    <vuuname>E4</vuuname>
@@ -727,6 +727,7 @@ version="1.0">
       </xsl:for-each>
    </FAVORITES>
    </xsl:variable>
+   <xsl:variable name="dumpfavlist" select="scu:dumpNode($favlist)" />
 
    <xsl:variable name="favnewseries">
    <FAVORITES>
@@ -1157,28 +1158,18 @@ version="1.0">
 
 <xsl:template name="nfoinfoforfav">
    <xsl:param name="prog"/>
-   
-   <xsl:variable name="epinffromjava" select="scu:getEpisodeInfo($prog)" />
-   <xsl:variable name="epseason">
-      <xsl:value-of select="$epinffromjava/EPSEASON"/>
-   </xsl:variable>
-   <xsl:variable name="epnum">
-      <xsl:value-of select="$epinffromjava/EPNUM"/>
-   </xsl:variable>
-   <xsl:variable name="eptitle">
-      <xsl:value-of select="$epinffromjava/EPTITLE"/>
-   </xsl:variable>
-   
-   
-   <EPSEASON><xsl:value-of select="$epseason"/></EPSEASON>
-   <EPNUM><xsl:value-of select="$epnum"/></EPNUM>
-   <EPTITLE><xsl:value-of select="$eptitle"/></EPTITLE>
-   <EPDATE><xsl:value-of select="$epinffromjava/EPDATE" /></EPDATE>
-   <RECNAME><xsl:value-of select="$epinffromjava/RECNAME" /></RECNAME>
-   <UID><xsl:value-of select="$epinffromjava/UID" /></UID>
-   <PLOT><xsl:value-of select="$prog/desc" /></PLOT>            
+   <!-- This worked for a String return but the output from dumpNode looked strange and google suggests it
+        is likely to be an unreliable way to do it. Using a Node return, now that it is possible, should
+        be reliable and it more the 'correct' way to do it.
+        
+        xsl:value-of disable-output-escaping="yes" select="scu:getEpisodeInfo($prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" / 
+    -->
 
+   <!-- MUST use copy-of. value-of just inserts the text values of the fields. -->
+   <xsl:copy-of select="scu:getEpisodeInfo(., $prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" />
+   <PLOT><xsl:value-of select="$prog/desc" /></PLOT>   
 </xsl:template>
+
 <!-- This is the default template which matches any text. It is a built in template
      but I've included it here to remind me how to modify the default
 

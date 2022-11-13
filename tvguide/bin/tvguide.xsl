@@ -284,7 +284,7 @@ version="1.0">
    <dbname>ITV4</dbname>
    <vuuname>ITV4</vuuname>
 </channel>
-<channel id="139.tvguide.co.u">
+<channel id="139.tvguide.co.uk">
    <display-name>E4</display-name>
    <dbname>E4</dbname>
    <vuuname>E4</vuuname>
@@ -1158,9 +1158,15 @@ version="1.0">
 
 <xsl:template name="nfoinfoforfav">
    <xsl:param name="prog"/>
-   <!-- xsl:value-of disable-output-escaping="yes" select="scu:getEpisodeInfo($prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" / -->
-   <xsl:variable name="epinffromjava" select="scu:getEpisodeInfo(., $prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" />
-   <xsl:copy-of select="$epinffromjava/*"></xsl:copy-of>
+   <!-- This worked for a String return but the output from dumpNode looked strange and google suggests it
+        is likely to be an unreliable way to do it. Using a Node return, now that it is possible, should
+        be reliable and it more the 'correct' way to do it.
+        
+        xsl:value-of disable-output-escaping="yes" select="scu:getEpisodeInfo($prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" / 
+    -->
+
+   <!-- MUST use copy-of. value-of just inserts the text values of the fields. -->
+   <xsl:copy-of select="scu:getEpisodeInfo(., $prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" />
    <PLOT><xsl:value-of select="$prog/desc" /></PLOT>   
 </xsl:template>
 

@@ -727,7 +727,7 @@ version="1.0">
       </xsl:for-each>
    </FAVORITES>
    </xsl:variable>
-   <xsl:variable name="dumpfavlist" select="scu:dumpNode($favlist)" />
+   <!-- xsl:variable name="dumpfavlist" select="scu:dumpNode($favlist)" / -->
 
    <xsl:variable name="favnewseries">
    <FAVORITES>
@@ -789,15 +789,17 @@ version="1.0">
 
   <HTML>
     <HEAD>
-    <link href="../stylesheet.css" rel="stylesheet" type="text/css" />
-     <TITLE><xsl:value-of select="$cname" /> on <xsl:value-of select="scu:getLongDate($MINDATEL)" /></TITLE>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="../script/tvutils.js"></script>
+      <link href="../stylesheet.css" rel="stylesheet" type="text/css" />
+      <TITLE><xsl:value-of select="$cname" /> on <xsl:value-of select="scu:getLongDate($MINDATEL)" /></TITLE>
     </HEAD>
 
     <BODY BGCOLOR="#c0c0c0">
-   <A HREF="{$prevp}"><xsl:value-of select="$cname" /> on <xsl:value-of select="scu:formatDate($prevday, 'EEE')" /></A> |
-   <A HREF="{$prevcd}"><xsl:value-of select="$prevc" /> on <xsl:value-of select="scu:formatDate($MINDATEL, 'EEE')" /></A> |
-   <A HREF="{$nextcd}"><xsl:value-of select="$nextc" /> on <xsl:value-of select="scu:formatDate($MINDATEL, 'EEE')" /></A>
-   <H2>Listings for <xsl:value-of select="$cname" /> on <xsl:value-of select="scu:getLongDate($MINDATEL)" /></H2><xsl:text>
+      <A HREF="{$prevp}"><xsl:value-of select="$cname" /> on <xsl:value-of select="scu:formatDate($prevday, 'EEE')" /></A> |
+      <A HREF="{$prevcd}"><xsl:value-of select="$prevc" /> on <xsl:value-of select="scu:formatDate($MINDATEL, 'EEE')" /></A> |
+      <A HREF="{$nextcd}"><xsl:value-of select="$nextc" /> on <xsl:value-of select="scu:formatDate($MINDATEL, 'EEE')" /></A>
+      <H2>Listings for <xsl:value-of select="$cname" /> on <xsl:value-of select="scu:getLongDate($MINDATEL)" /></H2><xsl:text>
 </xsl:text>
 
 <TABLE class="tvlists">
@@ -829,6 +831,9 @@ version="1.0">
 <xsl:variable name="ctitle"><xsl:call-template name="cleantitle"><xsl:with-param name="rawtitle" select="title" /></xsl:call-template></xsl:variable>
 <xsl:variable name="matctitle"><xsl:value-of select="$ctitle" />=<xsl:apply-templates select="episode-num" mode="fav" /></xsl:variable>
 <xsl:variable name="category"><xsl:apply-templates select="category" /></xsl:variable>
+<xsl:variable name="baseid"><xsl:value-of select="generate-id()" /></xsl:variable>
+<xsl:variable name="descid"><xsl:value-of select="$baseid" />PLT</xsl:variable>
+<xsl:variable name="metaid"><xsl:value-of select="$baseid" />NFO</xsl:variable>
 <TR>
       <xsl:choose>
         <xsl:when test='(position() mod 2)=0'>
@@ -843,17 +848,20 @@ version="1.0">
 <TD class="title">
 <xsl:choose>
    <xsl:when test="scu:isMatch($matctitle,$FAVCRIT/CRIT)">
-      <A NAME="{generate-id()}" class="title_favorite"><xsl:value-of select="$ctitle" /></A>
+      <A NAME="{$baseid}" id="{$baseid}" class="title_favorite"><xsl:value-of select="$ctitle" /></A>
    </xsl:when>
    <xsl:when test="scu:isMatch($matctitle,$NEWSERIESCRIT/CRIT) and not(scu:isMatch($category,$NEWSERIESEXCL/CRIT))">
-      <A NAME="{generate-id()}" class="title_newseries"><xsl:value-of select="$ctitle" /></A>
+      <A NAME="{$baseid}" id="{$baseid}" class="title_newseries"><xsl:value-of select="$ctitle" /></A>
    </xsl:when>
    <xsl:otherwise>
-      <A NAME="{generate-id()}" class="title_normal"><xsl:value-of select="$ctitle" /></A>
+      <A NAME="{$baseid}" id="{$baseid}" class="title_normal"><xsl:value-of select="$ctitle" /></A>
    </xsl:otherwise>
 </xsl:choose>
 </TD><xsl:text>
-</xsl:text><TD class="desc">
+</xsl:text>
+<!-- Desc needs a NAME based on xsl:value-of select="generate-id()"  -->
+
+<TD class="desc" id="{$descid}" >
 <xsl:variable name="eptitle" select="scu:getFullEpisodetitle( episode-num[@system='xmltv_ns'], sub-title, '. ')" />
 <xsl:if test="boolean($eptitle)">
    <xsl:text> </xsl:text>
@@ -885,7 +893,10 @@ version="1.0">
       <xsl:with-param name="stbhost"><xsl:value-of select="$VUPUSRV" /></xsl:with-param>
    </xsl:call-template></xsl:with-param>
    </xsl:call-template>
-
+   <!-- Need to create NAMEs based on xsl:value-of select="generate-id()" for the button, the span and the desc -->
+<span id="{$metaid}" style="display:none">"episode":{"season":"1","epsum":"01","eptitle":"Episode Title","aired":"22-06-10","uid":"12345667890","recname":"Show 22-06-10 SxNN Episode Title"}</span>
+ <!-- input type='button' value='NFO' onclick='makeNFO("{$baseid}")' / -->
+ <A href="{$baseid}FN" onclick='makeNFO("{$baseid}"); return false;'>NFO</A> 
 </TD>
 </TR>
 </xsl:template>
@@ -1158,14 +1169,11 @@ version="1.0">
 
 <xsl:template name="nfoinfoforfav">
    <xsl:param name="prog"/>
-   <!-- This worked for a String return but the output from dumpNode looked strange and google suggests it
-        is likely to be an unreliable way to do it. Using a Node return, now that it is possible, should
-        be reliable and it more the 'correct' way to do it.
-        
-        xsl:value-of disable-output-escaping="yes" select="scu:getEpisodeInfo($prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" / 
-    -->
-
-   <!-- MUST use copy-of. value-of just inserts the text values of the fields. -->
+   <!-- xsl:value-of disable-output-escaping="yes" select="scu:getEpisodeInfo($prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" / -->
+   <!--
+   <xsl:variable name="epinffromjava" select="scu:getEpisodeInfo(., $prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" />
+   <xsl:copy-of select="$epinffromjava/*"></xsl:copy-of>
+   -->
    <xsl:copy-of select="scu:getEpisodeInfo(., $prog/title, $prog/@start, $prog/episode-num[@system='xmltv_ns'], $prog/sub-title)" />
    <PLOT><xsl:value-of select="$prog/desc" /></PLOT>   
 </xsl:template>

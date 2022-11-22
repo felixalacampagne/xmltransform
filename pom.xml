@@ -37,6 +37,10 @@
   		<groupId>xalan</groupId>
   		<artifactId>serializer</artifactId>
   	</dependency>
+   <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+   </dependency>   
   </dependencies>
   <dependencyManagement>
   	<dependencies>
@@ -50,6 +54,11 @@
   			<artifactId>serializer</artifactId>
   			<version>2.7.2</version>
   		</dependency>
+      <dependency>
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-databind</artifactId>
+         <version>2.9.8</version>
+      </dependency>
   	</dependencies>
   </dependencyManagement>
 </project>

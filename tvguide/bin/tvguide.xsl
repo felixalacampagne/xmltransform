@@ -861,13 +861,13 @@ version="1.0">
 </xsl:text>
 <!-- Desc needs a NAME based on xsl:value-of select="generate-id()"  -->
 
-<TD class="desc" id="{$descid}" >
+<TD class="desc" >
 <xsl:variable name="eptitle" select="scu:getFullEpisodetitle( episode-num[@system='xmltv_ns'], sub-title, '. ')" />
 <xsl:if test="boolean($eptitle)">
    <xsl:text> </xsl:text>
    <span class="episode"><xsl:value-of select="$eptitle" /></span>.<xsl:text> </xsl:text>
 </xsl:if>
-<xsl:value-of select="desc" />
+<span id="{$descid}"><xsl:value-of select="desc" /></span>
 <xsl:if test="length">
  <xsl:text> (</xsl:text><xsl:value-of select="length"/><xsl:value-of select="substring(length/@units,1,3)"/>
  <xsl:text>)</xsl:text>
@@ -894,9 +894,9 @@ version="1.0">
    </xsl:call-template></xsl:with-param>
    </xsl:call-template>
    <!-- Need to create NAMEs based on xsl:value-of select="generate-id()" for the button, the span and the desc -->
-<span id="{$metaid}" style="display:none">"episode":{"season":"1","epsum":"01","eptitle":"Episode Title","aired":"22-06-10","uid":"12345667890","recname":"Show 22-06-10 SxNN Episode Title"}</span>
+<span id="{$metaid}" style="display:none"><xsl:value-of select="scu:getEpisodeInfoAsJson(title, @start, episode-num[@system='xmltv_ns'], sub-title)" /></span>
  <!-- input type='button' value='NFO' onclick='makeNFO("{$baseid}")' / -->
- <A href="{$baseid}FN" onclick='makeNFO("{$baseid}"); return false;'>NFO</A> 
+ <A href="#{$baseid}" onclick='makeNFO("{$baseid}"); return false;'>NFO</A> 
 </TD>
 </TR>
 </xsl:template>

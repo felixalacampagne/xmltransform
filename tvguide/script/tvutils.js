@@ -1,15 +1,15 @@
 function makeNFO(progid)
 {
-	alert("makeNFO: sennding NFO for " + progid);
+   // alert("makeNFO: sending NFO for " + progid);
    var episode = document.getElementById(progid + "NFO").textContent;
    var plot = document.getElementById(progid + "PLT").textContent.trim();
-   var show = document.getElementById(progid).textContent;
-   var postdata = '{"show":"' + show + '", ' + episode + ', "plot":"' + plot + '"}';
+   var postdata = '{"episode":' +  episode + ', "plot":"' + plot + '"}';
+   alert("makeNFO: sending NFO data: " + postdata);
     $.post("../crit/createnfo.php", postdata,
        function(data) 
        {
-         alert("makeNFO: response: " + data);
-         // data contains the response which is not relevant for NFO
+         alert("NFO saved to repository.");
+         // data contains anything 'echo'd by the PHP script
        });
        
        return;

@@ -884,6 +884,7 @@ version="1.0">
       <xsl:with-param name="dbref" select="$dbref" />
       <xsl:with-param name="stbhost"><xsl:value-of select="$DRMBOXSRV" /></xsl:with-param>
    </xsl:call-template></xsl:with-param>
+      <xsl:with-param name="nfoid" select="$baseid" />
    </xsl:call-template>
 
    <!-- Insert link to add program to VU+ Ultimo timer list (only useful if my VU+ Ultimo is available!!) -->
@@ -892,6 +893,7 @@ version="1.0">
       <xsl:with-param name="dbref" select="$vuref" />
       <xsl:with-param name="stbhost"><xsl:value-of select="$VUPUSRV" /></xsl:with-param>
    </xsl:call-template></xsl:with-param>
+      <xsl:with-param name="nfoid" select="$baseid" /> 
    </xsl:call-template>
    <!-- Need to create NAMEs based on xsl:value-of select="generate-id()" for the button, the span and the desc -->
 <span id="{$metaid}" style="display:none"><xsl:value-of select="scu:getEpisodeInfoAsJson(title, @start, episode-num[@system='xmltv_ns'], sub-title)" /></span>
@@ -1074,20 +1076,28 @@ version="1.0">
 
 <xsl:template name="addDBlink">
 <xsl:param name="href"/>
+<xsl:param name="nfoid" />
 <xsl:if test="normalize-space($href)">
 <xsl:element name="A">
 <xsl:attribute name="CLASS">dbx</xsl:attribute>
 <xsl:attribute name="TARGET">dbxtimers</xsl:attribute>
+<xsl:if test="normalize-space($nfoid)">
+   <xsl:attribute name="onclick">makeNFOquiet("<xsl:value-of select="$nfoid" />"); return true;</xsl:attribute>
+</xsl:if>   
 <xsl:attribute name="HREF"><xsl:value-of select="$href" /></xsl:attribute><img vspace="4" hspace="4" alt="Add to Dreambox timers" border="0" src="../blueball.png" /></xsl:element>
 </xsl:if>
 </xsl:template>
 
 <xsl:template name="addVUlink">
 <xsl:param name="href"/>
+<xsl:param name="nfoid" />
 <xsl:if test="normalize-space($href)">
 <xsl:element name="A">
 <xsl:attribute name="CLASS">dbx</xsl:attribute>
 <xsl:attribute name="TARGET">vuutimers</xsl:attribute>
+<xsl:if test="normalize-space($nfoid)">
+   <xsl:attribute name="onclick">makeNFOquiet("<xsl:value-of select="$nfoid" />"); return true;</xsl:attribute>
+</xsl:if>   
 <xsl:attribute name="HREF"><xsl:value-of select="$href" /></xsl:attribute><img vspace="4" hspace="4" alt="Add to VU+ Ultimo timers" border="0" src="../vup.png" /></xsl:element>
 </xsl:if>
 </xsl:template>

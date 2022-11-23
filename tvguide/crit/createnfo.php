@@ -3,16 +3,16 @@
 // easier to do as it will avoid the need to read posted HTML data.
 // NB logger.php is missing from the test data and not present in the PHP installation. (Where is it??)
 include_once 'logger.php';
-$nforepodir = '../tv/nfo/';
+$nforepodir = '../tv/nfo/';  // This is not visible to the function!!
 
-function createnfo($nfojson)
+function createnfo($nfojson, $nfodir)
 {
 $filename = "";
 $nfoxml = "";
    // decode the json data
-   echo "JSON: " . $nfojson . "\n"; 
+   //  echo "JSON: " . $nfojson . "\n"; 
    $meta = json_decode($nfojson);
-   var_dump($meta);
+   // var_dump($meta);
 
 $nfoxml = '<?xml version="1.0" encoding="UTF-8"?><episodedetails>' . "\n";
 $nfoxml = $nfoxml . '<title>' . $meta->episode->title . '</title>' . "\n";
@@ -26,7 +26,7 @@ $nfoxml = $nfoxml . '</episodedetails>' . "\n";
 
 
 
-   $filename = $nforepodir . $meta->episode->recname . ".nfo";
+   $filename = $nfodir . $meta->episode->recname . ".nfo";
 
    if(!($handle = fopen($filename, "w")))
    {
@@ -36,7 +36,7 @@ $nfoxml = $nfoxml . '</episodedetails>' . "\n";
    fwrite($handle, $nfoxml);
    fclose($handle);
    Logger::log(Lvl::INFO, "createnfo.php", "NFO written to $filename: $nfoxml\n");
-
+   echo "NFO written to $filename";
 }
 
 Logger::log(Lvl::INFO, "createnfo.php", "Entry");
@@ -44,9 +44,9 @@ Logger::log(Lvl::INFO, "createnfo.php", "Entry");
 $nfodata = file_get_contents('php://input');
 Logger::log(Lvl::INFO, "createnfo.php", "POST data: $nfodata");
 
-   createnfo($nfodata);
+   createnfo($nfodata, $nforepodir);
    
    // How to return something?
-   echo "A-OK";
+   // echo "A-OK";
    
 ?>

@@ -1,5 +1,4 @@
 trclogging.properties
-*.bak
 *.patch
 .settings
 bin
@@ -19,4 +18,4 @@ tvguide/**
 !tvguide/script/*
 !tvguide/crit
 !tvguide/crit/*
-
+**/*.bak

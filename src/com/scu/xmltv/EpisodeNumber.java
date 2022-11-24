@@ -1,13 +1,20 @@
 package com.scu.xmltv;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.scu.utils.NodeUtils;
 
 public class EpisodeNumber
 {
+   @JsonProperty("season")
    private String epseason = "";
+
+   @JsonProperty("number")
    private String epnum  = "";
+
+   @JsonIgnore
    private String epinfx = "";
-   
+
 
    public EpisodeNumber(String episodenum)
    {
@@ -34,7 +41,7 @@ public class EpisodeNumber
       NodeUtils nu = NodeUtils.getNodeUtils();
       int iepnum = -1;
       int iepseason = -1;
-      
+
    	if(!((episodenum==null) || episodenum.isEmpty()))
       {
          String [] parts = episodenum.split("[\\./]");
@@ -82,8 +89,8 @@ public class EpisodeNumber
 
             epinfx = String.format("%s%s%s", epseason, sep, epnum);
          }
-      }   	
+      }
    }
-   
+
 
 }

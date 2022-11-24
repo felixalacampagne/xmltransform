@@ -1,5 +1,4 @@
 trclogging.properties
-*.bak
 *.patch
 .settings
 bin
@@ -15,3 +14,8 @@ tvguide/**
 !tvguide/bin/doTVGuide.cmd
 !tvguide/xml
 !tvguide/xml/mergexmltv.xmltv
+!tvguide/script
+!tvguide/script/*
+!tvguide/crit
+!tvguide/crit/*
+**/*.bak

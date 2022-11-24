@@ -1,10 +1,15 @@
 package com.scu.xmltv;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.scu.utils.NodeUtils;
 
 public class EpisodeTitle extends EpisodeNumber
 {
+   @JsonProperty("title")
    private String eptitle = "";
+
+   @JsonIgnore
    private String epfulltitle = "";
 
    public EpisodeTitle(String episodenum, String subtitle)

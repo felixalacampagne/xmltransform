@@ -10,7 +10,8 @@ version="1.0">
             to have stopped appearing for most programmes.
 13 Oct 2018 Implemented "new series starting" page.
  -->
-<xsl:output method="html" version="4.0"/>
+<!-- xsl:output method="html" version="4.0"/ -->
+<xsl:output method="html"  version="5.0" />
 <xsl:preserve-space elements="*"/>
 <xsl:param name="FAVFILE" />
 <xsl:param name="OUTPATH" />
@@ -617,6 +618,7 @@ version="1.0">
 </xsl:template>
 
 <xsl:template match="FAVORITES">
+<!-- xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;</xsl:text -->
 <HTML>
    <head>
    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
@@ -786,14 +788,17 @@ version="1.0">
    <xsl:variable name="nextc"><xsl:call-template name="nxtchan"><xsl:with-param name="curchn" select="$cname" /></xsl:call-template></xsl:variable>
    <xsl:variable name="prevcd"><xsl:call-template name="makoutfilenm"><xsl:with-param name="channm" select="$prevc"/><xsl:with-param name="DATEL" select="$MINDATEL" /></xsl:call-template></xsl:variable>
    <xsl:variable name="nextcd"><xsl:call-template name="makoutfilenm"><xsl:with-param name="channm" select="$nextc"/><xsl:with-param name="DATEL" select="$MINDATEL" /></xsl:call-template></xsl:variable>
-
-  <HTML>
-    <HEAD>
+<!-- Trying to add the HTML5 declaration but it stops any output from appearing. 
+     Apparently its quite an issue with XSLT so will live without it for now! -->
+<!-- xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;</xsl:text -->
+<HTML>
+   <HEAD>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="../script/jquery.min.js"></script>
       <script src="../script/tvutils.js"></script>
       <link href="../stylesheet.css" rel="stylesheet" type="text/css" />
       <TITLE><xsl:value-of select="$cname" /> on <xsl:value-of select="scu:getLongDate($MINDATEL)" /></TITLE>
-    </HEAD>
+   </HEAD>
 
     <BODY BGCOLOR="#c0c0c0">
       <A HREF="{$prevp}"><xsl:value-of select="$cname" /> on <xsl:value-of select="scu:formatDate($prevday, 'EEE')" /></A> |

@@ -4,12 +4,17 @@ function makeNFO(progid)
    var episode = document.getElementById(progid + "NFO").textContent;
    var plot = document.getElementById(progid + "PLT").textContent.trim();
    var postdata = '{"episode":' +  episode + ', "plot":"' + plot + '"}';
-   //alert("makeNFO: sending NFO data: " + postdata);
+   // console.log("makeNFO: sending NFO data: " + postdata);
     $.post("../crit/createnfo.php", postdata,
        function(data) 
        {
-         alert("Response: " + data);
-         // data contains anything 'echo'd by the PHP script
+         console.log("Response: " + data);
+         
+         // Should only display anything if not successful
+         if(!data.startsWith("SUCCESS:"))
+         {
+            alert(data);
+         }
        });
        
        return;
@@ -24,7 +29,7 @@ function makeNFOquiet(progid)
    $.post("../crit/createnfo.php", postdata,
        function(data) 
        {
-         // data contains anything 'echo'd by the PHP script
+         console.log("Response: " + data);
        });
        
        return;

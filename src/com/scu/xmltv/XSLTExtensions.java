@@ -172,22 +172,38 @@ static ObjectMapper mapper = new ObjectMapper();
 
    public static String formatDate(String xmltvdatetime, String format)
    {
-      String rs = "";
+      return formatDate(getDateFromXmltv(xmltvdatetime), format);
+   }
+
+
+   public static String formatDate(Date date, String format)
+   {
+   String rs = "";
+   SimpleDateFormat sdf = new SimpleDateFormat();
+      try
+      {
+         sdf.applyPattern(format);
+         rs = sdf.format(date);
+      }
+      catch(Exception ex) {}
+
+      return rs;
+   }
+
+
+   // This is for use by Java code, it is not really as an XSLTExtension
+   public static Date getDateFromXmltv(String xmltvdatetime)
+   {
       SimpleDateFormat sdf = new SimpleDateFormat();
       Date dt = null;
-         try
-         {
-            // "20060726101500 +0200"
-            // The +0200 indicates that the time is 2 hours ahead of GMT, not that is should be adjusted to 2 hours ahead!!
-            sdf.applyPattern(getXMLTVDateFormat(xmltvdatetime));
-            dt = sdf.parse(xmltvdatetime);
-            sdf.applyPattern(format);
-            rs = sdf.format(dt);
-         }
-         catch(Exception ex) {}
+      try
+      {
+         sdf.applyPattern(getXMLTVDateFormat(xmltvdatetime));
+         dt = sdf.parse(xmltvdatetime);
+      }
+      catch(Exception ex) {}
 
-         return rs;
-
+      return dt;
    }
 
    public static String getTime(String xmltvdatetime)

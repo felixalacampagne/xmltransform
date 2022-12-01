@@ -12,6 +12,5 @@
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
         <javaElement handleIdentifier="=xmltransform/src=/optional=/true=/=/maven.pomderived=/true=/"/>
-        <javaElement handleIdentifier="=scuutils/src=/optional=/true=/=/maven.pomderived=/true=/"/>
     </selectedElements>
 </jardesc>

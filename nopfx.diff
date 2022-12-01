@@ -1,0 +1,387 @@
+diff --git .classpath .classpath
+index e1be7f7..fd02cfd 100644
+--- .classpath
++++ .classpath
+@@ -1,12 +1,16 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <classpath>
+-	<classpathentry kind="src" output="target/classes" path="src">
++	<classpathentry kind="src" path="src">
+ 		<attributes>
+ 			<attribute name="optional" value="true"/>
+ 			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="src" path="test"/>
++	<classpathentry kind="src" output="target_test" path="test">
++		<attributes>
++			<attribute name="test" value="true"/>
++		</attributes>
++	</classpathentry>
+ 	<classpathentry exported="true" kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+ 		<attributes>
+ 			<attribute name="maven.pomderived" value="true"/>
+diff --git .gitignore .gitignore
+index 4eb2186..fd85538 100644
+--- .gitignore
++++ .gitignore
+@@ -7,6 +7,7 @@ lib
+ *.zip
+ xmltv*.*
+ /target/
++/target-test/
+ tvguide/**
+ !tvguide/tvguide.xsl
+ !tvguide/bin
+diff --git HTMLMaker.jardesc HTMLMaker.jardesc
+index 91f9a7c..43a82ce 100644
+--- HTMLMaker.jardesc
++++ HTMLMaker.jardesc
+@@ -12,6 +12,5 @@
+     </manifest>
+     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+         <javaElement handleIdentifier="=xmltransform/src=/optional=/true=/=/maven.pomderived=/true=/"/>
+-        <javaElement handleIdentifier="=scuutils/src=/optional=/true=/=/maven.pomderived=/true=/"/>
+     </selectedElements>
+ </jardesc>
+diff --git HTMLMaker.xml HTMLMaker.xml
+index 16b6354..f3cc5f4 100644
+--- HTMLMaker.xml
++++ HTMLMaker.xml
+@@ -13,23 +13,12 @@
+                 <attribute name="Class-Path" value="."/>
+             </manifest>
+             <fileset dir="${dir.jarfile}/target/classes"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.junit.jupiter.api_5.7.1.v20210222-1948.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.junit.jupiter.engine_5.7.1.v20210222-1948.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.junit.jupiter.migrationsupport_5.7.1.v20210222-1948.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.junit.jupiter.params_5.7.1.v20210222-1948.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.junit.platform.commons_1.7.1.v20210222-1948.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.junit.platform.engine_1.7.1.v20210222-1948.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.junit.platform.launcher_1.7.1.v20210222-1948.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.junit.platform.runner_1.7.1.v20210222-1948.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.junit.platform.suite.api_1.7.1.v20210222-1948.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.junit.vintage.engine_5.7.1.v20210222-1948.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.opentest4j_1.2.0.v20190826-0900.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.apiguardian_1.1.0.v20190826-0900.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.junit_4.13.0.v20200204-1500.jar"/>
+-            <zipfileset excludes="META-INF/*.SF" src="C:/Development/eclipse/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+             <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/maven/repository/xalan/xalan/2.7.2/xalan-2.7.2.jar"/>
+             <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/maven/repository/xalan/serializer/2.7.2/serializer-2.7.2.jar"/>
+             <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/maven/repository/xml-apis/xml-apis/1.3.04/xml-apis-1.3.04.jar"/>
++            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/maven/repository/com/fasterxml/jackson/core/jackson-databind/2.9.8/jackson-databind-2.9.8.jar"/>
++            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/maven/repository/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar"/>
++            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/maven/repository/com/fasterxml/jackson/core/jackson-core/2.9.8/jackson-core-2.9.8.jar"/>
+         </jar>
+     </target>
+ </project>
+diff --git pom.xml pom.xml
+index 9e268c1..191b738 100644
+--- pom.xml
++++ pom.xml
+@@ -26,6 +26,54 @@
+           <target>1.8</target>
+         </configuration>
+       </plugin>
++      <plugin>
++         <groupId>org.apache.maven.plugins</groupId>
++         <artifactId>maven-jar-plugin</artifactId>
++         <version>2.6</version>
++         <configuration>
++            <skipIfEmpty>true</skipIfEmpty>
++         </configuration>
++      </plugin>  
++      
++         <!-- This generates HTMLMaker.jar as an 'executable' a jar -->
++         <plugin>
++            <artifactId>maven-assembly-plugin</artifactId>
++            <configuration>
++               <appendAssemblyId>false</appendAssemblyId>
++               <descriptorRefs>
++                  <descriptorRef>jar-with-dependencies</descriptorRef>
++               </descriptorRefs>
++            </configuration>
++            <!-- This magic means the combined jar is built as part of the 
++                 normal 'clean install' build of the parent project (see FLACtagger pom.xml for more details).
++                 
++                 The original project was used to produce a number of slightly different variations of the app
++                 which allowed double click invocation in the appropriate mode, eg. QR of clipboard, QR EPC of
++                 account information on the clipboard, GUI to enter transaction details and show QR.
++                 Rather than mess with sub-projects etc. I just want to generate all variations each time
++                 a build is performed. This is acheived by using multiple execution blocks with the different
++                 configurations required for each app. According to the internet this is highly frowned upon
++                 however it seems to work like a charm!!
++            -->
++            <executions>
++               <execution>
++                  <id>make-HTMLMaker</id>
++                  <phase>package</phase>
++                  <goals><goal>single</goal></goals>
++                  <configuration>
++                     <archive>
++                        <manifest>
++                           <mainClass>com.scu.xmltv.HTMLMaker</mainClass>
++                        </manifest>
++                     </archive>
++                     <finalName>../HTMLMaker</finalName>
++                  </configuration>                 
++               </execution>
++            </executions>
++         </plugin>      
++      
++      
++          
+     </plugins>
+   </build>
+   <dependencies>
+diff --git tvguide/crit/favcrit.xml tvguide/crit/favcrit.xml
+index fc66615..b18f44b 100644
+--- tvguide/crit/favcrit.xml
++++ tvguide/crit/favcrit.xml
+@@ -34,7 +34,7 @@
+ <CRIT>^Sherwood=</CRIT>
+ <CRIT>^PRU=</CRIT>
+ <CRIT>State of the Union=[3-9]x</CRIT>
+-<CRIT>The Undeclared War</CRIT>
++<CRIT>Critical Incident</CRIT>
+ <CRIT>The Control Room</CRIT>
+ <CRIT>The Newsreader</CRIT>
+ <CRIT>The Secrets She Keeps</CRIT>
+diff --git tvguide/xml/mergexmltv.xmltv tvguide/xml/mergexmltv.xmltv
+index c89f346..fdd9bb6 100644
+--- tvguide/xml/mergexmltv.xmltv
++++ tvguide/xml/mergexmltv.xmltv
+@@ -3,7 +3,7 @@
+   <channel id="XMLTVTestChannel">
+     <display-name lang="en">ATV Channel</display-name>
+   </channel>
+-  <programme channel="XMLTVTestChannel" start="20221107234500 +0000" stop="20221115034500 +0000">
++  <programme channel="XMLTVTestChannel" start="20221107234500 +0000" stop="20221203034500 +0000">
+     <title lang="en">Have I Got a Bit More News for You</title>
+     <desc lang="en">Gary Neville hosts an extended episode of the current affairs quiz, with comedian Maisie Adam and presenter Richard Madeley joining team captains Paul Merton and Ian Hislop.</desc>
+     <category lang="en">Comedy</category>
+@@ -15,7 +15,7 @@
+     </star-rating>
+     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/have_I_got_news.jpg</image>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115060000 +0000" stop="20221115091500 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203060000 +0000" stop="20221203091500 +0000">
+     <title lang="en">Breakfast</title>
+     <sub-title lang="en">08/11/2022</sub-title>
+     <desc lang="en">A round-up of national and international news, plus current affairs, arts and entertainment, and weather.</desc>
+@@ -28,7 +28,7 @@
+       <value>2.5/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115091500 +0000" stop="20221115100000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203091500 +0000" stop="20221203100000 +0000">
+     <title lang="en">Morning Live</title>
+     <sub-title lang="en">08/11/2022</sub-title>
+     <desc lang="en">Weekday magazine show featuring a mixture of topical chat and expert advice, presented by Gethin Jones and Sam Quek.</desc>
+@@ -39,7 +39,7 @@
+       <value>3.2/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115100000 +0000" stop="20221115104500 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203100000 +0000" stop="20221203104500 +0000">
+     <title lang="en">Critical Incident</title>
+     <desc lang="en">A Warwickshire police officer who used his medical training to save the lives of two stab victims and a mountain bike paramedic violently attacked in Manchester city centre.</desc>
+     <category lang="en">Education</category>
+@@ -52,7 +52,7 @@
+       <value>8.4/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115104500 +0000" stop="20221115111500 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203104500 +0000" stop="20221203111500 +0000">
+     <title lang="en">Dirty Rotten Scammers</title>
+     <sub-title lang="en">Episode 7- Short</sub-title>
+     <desc lang="en">A man who received a fraudulent text that ended in him being fleeced for a five-figure sum - and finding himself embroiled in an investigation with the National Crime Agency.</desc>
+@@ -65,7 +65,7 @@
+       <value>8.1/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115111500 +0000" stop="20221115121500 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203111500 +0000" stop="20221203121500 +0000">
+     <title lang="en">Homes Under the Hammer</title>
+     <desc lang="en">Martin Roberts and the team are in Scotland and the north of England to follow renovations in Paisley, Coventry and Bradford.</desc>
+     <category lang="en">Leisure</category>
+@@ -78,7 +78,7 @@
+     </star-rating>
+     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Homes-Under.jpg</image>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115121500 +0000" stop="20221115130000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203121500 +0000" stop="20221203130000 +0000">
+     <title lang="en">Bargain Hunt</title>
+     <sub-title lang="en">Sawbridgeworth 10</sub-title>
+     <desc lang="en">Roo Irvine and Tim Weeks help the red and blue teams in Sawbridgeworth, Hertfordshire, where they hope to bag bargains to take to auction to sell at a profit. Presenter Charlie Ross also finds out about the fascinating world of espionage and uncovers some everyday objects that aren't quite what they seem.</desc>
+@@ -93,7 +93,7 @@
+     </star-rating>
+     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Bargain-Hunt.jpg</image>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115130000 +0000" stop="20221115133000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203130000 +0000" stop="20221203133000 +0000">
+     <title lang="en">ATV News at One; Weather</title>
+     <sub-title lang="en">08/11/2022</sub-title>
+     <desc lang="en">A round-up of the latest headlines.</desc>
+@@ -102,7 +102,7 @@
+     <url>https://www.bla.blady.bla/detail/4864170/78479617/bbc-news-at-one-weather</url>
+     <subtitles type="teletext"/>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115133000 +0000" stop="20221115134500 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203133000 +0000" stop="20221203134500 +0000">
+     <title lang="en">ATV News; Weather</title>
+     <sub-title lang="en">08/11/2022 - Lunch</sub-title>
+     <category lang="en">News</category>
+@@ -113,7 +113,7 @@
+       <value>6.4/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115134500 +0000" stop="20221115141500 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203134500 +0000" stop="20221203141500 +0000">
+     <title lang="en">Doctors</title>
+     <sub-title lang="en">Entitlement - Part Two</sub-title>
+     <desc lang="en">Ruhma's first date does not go as planned and Sid gets involved with his neighbour's conflict.</desc>
+@@ -125,7 +125,7 @@
+     </star-rating>
+     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Doctors3.jpg</image>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115141500 +0000" stop="20221115150000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203141500 +0000" stop="20221203150000 +0000">
+     <title lang="en">Money for Nothing</title>
+     <desc lang="en">Jacqui Joseph heads to Walsall Recycling Centre, where she rescues a bamboo chair, a hand-made sideboard and a pair of solid wood bedside tables. With the help of upholsterer Simion Hawtin-Smith and screen print artist Daniel Heath, the tired trio of items have the chance to shine once more.</desc>
+     <category lang="en">Education</category>
+@@ -139,7 +139,7 @@
+       <value>7.2/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115150000 +0000" stop="20221115154500 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203150000 +0000" stop="20221203154500 +0000">
+     <title lang="en">Escape to the Country</title>
+     <sub-title lang="en">Anglesey</sub-title>
+     <desc lang="en">Jules Hudson helps a couple from Cheshire to find their dream home on Anglesey. He also heads to the Welsh mainland to catch up with a farmer, Gareth Wyn Jones, whose family has been working the land for 375 years.</desc>
+@@ -153,7 +153,7 @@
+     </star-rating>
+     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/Escape.jpg</image>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115154500 +0000" stop="20221115163000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203154500 +0000" stop="20221203163000 +0000">
+     <title lang="en">The Repair Shop</title>
+     <desc lang="en">Jay Blades and the team restore a homemade radio from the Second World War, a set of dinner gongs from a farmhouse and a musical carousel.</desc>
+     <category lang="en">Leisure</category>
+@@ -165,7 +165,7 @@
+       <value>8.4/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115163000 +0000" stop="20221115171500 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203163000 +0000" stop="20221203171500 +0000">
+     <title lang="en">The Travelling Auctioneers</title>
+     <desc lang="en">Christina Trevanion and Will Kirk travel to Northumbria to help retired school teachers Mike and Carole declutter and raise money for a trip abroad to visit their grandchild.</desc>
+     <category lang="en">Leisure</category>
+@@ -177,7 +177,7 @@
+       <value>6.5/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115171500 +0000" stop="20221115180000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203171500 +0000" stop="20221203180000 +0000">
+     <title lang="en">Pointless</title>
+     <desc lang="en">Contestants try to score the fewest points possible by giving the least obvious correct answers to questions. Presented by Alexander Armstrong, with Richard Osman.</desc>
+     <category lang="en">General</category>
+@@ -190,7 +190,7 @@
+     </star-rating>
+     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/pointless.jpg</image>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115180000 +0000" stop="20221115183000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203180000 +0000" stop="20221203183000 +0000">
+     <title lang="en">ATV News at Six; Weather</title>
+     <sub-title lang="en">08/11/2022</sub-title>
+     <desc lang="en">The latest headlines.</desc>
+@@ -199,7 +199,7 @@
+     <url>https://www.bla.blady.bla/detail/4864173/78479627/bbc-news-at-six-weather</url>
+     <subtitles type="teletext"/>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115183000 +0000" stop="20221115190000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203183000 +0000" stop="20221203190000 +0000">
+     <title lang="en">ATV News; Weather</title>
+     <sub-title lang="en">08/11/2022 - Evening</sub-title>
+     <category lang="en">News</category>
+@@ -210,7 +210,7 @@
+       <value>6.4/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115190000 +0000" stop="20221115193000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203190000 +0000" stop="20221203193000 +0000">
+     <title lang="en">The One Show</title>
+     <sub-title lang="en">08/11/2022</sub-title>
+     <desc lang="en">Alex Jones and Rylan present another mix of nationwide reports and live studio-based chat.</desc>
+@@ -224,7 +224,7 @@
+     </star-rating>
+     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/The-One-Show.jpg</image>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115193000 +0000" stop="20221115200000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203193000 +0000" stop="20221203200000 +0000">
+     <title lang="en">EastEnders</title>
+     <sub-title lang="en">08/11/2022</sub-title>
+     <desc lang="en">The highs and lows of life with the residents of Albert Square, Walford.</desc>
+@@ -236,7 +236,7 @@
+     </star-rating>
+     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/eastenders.jpg</image>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115200000 +0000" stop="20221115210000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203200000 +0000" stop="20221203210000 +0000">
+     <title lang="en">Trawlermen: Hunting the Catch</title>
+     <sub-title lang="en">(New Series)</sub-title>
+     <desc lang="en">Storm Arwen hits the UK and the skippers have tough decisions to make. Boats start to roll in the North Sea, putting Victory Rose and Our Lass at risk of collision. Skipper Darren has just three days of crabbing time before the storm pushes the boat back to the harbour and George Jack considers venturing in to the storm in search of a new species of prawn.</desc>
+@@ -250,7 +250,7 @@
+     </star-rating>
+     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/trawlermen.jpg</image>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115210000 +0000" stop="20221115220000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203210000 +0000" stop="20221203220000 +0000">
+     <title lang="en">Mariupol: The People's Story</title>
+     <desc lang="en">Before the war in Ukraine, Mariupol was a thriving city, home to 430,000 people. In a little under three months, most of its citizens had fled Putin's army and thousands had been killed. This Panorama special, filmed and told by residents, is the story of their loss, bravery, determination, and incredible daring in making their escape. They were among those who sought refuge in the Mariupol Theatre, only for it to be bombed, the maternity hospital which was also hit and the Azovstal Steelworks, where hundreds hid in bunkers and Ukrainian forces made their last stand.</desc>
+     <category lang="en">News</category>
+@@ -261,7 +261,7 @@
+       <value>10/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115220000 +0000" stop="20221115223000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203220000 +0000" stop="20221203223000 +0000">
+     <title lang="en">ATV News at Ten</title>
+     <sub-title lang="en">08/11/2022</sub-title>
+     <desc lang="en">A round-up of today's headlines.</desc>
+@@ -273,7 +273,7 @@
+       <value>8.3/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115223000 +0000" stop="20221115224000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203223000 +0000" stop="20221203224000 +0000">
+     <title lang="en">ATV News; Weather</title>
+     <sub-title lang="en">08/11/2022 - Late</sub-title>
+     <category lang="en">News</category>
+@@ -284,7 +284,7 @@
+       <value>6.4/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115224000 +0000" stop="20221115233500 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203224000 +0000" stop="20221203233500 +0000">
+     <title lang="en">Industry</title>
+     <sub-title lang="en">Lone Wolf and Cub</sub-title>
+     <desc lang="en">Harper, Eric and Rishi form a cabal in a plan to jump banks before Pierpoint find out they have gone rogue. Venetia crashes a client dinner between Robert and Nicole which has serious consequences. Yasmin questions how her own actions mirror her father's and wonders if she can finally be honest with Celeste.</desc>
+@@ -296,7 +296,7 @@
+       <value>8.3/10</value>
+     </star-rating>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221115233500 +0000" stop="20221116003500 +0000">
++  <programme channel="XMLTVTestChannel" start="20221203233500 +0000" stop="20221116003500 +0000">
+     <title lang="en">Industry</title>
+     <sub-title lang="en">Jerusalem</sub-title>
+     <desc lang="en">Harper inadvertently reveals information that leads to massive consequences. Yasmin finally confronts her father and exercises her boundaries with Celeste but fears what she stands to lose in the process. Robert's moral compass is put to the test when his biggest success comes through Nicole and he faces the law.</desc>
+@@ -2124,7 +2124,7 @@
+     </star-rating>
+     <image system="tvguide" type="backdrop">https://cdn.bla.blady.bla/HighlightImages/Large/imagine.jpg</image>
+   </programme>
+-  <programme channel="XMLTVTestChannel" start="20221114234000 +0000" stop="20221115034000 +0000">
++  <programme channel="XMLTVTestChannel" start="20221114234000 +0000" stop="20221203034000 +0000">
+     <title lang="en">The English</title>
+     <sub-title lang="en">What You Want &amp; What You Need</sub-title>
+     <desc lang="en">Released from long-term army service in 1890 Oklahoma, Pawnee scout Eli Whipp is intent on returning north to his ancestral homelands in Nebraska to stake a legal land claim. Incarcerated in violent circumstances, Eli meets Lady Cornelia Locke, an Englishwoman who is also looking to travel north with the sole intent of taking revenge against the man she believes is responsible for the death of her child. Drama, starring Emily Blunt and Chaske Spencer.</desc>

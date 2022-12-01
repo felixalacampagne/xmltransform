@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import com.scu.xmltv.EpisodeNumber;
+import com.scu.xmltv.EpisodeShow;
 import com.scu.xmltv.EpisodeTitle;
 import com.scu.xmltv.XSLTExtensions;
 
@@ -109,9 +110,28 @@ class NodeUtilsTest
    }
 
    @Test
+   void filmTitles()
+   {
+      String recname = null;
+      EpisodeShow es;
+
+      es = new EpisodeShow("Wonderful Movie", "20221224060000 +0000", "", "");
+      recname = es.getEventName();
+      assertEquals("Film 22-12-24 1x0197 Wonderful Movie", recname);
+
+      es = new EpisodeShow("What A Wonderful Year", "20230610090000 +0000", null, "");
+      recname = es.getEventName();
+      assertEquals("Film 23-06-10 1x0365 What A Wonderful Year", recname);
+
+
+      es = new EpisodeShow("A Decade In The Life", "20320610090000 +0000", "", null);
+      recname = es.getEventName();
+      assertEquals("Film 32-06-10 1x3653 A Decade In The Life", recname);
+   }
+
+   @Test
    void xsltExtensionsTest()
    {
-      // Should really go in it own class...
       String json;
       json = XSLTExtensions.getEpisodeInfoAsJson("Show Name", "20221115060000 +0000", " 1. 15/99 . ", "Episode Title");
       System.out.println("JSON=" + json);
@@ -119,7 +139,7 @@ class NodeUtilsTest
 
       json = XSLTExtensions.getEpisodeInfoAsJson("Star Wars", "20221115060000 +0000", "", "");
       System.out.println("JSON=" + json);
-      assertEquals("{\"show\":\"Star Wars\",\"season\":\"\",\"number\":\"\",\"title\":\"\",\"uid\":\"607cf407c1ec1582849e374324e76d48\",\"aired\":\"\",\"recname\":\"Star Wars\"}", json);
+      assertEquals("{\"show\":\"Star Wars\",\"season\":\"\",\"number\":\"\",\"title\":\"\",\"uid\":\"f1d32adeacbf1870b876db01db65ea64\",\"aired\":\"22-11-15\",\"recname\":\"Film 22-11-15 1x0158 Star Wars\"}", json);
 
    }
 }

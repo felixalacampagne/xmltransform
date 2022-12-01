@@ -1,11 +1,9 @@
 package com.scu.utils;
 
 import java.io.Closeable;
-import java.io.File;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
 
 public class Utils
 {
@@ -25,9 +23,9 @@ public class Utils
       } catch (Exception e)
       {
          e.printStackTrace();
-      }      
+      }
    }
-	
+
    public static void safeClose(Object t)
    {
       if(t == null)
@@ -56,13 +54,13 @@ public class Utils
                cls.invoke(t);
             }
          }
-      } 
+      }
       catch (Exception e)
       {
          /* Whole point is to be able to ignore these exceptions */
-      }      
-   }	
-	
+      }
+   }
+
    public static String getTimestampFN()
    {
       return getTimestampFN(new Date());
@@ -75,12 +73,12 @@ public class Utils
    public static String getTimestampFN(Date date)
    {
    SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmm");
-      
+
       return sdf.format(date);
    }
-   
+
    /**
-    * Convert string to Integer. Uses the first digits up to 
+    * Convert string to Integer. Uses the first digits up to
     * the first non-digit (unlike valueOf, which throws an exception if there
     * are any non-digits in the string)
     * @param str
@@ -101,23 +99,27 @@ public class Utils
       return i;
    }
 
-  
+
 	public static String safeString(String s)
 	{
 		return (s==null) ? "" : s;
 	}
 
+	public static boolean safeIsEmpty(String s)
+	{
+	   return safeString(s).isEmpty();
+	}
 	/**
-	 * Return null for a null or empty string. 
-	 * 
+	 * Return null for a null or empty string.
+	 *
 	 * Used to avoid writing an empty tag
-	 * 
+	 *
 	 * @param val
 	 * @return
 	 */
 	public static String getValueOrNull(String val)
 	{
-		return ((val == null) || (val.isEmpty())) ? null : val; 
+		return ((val == null) || (val.isEmpty())) ? null : val;
 	}
 
 	public static int safeValueOf(String s)

@@ -18,31 +18,31 @@ public class EpisodeNumber
 
    public EpisodeNumber(String episodenum)
    {
-   	parseEpisodeNumber(episodenum);
+      parseEpisodeNumber(episodenum);
    }
 
    public String getEpseason()
-	{
-		return epseason;
-	}
+   {
+      return epseason;
+   }
 
-	public String getEpnum()
-	{
-		return epnum;
-	}
+   public String getEpnum()
+   {
+      return epnum;
+   }
 
-	public String getEpinfx()
-	{
-		return epinfx;
-	}
+   public String getEpinfx()
+   {
+      return epinfx;
+   }
 
-	protected void parseEpisodeNumber(String episodenum)
+   protected void parseEpisodeNumber(String episodenum)
    {
       NodeUtils nu = NodeUtils.getNodeUtils();
       int iepnum = -1;
       int iepseason = -1;
 
-   	if(!((episodenum==null) || episodenum.isEmpty()))
+      if(!((episodenum==null) || episodenum.isEmpty()))
       {
          String [] parts = episodenum.split("[\\./]");
 

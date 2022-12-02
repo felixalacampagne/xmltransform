@@ -19,7 +19,7 @@ public class EpisodeTitle extends EpisodeNumber
 
    public EpisodeTitle(String episodenum, String subtitle, String separator)
    {
-   	super(episodenum);
+      super(episodenum);
       NodeUtils nu = NodeUtils.getNodeUtils();
 
       eptitle = nu.sanitizeTitle(subtitle);

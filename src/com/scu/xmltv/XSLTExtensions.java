@@ -55,10 +55,10 @@ static ObjectMapper mapper = new ObjectMapper();
     * @param favs
     * @return
     */
-	public static boolean isMatch(String value, NodeList regexps)
-	{
-		return isMatch(value, regexps, true);
-	}
+   public static boolean isMatch(String value, NodeList regexps)
+   {
+      return isMatch(value, regexps, true);
+   }
 
    public static boolean isMatch(String value, NodeList regexps, boolean igncase)
    {
@@ -116,7 +116,7 @@ static ObjectMapper mapper = new ObjectMapper();
 
             if(isMatch(value, crit, igncase))
             {
-            	return true;
+               return true;
             }
          }
       }
@@ -129,16 +129,16 @@ static ObjectMapper mapper = new ObjectMapper();
 
    public static boolean isMatch(String value, String regexp)
    {
-   	return isMatch(value, regexp, true);
+      return isMatch(value, regexp, true);
    }
 
    public static boolean isMatch(String value, String regexp, boolean igncase)
    {
-   	Matcher match = null;
-   	int flags = 0;
+      Matcher match = null;
+      int flags = 0;
       if(igncase)
       {
-      	flags = Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE;
+         flags = Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE;
       }
       if(regexp != null)
       {
@@ -781,8 +781,8 @@ static ObjectMapper mapper = new ObjectMapper();
 
    public static String getFullEpisodetitle(String episodenum, String subtitle, String separator)
    {
-   	EpisodeTitle ei = new EpisodeTitle(episodenum, subtitle, separator);
-		return ei.getEpfulltitle();
+      EpisodeTitle ei = new EpisodeTitle(episodenum, subtitle, separator);
+      return ei.getEpfulltitle();
    }
 
    /**
@@ -795,44 +795,44 @@ static ObjectMapper mapper = new ObjectMapper();
     */
    public static String getEventName(String episodenum, String subtitle, String show, String start)
    {
-   	EpisodeShow eps = new EpisodeShow(show, start, episodenum, subtitle);
-   	return eps.getEventName();
+      EpisodeShow eps = new EpisodeShow(show, start, episodenum, subtitle);
+      return eps.getEventName();
    }
 
    public static String getEpisodeSxN(String episodenum)
    {
-   	EpisodeNumber ei = new EpisodeNumber(episodenum);
+      EpisodeNumber ei = new EpisodeNumber(episodenum);
       return ei.getEpinfx();
    }
 
    public static String dumpNode(Node node)
    {
-   	String result = "";
-   	result = dumpNode(node, "");
-   	LOG.info("\n" + result.toString());
-   	return result;
+      String result = "";
+      result = dumpNode(node, "");
+      LOG.info("\n" + result.toString());
+      return result;
    }
 
    public static String dumpNode(Node node, String indent)
    {
-   	StringBuffer result = new StringBuffer();
+      StringBuffer result = new StringBuffer();
 
-   	result.append(indent).append(node.getNodeName());
-   	if(node.hasChildNodes())
-   	{
-   		result.append("  Children: "). append(node.getChildNodes().getLength()).append("\n");
-   	}
-   	else
-   	{
-   		result.append("  Value: ").append(node.getNodeValue()).append("\n");
-   	}
-   	for(int childno=0 ; childno <node.getChildNodes().getLength(); childno++)
-   	{
-   		Node child = node.getChildNodes().item(childno);
-   		result.append( dumpNode(child, indent + "   ") );
-   	}
+      result.append(indent).append(node.getNodeName());
+      if(node.hasChildNodes())
+      {
+         result.append("  Children: "). append(node.getChildNodes().getLength()).append("\n");
+      }
+      else
+      {
+         result.append("  Value: ").append(node.getNodeValue()).append("\n");
+      }
+      for(int childno=0 ; childno <node.getChildNodes().getLength(); childno++)
+      {
+         Node child = node.getChildNodes().item(childno);
+         result.append( dumpNode(child, indent + "   ") );
+      }
 
-   	return result.toString();
+      return result.toString();
    }
 
 

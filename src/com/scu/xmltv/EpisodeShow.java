@@ -24,9 +24,9 @@ String eventName = "";
 
 String uid = "";
 
-	public EpisodeShow(String show, String start, String episodenum, String subtitle)
-	{
-		super(episodenum, subtitle);
+   public EpisodeShow(String show, String start, String episodenum, String subtitle)
+   {
+      super(episodenum, subtitle);
 
       NodeUtils nu = NodeUtils.getNodeUtils();
       Date date = XSLTExtensions.getDateFromXmltv(start);
@@ -56,29 +56,29 @@ String uid = "";
       boolean film = (Utils.safeIsEmpty(episodenum) && Utils.safeIsEmpty(subtitle));
       if(!getEpfulltitle().isEmpty())
       {
-      	eventName = String.format("%s %s %s", cleanshow, showDate, getEpfulltitle());
+         eventName = String.format("%s %s %s", cleanshow, showDate, getEpfulltitle());
       }
       else if(film)
       {
          eventName = String.format("Film %s 1x%s %s", showDate, getFilmNumber(date), cleanshow);
       }
       uid = nu.calcDigest(eventName);
-	}
+   }
 
-	public String getShowDate()
-	{
-		return showDate;
-	}
+   public String getShowDate()
+   {
+      return showDate;
+   }
 
-	public String getEventName()
-	{
-		return eventName;
-	}
+   public String getEventName()
+   {
+      return eventName;
+   }
 
-	public String getCleanshow()
-	{
-		return cleanshow;
-	}
+   public String getCleanshow()
+   {
+      return cleanshow;
+   }
 
    public String getUid()
    {

@@ -47,7 +47,7 @@ Document doc2 = null;
       xmlt.clearParameters();
       xmlt.addParameter("DOC_2", doc2);
 
-      System.out.println("Applying matching transform."); 
+      System.out.println("Applying matching transform.");
       xmlt.transformXML(mdoc1, mxslt, mout);
 
    }
@@ -58,8 +58,8 @@ Document doc2 = null;
    catch(Error er)
    {
       er.printStackTrace();
-   } 
-   
+   }
+
 
 
    return result;
@@ -84,14 +84,14 @@ public static void main(String[] args)
          if(ARG_DOC1FILE.compareTo(keys[i]) == 0)
             doc1file = val;
          else if(ARG_DOC2FILE.compareTo(keys[i]) == 0)
-            doc2file = val;            
+            doc2file = val;
          else if(ARG_XSLTFILE.compareTo(keys[i]) == 0)
             xsltfile = val;
          else if(ARG_OUTDIR.compareTo(keys[i]) == 0)
             outfile = val;
       }
 
-      
+
       if((doc1file==null) || (doc2file==null) || (xsltfile==null) || (outfile==null))
       {
          System.out.println("Usage: DocMatcher " + ARG_DOC1FILE + "=<DOC1 XMLfile> "
@@ -103,6 +103,6 @@ public static void main(String[] args)
 
       DocMatcher dm = new DocMatcher(doc1file, doc2file, xsltfile);
       dm.setOutputfile(outfile);
-   
+
 }
 }

@@ -87,7 +87,7 @@ FileOutputStream fos=null;
         }
 
         outfile.getParentFile().mkdirs();
-        
+
        fos = new FileOutputStream(outfile);
        if(encoding == null)
           fos.write(aToWriteS.getBytes());
@@ -118,7 +118,7 @@ byte [] bytea=null;
     {
        if(fname == null)
           return null;
-       
+
         datfile = new File(fname);
         if(! datfile.exists())
         {

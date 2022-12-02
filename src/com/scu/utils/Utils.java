@@ -8,10 +8,10 @@ import java.util.Date;
 public class Utils
 {
 
-	public Utils()
-	{
-		// TODO Auto-generated constructor stub
-	}
+   public Utils()
+   {
+      // TODO Auto-generated constructor stub
+   }
 
    public static void safeClose(AutoCloseable t)
    {
@@ -89,7 +89,7 @@ public class Utils
    Integer i = null;
       try
       {
-      	str = str.replaceFirst("[^0-9].*$", "");
+         str = str.replaceFirst("[^0-9].*$", "");
          i = Integer.valueOf(str);
       }
       catch(Exception ex)
@@ -100,40 +100,40 @@ public class Utils
    }
 
 
-	public static String safeString(String s)
-	{
-		return (s==null) ? "" : s;
-	}
+   public static String safeString(String s)
+   {
+      return (s==null) ? "" : s;
+   }
 
-	public static boolean safeIsEmpty(String s)
-	{
-	   return safeString(s).isEmpty();
-	}
-	/**
-	 * Return null for a null or empty string.
-	 *
-	 * Used to avoid writing an empty tag
-	 *
-	 * @param val
-	 * @return
-	 */
-	public static String getValueOrNull(String val)
-	{
-		return ((val == null) || (val.isEmpty())) ? null : val;
-	}
+   public static boolean safeIsEmpty(String s)
+   {
+      return safeString(s).isEmpty();
+   }
+   /**
+    * Return null for a null or empty string.
+    *
+    * Used to avoid writing an empty tag
+    *
+    * @param val
+    * @return
+    */
+   public static String getValueOrNull(String val)
+   {
+      return ((val == null) || (val.isEmpty())) ? null : val;
+   }
 
-	public static int safeValueOf(String s)
-	{
-	int i = 0;
-		try
-		{
-			i = Integer.valueOf(s);
-		}
-		catch(Exception ex)
-		{
-			// Ignore exceptions
-		}
-		return i;
-	}
+   public static int safeValueOf(String s)
+   {
+   int i = 0;
+      try
+      {
+         i = Integer.valueOf(s);
+      }
+      catch(Exception ex)
+      {
+         // Ignore exceptions
+      }
+      return i;
+   }
 
 }

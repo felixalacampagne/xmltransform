@@ -37,7 +37,7 @@ private final static NodeUtils singleton = new NodeUtils();
 
 public static NodeUtils getNodeUtils()
 {
-	return singleton;
+   return singleton;
 }
 
 private NodeUtils()
@@ -156,7 +156,7 @@ String anodevalue = null;
          return anodevalue;
    try
    {
-   	anodevalue = nl.item(0).getNodeValue();
+      anodevalue = nl.item(0).getNodeValue();
    }
    catch (Exception ex)
    {
@@ -176,7 +176,7 @@ NodeList nl = null;
    }
    catch(Exception ex)
    {
-   	log.log(Level.WARNING, "getNodesByPath: Error getting " + xpath, ex);
+      log.log(Level.WARNING, "getNodesByPath: Error getting " + xpath, ex);
    }
    return nl;
 }
@@ -206,12 +206,12 @@ String strRet = null;
 
 public void outputNode( Node n, File f) throws Exception
 {
-	// The output mechanism appears to be responsible for the actual character encoding
-	// so FileWriter is no good as it assumes the default encoding (which is not UTF8)
-	FileOutputStream fos = new FileOutputStream(f);
-	Writer w = new OutputStreamWriter(fos, XML_DEFAULT_ENCODING);
-	outputNode(n, w);
-	fos.close();
+   // The output mechanism appears to be responsible for the actual character encoding
+   // so FileWriter is no good as it assumes the default encoding (which is not UTF8)
+   FileOutputStream fos = new FileOutputStream(f);
+   Writer w = new OutputStreamWriter(fos, XML_DEFAULT_ENCODING);
+   outputNode(n, w);
+   fos.close();
 }
 
 public void outputNode( Node n, Writer w) throws Exception
@@ -251,7 +251,7 @@ Node n = null;
    nl = XPathAPI.selectNodeList(doc, xpath);
    if((nl != null) && (nl.getLength() > 0))
    {
-   	n = nl.item(0);
+      n = nl.item(0);
    }
    return n;
 }
@@ -261,11 +261,11 @@ public String getAttributeValue(Node n, String attrname)
 NamedNodeMap attrs = n.getAttributes();
 Node attr = attrs.getNamedItem(attrname);
 String value = null;
-	if(attr != null)
-	{
-		value = attr.getNodeValue();
-	}
-	return value;
+   if(attr != null)
+   {
+      value = attr.getNodeValue();
+   }
+   return value;
 }
 
 // Methods below are not really Node utilities but are specific to
@@ -278,19 +278,19 @@ String value = null;
 // real value
 public int stringToInt(String str)
 {
-	int result = -9999;
-	try
-	{
-		if(str != null)
-		{
-			result = Integer.parseInt(str.trim());
-		}
-	}
-	catch(Exception ex)
-	{
-		// its a 'safe' method, ignore all exceptions
-	}
-	return result;
+   int result = -9999;
+   try
+   {
+      if(str != null)
+      {
+         result = Integer.parseInt(str.trim());
+      }
+   }
+   catch(Exception ex)
+   {
+      // its a 'safe' method, ignore all exceptions
+   }
+   return result;
 }
 
 public String bytesToHex(byte[] bs)
@@ -302,38 +302,38 @@ public String bytesToHex(byte[] bs)
    StringBuffer sb = new StringBuffer();
    for (byte b : bs)
    {
-   	sb.append(String.format("%02x", b & 0xff));
+      sb.append(String.format("%02x", b & 0xff));
    }
    return sb.toString();
 }
 
 public String calcDigest(String value)
 {
-	String digest="";
-	MessageDigest md;
-	try
-	{
-		md = MessageDigest.getInstance("MD5");
-		md.reset();
-		byte[] mdbytes = md.digest(value.getBytes("UTF-8"));
-		digest = bytesToHex(mdbytes);
-	}
-	catch (Exception e)
-	{
-		e.printStackTrace();
-	}
-	return digest;
+   String digest="";
+   MessageDigest md;
+   try
+   {
+      md = MessageDigest.getInstance("MD5");
+      md.reset();
+      byte[] mdbytes = md.digest(value.getBytes("UTF-8"));
+      digest = bytesToHex(mdbytes);
+   }
+   catch (Exception e)
+   {
+      e.printStackTrace();
+   }
+   return digest;
 }
 
 public String sanitizeTitle(String title)
 {
 String clean = "";
 
-	if(title != null)
-	{
-		clean = title.replace("(New Series)", "").replace("&", " And ").replaceAll("[\"'?/\\*&:;!$%<>,.|@]", "");;
-	}
-	return clean;
+   if(title != null)
+   {
+      clean = title.replace("(New Series)", "").replace("&", " And ").replaceAll("[\"'?/\\*&:;!$%<>,.|@]", "");;
+   }
+   return clean;
 }
 
 }

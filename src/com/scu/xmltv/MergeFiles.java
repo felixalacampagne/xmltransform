@@ -47,7 +47,7 @@ Document doc = null;
 int chns = 0;
 int progs = 0;
 int tve = 0;
-  
+
    for(int i = 0; i < mFiles.size(); i++)
    {
       try
@@ -63,7 +63,7 @@ int tve = 0;
             sbchans.append(inxmltv.substring(chns, progs));
             sbprogs.append(inxmltv.substring(progs, tve));
          }
-         else 
+         else
          {
             System.err.println("merge: File is zero length (or missing): " + mergeFile.getAbsolutePath());
          }
@@ -90,8 +90,8 @@ int tve = 0;
    {
       ex.printStackTrace();
    }
-   
-   
+
+
 }
 
 public static void main(String[] args)
@@ -104,9 +104,9 @@ public static void main(String[] args)
       cmd.parseArgs(args);
       keys = cmd.getArgNames();
       outfile = cmd.getArg(ARG_OUTFILE);
-      
+
    MergeFiles mf = new MergeFiles(outfile);
-   
+
    for(int i = 0; i < keys.length; i++)
    {
       if(!ARG_OUTFILE.equals(keys[i]))

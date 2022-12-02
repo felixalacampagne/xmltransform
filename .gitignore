@@ -7,7 +7,7 @@ lib
 *.zip
 xmltv*.*
 /target/
-/target-test/
+/target_test/
 tvguide/**
 !tvguide/tvguide.xsl
 !tvguide/bin

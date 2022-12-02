@@ -78,15 +78,15 @@ Properties mArgs = new Properties();
 
    public boolean getFlag(String argname, boolean defvalue)
    {
-		String tmp = getArg(argname);
-		boolean flag = defvalue;
-		if(tmp!=null)
-		{
-			flag = true;
-		}   	
-		return flag;
+      String tmp = getArg(argname);
+      boolean flag = defvalue;
+      if(tmp!=null)
+      {
+         flag = true;
+      }
+      return flag;
    }
-   
+
    public void setArg(String argname, String value)
    {
       try

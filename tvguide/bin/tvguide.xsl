@@ -1081,7 +1081,7 @@ version="1.0">
 
 <xsl:template name="addDBlink">
 <xsl:param name="href"/>
-<xsl:param name="nfoid" />
+<xsl:param name="nfoid" select="''" />
 <xsl:if test="normalize-space($href)">
 <xsl:element name="A">
 <xsl:attribute name="CLASS">dbx</xsl:attribute>
@@ -1095,7 +1095,7 @@ version="1.0">
 
 <xsl:template name="addVUlink">
 <xsl:param name="href"/>
-<xsl:param name="nfoid" />
+<xsl:param name="nfoid" select="''" />
 <xsl:if test="normalize-space($href)">
 <xsl:element name="A">
 <xsl:attribute name="CLASS">dbx</xsl:attribute>

@@ -669,7 +669,6 @@ static ObjectMapper mapper = new ObjectMapper();
 
    public static Node getEpisodeInfo(Node any, String show, String start, String episodenum, String subtitle)
    {
-      NodeUtils nu = NodeUtils.getNodeUtils();
       Document doc = any.getOwnerDocument();
       DocumentFragment topNode = any.getOwnerDocument().createDocumentFragment();
       EpisodeShow ei = new EpisodeShow(show, start, episodenum, subtitle);

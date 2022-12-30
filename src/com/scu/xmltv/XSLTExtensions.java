@@ -272,6 +272,27 @@ static ObjectMapper mapper = new ObjectMapper();
 
    }
 
+   public static String getUnixDate(String xmltvdatetime)
+   {
+   String rs = "";
+   SimpleDateFormat sdf = new SimpleDateFormat();
+   Date dt = null;
+      try
+      {
+         sdf.applyPattern(getXMLTVDateFormat(xmltvdatetime));
+         dt = sdf.parse(xmltvdatetime);
+         // A Date is the number of seconds since the 'epoch' with no timezone offsets applied, ie. UTC/GMT.
+         // This is the Unix way of representing a datetime. Will use this to try and avoid timezone
+         // issues when setting programmes from a device using a different timezone to the set-top box, eg.
+         // when using iPhone in UK and STB in Be.
+         rs = "" + dt.getTime(); 
+      }
+      catch(Exception ex) {}
+
+      return rs;
+   }
+
+   
    /**
     * SimpleDateFormat is too stupid to realise that not all of a date has been passed in,
     * ie 20060728 instead of 20060728000000 +0000.

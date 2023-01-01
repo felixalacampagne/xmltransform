@@ -1046,6 +1046,7 @@ version="1.0">
 <xsl:text>&amp;emin=</xsl:text><xsl:value-of select="scu:formatDate($oend, 'mm')" />
 <xsl:text>&amp;sunx=</xsl:text><xsl:value-of select="scu:getUnixDate($ostart)" />
 <xsl:text>&amp;eunx=</xsl:text><xsl:value-of select="scu:getUnixDate($oend)" />
+<xsl:text>&amp;ctzo=</xsl:text><xsl:value-of select="scu:getTimeZoneOffset()" />
 <xsl:text>&amp;sref=</xsl:text><xsl:value-of select="scu:urlencode($pref)" />
 <xsl:text>&amp;name=</xsl:text><xsl:value-of select="scu:urlencode($event)" />
 <xsl:if test="$epnum != ''">

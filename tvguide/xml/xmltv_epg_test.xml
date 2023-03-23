@@ -1,0 +1,1035 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv generator-info-name="scu-owiepg-grabber)" generator-info-url="https://localhost">
+<channel id="XTVGRABPYvitaya"><display-name lang="nl">VTM 3</display-name></channel>
+<channel id="XTVGRABPYvtm"><display-name lang="nl">VTM HD</display-name></channel>
+<channel id="XTVGRABPY2be"><display-name lang="nl">VTM 2 HD</display-name></channel>
+<channel id="XTVGRABPYned3"><display-name lang="nl">NPO3 HD</display-name></channel>
+<channel id="XTVGRABPYned2"><display-name lang="nl">NPO2 HD</display-name></channel>
+<channel id="XTVGRABPYned1"><display-name lang="nl">NPO1 HD</display-name></channel>
+<channel id="XTVGRABPYvijftv"><display-name lang="nl">Play5</display-name></channel>
+<channel id="XTVGRABPYacht"><display-name lang="nl">VTM 4</display-name></channel>
+<channel id="XTVGRABPYeen"><display-name lang="nl">een HD</display-name></channel>
+<channel id="XTVGRABPYvt4"><display-name lang="nl">Play4</display-name></channel>
+<channel id="XTVGRABPYcanvas"><display-name lang="nl">Canvas HD</display-name></channel>
+<programme start="20230323110700 +0100" stop="20230323115800 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">Sign O' the Times</sub-title>
+   <desc lang="nl"> Maggie probeert een patiënt te behandelen die gewond is geraakt tijdens de protesten. Ondertussen wordt Levi getest door een noodgeval en hebben de artsen moeite met een patiënt die niet in COVID gelooft.Amerikaanse ziekenhuisserie Maggie is in beslag genomen door Winston terwijl ze probeert een patiënt te behandelen die gewond is geraakt tijdens de protesten. Ondertussen wordt Levi getest door een noodgeval en hebben de artsen moeite met een patiënt die niet in COVID gelooft. Regisseur: Michael Medico. Acteurs: Ellen Pompeo (Dr. Meredith Grey), James Pickens Jr. (Dr. Richard Webber), Chandra Wilson (Dr. Miranda Bailey), Kelly McCreary (Dr. Maggie Pierce), Anthony Hill (Dr. Winston Ndugu) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 11/99 . </episode-num>
+</programme>
+<programme start="20230323115800 +0100" stop="20230323130200 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230323130200 +0100" stop="20230323135700 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Katy Keene</title>
+   <sub-title lang="nl">Chapter Four: Here Comes the Sun</sub-title>
+   <desc lang="nl"> Katy besluit al haar energie in haar werk te steken om haar persoonlijke leven te vermijden, maar op haar werk bevindt ze zich weer in het hete water.Modeontwerper Katy Keene, Broadway-acteur Jorge, model Pepper en muzikante Josie. De vier creatieve twintigers willen carrière maken in New York City. Ze moeten leren omgaan met de struggles die gepaard gaan met de weg naar succes. Modeontwerper Katy Keene, Broadway-acteur Jorge, model Pepper en muzikante Josie. De vier creatieve twintigers willen carrière maken in New York City. Ze moeten leren omgaan met de struggles die gepaard gaan met de weg naar succes. 12+ Regisseur: Pamela Romanowsky. Acteurs: Lucy Hale (Katy Keene), Ashleigh Murray (Josie McCoy), Katherine LaNasa (Gloria Grandbilt), Julia Chan (Pepper Smith), Jonny Beauchamp (Jorge Lopez) (2020)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 3/99 . </episode-num>
+</programme>
+<programme start="20230323135700 +0100" stop="20230323145300 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">Clear &amp;amp; Present Danger</sub-title>
+   <desc lang="nl"> Amerikaanse dramaserie over de schrijver Richard Castle, die de politie van New York helpt bij het oplossen van moordzaken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 2/99 . </episode-num>
+</programme>
+<programme start="20230323145300 +0100" stop="20230323152400 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Friends</title>
+   <sub-title lang="nl">The One With the Routine</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">5 . 9/99 . </episode-num>
+</programme>
+<programme start="20230323152400 +0100" stop="20230323155400 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Two and a Half Men</title>
+   <sub-title lang="nl">Repeated Blows to His Unformed Head</sub-title>
+   <desc lang="nl"> Berta wil wraak nemen op de man die haar dochter bezwangerde, Charlie helpt haar. In de tussentijd bevredigt Alan een geheime fetisch.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 6/99 . </episode-num>
+</programme>
+<programme start="20230323155400 +0100" stop="20230323165000 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">Hubris</sub-title>
+   <desc lang="nl"> Een professor geeft nieuwe informatie over een zaak uit 1995, omdat hij zijn naam wil zuiveren. Rush heropent de zaak van de moord op een studente.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 10/99 . </episode-num>
+</programme>
+<programme start="20230323165000 +0100" stop="20230323174300 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">Good As Hell</sub-title>
+   <desc lang="nl"> Amerikaanse ziekenhuisserie Meredith vecht nog steeds voor haar leven in het ziekenhuis. In haar droom ziet ze haar overleden man Derek Shepherd - McDreamy- terug. Zal Meredith terug wakker worden?Omdat er meer chirurgen nodig zijn, probeert Jo Bailey ervan te overtuigen haar van specialiteit te laten wisselen. Elders vindt Link dat Amelia zich te veel bemoeit als hij een patiënt op afstand behandelt en Winston heeft een creatief idee. Regisseur: Michael W. Watkins. Acteurs: Ellen Pompeo (Dr. Meredith Grey), Chandra Wilson (Dr. Miranda Bailey), James Pickens Jr. (Dr. Richard Webber), Kevin McKidd (Dr. Owen Hunt), Jesse Williams (Dr. Jackson Avery) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 12/99 . </episode-num>
+</programme>
+<programme start="20230323174300 +0100" stop="20230323183800 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">Child's Play</sub-title>
+   <desc lang="nl"> Amerikaanse dramaserie over de schrijver Richard Castle, die de politie van New York helpt bij het oplossen van moordzaken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 3/99 . </episode-num>
+</programme>
+<programme start="20230323183800 +0100" stop="20230323193700 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">100</sub-title>
+   <desc lang="nl"> Het team probeert onder hoge tijdsdruk de verkrachter Charles Foyet te pakken te krijgen. Maar wederom is &quot;De Reaper&quot; het team een stap vooruit.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 8/99 . </episode-num>
+</programme>
+<programme start="20230323193700 +0100" stop="20230323203500 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Parts in the Sum of the Whole</sub-title>
+   <desc lang="nl"> Dr. Temperence Brennan, een forensisch antropoloog, bezit de buitengewone vaardigheid om uit de botten van slachtoffers aanwijzingen te halen die kunnen helpen bij het oplossen van hun dood.Dr. Temperence Brennan, een forensisch antropoloog, bezit de buitengewone vaardigheid om uit de botten van slachtoffers aanwijzingen te halen die kunnen helpen bij het oplossen van hun dood. Regisseur: David Boreanaz. Acteurs: Emily Deschanel (Temperance Brennan), David Boreanaz (Seeley Booth), Michaela Conlin (Angela Montenegro), Eric Millegan (Zack Addy), T.J. Thyne (Jack Hodgins) (2010)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 15/99 . </episode-num>
+</programme>
+<programme start="20230323203500 +0100" stop="20230323230300 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">A Star Is Born</title>
+   <desc lang="nl">Countryzanger Jackson Maine ontdekt en wordt verliefd op de nog onbekende artiest Ally. Ze heeft haar droom zo goed als opgegeven, tot Jack haar aanmoedigt om haar plek in de spotlights op te eisen.In A Star Is Born ontdekt de aan wal geraakte country-ster Jackson Maine de onbekende, worstelende artiest Ally. Ze worden meteen verliefd. Ally heeft haar droom om het te maken in de muziek business zo goed als opgegeven, tot Jack haar aanmoedigt haar plek in de spotlights op te eisen. Wanneer dit lukt, begint hun liefdesrelatie echter scheurtjes te vertonen. Jack voert een innerlijke strijd en heeft moeite met het feit dat hij steeds meer in haar schaduw komt te staan. Regisseur: Bradley Cooper. Acteurs: Bradley Cooper (Jackson Maine), Lady Gaga (Ally), Sam Elliott (Bobby), Andrew Dice Clay (Lorenzo), Anthony Ramos (Ramon) (2018)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230323230300 +0100" stop="20230323235900 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Evil</title>
+   <sub-title lang="nl">Room 320</sub-title>
+   <desc lang="nl"> Wanneer David zwaargewond raakt, is hij vastberaden om de dreigende aanwezigheid van de dood weg te jagen vanuit zijn ziektebed. Kristen en Ben gaan ondertussen op zoek naar de dader.Een sceptische klinisch psychologe onderzoekt samen met een priester in opleiding en een aannemer zogenaamde wonderen en andere buitengewone gebeurtenissen. Ze probeert erachter te komen of dit wetenschappelijk te verklaren valt. Regisseur: Peter Sollett. Acteurs: Katja Herbers (Kristen Bouchard), Mike Colter (David Acosta), Aasif Mandvi (Ben Shakir), Kurt Fuller (Dr. Kurt Boggs), Megan Ketch (Judy James) (2020)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 10/99 . </episode-num>
+</programme>
+<programme start="20230323235900 +0100" stop="20230324003400 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Friends</title>
+   <sub-title lang="nl">The One with the Apothecary Table</sub-title>
+   <desc lang="nl"> Amerikaanse televisieserie Janine dwingt Joey tot een keuze tussen haar en zijn vrienden. Rachel koopt een apothekerstafel uit een winkel waar Phoebe een gruwelijke hekel aan heeft.Monica, Rachel, Chandler, Joey, Phoebe en Ross zijn beste vrienden die wonen in de metropool New York City. Hun leven is niet altijd even gemakkelijk. Werk en relaties (of het gebrek eraan) brengen natuurlijk zorgen met zich mee. Gelukkig steunen de zes vrienden elkaar door dik en dun, en dat gebeurt meestal op een bijzonder grappige manier... Na de eerste kus van Janine, loopt Joey op wolkjes. Nu ze een koppel zijn, besluiten ze om samen met Chandler en Monica uit te gaan. Janine vindt hen echter maar niets en vertelt Joey dat het beter is om hen links te laten liggen. Joey wordt verscheurd door tegenstrijdige gevoelens. Intussen heeft Rachel ontdekt dat Phoebe authentieke meubelstukken verkiest boven massaproductie. Om mogelijke conflicten uit de weg te gaan, verzint Rachel een verhaaltje over de spullen die ze meebrengt... Regisseur: Kevin Bright. Acteurs: Jennifer Aniston (Rachel Green), Courteney Cox (Monica Geller), Lisa Kudrow (Phoebe Buffay), Matt LeBlanc (Joey Tribbiani), Matthew Perry (Chandler Bing) (2000)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">5 . 10/99 . </episode-num>
+</programme>
+<programme start="20230324003400 +0100" stop="20230324010900 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Two and a Half Men</title>
+   <sub-title lang="nl">Release the Dogs</sub-title>
+   <desc lang="nl"> Het dagelijks leven van een groep 'misfits', waaronder een hedonistische jingleschrijver, zijn gescheiden broer en diens zoon Jake.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 7/99 . </episode-num>
+</programme>
+<programme start="20230324010900 +0100" stop="20230324013200 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Fresh Prince of Bel-Air</title>
+   <sub-title lang="nl">Hex and the Single Guy</sub-title>
+   <desc lang="nl"> Een helderziende wordt zo boos op Will's scepsis dat hij het hele gezin vervloekt.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 6/99 . </episode-num>
+</programme>
+<programme start="20230324013200 +0100" stop="20230324023200 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230324023200 +0100" stop="20230324031400 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Without a Trace</title>
+   <sub-title lang="nl">Viuda Negra</sub-title>
+   <desc lang="nl"> Een speciaal FBI-team onderzoekt zaken van vermiste personen. In deze aflevering reizen Jack en Danny af naar Mexico om James Costin te vinden, die werd ontvoerd in opdracht van zijn schoonmoeder.De FBI heeft een speciale afdeling die zich bezighoudt met het opsporen van vermiste personen. Aan het hoofd van die afdeling staat Jack Malone. Hij heeft de leiding over een groep specialisten. Zij proberen op delicate wijze de puzzelstukjes van allerlei aanwijzingen aan elkaar te knopen, om zo de personen die op mysterieuze wijze zijn verdwenen te kunnen vinden. Dood of levend. Jack en Danny reizen af naar Mexico om James Costin, een rijke Amerikaan die ontvoerd is, te vinden op vraag van zijn schoonmoeder. Terwijl Vivian, Sam, Martin en Elena aan de zaak werken in New York zoekt Jack hulp bij de lokale bevolking. Zijn vrouw Lucy Costin wordt al snel verdachte in de zaak. 12+ Regisseur: Paul McCrane. Acteurs: Anthony LaPaglia (Jack Malone), Eric Close (Martin Fitzgerald), Marianne Jean-Baptiste (Vivian Johnson), Poppy Montgomery (Samantha Spade), Enrique Murciano (Danny Taylor) (2005)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 5/99 . </episode-num>
+</programme>
+<programme start="20230324031400 +0100" stop="20230324050000 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230324050000 +0100" stop="20230324062500 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230324062500 +0100" stop="20230324072700 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230324072700 +0100" stop="20230324081000 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Parts in the Sum of the Whole</sub-title>
+   <desc lang="nl"> Dr. Temperence Brennan, een forensisch antropoloog, bezit de buitengewone vaardigheid om uit de botten van slachtoffers aanwijzingen te halen die kunnen helpen bij het oplossen van hun dood.Dr. Temperence Brennan, een forensisch antropoloog, bezit de buitengewone vaardigheid om uit de botten van slachtoffers aanwijzingen te halen die kunnen helpen bij het oplossen van hun dood. Regisseur: David Boreanaz. Acteurs: Emily Deschanel (Temperance Brennan), David Boreanaz (Seeley Booth), Michaela Conlin (Angela Montenegro), Eric Millegan (Zack Addy), T.J. Thyne (Jack Hodgins) (2010)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 15/99 . </episode-num>
+</programme>
+<programme start="20230324081000 +0100" stop="20230324091500 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230324091500 +0100" stop="20230324101000 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">Hubris</sub-title>
+   <desc lang="nl"> Een professor geeft nieuwe informatie over een zaak uit 1995, omdat hij zijn naam wil zuiveren. Rush heropent de zaak van de moord op een studente.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 10/99 . </episode-num>
+</programme>
+<programme start="20230324101000 +0100" stop="20230324111500 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230324111500 +0100" stop="20230324120800 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">Good As Hell</sub-title>
+   <desc lang="nl"> Amerikaanse ziekenhuisserie Meredith vecht nog steeds voor haar leven in het ziekenhuis. In haar droom ziet ze haar overleden man Derek Shepherd - McDreamy- terug. Zal Meredith terug wakker worden?Omdat er meer chirurgen nodig zijn, probeert Jo Bailey ervan te overtuigen haar van specialiteit te laten wisselen. Elders vindt Link dat Amelia zich te veel bemoeit als hij een patiënt op afstand behandelt en Winston heeft een creatief idee. Regisseur: Michael W. Watkins. Acteurs: Ellen Pompeo (Dr. Meredith Grey), Chandra Wilson (Dr. Miranda Bailey), James Pickens Jr. (Dr. Richard Webber), Kevin McKidd (Dr. Owen Hunt), Jesse Williams (Dr. Jackson Avery) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 12/99 . </episode-num>
+</programme>
+<programme start="20230324120800 +0100" stop="20230324131200 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230324131200 +0100" stop="20230324140800 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Katy Keene</title>
+   <sub-title lang="nl">Chapter Five: Song for a Winter's Night</sub-title>
+   <desc lang="nl"> Modeontwerper Katy Keene, Broadway-acteur Jorge, model Pepper en muzikante Josie. De vier creatieve twintigers willen carrière maken in New York City.Modeontwerper Katy Keene, Broadway-acteur Jorge, model Pepper en muzikante Josie. De vier creatieve twintigers willen carrière maken in New York City. Ze moeten leren omgaan met de struggles die gepaard gaan met de weg naar succes. Nu Katy probeert naar de modeschool te gaan, weet ze dat ze een aanbevelingsbrief nodig heeft, dus wendt ze zich tot Gloria, die haar op de proef stelt om in ruil voor haar de ultieme jurk te maken en Katy onder druk te zetten. 12+ Regisseur: Ryan Shiraki. Acteurs: Lucy Hale (Katy Keene), Ashleigh Murray (Josie McCoy), Katherine LaNasa (Gloria Grandbilt), Julia Chan (Pepper Smith), Jonny Beauchamp (Ginger Lopez / Jorge) (2020)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 4/99 . </episode-num>
+</programme>
+<programme start="20230324140800 +0100" stop="20230324150300 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">Child's Play</sub-title>
+   <desc lang="nl"> Amerikaanse dramaserie over de schrijver Richard Castle, die de politie van New York helpt bij het oplossen van moordzaken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 3/99 . </episode-num>
+</programme>
+<programme start="20230324150300 +0100" stop="20230324160800 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Graham Norton Show</title>
+   <sub-title lang="nl">Compilation 2</sub-title>
+   <desc lang="nl"> Graham Norton ontvangt prominente gasten uit de wereld van films, muziek en vermaak.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">29 . 17/99 . </episode-num>
+</programme>
+<programme start="20230324160800 +0100" stop="20230324170400 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">Glued</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 11/99 . </episode-num>
+</programme>
+<programme start="20230324170400 +0100" stop="20230324175700 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">Look Up Child</sub-title>
+   <desc lang="nl"> Grey's Anatomy volgt de levens van chirurgisch stagiairs en chirurgen, die hun training naar volleerde chirurgen voltooien met hulp van hun mentors.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 13/99 . </episode-num>
+</programme>
+<programme start="20230324175700 +0100" stop="20230324184900 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">Meme Is Murder</sub-title>
+   <desc lang="nl"> Amerikaanse dramaserie over de schrijver Richard Castle, die de politie van New York helpt bij het oplossen van moordzaken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 4/99 . </episode-num>
+</programme>
+<programme start="20230324184900 +0100" stop="20230324194100 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bull</title>
+   <sub-title lang="nl">Law of the Jungle</sub-title>
+   <desc lang="nl"> Bull helpt een vrouw die vastbesloten is om tegen juridisch advies in te gaan. Ze staat erop schuldig te pleiten voor de moord op een rijke filantroop die achter haar aanzat tijdens haar tienertijd.Briljant, onbezonnen en charmant, dr. Bull is de ultieme poppenspeler en combineert psychologie, menselijke intuïtie en high-tech data om erachter te komen wat juryleden, advocaten, getuigen en de beschuldigde drijft. Dit seizoen vindt Bull het moeilijker dan ooit om zijn persoonlijke leven op orde te krijgen, terwijl hij een evenwicht vindt tussen vaderschap en zijn hernieuwde relatie met Isabella &quot;Izzy&quot; Colón, zijn ex-vrouw. Regisseur: Joe Morton. Acteurs: Michael Weatherly (Jason Bull), Freddy Rodríguez (Benny Colón), Yara Martinez (Isabella Colón), Chelsea Debo (Rachel Carter), Chelsea Ingram (Juror 7
+/
+Jennifer Ascot) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 12/99 . </episode-num>
+</programme>
+<programme start="20230324194100 +0100" stop="20230324203500 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Death of the Queen Bee</sub-title>
+   <desc lang="nl"> De laatste zaak van het team brengt Brennan terug naar haar alma mater, Burtonsville High School, waar zij en Booth de ontdekking van een niet-geïdentificeerde schedel en bovenlichaam onderzoeken.De laatste zaak van het team brengt Brennan terug naar haar alma mater, Burtonsville High School, waar zij en Booth de ontdekking van een niet-geïdentificeerde schedel en bovenlichaam onderzoeken. Regisseur: Allan Kroeker. Acteurs: Emily Deschanel (Temperance Brennan), David Boreanaz (Seeley Booth), Michaela Conlin (Angela Montenegro), T.J. Thyne (Jack Hodgins), Tamara Taylor (Camille Saroyan) (2010)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 16/99 . </episode-num>
+</programme>
+<programme start="20230324203500 +0100" stop="20230324213100 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">CSI: Vegas</title>
+   <sub-title lang="nl">Story of a Gun</sub-title>
+   <desc lang="nl"> Na een existentiële dreiging die het hele misdaadlab in Las Vegas in gevaar brengt, roept een ingenieus nieuw team van forensisch rechercheurs de hulp in van oud-collega's om gerechtigheid te brengen.Na een existentiële dreiging die het hele misdaadlab in Las Vegas in gevaar brengt, roept een ingenieus nieuw team van forensisch rechercheurs de hulp in van oud-collega's om gerechtigheid te brengen. Regisseur: Kenneth Fink. Acteurs: Paula Newsome (Maxine Roby), Matt Lauria (Josh Folsom), Mandeep Dhillon (Allie Rajan), Mel Rodriguez (Hugo Ramirez), Jorja Fox (Sara Sidle) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">1 . 2/99 . </episode-num>
+</programme>
+<programme start="20230324213100 +0100" stop="20230324222900 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">CSI: New York</title>
+   <sub-title lang="nl">Nine Thirteen</sub-title>
+   <desc lang="nl"> Een team van forensisch onderzoekers gebruikt vooruitstrevende wetenschap om bewijs te verzamelen en misdaden op te lossen in New York.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">8 . 12/99 . </episode-num>
+</programme>
+<programme start="20230324222900 +0100" stop="20230324232500 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">CSI: Miami</title>
+   <sub-title lang="nl">Dishonor</sub-title>
+   <desc lang="nl"> Amerikaanse actieserie waar een team van forensische detectives ervoor zorgen dat geen moord onopgelost blijft onder de tropische zon van Miami.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">7 . 17/99 . </episode-num>
+</programme>
+<programme start="20230324232500 +0100" stop="20230325002600 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Rookie</title>
+   <sub-title lang="nl">Real Crime</sub-title>
+   <desc lang="nl"> Agent Thorsen besluit met tegenzin deel te nemen aan een realityshow om zijn imago proberen op te krikken. Terwijl de camera's draaien, wordt de producer van de show vermoord gevonden.Agent Thorsen besluit met tegenzin deel te nemen aan een realityshow om zijn imago op te poetsen. Als de camera's draaien, wordt de producer van de show vermoord aangetroffen. Het team moet het onderzoeken voordat Thorsen als verdachte wordt gezien. Regisseur: Rob Seidenglanz. Acteurs: Nathan Fillion (John Nolan), Shawn Ashmore (Wesley Evers), Mekia Cox (Nyla Harper), Alyssa Diaz (Angela Lopez), Richard T. Jones (Wade Grey) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 15/99 . </episode-num>
+</programme>
+<programme start="20230325002600 +0100" stop="20230325012800 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Rookie</title>
+   <sub-title lang="nl">Coding</sub-title>
+   <desc lang="nl"> John Nolan en het team gaan in onderhandeling met een radeloze man die een ziekenhuis gegijzeld houdt. Hij doet dit zodat zijn vrouw een levensreddende operatie krijgt.Een incident dat het leven van John Nolan veranderde, inspireert hem om zijn droom na te jagen om politieagent te worden in Los Angeles. Hij is de oudste rekruut, wat zorgt voor sceptische reacties van zijn nieuwe collega's. Regisseur: Bill Roe. Acteurs: Nathan Fillion (John Nolan), Mekia Cox (Nyla Harper), Alyssa Diaz (Angela Lopez), Richard T. Jones (Sergeant Wade Grey), Shawn Ashmore (Wesley Evers) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 16/99 . </episode-num>
+</programme>
+<programme start="20230325012800 +0100" stop="20230325021000 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Rookie</title>
+   <sub-title lang="nl">Backstabbers</sub-title>
+   <desc lang="nl"> Als er doden vallen tijdens de overval op een trein vol waardevolle veilingitems, gaat het team op onderzoek uit. Agent Chen raakt overstuur als Bradford haar niet de erkenning geeft die ze verdient.Een incident dat het leven van John Nolan veranderde, inspireert hem om zijn droom na te jagen om politieagent te worden in Los Angeles. Hij is de oudste rekruut, wat zorgt voor sceptische reacties van zijn nieuwe collega's. Regisseur: Tori Garrett. Acteurs: Nathan Fillion (John Nolan), Mekia Cox (Nyla Harper), Alyssa Diaz (Angela Lopez), Richard T. Jones (Wade Grey), Shawn Ashmore (Wesley Evers) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 17/99 . </episode-num>
+</programme>
+<programme start="20230325021000 +0100" stop="20230325031000 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230325031000 +0100" stop="20230325035500 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Without a Trace</title>
+   <sub-title lang="nl">The Innocents</sub-title>
+   <desc lang="nl"> Het team zoekt naar een man die verdween nadat zijn tienerdochter aan leukemie overleed. Ze proberen hem te vinden via kinderpornofoto's die ze in zijn huis vinden.De FBI heeft een speciale afdeling die zich bezighoudt met het opsporen van vermiste personen. Aan het hoofd van die afdeling staat Jack Malone. Hij heeft de leiding over een groep specialisten. Zij proberen op delicate wijze de puzzelstukjes van allerlei aanwijzingen aan elkaar te knopen, om zo de personen die op mysterieuze wijze zijn verdwenen te kunnen vinden. Dood of levend. Als het team de verdwijning van een man onderzoekt vinden ze kinderporno op zijn computer, allemaal van hetzelfde meisje. De pedofiel blijkt al snel een man te zijn die erg hulpvaardig is en het meisje wil helpen vinden dat onderdeel was van kinderprostitutie en mensenhandel. Regisseur: Martha Mitchell. Acteurs: Anthony LaPaglia (Jack Malone), Poppy Montgomery (Samantha Spade), Marianne Jean-Baptiste (Vivian Johnson), Enrique Murciano (Danny Taylor), Eric Close (Martin Fitzgerald) (2005)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 6/99 . </episode-num>
+</programme>
+<programme start="20230325035500 +0100" stop="20230325061600 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230325061600 +0100" stop="20230325062600 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230325062600 +0100" stop="20230325072600 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230325072600 +0100" stop="20230325080800 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">CSI: Vegas</title>
+   <sub-title lang="nl">Story of a Gun</sub-title>
+   <desc lang="nl"> Na een existentiële dreiging die het hele misdaadlab in Las Vegas in gevaar brengt, roept een ingenieus nieuw team van forensisch rechercheurs de hulp in van oud-collega's om gerechtigheid te brengen.Na een existentiële dreiging die het hele misdaadlab in Las Vegas in gevaar brengt, roept een ingenieus nieuw team van forensisch rechercheurs de hulp in van oud-collega's om gerechtigheid te brengen. Regisseur: Kenneth Fink. Acteurs: Paula Newsome (Maxine Roby), Matt Lauria (Josh Folsom), Mandeep Dhillon (Allie Rajan), Mel Rodriguez (Hugo Ramirez), Jorja Fox (Sara Sidle) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">1 . 2/99 . </episode-num>
+</programme>
+<programme start="20230325080800 +0100" stop="20230325091200 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230325091200 +0100" stop="20230325100500 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">Road to Nowhere</sub-title>
+   <desc lang="nl"> Gibbs en Parker gaan op een roadtrip om één van de slachtoffers van de seriemoordenaar te vinden. Agent Knight gaat undercover bij een groot productiebedrijf dat een link heeft met de moorden.In NCIS moet een team van speciaal opgeleide mensen misdrijven zien op te lossen, waar marinepersoneel bij betrokken is. De eenheid wordt geleid door Leroy Jethro Gibbs. Samen met zijn teamleden probeert hij iedere zaak tot een goed einde te brengen. Regisseur: Rocky Carroll. Acteurs: Mark Harmon (Leroy Jethro Gibbs), Sean Murray (Timothy McGee), Wilmer Valderrama (Nick Torres), Katrina Law (Jessica Knight), Brian Dietzen (Jimmy Palmer) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 2/99 . </episode-num>
+</programme>
+<programme start="20230325100500 +0100" stop="20230325110900 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230325110900 +0100" stop="20230325120200 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">Great Wide Open</sub-title>
+   <desc lang="nl"> Gibbs en McGee maken een lange rit naar Alaska om informatie te verkrijgen van seriemoordenaar Paul Lemere. De rest van het team gaat aan de slag om de samenzwering achter de reeks moorden te ontrafelen.In NCIS moet een team van speciaal opgeleide mensen misdrijven zien op te lossen, waar marinepersoneel bij betrokken is. De eenheid wordt geleid door Leroy Jethro Gibbs. Samen met zijn teamleden probeert hij iedere zaak tot een goed einde te brengen. Regisseur: Terrence O'Hara. Acteurs: Mark Harmon (Leroy Jethro Gibbs), Sean Murray (Timothy McGee), Wilmer Valderrama (Nick Torres), Brian Dietzen (Jimmy Palmer), Diona Reasonover (Kasie Hines) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 3/99 . </episode-num>
+</programme>
+<programme start="20230325120200 +0100" stop="20230325130700 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230325130700 +0100" stop="20230325140200 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">Face the Strange</sub-title>
+   <desc lang="nl"> Een groep speciale agenten, geleid door agent Leroy Jethro Gibbs, heeft de taak om elke misdaad te onderzoeken die verband houdt met de marine en marinepersoneel, ongeacht de rang of positie.In NCIS moet een team van speciaal opgeleide mensen misdrijven zien op te lossen, waar marinepersoneel bij betrokken is. De eenheid wordt geleid door Leroy Jethro Gibbs. Samen met zijn teamleden probeert hij iedere zaak tot een goed einde te brengen. Regisseur: Diana Valentine. Acteurs: Sean Murray (Timothy McGee), Wilmer Valderrama (Nick Torres), Katrina Law (Jessica Knight), Brian Dietzen (Jimmy Palmer), Rocky Carroll (Leon Vance) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 4/99 . </episode-num>
+</programme>
+<programme start="20230325140200 +0100" stop="20230325145800 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">False Start</sub-title>
+   <desc lang="nl"> NCIS onderzoekt de dood van een geliefde kapitein-luitenant-ter-zee die enkele van de topatleten in het land trainde.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 5/99 . </episode-num>
+</programme>
+<programme start="20230325145800 +0100" stop="20230325155300 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">Docked</sub-title>
+   <desc lang="nl"> NCIS onderzoekt de dood van een man op een cruiseschip. Niemand minder dan McGee's schoonmoeder Judy ontdekt het lichaam in de sauna van het schip.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 6/99 . </episode-num>
+</programme>
+<programme start="20230325155300 +0100" stop="20230325164800 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">Peacekeeper</sub-title>
+   <desc lang="nl"> Het lichaam van een marine reservist wordt gevonden in een auto, aan het eind van een schietbaan. Kasie probeert de voordelen en nadelen af te wegen voor het kopen van een pistool.In NCIS moet een team van speciaal opgeleide mensen misdrijven zien op te lossen, waar marinepersoneel bij betrokken is. De eenheid wordt geleid door Leroy Jethro Gibbs. Samen met zijn teamleden probeert hij iedere zaak tot een goed einde te brengen. Regisseur: Rocky Carroll. Acteurs: Sean Murray (Timothy McGee), Wilmer Valderrama (Nick Torres), Katrina Law (Jessica Knight), Brian Dietzen (Jimmy Palmer), Diona Reasonover (Kasie Hines) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 7/99 . </episode-num>
+</programme>
+<programme start="20230325164800 +0100" stop="20230325174100 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">Collective Memory</sub-title>
+   <desc lang="nl"> Een financieel adviseur wordt doodgeschoten bij een marinebasis. NCIS onderzoekt de zaak door het driedimensionale hologram van het slachtoffer te interviewen dat ze voor haar dood heeft gemaakt.In NCIS moet een team van speciaal opgeleide mensen misdrijven zien op te lossen, waar marinepersoneel bij betrokken is. De eenheid wordt geleid door Leroy Jethro Gibbs. Samen met zijn teamleden probeert hij iedere zaak tot een goed einde te brengen. Regisseur: Leslie Libman. Acteurs: Sean Murray (Timothy McGee), Wilmer Valderrama (Nick Torres), Katrina Law (Jessica Knight), Brian Dietzen (Jimmy Palmer), Diona Reasonover (Kasie Hines) (2021)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 8/99 . </episode-num>
+</programme>
+<programme start="20230325174100 +0100" stop="20230325183100 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">Pledge of Allegiance</sub-title>
+   <desc lang="nl"> Opperschipper Rafi Nazar wordt verdacht van het proberen te verkopen van gestolen geheime marinesoftware die wordt gebruikt om gevechtsdrones te besturen. NCIS wordt op de zaak gezet.In NCIS moet een team van speciaal opgeleide mensen misdrijven zien op te lossen, waar marinepersoneel bij betrokken is. De eenheid wordt geleid door Leroy Jethro Gibbs. Samen met zijn teamleden probeert hij iedere zaak tot een goed einde te brengen. Regisseur: Rocky Carroll. Acteurs: Mark Harmon (Leroy Jethro Gibbs), Sean Murray (Timothy McGee), Wilmer Valderrama (Nick Torres), Katrina Law (Jessica Knight), Brian Dietzen (Dr. Jimmy Palmer) (2022)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 9/99 . </episode-num>
+</programme>
+<programme start="20230325183100 +0100" stop="20230325192500 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">All Hands</sub-title>
+   <desc lang="nl"> Een onderzoeksschip in de Atlantische Oceaan pikt een kleine boot op met gewonde marineofficieren. Als de NCIS aan boord komt van het schip, moeten ze zich verbergen vanwege terroristen aan boord.In NCIS moet een team van speciaal opgeleide mensen misdrijven zien op te lossen, waar marinepersoneel bij betrokken is. De eenheid wordt geleid door Leroy Jethro Gibbs. Samen met zijn teamleden probeert hij iedere zaak tot een goed einde te brengen. Regisseur: Martha Mitchell. Acteurs: Sean Murray (Timothy McGee), Wilmer Valderrama (Nick Torres), Mark Harmon (Leroy Jethro Gibbs), Katrina Law (Jessica Knight), Brian Dietzen (Dr. Jimmy Palmer) (2022)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 10/99 . </episode-num>
+</programme>
+<programme start="20230325192500 +0100" stop="20230325202000 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">Fight or Flight</sub-title>
+   <desc lang="nl"> Het NCIS-team gaat op onderzoek uit wanneer ze het levenloze lichaam van een luitenant-ter-zee vinden dat een oog mist. Het onderzoek leidt ze naar de duistere wereld van kooigevechten.In NCIS moet een team van speciaal opgeleide mensen misdrijven zien op te lossen, waar marinepersoneel bij betrokken is. De eenheid wordt geleid door Leroy Jethro Gibbs. Samen met zijn teamleden probeert hij iedere zaak tot een goed einde te brengen. Regisseur: James Whitmore jr.. Acteurs: Sean Murray (Timothy McGee), Wilmer Valderrama (Nick Torres), Katrina Law (Jessica Knight), Brian Dietzen (Dr. Jimmy Palmer), Diona Reasonover (Kasie Hines) (2022)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 11/99 . </episode-num>
+</programme>
+<programme start="20230325202000 +0100" stop="20230325211400 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">The Helpers</sub-title>
+   <desc lang="nl"> Terwijl ze de dood van een indringer in Quantico onderzoeken, worden Jimmy en Kasie blootgesteld aan een dodelijk gif. Het NCIS-team roept de hulp in van dokter Carol Wilson.In NCIS moet een team van speciaal opgeleide mensen misdrijven zien op te lossen, waar marinepersoneel bij betrokken is. De eenheid wordt geleid door Leroy Jethro Gibbs. Samen met zijn teamleden probeert hij iedere zaak tot een goed einde te brengen. Regisseur: Diana Valentine. Acteurs: Mark Harmon (Leroy Jethro Gibbs), Sean Murray (Timothy McGee), Wilmer Valderrama (Nick Torres), Katrina Law (Jessica Knight), Brian Dietzen (Dr. Jimmy Palmer) (2022)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 12/99 . </episode-num>
+</programme>
+<programme start="20230325211400 +0100" stop="20230325220800 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">First Steps</sub-title>
+   <desc lang="nl"> De NCIS onderzoekt de doodsoorzaak van een chirurg bij de marine. Ze nemen Vance' dochter Kayla, die onlangs bij NCIS heeft getraind, mee om te helpen bij een zeer gevaarlijke missie.In NCIS moet een team van speciaal opgeleide mensen misdrijven zien op te lossen, waar marinepersoneel bij betrokken is. De eenheid wordt geleid door Leroy Jethro Gibbs. Samen met zijn teamleden probeert hij iedere zaak tot een goed einde te brengen. Regisseur: Michael Zinberg. Acteurs: Mark Harmon (Leroy Jethro Gibbs), Sean Murray (Timothy McGee), Wilmer Valderrama (Nick Torres), Katrina Law (Jessica Knight), Brian Dietzen (Dr. Jimmy Palmer) (2022)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 13/99 . </episode-num>
+</programme>
+<programme start="20230325220800 +0100" stop="20230325230300 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">Thick As Thieves</sub-title>
+   <desc lang="nl"> Parkers criminele verleden komt om de hoek kijken, wanneer NCIS in Philadelphia de dood van een onderofficier van de marine onderzoeken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 14/99 . </episode-num>
+</programme>
+<programme start="20230325230300 +0100" stop="20230325235500 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">NCIS</title>
+   <sub-title lang="nl">The Wake</sub-title>
+   <desc lang="nl"> Er gebeurt een gruwelijk ongeluk op de gender reveal party van een onderofficier van de marine. Het onderzoek leidt NCIS naar de zaak van een vermiste leraar die bekend werd via een misdaadpodcast.In NCIS moet een team van speciaal opgeleide mensen misdrijven zien op te lossen, waar marinepersoneel bij betrokken is. De eenheid wordt geleid door Leroy Jethro Gibbs. Samen met zijn teamleden probeert hij iedere zaak tot een goed einde te brengen. Regisseur: Rocky Carroll. Acteurs: Sean Murray (Timothy McGee), Wilmer Valderrama (Nick Torres), Katrina Law (Jessica Knight), Brian Dietzen (Dr. Jimmy Palmer), Diona Reasonover (Kasie Hines) (2022)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">18 . 15/99 . </episode-num>
+</programme>
+<programme start="20230325235500 +0100" stop="20230326005700 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Blacklist</title>
+   <sub-title lang="nl">Dr. James Covington</sub-title>
+   <desc lang="nl"> De meest gezochte crimineel van Amerika, Raymond Reddington, neemt contact op met de FBI en biedt zijn diensten aan. Hij heeft al die jaren een &quot;Blacklist&quot; samengesteld van gevaarlijke criminelen.Jarenlang was Raymond &quot;Red&quot; Reddington een van de meest gezochte mensen door de FBI. Vorig seizoen gaf hij zich op mysterieuze wijze over en bleek hij over een blacklist te beschikken, waar tal van terroristen en misdadigers opstaan die de FBI met zijn hulp kan onschadelijk maken. Red rekent hiervoor op de hulp van Elizabeth &quot;Liz&quot; Keen die dit seizoen verder werkt als zijn partner. Red leert Liz denken als een crimineel zodat ze vroeg of laat het groter geheel zou zien of ze dat nu wil of niet. 12+ Regisseur: Karen Gaviola. Acteurs: James Spader (Raymond 'Red' Reddington), Megan Boone (Elizabeth Keen), Harry Lennix (Harold Cooper), Diego Klattenhoff (Donald Ressler), Ryan Eggold (Tom Keen) (2014)</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">1 . 2/99 . </episode-num>
+</programme>
+<programme start="20230326005700 +0100" stop="20230326015700 +0100" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending. (2023)</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230326015700 +0100" stop="20230326034100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Without a Trace</title>
+   <sub-title lang="nl">A Day in the Life</sub-title>
+   <desc lang="nl"> Het team doet z'n best om een verdwenen zoon te herenigen met zijn ouders. Voor de ouders is dit een emotionele achtbaan.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 7/99 . </episode-num>
+</programme>
+<programme start="20230326034100 +0200" stop="20230326061600 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230326061600 +0200" stop="20230326062600 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230326062600 +0200" stop="20230326070900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">The Eyes Have It</sub-title>
+   <desc lang="nl"> Een elite team van de FBI probeert Amerika's meest geschifte criminelen in kaart te brengen om zo te anticiperen op hun volgende stap, voordat ze opnieuw kunnen toeslaan.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 5/99 . </episode-num>
+</programme>
+<programme start="20230326070900 +0200" stop="20230326081300 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230326081300 +0200" stop="20230326090400 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">The Performer</sub-title>
+   <desc lang="nl"> Het team onderzoekt een reeks moorden in Los Angeles. De slachtoffers hebben allemaal afdrukken van hoektanden in hun nek en zijn daardoor gelinkt aan Dante, een rockster die helemaal opgaat in zijn alterego.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 6/99 . </episode-num>
+</programme>
+<programme start="20230326090400 +0200" stop="20230326100900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230326100900 +0200" stop="20230326105900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">Outfoxed</sub-title>
+   <desc lang="nl"> Het team krijgt te maken met een seriemoordenaar die de werkwijze van Karl Arnold, een crimineel die vier jaar geleden werd gearresteerd, probeert te kopiëren. Karl beweert dat de man hem heeft gecontacteerd.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 7/99 . </episode-num>
+</programme>
+<programme start="20230326105900 +0200" stop="20230326120300 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230326120300 +0200" stop="20230326130000 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">100</sub-title>
+   <desc lang="nl"> Na een bloedbad veroorzaakt door George &quot;The Boston Reaper&quot; Foyet worden alle leden van het BAU-team door Strauss ondervraagd. Ze wil vooral te weten komen welke rol Hotch heeft gespeeld in het drama.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 8/99 . </episode-num>
+</programme>
+<programme start="20230326130000 +0200" stop="20230326135500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bull</title>
+   <sub-title lang="nl">Law of the Jungle</sub-title>
+   <desc lang="nl"> Bull helpt een vrouw die vastbesloten is om tegen juridisch advies in te gaan. Ze staat erop schuldig te pleiten voor de moord op een rijke filantroop die achter haar aanzat tijdens haar tienertijd.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 12/99 . </episode-num>
+</programme>
+<programme start="20230326135500 +0200" stop="20230326145100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">CSI: Vegas</title>
+   <sub-title lang="nl">Story of a Gun</sub-title>
+   <desc lang="nl"> Na een existentiële dreiging die het hele misdaadlab in Las Vegas in gevaar brengt, roept een ingenieus nieuw team van forensisch rechercheurs de hulp in van oud-collega's om gerechtigheid te brengen.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">1 . 2/99 . </episode-num>
+</programme>
+<programme start="20230326145100 +0200" stop="20230326154800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">CSI: New York</title>
+   <sub-title lang="nl">Nine Thirteen</sub-title>
+   <desc lang="nl"> Een team van forensisch onderzoekers gebruikt vooruitstrevende wetenschap om bewijs te verzamelen en misdaden op te lossen in New York.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">8 . 12/99 . </episode-num>
+</programme>
+<programme start="20230326154800 +0200" stop="20230326164400 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">CSI: Miami</title>
+   <sub-title lang="nl">Dishonor</sub-title>
+   <desc lang="nl"> Amerikaanse actieserie waar een team van forensische detectives ervoor zorgen dat geen moord onopgelost blijft onder de tropische zon van Miami.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">7 . 17/99 . </episode-num>
+</programme>
+<programme start="20230326164400 +0200" stop="20230326174100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">The Slave of Duty</sub-title>
+   <desc lang="nl"> Een elite team van de FBI probeert Amerika's meest geschifte criminelen in kaart te brengen om zo te anticiperen op hun volgende stap, voordat ze opnieuw kunnen toeslaan.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 9/99 . </episode-num>
+</programme>
+<programme start="20230326174100 +0200" stop="20230326183400 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">Retaliation</sub-title>
+   <desc lang="nl"> Een elite team van de FBI probeert Amerika's meest geschifte criminelen in kaart te brengen om zo te anticiperen op hun volgende stap, voordat ze opnieuw kunnen toeslaan.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 10/99 . </episode-num>
+</programme>
+<programme start="20230326183400 +0200" stop="20230326193100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">The Uncanny Valley</sub-title>
+   <desc lang="nl"> Een elite team van de FBI probeert Amerika's meest geschifte criminelen in kaart te brengen om zo te anticiperen op hun volgende stap, voordat ze opnieuw kunnen toeslaan.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 11/99 . </episode-num>
+</programme>
+<programme start="20230326193100 +0200" stop="20230326202500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">Risky Business</sub-title>
+   <desc lang="nl"> Een elite team van de FBI probeert Amerika's meest geschifte criminelen in kaart te brengen om zo te anticiperen op hun volgende stap, voordat ze opnieuw kunnen toeslaan.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 12/99 . </episode-num>
+</programme>
+<programme start="20230326202500 +0200" stop="20230326211900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Rookie</title>
+   <sub-title lang="nl">Simone</sub-title>
+   <desc lang="nl"> Agent Nolan en de LA-afdeling van de FBI roepen de hulp in van FBI-stagiair Simone Clark. Een van haar oud-studenten wordt verdacht van terrorisme na een explosie in een elektriciteitscentrale.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 18/99 . </episode-num>
+</programme>
+<programme start="20230326211900 +0200" stop="20230326221200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Rookie</title>
+   <sub-title lang="nl">Enervo</sub-title>
+   <desc lang="nl"> Het team werkt samen met de LA-afdeling van de FBI om te voorkomen dat autobommen in de stad afgaan. De taskforce staat wantrouwend tegenover de betrokkenheid van de CIA.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 19/99 . </episode-num>
+</programme>
+<programme start="20230326221200 +0200" stop="20230326230500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Rookie</title>
+   <sub-title lang="nl">Mother's Day</sub-title>
+   <desc lang="nl"> Sergeant Gray steunt Nolans wens om een trainingsofficier te worden en rijdt met hem mee om hem voor te bereiden op het examen. Tim en Lucy maken plannen voor Moederdag en een romantische vakantie.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 20/99 . </episode-num>
+</programme>
+<programme start="20230326230500 +0200" stop="20230326235700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Rookie</title>
+   <sub-title lang="nl">Day in the Hole</sub-title>
+   <desc lang="nl"> Agent Nolan moet een week in eenzame opsluiting doorbrengen in een rustig stadje. Hij is samen met een jonge agent die nog veel te leren heeft. Brigadier Bradford en agent Chen gaan samen undercover.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 21/99 . </episode-num>
+</programme>
+<programme start="20230326235700 +0200" stop="20230327005900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bull</title>
+   <sub-title lang="nl">Under the Influence</sub-title>
+   <desc lang="nl"> Chunk verleent zijn dochter Anna een gunst en overtuigt Bull ervan om een tiener te vertegenwoordigen bij een diefstalzaak.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 13/99 . </episode-num>
+</programme>
+<programme start="20230327005900 +0200" stop="20230327020100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Blacklist</title>
+   <sub-title lang="nl">Dr. Linus Creel</sub-title>
+   <desc lang="nl"> Red vermoed dat er een gevaarlijk sociopsychologisch experiment gaande is wanneer er verschillende niet-gewelddadige burgers in moordenaars veranderen. Tegelijkertijd heeft Red een voorstel voor Naomi.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">1 . 3/99 . </episode-num>
+</programme>
+<programme start="20230327020100 +0200" stop="20230327030100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230327030100 +0200" stop="20230327034300 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Without a Trace</title>
+   <sub-title lang="nl">Freefall</sub-title>
+   <desc lang="nl"> Het team onderzoekt of twee zaken met elkaar verbonden zijn. Al snel komen ze erachter dat Max probeerde om Jimmy van de zaak te halen, maar dat Jimmy dreigde een geheim over Max te vertellen.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 8/99 . </episode-num>
+</programme>
+<programme start="20230327034300 +0200" stop="20230327060200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230327060200 +0200" stop="20230327061200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230327061200 +0200" stop="20230327071200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230327071200 +0200" stop="20230327075500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Death of the Queen Bee</sub-title>
+   <desc lang="nl"> De laatste zaak van het team brengt Brennan terug naar haar alma mater, Burtonsville High School, waar zij en Booth de ontdekking van een niet-geïdentificeerde schedel en bovenlichaam onderzoeken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 16/99 . </episode-num>
+</programme>
+<programme start="20230327075500 +0200" stop="20230327085900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230327085900 +0200" stop="20230327095500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">Glued</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 11/99 . </episode-num>
+</programme>
+<programme start="20230327095500 +0200" stop="20230327105900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230327105900 +0200" stop="20230327115200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">Look Up Child</sub-title>
+   <desc lang="nl"> Grey's Anatomy volgt de levens van chirurgisch stagiairs en chirurgen, die hun training naar volleerde chirurgen voltooien met hulp van hun mentors.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 13/99 . </episode-num>
+</programme>
+<programme start="20230327115200 +0200" stop="20230327125600 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230327125600 +0200" stop="20230327135200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Katy Keene</title>
+   <sub-title lang="nl">Chapter Six: Mama Said</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 5/99 . </episode-num>
+</programme>
+<programme start="20230327135200 +0200" stop="20230327144700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">Meme Is Murder</sub-title>
+   <desc lang="nl"> Amerikaanse dramaserie over de schrijver Richard Castle, die de politie van New York helpt bij het oplossen van moordzaken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 4/99 . </episode-num>
+</programme>
+<programme start="20230327144700 +0200" stop="20230327151800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Friends</title>
+   <sub-title lang="nl">The One with the Apothecary Table</sub-title>
+   <desc lang="nl"> Amerikaanse televisieserie Janine dwingt Joey tot een keuze tussen haar en zijn vrienden. Rachel koopt een apothekerstafel uit een winkel waar Phoebe een gruwelijke hekel aan heeft.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">5 . 10/99 . </episode-num>
+</programme>
+<programme start="20230327151800 +0200" stop="20230327154900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Two and a Half Men</title>
+   <sub-title lang="nl">Release the Dogs</sub-title>
+   <desc lang="nl"> Het dagelijks leven van een groep 'misfits', waaronder een hedonistische jingleschrijver, zijn gescheiden broer en diens zoon Jake.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 7/99 . </episode-num>
+</programme>
+<programme start="20230327154900 +0200" stop="20230327164400 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">The Letter</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 12/99 . </episode-num>
+</programme>
+<programme start="20230327164400 +0200" stop="20230327173600 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">Tradition</sub-title>
+   <desc lang="nl"> Grey's Anatomy volgt de levens van chirurgisch stagiairs en chirurgen, die hun training naar volleerde chirurgen voltooien met hulp van hun mentors.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 14/99 . </episode-num>
+</programme>
+<programme start="20230327173600 +0200" stop="20230327183500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">The Time of Our Lives</sub-title>
+   <desc lang="nl"> Castle bevindt zich in een alternatief universum waarin hij Beckett nooit eerder ontmoette. Hij moet haar overtuigen om hem te laten helpen bij het moordonderzoek om zo zijn weg naar huis terug te vinden.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 5/99 . </episode-num>
+</programme>
+<programme start="20230327183500 +0200" stop="20230327193700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">The Slave of Duty</sub-title>
+   <desc lang="nl"> Een elite team van de FBI probeert Amerika's meest geschifte criminelen in kaart te brengen om zo te anticiperen op hun volgende stap, voordat ze opnieuw kunnen toeslaan.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 9/99 . </episode-num>
+</programme>
+<programme start="20230327193700 +0200" stop="20230327203500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Predator in the Pool</sub-title>
+   <desc lang="nl"> Dr. Temperence Brennan, een forensisch antropoloog, bezit de buitengewone vaardigheid om uit de botten van slachtoffers aanwijzingen te halen die kunnen helpen bij het oplossen van hun dood.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 17/99 . </episode-num>
+</programme>
+<programme start="20230327203500 +0200" stop="20230328000700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Dances with Wolves</title>
+   <desc lang="nl">Luitenant John Dunbar, toegewezen aan een afgelegen westelijke buitenpost van de burgeroorlog, raakt bevriend met wolven en indianen, wat hem tot een ondraaglijk buitenbeetje in het leger maakt.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328000700 +0200" stop="20230328010800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Assisen</title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 6/99 . </episode-num>
+</programme>
+<programme start="20230328010800 +0200" stop="20230328014300 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Friends</title>
+   <sub-title lang="nl">The One With the Joke</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">5 . 11/99 . </episode-num>
+</programme>
+<programme start="20230328014300 +0200" stop="20230328021700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Two and a Half Men</title>
+   <sub-title lang="nl">Corey's Been Dead for an Hour</sub-title>
+   <desc lang="nl"> Tijdens een dubbeldate krijgen Charlie en Alan ruzie over geld, die laatste kijkt namelijk elke keer de kat uit de boom wanneer de rekening op tafel komt.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 8/99 . </episode-num>
+</programme>
+<programme start="20230328021700 +0200" stop="20230328023900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Fresh Prince of Bel-Air</title>
+   <sub-title lang="nl">Blood Is Thicker Than Mud</sub-title>
+   <desc lang="nl"> Carlton leert een les in omgekeerde discriminatie wanneer hij een broederschap belooft.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 7/99 . </episode-num>
+</programme>
+<programme start="20230328023900 +0200" stop="20230328033900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328033900 +0200" stop="20230328042200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Without a Trace</title>
+   <sub-title lang="nl">When Darkness Falls</sub-title>
+   <desc lang="nl"> Samantha doet onderzoek naar een vrouw met geheugenverlies die misschien ook een moordenaar is. Jack's vader lijdt ondertussen aan de ziekte van Alzheimer en wil niet meer leven.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 9/99 . </episode-num>
+</programme>
+<programme start="20230328042200 +0200" stop="20230328062200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328062200 +0200" stop="20230328063200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328063200 +0200" stop="20230328073200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328073200 +0200" stop="20230328081500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Predator in the Pool</sub-title>
+   <desc lang="nl"> Dr. Temperence Brennan, een forensisch antropoloog, bezit de buitengewone vaardigheid om uit de botten van slachtoffers aanwijzingen te halen die kunnen helpen bij het oplossen van hun dood.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 17/99 . </episode-num>
+</programme>
+<programme start="20230328081500 +0200" stop="20230328091900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328091900 +0200" stop="20230328101400 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">The Letter</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 12/99 . </episode-num>
+</programme>
+<programme start="20230328101400 +0200" stop="20230328111800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328111800 +0200" stop="20230328121100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">Tradition</sub-title>
+   <desc lang="nl"> Grey's Anatomy volgt de levens van chirurgisch stagiairs en chirurgen, die hun training naar volleerde chirurgen voltooien met hulp van hun mentors.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 14/99 . </episode-num>
+</programme>
+<programme start="20230328121100 +0200" stop="20230328131500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328131500 +0200" stop="20230328141100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Katy Keene</title>
+   <sub-title lang="nl">Chapter seven: Kiss of the Spider woman</sub-title>
+   <desc lang="nl"> Modeontwerper Katy Keene, Broadway-acteur Jorge, model Pepper en muzikante Josie. De vier creatieve twintigers willen carrière maken in New York City.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 6/99 . </episode-num>
+</programme>
+<programme start="20230328141100 +0200" stop="20230328150700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">The Time of Our Lives</sub-title>
+   <desc lang="nl"> Castle bevindt zich in een alternatief universum waarin hij Beckett nooit eerder ontmoette. Hij moet haar overtuigen om hem te laten helpen bij het moordonderzoek om zo zijn weg naar huis terug te vinden.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 5/99 . </episode-num>
+</programme>
+<programme start="20230328150700 +0200" stop="20230328153800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Friends</title>
+   <sub-title lang="nl">The One With the Joke</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">5 . 11/99 . </episode-num>
+</programme>
+<programme start="20230328153800 +0200" stop="20230328160800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Two and a Half Men</title>
+   <sub-title lang="nl">Corey's Been Dead for an Hour</sub-title>
+   <desc lang="nl"> Tijdens een dubbeldate krijgen Charlie en Alan ruzie over geld, die laatste kijkt namelijk elke keer de kat uit de boom wanneer de rekening op tafel komt.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 8/99 . </episode-num>
+</programme>
+<programme start="20230328160800 +0200" stop="20230328170100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">Boy in the Box</sub-title>
+   <desc lang="nl"> In 1936 werd een onbekend jongetje vermoord gevonden in een weiland. Tientallen jaren later staat er een doos op de stoep van een kerk met daarin een foto en de cowboyhoed van het kind. De zaak wordt heropend.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 13/99 . </episode-num>
+</programme>
+<programme start="20230328170100 +0200" stop="20230328175300 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">I'm Still Standing</sub-title>
+   <desc lang="nl"> Amerikaanse ziekenhuisserie Levi wordt toegelaten tot de vaccinatieproef. Ondertussen behandelen Amelia en Owen een auto-ongeluk patiënt, en Hayes en Jo krijgen een ontmoeting met Luna's wettelijke voogd.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 15/99 . </episode-num>
+</programme>
+<programme start="20230328175300 +0200" stop="20230328184700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">Once upon a Time in the West</sub-title>
+   <desc lang="nl"> Amerikaanse dramaserie over de schrijver Richard Castle, die de politie van New York helpt bij het oplossen van moordzaken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 6/99 . </episode-num>
+</programme>
+<programme start="20230328184700 +0200" stop="20230328194100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">Retaliation</sub-title>
+   <desc lang="nl"> Een elite team van de FBI probeert Amerika's meest geschifte criminelen in kaart te brengen om zo te anticiperen op hun volgende stap, voordat ze opnieuw kunnen toeslaan.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 10/99 . </episode-num>
+</programme>
+<programme start="20230328194100 +0200" stop="20230328203500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Rocker in the Rinse Cycle</sub-title>
+   <desc lang="nl"> De menselijke resten van aannemer Richard Cole worden ontdekt in een hotelwasmachine. Cole was een rijke, excentrieke waaghals, altijd op zoek naar een kick in het leven en de volgende sensatie.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 18/99 . </episode-num>
+</programme>
+<programme start="20230328203500 +0200" stop="20230328213900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Vermist</title>
+   <sub-title lang="nl">Ief, deel 1</sub-title>
+   <desc lang="nl"> De zenuwslopende zoektocht naar een vermist persoon zorgt elke week weer voor de nodige spanning, emotie en frustatie, zowel bij de speurders als bij de ongeruste familieleden van het slachtoffer.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 8/99 . </episode-num>
+</programme>
+<programme start="20230328213900 +0200" stop="20230328224800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Vermist</title>
+   <sub-title lang="nl">Ief, deel 2</sub-title>
+   <desc lang="nl"> De zenuwslopende zoektocht naar een vermist persoon zorgt elke week weer voor de nodige spanning, emotie en frustatie, zowel bij de speurders als bij de ongeruste familieleden van het slachtoffer.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 9/99 . </episode-num>
+</programme>
+<programme start="20230328224800 +0200" stop="20230328235300 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Vermist</title>
+   <sub-title lang="nl">Femke</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 0/99 . </episode-num>
+</programme>
+<programme start="20230328235300 +0200" stop="20230329002800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Friends</title>
+   <sub-title lang="nl">The One With Rachel's Sister</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">5 . 12/99 . </episode-num>
+</programme>
+<programme start="20230329002800 +0200" stop="20230329010200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Two and a Half Men</title>
+   <sub-title lang="nl">Kissing Abraham Lincolm</sub-title>
+   <desc lang="nl"> Lydia, Charlies onuitstaanbare vriendin, wil dat hij zijn relatie met zijn huishoudster Berta beëindigt. Berta laat dat niet op zich zitten en eist van Charlie, dat Lydia het veld ruimt.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 9/99 . </episode-num>
+</programme>
+<programme start="20230329010200 +0200" stop="20230329012500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Fresh Prince of Bel-Air</title>
+   <sub-title lang="nl">Fresh Prince After Dark</sub-title>
+   <desc lang="nl"> Will en Carlton ontmoeten Hugh Hefner en de prachtige Bunnies in zijn Playboy Mansion.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 8/99 . </episode-num>
+</programme>
+<programme start="20230329012500 +0200" stop="20230329022600 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329022600 +0200" stop="20230329030900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Without a Trace</title>
+   <sub-title lang="nl">Blood Out</sub-title>
+   <desc lang="nl"> Een paramedicus verdwijnt plotseling kort nadat hij een gewonde misdadiger behandelde die gewond raakte toen hij een ander bendelid vermoordde.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 10/99 . </episode-num>
+</programme>
+<programme start="20230329030900 +0200" stop="20230329062500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329062500 +0200" stop="20230329063500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329063500 +0200" stop="20230329073500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329073500 +0200" stop="20230329081800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Rocker in the Rinse Cycle</sub-title>
+   <desc lang="nl"> De menselijke resten van aannemer Richard Cole worden ontdekt in een hotelwasmachine. Cole was een rijke, excentrieke waaghals, altijd op zoek naar een kick in het leven en de volgende sensatie.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 18/99 . </episode-num>
+</programme>
+<programme start="20230329081800 +0200" stop="20230329092200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329092200 +0200" stop="20230329101500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">Boy in the Box</sub-title>
+   <desc lang="nl"> In 1936 werd een onbekend jongetje vermoord gevonden in een weiland. Tientallen jaren later staat er een doos op de stoep van een kerk met daarin een foto en de cowboyhoed van het kind. De zaak wordt heropend.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 13/99 . </episode-num>
+</programme>
+<programme start="20230329101500 +0200" stop="20230329111900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329111900 +0200" stop="20230329121100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">I'm Still Standing</sub-title>
+   <desc lang="nl"> Amerikaanse ziekenhuisserie Levi wordt toegelaten tot de vaccinatieproef. Ondertussen behandelen Amelia en Owen een auto-ongeluk patiënt, en Hayes en Jo krijgen een ontmoeting met Luna's wettelijke voogd.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 15/99 . </episode-num>
+</programme>
+<programme start="20230329121100 +0200" stop="20230329131500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329131500 +0200" stop="20230329141100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Katy Keene</title>
+   <sub-title lang="nl">Chapter Eight: It's Alright, Ma (I'm Only Bleeding)</sub-title>
+   <desc lang="nl"> Modeontwerper Katy Keene, Broadway-acteur Jorge, model Pepper en muzikante Josie. De vier creatieve twintigers willen carrière maken in New York City.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 7/99 . </episode-num>
+</programme>
+<programme start="20230329141100 +0200" stop="20230329150700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">Once upon a Time in the West</sub-title>
+   <desc lang="nl"> Amerikaanse dramaserie over de schrijver Richard Castle, die de politie van New York helpt bij het oplossen van moordzaken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 6/99 . </episode-num>
+</programme>
+<programme start="20230329150700 +0200" stop="20230329153800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Friends</title>
+   <sub-title lang="nl">The One With Rachel's Sister</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">5 . 12/99 . </episode-num>
+</programme>
+<programme start="20230329153800 +0200" stop="20230329160800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Two and a Half Men</title>
+   <sub-title lang="nl">Kissing Abraham Lincolm</sub-title>
+   <desc lang="nl"> Lydia, Charlies onuitstaanbare vriendin, wil dat hij zijn relatie met zijn huishoudster Berta beëindigt. Berta laat dat niet op zich zitten en eist van Charlie, dat Lydia het veld ruimt.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 9/99 . </episode-num>
+</programme>
+<programme start="20230329160800 +0200" stop="20230329170400 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">Disco Inferno</sub-title>
+   <desc lang="nl"> In de resten van een discotheek die in 1978 is afgebrand, vinden bouwvakkers patroonhulzen. Bij de brand kwamen 22 mensen om het leven.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 14/99 . </episode-num>
+</programme>
+<programme start="20230329170400 +0200" stop="20230329175700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">Someone Saved My Life Tonight</sub-title>
+   <desc lang="nl"> Amerikaanse ziekenhuisserie Het is de trouwdag voor Maggie en Winston. Ondertussen neemt Meredith een nieuwe rol aan in het ziekenhuis, en Jo neemt een levensveranderende beslissing.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 16/99 . </episode-num>
+</programme>
+
+</tv>

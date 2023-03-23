@@ -1,0 +1,1100 @@
+<?xml version="1.0" encoding="UTF-8"?><tv generator-info-name="None" generator-info-url="https://github.com/tvgrabbers/tvgrabnlpy">
+  <channel id="XTVGRABPYacht">
+    <display-name lang="nl">VTM 4</display-name>
+    <icon src="https://www.nieuwsblad.be/extra/assets/img/tvgids/zenderoverzicht/vtm-4.png"/>
+  </channel>
+  <channel id="XTVGRABPYcanvas">
+    <display-name lang="nl">Canvas</display-name>
+    <icon src="https://images.vrt.be/height100/logo/canvas/CANVAS_logo_lichtblauw.jpg"/>
+  </channel>
+  <channel id="XTVGRABPYvtm">
+    <display-name lang="nl">VTM</display-name>
+    <icon src="http://tvgidsassets.nl/iphone/channels/big/49b.png"/>
+  </channel>
+  <channel id="XTVGRABPYvt4">
+    <display-name lang="nl">Play4</display-name>
+    <icon src="http://tvgidsassets.nl/iphone/channels/big/60b.png"/>
+  </channel>
+  <channel id="XTVGRABPYeen">
+    <display-name lang="nl">Eén</display-name>
+    <icon src="https://images.vrt.be/height100/logo/een/een_LOGO_zwart.png"/>
+  </channel>
+  <channel id="XTVGRABPYned1">
+    <display-name lang="nl">NPO 1</display-name>
+    <icon src="https://www-assets.npo.nl/uploads/tv_channel/263/logo/regular_logo-npo1.png"/>
+  </channel>
+  <channel id="XTVGRABPYned2">
+    <display-name lang="nl">NPO 2</display-name>
+    <icon src="https://www-assets.npo.nl/uploads/tv_channel/264/logo/regular_logo-npo2.png"/>
+  </channel>
+  <channel id="XTVGRABPYned3">
+    <display-name lang="nl">NPO 3</display-name>
+    <icon src="https://www-assets.npo.nl/uploads/tv_channel/265/logo/regular_npo3-logo.png"/>
+  </channel>
+  <channel id="XTVGRABPYzes">
+    <display-name lang="nl">Play6</display-name>
+    <icon src="https://www.nieuwsblad.be/extra/assets/img/tvgids/zenderoverzicht/zes.png"/>
+  </channel>
+  <channel id="XTVGRABPYvijftv">
+    <display-name lang="nl">Play5</display-name>
+    <icon src="https://www.nieuwsblad.be/extra/assets/img/tvgids/zenderoverzicht/vijf.png"/>
+  </channel>
+  <channel id="XTVGRABPYplay7">
+    <display-name lang="nl">Play 7</display-name>
+    <icon src="https://www.nieuwsblad.be/extra/assets/img/tvgids/play7.png"/>
+  </channel>
+  <channel id="XTVGRABPYvitaya">
+    <display-name lang="nl">VTM 3</display-name>
+    <icon src="https://www.nieuwsblad.be/extra/assets/img/tvgids/zenderoverzicht/vtm-3.png"/>
+  </channel>
+  <channel id="XTVGRABPY2be">
+    <display-name lang="nl">VTM 2</display-name>
+    <icon src="https://www.nieuwsblad.be/extra/assets/img/tvgids/zenderoverzicht/vtm-2.png"/>
+  </channel>
+  <programme channel="XTVGRABPYvijftv" start="20230322120000 +0100" stop="20230322125000 +0100">
+    <title lang="nl">Grey's Anatomy</title>
+    <desc lang="nl">Drama: De dokters behandelen een pasgetrouwd koppel dat gewond raakte bij een auto-ongeluk. Hayes probeert het vertrouwen van Maggie te herstellen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322125000 +0100" stop="20230322135000 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322135000 +0100" stop="20230322144000 +0100">
+    <title lang="nl">Katy Keene</title>
+    <desc lang="nl">Tragedie: Katy Keene worstelt met de druk van haar baan bij Lacy's Department Store en haar veeleisende baas.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Tragedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322144000 +0100" stop="20230322153000 +0100">
+    <title lang="nl">Castle</title>
+    <desc lang="nl">Misdaad: Het team onderzoekt de moord op de CEO van een speelgoedbedrijf. Castle ontdekt ondertussen een aanwijzing in verband met zijn mysterieuze verdwijning en start zelf een gevaarlijk onderzoek.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322153000 +0100" stop="20230322160000 +0100">
+    <title lang="nl">Friends</title>
+    <desc lang="nl">Komedie: Monica nodigt haar ouders uit voor een Thanksgivingetentje. Omdat Jack en Judy Chandler nooit echt graag gemogen hebben, heeft Monica nog niet verteld dat ze een relatie met hem heeft.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322160000 +0100" stop="20230322162500 +0100">
+    <title lang="nl">Two and a Half Men</title>
+    <desc lang="nl">Komedie: Charlie voelt zich aangetrokken tot vastgoedmakelaar Lydia. Zij lijkt verdacht veel op zijn moeder en dat leidt al snel tot problemen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322162500 +0100" stop="20230322171500 +0100">
+    <title lang="nl">Cold Case</title>
+    <desc lang="nl">Misdaad: Lilly heropent de zaak van een 20-jarige student die in 1997 werd vermoord. De jongeman liftte naar huis nadat hij een groot bedrag had gewonnen bij een gokpartijtje in Atlantic City.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322171500 +0100" stop="20230322180000 +0100">
+    <title lang="nl">Grey's Anatomy</title>
+    <desc lang="nl">Drama: Maggie wordt afgeleid door Winston terwijl ze een patiënt probeert te behandelen die gewond is geraakt tijdens de protesten in Seattle. Levi wordt op de proef gesteld bij een noodgeval.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322180000 +0100" stop="20230322185500 +0100">
+    <title lang="nl">Castle</title>
+    <desc lang="nl">Misdaad: Castle en Beckett onderzoeken de moord op biljartspeler Will Fairwick, die dood werd aangetroffen in zijn appartement. Castle vermoedt dat de dader over paranormale krachten beschikt.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322185500 +0100" stop="20230322194000 +0100">
+    <title lang="nl">Criminal Minds</title>
+    <desc lang="nl">Misdaad: Het team krijgt te maken met een seriemoordenaar die de werkwijze van Karl Arnold, een crimineel die vier jaar geleden werd gearresteerd, probeert te kopiëren.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322194000 +0100" stop="20230322203500 +0100">
+    <title lang="nl">Bones</title>
+    <desc lang="nl">Misdaad: Een aardbeving brengt een geraamte in een metrotunnel aan het licht. Brennan stelt meteen vast dat het slachtoffer mannelijk is en ongeveer een week geleden is overleden.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322203500 +0100" stop="20230322211500 +0100">
+    <title lang="nl">And Just Like That...</title>
+    <desc lang="nl">Carrie twijfelt of ze wel klaar is om verder te gaan met haar leven en bepaalde zaken los te laten. Ze heeft een tweede date met Peter, maar die gaat niet zoals verwacht.</desc>
+    <category>Drama</category>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322211500 +0100" stop="20230322220000 +0100">
+    <title lang="nl">And Just Like That...</title>
+    <desc lang="nl">Charlotte plant een speciaal ritueel voor Rock. En terwijl Miranda haar hart volgt, besluit ook Carrie om een punt te zetten achter een moeilijk jaar.</desc>
+    <category>Drama</category>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322220000 +0100" stop="20230322230000 +0100">
+    <title lang="nl">The Graham Norton Show</title>
+    <desc lang="nl">Terugblik op het voorbije seizoen met o.a. Tom Hanks, Cate Blanchett, Austin Butler, Michelle Yeoh, Hugh Jackman, Naomi Ackie, Brendan Fraser, Judi Dench, Jamie Dornan en Kate Winslet.</desc>
+    <category>Unknown</category>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322230000 +0100" stop="20230322232500 +0100">
+    <title lang="nl">Friends</title>
+    <desc lang="nl">Komedie: Janine krijgt een aanbod om als danseres op te treden in de populaire 'Dick Clark's New Year's Eve Rockin' Eve'. Ze vraagt Joey om haar te vergezellen en die is razend enthousiast.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322232500 +0100" stop="20230322235000 +0100">
+    <title lang="nl">Two and a Half Men</title>
+    <desc lang="nl">Komedie: Berta wil wraak nemen op de getrouwde man die haar dochter Naomi zwanger maakte en vraagt daarbij aan Charlie om haar te helpen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230322235000 +0100" stop="20230323001500 +0100">
+    <title lang="nl">The Fresh Prince of Bel-Air</title>
+    <desc lang="nl">Sitcom: Philip daagt Will en Carlton voor het gerecht omdat ze hun huur niet betalen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Sitcom</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323001500 +0100" stop="20230323011500 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323011500 +0100" stop="20230323015500 +0100">
+    <title lang="nl">Without a Trace</title>
+    <desc lang="nl">Misdaad: Wendy Kim verdwijnt spoorloos uit de kruidenierszaak van haar ouders. Er zijn nauwelijks aanwijzingen. Bovendien zijn de getuigenissen die haar moeder en een van de klanten afleggen tegenstrijdig.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323015500 +0100" stop="20230323050000 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323050000 +0100" stop="20230323072000 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323072000 +0100" stop="20230323082000 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323082000 +0100" stop="20230323090500 +0100">
+    <title lang="nl">Bones</title>
+    <desc lang="nl">Misdaad: Een aardbeving brengt een geraamte in een metrotunnel aan het licht. Brennan stelt meteen vast dat het slachtoffer mannelijk is en ongeveer een week geleden is overleden.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323090500 +0100" stop="20230323100500 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323100500 +0100" stop="20230323105500 +0100">
+    <title lang="nl">Cold Case</title>
+    <desc lang="nl">Misdaad: Lilly heropent de zaak van een 20-jarige student die in 1997 werd vermoord. De jongeman liftte naar huis nadat hij een groot bedrag had gewonnen bij een gokpartijtje in Atlantic City.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323105500 +0100" stop="20230323115500 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323115500 +0100" stop="20230323124500 +0100">
+    <title lang="nl">Grey's Anatomy</title>
+    <desc lang="nl">Drama: Maggie wordt afgeleid door Winston terwijl ze een patiënt probeert te behandelen die gewond is geraakt tijdens de protesten in Seattle. Levi wordt op de proef gesteld bij een noodgeval.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323124500 +0100" stop="20230323134500 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323134500 +0100" stop="20230323143500 +0100">
+    <title lang="nl">Katy Keene</title>
+    <desc lang="nl">Tragedie: Katy besluit al haar energie in het werk te steken om haar persoonlijke leven te ontwijken, maar dan raakt ze weer in moeilijkheden.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Tragedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323143500 +0100" stop="20230323152500 +0100">
+    <title lang="nl">Castle</title>
+    <desc lang="nl">Misdaad: Castle en Beckett onderzoeken de moord op biljartspeler Will Fairwick, die dood werd aangetroffen in zijn appartement. Castle vermoedt dat de dader over paranormale krachten beschikt.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323152500 +0100" stop="20230323154500 +0100">
+    <title lang="nl">Friends</title>
+    <desc lang="nl">Komedie: Janine krijgt een aanbod om als danseres op te treden in de populaire 'Dick Clark's New Year's Eve Rockin' Eve'. Ze vraagt Joey om haar te vergezellen en die is razend enthousiast.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323154500 +0100" stop="20230323161500 +0100">
+    <title lang="nl">Two and a Half Men</title>
+    <desc lang="nl">Komedie: Berta wil wraak nemen op de getrouwde man die haar dochter Naomi zwanger maakte en vraagt daarbij aan Charlie om haar te helpen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323161500 +0100" stop="20230323171000 +0100">
+    <title lang="nl">Cold Case</title>
+    <desc lang="nl">Misdaad: Een professor die in 1995 verdacht werd van de moord op een van zijn studentes hoopt nu zijn naam te kunnen zuiveren door met nieuwe informatie over de zaak op de proppen te komen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323171000 +0100" stop="20230323175500 +0100">
+    <title lang="nl">Grey's Anatomy</title>
+    <desc lang="nl">Drama: Omdat het ziekenhuis nood heeft aan meer chirurgen, probeert Jo Bailey ervan te overtuigen om haar van specialiteit te laten wisselen. Meredith vecht nog steeds voor haar leven.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323175500 +0100" stop="20230323185000 +0100">
+    <title lang="nl">Castle</title>
+    <desc lang="nl">Misdaad: Beckett en Castle onderzoeken de moord op een ijsjesventer. Wanneer blijkt dat een kind de enige getuige was van de moord, gaat Castle undercover in een lagere school om het meisje te zoeken.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323185000 +0100" stop="20230323194000 +0100">
+    <title lang="nl">Criminal Minds</title>
+    <desc lang="nl">Misdaad: Na een bloedbad veroorzaakt door George 'The Boston Reaper' Foyet worden alle leden van het BAU-team door Strauss ondervraagd.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323194000 +0100" stop="20230323203500 +0100">
+    <title lang="nl">Bones</title>
+    <desc lang="nl">Misdaad: Brennan beweert dat er een grove fout in Sweets' manuscript over haar samenwerking met Booth is geslopen. Hun eerste onderzoek samen was niet de moord op Cleo Eller, maar de dood van Gemma Arrington.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323203500 +0100" stop="20230323225500 +0100">
+    <title lang="nl">A Star Is Born</title>
+    <desc lang="nl">Romantisch: Jackson Maine is een aan lagerwal geraakte countryzanger. Hij staat aan de rand van de afgrond wanneer hij de onbekende zangeres Ally ontdekt. De twee beginnen een hartstochtelijke liefdesrelatie.</desc>
+    <category>Film</category>
+    <keyword lang="nl">Romantisch</keyword>
+    <previously-shown/>
+    <star-rating>
+      <value>60/10</value>
+    </star-rating>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323225500 +0100" stop="20230323234500 +0100">
+    <title lang="nl">Evil</title>
+    <desc lang="nl">Horror: Wanneer David zwaargewond raakt, is hij vastberaden om de dreigende aanwezigheid van de dood vanuit zijn ziekbed weg te jagen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Horror</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230323234500 +0100" stop="20230324001000 +0100">
+    <title lang="nl">Friends</title>
+    <desc lang="nl">Komedie: Na de eerste kus met Janine loopt Joey op wolkjes. Nu ze een koppel zijn, besluiten ze om samen met Chandler en Monica uit te gaan.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324001000 +0100" stop="20230324004000 +0100">
+    <title lang="nl">Two and a Half Men</title>
+    <desc lang="nl">Komedie: Alan kampt al enkele dagen met een ernstig slaapgebrek en schakelt de hulp in van een psychiater.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324004000 +0100" stop="20230324010500 +0100">
+    <title lang="nl">The Fresh Prince of Bel-Air</title>
+    <desc lang="nl">Sitcom: Hilary wil Trevors geest oproepen en doet een beroep op de helderziende Scorpius. Ze kan enkel met Trevor communiceren wanneer de hele familie tijdens de seance aanwezig is.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Sitcom</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324010500 +0100" stop="20230324020500 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324020500 +0100" stop="20230324024500 +0100">
+    <title lang="nl">Without a Trace</title>
+    <desc lang="nl">Misdaad: James en Lucy Costa knijpen er even tussenuit naar Puerto Morelos. Wat een zorgeloze vakantie moest worden, mondt echter uit in een nachtmerrie wanneer James ontvoerd wordt door gemaskerde mannen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324024500 +0100" stop="20230324050000 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324050000 +0100" stop="20230324070500 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324070500 +0100" stop="20230324080500 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324080500 +0100" stop="20230324085000 +0100">
+    <title lang="nl">Bones</title>
+    <desc lang="nl">Misdaad: Brennan beweert dat er een grove fout in Sweets' manuscript over haar samenwerking met Booth is geslopen. Hun eerste onderzoek samen was niet de moord op Cleo Eller, maar de dood van Gemma Arrington.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324085000 +0100" stop="20230324095000 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324095000 +0100" stop="20230324104000 +0100">
+    <title lang="nl">Cold Case</title>
+    <desc lang="nl">Misdaad: Een professor die in 1995 verdacht werd van de moord op een van zijn studentes hoopt nu zijn naam te kunnen zuiveren door met nieuwe informatie over de zaak op de proppen te komen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324104000 +0100" stop="20230324114000 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324114000 +0100" stop="20230324123000 +0100">
+    <title lang="nl">Grey's Anatomy</title>
+    <desc lang="nl">Drama: Omdat het ziekenhuis nood heeft aan meer chirurgen, probeert Jo Bailey ervan te overtuigen om haar van specialiteit te laten wisselen. Meredith vecht nog steeds voor haar leven.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324123000 +0100" stop="20230324133500 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324133500 +0100" stop="20230324142500 +0100">
+    <title lang="nl">Katy Keene</title>
+    <desc lang="nl">Tragedie: Om toegelaten te worden tot de modeschool heeft Katy een aanbevelingsbrief nodig. Ze wendt zich tot Gloria, maar zij vraagt in ruil dat Katy voor haar dé ultieme jurk ontwerpt.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Tragedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324142500 +0100" stop="20230324151500 +0100">
+    <title lang="nl">Castle</title>
+    <desc lang="nl">Misdaad: Beckett en Castle onderzoeken de moord op een ijsjesventer. Wanneer blijkt dat een kind de enige getuige was van de moord, gaat Castle undercover in een lagere school om het meisje te zoeken.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324151500 +0100" stop="20230324161500 +0100">
+    <title lang="nl">The Graham Norton Show</title>
+    <desc lang="nl">Terugblik op het voorbije seizoen met o.a. Tom Hanks, Cate Blanchett, Austin Butler, Michelle Yeoh, Hugh Jackman, Naomi Ackie, Brendan Fraser, Judi Dench, Jamie Dornan en Kate Winslet.</desc>
+    <category>Unknown</category>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324161500 +0100" stop="20230324170500 +0100">
+    <title lang="nl">Cold Case</title>
+    <desc lang="nl">Misdaad: In 1980 werd een achtjarige jongen brutaal vermoord. Rechercheur Stillman vraagt aan Lilly om de zaak, die hij destijds niet kon oplossen, te heropenen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324170500 +0100" stop="20230324175500 +0100">
+    <title lang="nl">Grey's Anatomy</title>
+    <desc lang="nl">Drama: Jackson brengt een bezoek aan zijn vervreemde vader. Het gesprek helpt hem om nieuwe inzichten te krijgen over zijn toekomst.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324175500 +0100" stop="20230324185000 +0100">
+    <title lang="nl">Castle</title>
+    <desc lang="nl">Misdaad: Internetberoemdheid Abby Smith wordt vermoord. De dader plaatst foto's van de moord op het net en laat enkele aanwijzingen achter over een volgende moord.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324185000 +0100" stop="20230324194000 +0100">
+    <title lang="nl">Bull</title>
+    <desc lang="nl">Drama: Bull wordt ingehuurd om een jonge vrouw bij te staan die elk juridisch advies naast zich neerlegt en schuldig wil pleiten aan de moord op een welgestelde man die haar in haar tienerjaren lastigviel.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324194000 +0100" stop="20230324203500 +0100">
+    <title lang="nl">Bones</title>
+    <desc lang="nl">Misdaad: Brennan en Booth reizen naar Burtonsville, waar twee tienermeisjes een menselijke schedel hebben gevonden in een schuur. Even verderop vindt Brennan een romp, waarvan enkele ribben ontbreken.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324203500 +0100" stop="20230324213000 +0100">
+    <title lang="nl">Vegas</title>
+    <desc lang="nl">Misdaad: Het CSI-team start een onderzoek nadat enkele tieners in een spookstad in Nevada een dode vrouw ontdekt hebben achter het stuur van een verlaten auto.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+<sub-title lang="nl">Story of a Gun</sub-title>
+<episode-num system="xmltv_ns">1 . 2/99 . </episode-num>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324213000 +0100" stop="20230324223000 +0100">
+    <title lang="nl">CSI: NY</title>
+    <desc lang="nl">Misdaad: Een gemaskerde man wordt dood aangetroffen onderaan een wolkenkrabber. In het verleden zijn al verschillende mensen in en rond het gebouw om het leven gekomen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324223000 +0100" stop="20230324232500 +0100">
+    <title lang="nl">CSI: Miami</title>
+    <desc lang="nl">Misdaad: Kyle, de zoon van Horatio, vraagt hulp aan zijn vader wanneer zijn vriend Brian vermist blijkt. Wanneer ze een kijkje gaan nemen bij de jongeman thuis, vinden ze een verkoold lijk.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230324232500 +0100" stop="20230325002000 +0100">
+    <title lang="nl">The Rookie</title>
+    <desc lang="nl">Drama: Om zijn imago wat op te krikken besluit Thorsen deel te nemen aan een realityshow. Terwijl de camera's draaien, wordt de producer van de show vermoord aangetroffen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+<sub-title lang="nl">Real Crime</sub-title>
+<episode-num system="xmltv_ns">3 . 15/99 . </episode-num>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325002000 +0100" stop="20230325011500 +0100">
+    <title lang="nl">The Rookie</title>
+    <desc lang="nl">Drama:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325011500 +0100" stop="20230325030000 +0100">
+    <title lang="nl">The Rookie</title>
+    <desc lang="nl">Drama:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325030000 +0100" stop="20230325034500 +0100">
+    <title lang="nl">Without a Trace</title>
+    <desc lang="nl">Misdaad:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325034500 +0100" stop="20230325050000 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325050000 +0100" stop="20230325065000 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325065000 +0100" stop="20230325075000 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325075000 +0100" stop="20230325083000 +0100">
+    <title lang="nl">Vegas</title>
+    <desc lang="nl">Misdaad: Het CSI-team start een onderzoek nadat enkele tieners in een spookstad in Nevada een dode vrouw ontdekt hebben achter het stuur van een verlaten auto.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325083000 +0100" stop="20230325093000 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325093000 +0100" stop="20230325102000 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Gibbs en Parker proberen een van de slachtoffers van de seriemoordenaar te vinden. Ondertussen gaat agent Knight undercover bij een groot productiebedrijf dat gelinkt lijkt te zijn aan de moorden.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325102000 +0100" stop="20230325112000 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325112000 +0100" stop="20230325121000 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Gibbs en McGee trekken naar Alaska om informatie te verkrijgen over seriemoordenaar Paul Lemere. De rest van het team gaat aan de slag om de samenzwering achter de reeks moorden te ontrafelen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325121000 +0100" stop="20230325131500 +0100">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325131500 +0100" stop="20230325140500 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Het NCIS-team onderzoekt de dood van een marinecommandant wiens lichaam gevonden werd in een ondiep graf.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325140500 +0100" stop="20230325145500 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Het team onderzoekt de dood van de geliefde marinecommandant Davis, die topatleten trainde over het hele land. Bij het doorzoeken van zijn spullen worden steroïden ontdekt.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325145500 +0100" stop="20230325155000 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Het NCIS-team onderzoekt de dood van een man op een cruiseschip. Niemand minder dan McGee's schoonmoeder Judy ontdekte het lichaam in de sauna.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325155000 +0100" stop="20230325164500 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Een marinesoldaat wordt dood aangetroffen in een auto op een schietbaan. Kasie weegt de voor- en nadelen van het kopen van een pistool af.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325164500 +0100" stop="20230325174000 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Een financieel topadviseur wordt doodgeschoten nabij een marinebasis. NCIS onderzoekt de zaak door het driedimensionaal hologram van de vrouw, dat ze vlak voor haar dood zelf maakte, te ondervragen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325174000 +0100" stop="20230325183000 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Marineofficier Rafi Nazar wordt verdacht van het doorverkopen van gestolen software die door de marine wordt gebruikt om verkenningsdrones te besturen. NCIS wordt op de zaak gezet.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325183000 +0100" stop="20230325192500 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Een onderzoeksschip op de Atlantische Oceaan pikt een kleine boot met gewonde marineofficieren op. Het NCIS-team gaat aan boord van het schip om de zaak te onderzoeken.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325192500 +0100" stop="20230325202000 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Het NCIS-team begeeft zich in de duistere wereld van de kooigevechten wanneer een luitenant-ter-zee dood wordt aangetroffen en een oog blijkt te missen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+<sub-title lang="nl">Fight or Flight</sub-title>
+<episode-num system="xmltv_ns">18 . 11/99 . </episode-num>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325202000 +0100" stop="20230325211500 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Tijdens het onderzoek naar de dood van een indringer in Quantico, worden Jimmy en Kasie blootgesteld aan een dodelijk gif. Het team roept de hulp in van dokter Carol Wilson om een tegengif te vinden.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+<sub-title lang="nl">The Helpers</sub-title>
+<episode-num system="xmltv_ns">18 . 12/99 . </episode-num>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325211500 +0100" stop="20230325220500 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Terwijl het team de doodsoorzaak van een chirurg bij de marine onderzoekt, moeten ze een beroep doen op Kayla, de dochter van Vance, bij een zeer gevaarlijke missie.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325220500 +0100" stop="20230325230000 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Het criminele verleden van Parker duikt weer op wanneer het team naar Philadelphia wordt geroepen om de dood van een marineofficier te onderzoeken.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325230000 +0100" stop="20230325235500 +0100">
+    <title lang="nl">NCIS</title>
+    <desc lang="nl">Misdaad: Er gebeurt een gruwelijk ongeluk op een feestje van een onderofficier bij de marine. Het onderzoek leidt het NCIS-team naar de zaak van een vermiste leerkracht.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230325235500 +0100" stop="20230326015500 +0100">
+    <title lang="nl">The Blacklist</title>
+    <desc lang="nl">Misdaad: Wanneer er een lichaam zonder hart wordt gevonden, volgen Keen en Ressler aanwijzingen die leiden naar de illegale organenhandel van dr. Covington. Ze krijgen hulp van Mossad-agente Samar Navabi.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+<sub-title lang="nl">Dr. James Covington</sub-title>
+<episode-num system="xmltv_ns">1 . 2/99 . </episode-num>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326015500 +0100" stop="20230326050000 +0200">
+    <title lang="nl">Without a Trace</title>
+    <desc lang="nl">Misdaad:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326050000 +0200" stop="20230326065000 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326065000 +0200" stop="20230326073500 +0200">
+    <title lang="nl">Criminal Minds</title>
+    <desc lang="nl">Misdaad: Het BAU-team begeeft zich naar Oklahoma waar de lijken van een man en twee vrouwen werden teruggevonden.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326073500 +0200" stop="20230326083500 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326083500 +0200" stop="20230326092500 +0200">
+    <title lang="nl">Criminal Minds</title>
+    <desc lang="nl">Misdaad: Het team onderzoekt een reeks moorden in Los Angeles. De slachtoffers hebben allemaal afdrukken van hoektanden in hun nek en zijn gelinkt aan een rockster.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326092500 +0200" stop="20230326102500 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326102500 +0200" stop="20230326111500 +0200">
+    <title lang="nl">Criminal Minds</title>
+    <desc lang="nl">Misdaad: Het team krijgt te maken met een seriemoordenaar die de werkwijze van Karl Arnold, een crimineel die vier jaar geleden werd gearresteerd, probeert te kopiëren.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326111500 +0200" stop="20230326122000 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326122000 +0200" stop="20230326131000 +0200">
+    <title lang="nl">Criminal Minds</title>
+    <desc lang="nl">Misdaad: Na een bloedbad veroorzaakt door George 'The Boston Reaper' Foyet worden alle leden van het BAU-team door Strauss ondervraagd.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326131000 +0200" stop="20230326140000 +0200">
+    <title lang="nl">Bull</title>
+    <desc lang="nl">Drama: Bull wordt ingehuurd om een jonge vrouw bij te staan die elk juridisch advies naast zich neerlegt en schuldig wil pleiten aan de moord op een welgestelde man die haar in haar tienerjaren lastigviel.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326140000 +0200" stop="20230326145000 +0200">
+    <title lang="nl">Vegas</title>
+    <desc lang="nl">Misdaad: Het CSI-team start een onderzoek nadat enkele tieners in een spookstad in Nevada een dode vrouw ontdekt hebben achter het stuur van een verlaten auto.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326145000 +0200" stop="20230326154500 +0200">
+    <title lang="nl">CSI: NY</title>
+    <desc lang="nl">Misdaad: Een gemaskerde man wordt dood aangetroffen onderaan een wolkenkrabber. In het verleden zijn al verschillende mensen in en rond het gebouw om het leven gekomen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326154500 +0200" stop="20230326164500 +0200">
+    <title lang="nl">CSI: Miami</title>
+    <desc lang="nl">Misdaad: Kyle, de zoon van Horatio, vraagt hulp aan zijn vader wanneer zijn vriend Brian vermist blijkt. Wanneer ze een kijkje gaan nemen bij de jongeman thuis, vinden ze een verkoold lijk.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326164500 +0200" stop="20230326174000 +0200">
+    <title lang="nl">Criminal Minds</title>
+    <desc lang="nl">Misdaad: Terwijl Hotchner de dood van Hayley probeert te verwerken, trekt het team naar Nashville, Tennessee, om er de moord op twee jonge vrouwen te onderzoeken.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326174000 +0200" stop="20230326183500 +0200">
+    <title lang="nl">Criminal Minds</title>
+    <desc lang="nl">Misdaad: Hotch gaat opnieuw aan de slag bij het team. Prentiss raakt gewond tijdens het transport van misdadiger Dale Shrader wanneer het konvooi wordt klemgereden door een van diens kompanen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326183500 +0200" stop="20230326193000 +0200">
+    <title lang="nl">Criminal Minds</title>
+    <desc lang="nl">Misdaad: Het team reist naar Atlantic City waar ze twee parallelle zaken moeten onderzoeken: één vrouw werd dood teruggevonden op een speelplein, de andere in een pretpark.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326193000 +0200" stop="20230326202500 +0200">
+    <title lang="nl">Criminal Minds</title>
+    <desc lang="nl">Misdaad: Verschillende jongeren plegen op dezelfde dag zelfmoord in een stadje in Wyoming. Onder druk van JJ besluit Hotch de zaak te onderzoeken.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326202500 +0200" stop="20230326212000 +0200">
+    <title lang="nl">The Rookie</title>
+    <desc lang="nl">Drama: Nolan en de LA-afdeling van de FBI roepen de hulp in van Simone Clark. Een van haar oud-leerlingen wordt namelijk verdacht van terrorisme na een explosie in een elektriciteitscentrale.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+<sub-title lang="nl">Simone</sub-title>
+<episode-num system="xmltv_ns">3 . 18/99 . </episode-num>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326212000 +0200" stop="20230326221000 +0200">
+    <title lang="nl">The Rookie</title>
+    <desc lang="nl">Drama: Het team voert samen met de LA-afdeling van de FBI een race tegen de klok om te voorkomen dat er autobommen tot ontploffing worden gebracht die verspreid werden over heel de stad.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326221000 +0200" stop="20230326230500 +0200">
+    <title lang="nl">The Rookie</title>
+    <desc lang="nl">Drama: Grey steunt Nolan in zijn keuze om een opleidingsofficier te worden en helpt hem om zich voor te bereiden op het examen. Tim en Lucy maken plannen voor Moederdag en een romantische vakantie.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326230500 +0200" stop="20230326235500 +0200">
+    <title lang="nl">The Rookie</title>
+    <desc lang="nl">Drama: Nolan trekt naar het grensstadje Frontera, waar hij een week in afzondering moet doorbrengen. Hij moet er Gabrielle Navar, een agente in opleiding, bijstaan.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+<sub-title lang="nl">Day in the Hole</sub-title>
+<episode-num system="xmltv_ns">3 . 21/99 . </episode-num>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230326235500 +0200" stop="20230327015500 +0200">
+    <title lang="nl">Bull</title>
+    <desc lang="nl">Drama: Chunk doet zijn dochter Anna een plezier en overtuigt Bull om een tiener te vertegenwoordigen die terechtstaat voor een overval. Hij blijft weigeren om de naam van zijn medeplichtige te noemen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327015500 +0200" stop="20230327035500 +0200">
+    <title lang="nl">The Blacklist</title>
+    <desc lang="nl">Misdaad:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327035500 +0200" stop="20230327050000 +0200">
+    <title lang="nl">Without a Trace</title>
+    <desc lang="nl">Misdaad:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327050000 +0200" stop="20230327065000 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327065000 +0200" stop="20230327075000 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327075000 +0200" stop="20230327083000 +0200">
+    <title lang="nl">Bones</title>
+    <desc lang="nl">Misdaad: Brennan en Booth reizen naar Burtonsville, waar twee tienermeisjes een menselijke schedel hebben gevonden in een schuur. Even verderop vindt Brennan een romp, waarvan enkele ribben ontbreken.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327083000 +0200" stop="20230327093000 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327093000 +0200" stop="20230327102000 +0200">
+    <title lang="nl">Cold Case</title>
+    <desc lang="nl">Misdaad: In 1980 werd een achtjarige jongen brutaal vermoord. Rechercheur Stillman vraagt aan Lilly om de zaak, die hij destijds niet kon oplossen, te heropenen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327102000 +0200" stop="20230327112000 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327112000 +0200" stop="20230327121000 +0200">
+    <title lang="nl">Grey's Anatomy</title>
+    <desc lang="nl">Drama: Jackson brengt een bezoek aan zijn vervreemde vader. Het gesprek helpt hem om nieuwe inzichten te krijgen over zijn toekomst.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327121000 +0200" stop="20230327131500 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327131500 +0200" stop="20230327140500 +0200">
+    <title lang="nl">Katy Keene</title>
+    <desc lang="nl">Tragedie: Nu Katy probeert om van KO af te komen, stort ze zich opnieuw op haar werk. Pepper krijgt een verrassend voorstel. Jorge besluit deel te nemen aan een dragqueenwedstrijd.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Tragedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327140500 +0200" stop="20230327145500 +0200">
+    <title lang="nl">Castle</title>
+    <desc lang="nl">Misdaad: Internetberoemdheid Abby Smith wordt vermoord. De dader plaatst foto's van de moord op het net en laat enkele aanwijzingen achter over een volgende moord.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327145500 +0200" stop="20230327152000 +0200">
+    <title lang="nl">Friends</title>
+    <desc lang="nl">Komedie: Na de eerste kus met Janine loopt Joey op wolkjes. Nu ze een koppel zijn, besluiten ze om samen met Chandler en Monica uit te gaan.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327152000 +0200" stop="20230327155000 +0200">
+    <title lang="nl">Two and a Half Men</title>
+    <desc lang="nl">Komedie: Alan kampt al enkele dagen met een ernstig slaapgebrek en schakelt de hulp in van een psychiater.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327155000 +0200" stop="20230327164500 +0200">
+    <title lang="nl">Cold Case</title>
+    <desc lang="nl">Misdaad: Rush en Valens heropenen een moordzaak uit 1939. De kleindochter van de vrouw die toen werd vermoord, komt met nieuwe informatie op de proppen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327164500 +0200" stop="20230327173500 +0200">
+    <title lang="nl">Grey's Anatomy</title>
+    <desc lang="nl">Drama: Jackson deelt zijn grote nieuws met zijn collega's terwijl Koracick en Levi de grootvader van een zwangere vrouw proberen te redden terwijl zij aan het bevallen is.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327173500 +0200" stop="20230327183500 +0200">
+    <title lang="nl">Castle</title>
+    <desc lang="nl">Misdaad: Castle raakt bewusteloos bij een vuurgevecht en belandt in een alternatief universum waarin hij Beckett nooit heeft ontmoet.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327183500 +0200" stop="20230327193500 +0200">
+    <title lang="nl">Criminal Minds</title>
+    <desc lang="nl">Misdaad: Terwijl Hotchner de dood van Hayley probeert te verwerken, trekt het team naar Nashville, Tennessee, om er de moord op twee jonge vrouwen te onderzoeken.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+<sub-title lang="nl">The Slave of Duty</sub-title>
+<episode-num system="xmltv_ns">4 . 9/99 . </episode-num>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327193500 +0200" stop="20230327203500 +0200">
+    <title lang="nl">Bones</title>
+    <desc lang="nl">Misdaad: Wanneer er een menselijk onderbeen aangetroffen wordt in de maag van een aangespoelde tijgerhaai, stellen Brennan en Booth alles in het werk om het slachtoffer te identificeren.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230327203500 +0200" stop="20230328000000 +0200">
+    <title lang="nl">Dances With Wolves</title>
+    <desc lang="nl">Western: Luitenant John Dunbar wordt op eigen verzoek naar een verafgelegen legerpost gestuurd, waar hij kennismaakt met de Sioux-indianen.</desc>
+    <category>Film</category>
+    <keyword lang="nl">Western</keyword>
+    <previously-shown/>
+    <star-rating>
+      <value>80/10</value>
+    </star-rating>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328000000 +0200" stop="20230328010000 +0200">
+    <title lang="nl">Assisen</title>
+    <category>Unknown</category>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328010000 +0200" stop="20230328013000 +0200">
+    <title lang="nl">Friends</title>
+    <desc lang="nl">Komedie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328013000 +0200" stop="20230328020000 +0200">
+    <title lang="nl">Two and a Half Men</title>
+    <desc lang="nl">Komedie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328020000 +0200" stop="20230328032500 +0200">
+    <title lang="nl">The Fresh Prince of Bel-Air</title>
+    <desc lang="nl">Sitcom:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Sitcom</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328032500 +0200" stop="20230328050000 +0200">
+    <title lang="nl">Without a Trace</title>
+    <desc lang="nl">Misdaad:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328050000 +0200" stop="20230328070500 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328070500 +0200" stop="20230328080500 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328080500 +0200" stop="20230328084500 +0200">
+    <title lang="nl">Bones</title>
+    <desc lang="nl">Misdaad: Wanneer er een menselijk onderbeen aangetroffen wordt in de maag van een aangespoelde tijgerhaai, stellen Brennan en Booth alles in het werk om het slachtoffer te identificeren.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328084500 +0200" stop="20230328094500 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328094500 +0200" stop="20230328103500 +0200">
+    <title lang="nl">Cold Case</title>
+    <desc lang="nl">Misdaad: Rush en Valens heropenen een moordzaak uit 1939. De kleindochter van de vrouw die toen werd vermoord, komt met nieuwe informatie op de proppen.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328103500 +0200" stop="20230328113500 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328113500 +0200" stop="20230328122500 +0200">
+    <title lang="nl">Grey's Anatomy</title>
+    <desc lang="nl">Drama: Jackson deelt zijn grote nieuws met zijn collega's terwijl Koracick en Levi de grootvader van een zwangere vrouw proberen te redden terwijl zij aan het bevallen is.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328122500 +0200" stop="20230328133000 +0200">
+    <title lang="nl">Teleshopping</title>
+    <desc lang="nl">Animatie:</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Animatie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328133000 +0200" stop="20230328142000 +0200">
+    <title lang="nl">Katy Keene</title>
+    <desc lang="nl">Tragedie: Gloria zet Katy onder druk om dé ultieme trouwjurk te ontwerpen die haar voor eens en voor altijd zou kunnen lanceren. Jorge probeert ondertussen zijn carrière een boost te geven.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Tragedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328142000 +0200" stop="20230328151000 +0200">
+    <title lang="nl">Castle</title>
+    <desc lang="nl">Misdaad: Castle raakt bewusteloos bij een vuurgevecht en belandt in een alternatief universum waarin hij Beckett nooit heeft ontmoet.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328151000 +0200" stop="20230328153500 +0200">
+    <title lang="nl">Friends</title>
+    <desc lang="nl">Komedie: Ross is in de wolken wanneer de grap die hij naar het magazine Playboy stuurde in het tijdschrift verschijnt. Wanneer hij zijn inzending trots aan Chandler laat zien, is die razend.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328153500 +0200" stop="20230328160500 +0200">
+    <title lang="nl">Two and a Half Men</title>
+    <desc lang="nl">Komedie: Tijdens een double date wil Alan de rekening weer aan zijn broer overlaten, maar Charlie geeft zijn gierige broer een koekje van eigen deeg.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Komedie</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328160500 +0200" stop="20230328170000 +0200">
+    <title lang="nl">Cold Case</title>
+    <desc lang="nl">Misdaad: De zaak van een zesjarige jongen die in 1958 levenloos in een doos op een veld werd teruggevonden, wordt heropend. Lilly ontdekt dat de jongen in een katholiek weeshuis zat.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Misdaad</keyword>
+    <previously-shown/>
+  </programme>
+  <programme channel="XTVGRABPYvijftv" start="20230328170000 +0200" stop="20230328175000 +0200">
+    <title lang="nl">Grey's Anatomy</title>
+    <desc lang="nl">Drama: Levi wordt toegelaten tot de vaccinatieproef. Ondertussen behandelen Amelia en Owen een slachtoffer van een auto-ongeluk. Hayes en Jo maken kennis met Luna's wettelijke voogd.</desc>
+    <category>Drama</category>
+    <keyword lang="nl">Drama</keyword>
+    <previously-shown/>
+  </programme>
+
+</tv>

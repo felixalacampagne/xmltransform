@@ -60,8 +60,28 @@ int tve = 0;
             chns = inxmltv.indexOf("<channel ");
             progs = inxmltv.indexOf("<programme ");
             tve = inxmltv.indexOf("</tv");
-            sbchans.append(inxmltv.substring(chns, progs));
-            sbprogs.append(inxmltv.substring(progs, tve));
+            
+            // zero length check is not sufficient to avoid 
+            // StringIndexOutOfBoundsException: String index out of range: -1
+            if((chns >=0) && (progs >= 0))
+            {
+               sbchans.append(inxmltv.substring(chns, progs));
+            }
+            else
+            {
+               System.err.println("channel block missing from " 
+                 + mFiles.get(i) + ": chns=" + chns + " progs=" + progs);
+            }
+            if((progs>=0) && (tve >= 0))
+            {
+               sbprogs.append(inxmltv.substring(progs, tve));
+            }
+            else
+            {
+               System.err.println("programme blocks missing from " 
+                     + mFiles.get(i) + ": progs=" + progs + " tve=" + tve);
+               
+            }
          }
          else
          {

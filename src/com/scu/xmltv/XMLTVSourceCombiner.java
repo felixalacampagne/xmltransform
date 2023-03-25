@@ -1,9 +1,11 @@
 package com.scu.xmltv;
 
 import java.io.File;
+
 import javax.xml.transform.TransformerException;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -38,7 +40,7 @@ private final File altXMLTV;
 private final NodeUtils nu = NodeUtils.getNodeUtils();
 private Document refDoc = null;
 private Document altDoc = null;
-java.util.logging.Logger log = java.util.logging.Logger.getLogger(this.getClass().getName());
+Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
@@ -78,7 +80,7 @@ public void combineSource(String fieldname)
 
       if(altprogs == null || (altprogs.getLength() == 0))
       {
-         log.fine("combineSource: No program found in alt source for: start=" + starttime + " and channel= " + chanid + " (title=" +  title + ")");
+         log.debug("combineSource: No program found in alt source for: start=" + starttime + " and channel= " + chanid + " (title=" +  title + ")");
          continue;
       }
       else if(altprogs.getLength() > 1)
@@ -93,7 +95,7 @@ public void combineSource(String fieldname)
          altFld = nu.getNodeByPath(altProg, fieldname);
          if((altFld == null))
          {
-            log.fine("combineSource: Alt source has no field '" + fieldname + "' for '" + title + "'");
+            log.debug("combineSource: Alt source has no field '" + fieldname + "' for '" + title + "'");
             continue;
          }
       }

@@ -1,6 +1,10 @@
 package com.scu.xmltv;
 
 import java.io.File;
+//import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.scu.utils.CmdArgMgr;
 import com.scu.utils.XMLTransform;
@@ -44,15 +48,21 @@ public class HTMLMaker
       String logfmt = System.getProperty("java.util.logging.SimpleFormatter.format");
       if (logfmt == null)
       {
-         // NB Seems %5 is the method name!!
-         System.setProperty("java.util.logging.SimpleFormatter.format", "%1$tY%1$tm%1$td %1$tH%1$tM%1$tS %4$-6s %2$s %5$s%6$s%n");
+         // NB Seems %4 is the method name!!
+         //System.setProperty("java.util.logging.SimpleFormatter.format", "%1$tY%1$tm%1$td %1$tH%1$tM%1$tS %4$-6s %2$s %5$s%6$s%n");
+      	//System.setProperty("java.util.logging.SimpleFormatter.format", "%1$tY%1$tm%1$td %1$tH%1$tM%1$tS %4$-6s source[%2$s] %5$s%6$s%n");
+         
       }
+      Logger log = LoggerFactory.getLogger(HTMLMaker.class.getName());
+      log.info("main: starting");
+
       // Can't override the jar manifest start class by specifying
       // a class on the command line, so have to provide access from here!
       cmd.parseArgs(args);
       if (cmd.getArg(MergeFiles.ARG_OUTFILE) != null)
       {
          MergeFiles.main(args);
+         log.info("main: merge ending");
          System.exit(0);
       }
       else if (cmd.getArg(XMLTVSourceCombiner.ARG_OUTFILE) != null)
@@ -65,6 +75,7 @@ public class HTMLMaker
          {
             e.printStackTrace();
          }
+         log.info("main: combine ending");
          System.exit(0);
       }
       keys = cmd.getArgNames();

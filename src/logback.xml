@@ -5,12 +5,17 @@
   <import class="ch.qos.logback.classic.encoder.PatternLayoutEncoder"/>
   <import class="ch.qos.logback.core.ConsoleAppender"/>
 
-  <appender name="STDOUT" class="ConsoleAppender" level="info">
+  <appender name="STDOUT" class="ConsoleAppender">
+   <!-- Jeez, can you believe this shirt? 
+        Simply want logging of info and above to console and debug and above to file.
+        Why the fork ins't this a simple attribute on appender_ref?? -->
+   <filter class="ch.qos.logback.classic.filter.ThresholdFilter"><level>info</level></filter>
     <encoder class="PatternLayoutEncoder">
       <pattern>%d{HH:mm:ss.SSS} %-5level:%logger{36}: %msg%n</pattern>
     </encoder>
   </appender>
   <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <append>false</append>
     <file>HTMLMaker.log</file>
     <encoder class="PatternLayoutEncoder">
       <pattern>%date  %-5level:%logger{36}: %msg%n</pattern>

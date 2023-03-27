@@ -104,26 +104,63 @@ public void combineSource(String fieldname)
       //
       // Can't think of a simple way to do it.
       // The procedure will be something like:
-      //   select from 'ref' for chanid, 'programme',starttime[day] 
-      //      select from alt with criteria chanid, 'programme',starttime[day] - should give same number
-      //          different count - goto next ref node
-      //      determine occurrence number of ref node (1 if there is only one occurrence!)
-      //      locate occurrence number of alt node
-      //      sanity check starttime
-      //      use alt details.
+      //   select using starttime,chanid. 
+      //     single match use it directly
+      //     no match 
+      //        select from 'ref' for chanid, 'programme',starttime[day] 
+      //           select from alt with criteria chanid, 'programme',starttime[day] - should give same number
+      //           different count - goto next ref node
+      //              determine occurrence number of ref node (1 if there is only one occurrence!)
+      //              locate occurrence number of alt node
+      //              sanity check starttime
+      //              use alt details.
       NodeList altprogs = nu.getNodesByPath(altDoc, "/tv/programme[@start='" + starttime + "' and @channel='" + chanid + "']");
-
+      Node altProg = null;
       if(altprogs == null || (altprogs.getLength() == 0))
       {
          log.debug("combineSource: No program found in alt source for: start=" + starttime + " and channel= " + chanid + " (title=" +  title + ")");
-         continue;
+         
+         int refoccur = -1;
+         String startday = starttime.substring(0,8);
+         String occurCrit = "/tv/programme[" 
+               + "starts-with(@start, '" + startday + "') and " 
+		         + " @channel='" + chanid + "' and "
+		         + " title='" + title + "'"
+               + "]";
+         NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
+         
+         for(int occurs = 0; i <  refprogsoccurs.getLength(); i++)
+         {
+         	Node refOccur = refprogsoccurs.item(occurs);
+            String occurStarttime = nu.getAttributeValue(refOccur, "start");         	
+         	if(occurStarttime.equals(starttime))
+         	{
+         		log.debug("combineSource: match found for start=" + startday  + " and channel= " + chanid  + " occurence=" + occurs);
+         		refoccur = occurs;
+         		break;
+         	}
+         }
+         // at least one must match since starttime comes from the same list
+
+         NodeList altprogsoccurs = nu.getNodesByPath(altDoc, occurCrit);
+         log.debug("combineSource: refoccur={} altprogsoccurs length={}", refoccur, altprogsoccurs.getLength());
+         if(refoccur >=0 && refoccur < altprogsoccurs.getLength())
+         {
+         	altProg = altprogsoccurs.item(refoccur);
+         }
+         
       }
       else if(altprogs.getLength() > 1)
       {
          log.info("combineSource: Multiple programs found in alt source for: start=" + starttime + " and channel= " + chanid + " (title=" +  title + ")");
+         altProg = altprogs.item(0);
       }
 
-      Node altProg = altprogs.item(0);
+      if(altProg == null)
+      {
+      	continue;
+      }
+      
       Node altFld = null;
       try
       {

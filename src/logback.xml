@@ -9,7 +9,7 @@
    <!-- Jeez, can you believe this shirt? 
         Simply want logging of info and above to console and debug and above to file.
         Why the fork ins't this a simple attribute on appender_ref?? -->
-   <filter class="ch.qos.logback.classic.filter.ThresholdFilter"><level>info</level></filter>
+   <filter class="ch.qos.logback.classic.filter.ThresholdFilter"><level>debug</level></filter>
     <encoder class="PatternLayoutEncoder">
       <pattern>%d{HH:mm:ss.SSS} %-5level:%logger{36}: %msg%n</pattern>
     </encoder>

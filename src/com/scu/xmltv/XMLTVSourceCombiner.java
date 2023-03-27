@@ -25,6 +25,23 @@ import com.scu.utils.NodeUtils;
  * descriptions are pretty poor. The aim is to take use the tvgrabnl
  * file as the source and fill in missing episode infos from the
  * epg file.
+ *
+   Many moons later...
+   The TVguide and EPG times are not the same. This seems to be especially the case for programmes early
+   in the day. Sometimes the difference is minutes but occasionally it is more than an hour. The large
+   discrepencies appear to be relate to the designation of 'No broadcast' periods. I think in some cases
+   the 'NB' period is merged into the start time of the next program. The result is that many serial programmes
+   are ending up with no episode info which is requires a lot of manual actions to recover. 
+   The tvguide source was used as the reference but to avoid this issue it is now the epg which is used as
+   reference to ensure the episode info is present - the problem with this is that the epg is not reliable, 
+   sometimes it disappears, especially after a reboot.
+   
+   Currently the starttime is used as-is to match the program in the reference and alternative. In practice
+   it should probably not be used at all, would be better to select based on the order of the programme, ie. first 
+   occurrence of 'program' in the reference should match with the first occurrence in the alternative, maybe with a
+   sanity check on the times. This should work in the case of the midday episode, eg. Grey Anatomy, which is the repeat of
+   the previous days evening episode and there is a different episode for the current evening.
+   
  * @author Chris
  *
  */

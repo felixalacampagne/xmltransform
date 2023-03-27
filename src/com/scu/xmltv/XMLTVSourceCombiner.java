@@ -93,6 +93,24 @@ public void combineSource(String fieldname)
       String chanid = nu.getAttributeValue(refProg, "channel");
 
 
+            // The starttime in alt should be for the same day as the ref item.
+      // A show can be broadcast multiple times during the day, eg. Grey's Anatomy
+      // is shown at midday and in the evening, Minx is shown as multiple 
+      // episode one after the other. The Minx case prevents a large date discrepancy
+      // from being accepted (Minx is ca.25mins!)
+      
+      // Need to figure out a way to determine the occurrence of the current program in
+      // the day for both ref and alt.
+      //
+      // Can't think of a simple way to do it.
+      // The procedure will be something like:
+      //   select from 'ref' for chanid, 'programme',starttime[day] 
+      //      select from alt with criteria chanid, 'programme',starttime[day] - should give same number
+      //          different count - goto next ref node
+      //      determine occurrence number of ref node (1 if there is only one occurrence!)
+      //      locate occurrence number of alt node
+      //      sanity check starttime
+      //      use alt details.
       NodeList altprogs = nu.getNodesByPath(altDoc, "/tv/programme[@start='" + starttime + "' and @channel='" + chanid + "']");
 
       if(altprogs == null || (altprogs.getLength() == 0))

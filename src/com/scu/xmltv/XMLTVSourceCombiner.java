@@ -122,14 +122,15 @@ public void combineSource(String fieldname)
          
          int refoccur = -1;
          String startday = starttime.substring(0,8);
+         String safeTitle = title; // there is not safe title - XPath just doesn't support searching for single quote! title.replace("'", "?");
          String occurCrit = "/tv/programme[" 
                + "starts-with(@start, '" + startday + "') and " 
-		         + " @channel='" + chanid + "' and "
-		         + " title='" + title + "'"
+		         + "@channel='" + chanid + "' and "
+		         + "title=\"" + safeTitle + "\""
                + "]";
          NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
-         
-         for(int occurs = 0; i <  refprogsoccurs.getLength(); i++)
+
+         for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)
          {
          	Node refOccur = refprogsoccurs.item(occurs);
             String occurStarttime = nu.getAttributeValue(refOccur, "start");         	

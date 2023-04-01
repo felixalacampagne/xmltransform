@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 
 import com.scu.utils.CmdArgMgr;
@@ -19,6 +21,7 @@ import com.scu.utils.XMLTransform;
 // one single favourites file....
 public class MergeFiles
 {
+Logger log = LoggerFactory.getLogger(this.getClass().getName());	
 public final static String ARG_OUTFILE = "-merge";
 private List<String> mFiles = new ArrayList<String>();
 private String mOutFile = null;
@@ -60,18 +63,37 @@ int tve = 0;
             chns = inxmltv.indexOf("<channel ");
             progs = inxmltv.indexOf("<programme ");
             tve = inxmltv.indexOf("</tv");
-            sbchans.append(inxmltv.substring(chns, progs));
-            sbprogs.append(inxmltv.substring(progs, tve));
+            
+            // zero length check is not sufficient to avoid 
+            // StringIndexOutOfBoundsException: String index out of range: -1
+            if((chns >=0) && (progs >= 0))
+            {
+               sbchans.append(inxmltv.substring(chns, progs));
+            }
+            else
+            {
+               log.info("merge: channel block missing from " 
+                 + mergeFile.getAbsolutePath() + ": chns=" + chns + " progs=" + progs);
+            }
+            if((progs>=0) && (tve >= 0))
+            {
+               sbprogs.append(inxmltv.substring(progs, tve));
+            }
+            else
+            {
+            	log.info("merge: programme blocks missing from " 
+                     + mergeFile.getAbsolutePath() + ": progs=" + progs + " tve=" + tve);
+               
+            }
          }
          else
          {
-            System.err.println("merge: File is zero length (or missing): " + mergeFile.getAbsolutePath());
+         	log.info("merge: File is zero length (or missing): " + mergeFile.getAbsolutePath());
          }
       }
       catch(Exception ex)
       {
-         ex.printStackTrace();
-         System.err.println("Failed to process " + mFiles.get(i));
+         log.warn("merge: Failed to process " + mFiles.get(i), ex);
       }
    }
 
@@ -89,6 +111,7 @@ int tve = 0;
    catch(Exception ex)
    {
       ex.printStackTrace();
+      log.warn("merge: Failed to write to " + mOutFile, ex);
    }
 
 

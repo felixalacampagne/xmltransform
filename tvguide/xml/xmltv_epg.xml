@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv generator-info-name="scu-owiepg-grabber)" generator-info-url="https://localhost">
+<channel id="XTVGRABPYvitaya"><display-name lang="nl">VTM 3</display-name></channel>
+<channel id="XTVGRABPYvtm"><display-name lang="nl">VTM HD</display-name></channel>
+<channel id="XTVGRABPY2be"><display-name lang="nl">VTM 2 HD</display-name></channel>
+<channel id="XTVGRABPYned3"><display-name lang="nl">NPO3 HD</display-name></channel>
+<channel id="XTVGRABPYned2"><display-name lang="nl">NPO2 HD</display-name></channel>
+<channel id="XTVGRABPYned1"><display-name lang="nl">NPO1 HD</display-name></channel>
+<channel id="XTVGRABPYvijftv"><display-name lang="nl">Play5</display-name></channel>
+<channel id="XTVGRABPYacht"><display-name lang="nl">VTM 4</display-name></channel>
+<channel id="XTVGRABPYeen"><display-name lang="nl">een HD</display-name></channel>
+<channel id="XTVGRABPYvt4"><display-name lang="nl">Play4</display-name></channel>
+<channel id="XTVGRABPYcanvas"><display-name lang="nl">Canvas HD</display-name></channel>
+<programme start="20230327102100 +0200" stop="20230327110800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">Glued</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 11/99 . </episode-num>
+</programme>
+<programme start="20230327110800 +0200" stop="20230327121000 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230327121000 +0200" stop="20230327125900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">Look Up Child</sub-title>
+   <desc lang="nl"> Grey's Anatomy volgt de levens van chirurgisch stagiairs en chirurgen, die hun training naar volleerde chirurgen voltooien met hulp van hun mentors.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 13/99 . </episode-num>
+</programme>
+<programme start="20230327125900 +0200" stop="20230327140300 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230327140300 +0200" stop="20230327144700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Katy Keene</title>
+   <sub-title lang="nl">Chapter Six: Mama Said</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 5/99 . </episode-num>
+</programme>
+<programme start="20230327144700 +0200" stop="20230327153400 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">Meme Is Murder</sub-title>
+   <desc lang="nl"> Amerikaanse dramaserie over de schrijver Richard Castle, die de politie van New York helpt bij het oplossen van moordzaken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 4/99 . </episode-num>
+</programme>
+<programme start="20230327153400 +0200" stop="20230327160000 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Friends</title>
+   <sub-title lang="nl">The One with the Apothecary Table</sub-title>
+   <desc lang="nl"> Amerikaanse televisieserie Janine dwingt Joey tot een keuze tussen haar en zijn vrienden. Rachel koopt een apothekerstafel uit een winkel waar Phoebe een gruwelijke hekel aan heeft.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">5 . 10/99 . </episode-num>
+</programme>
+<programme start="20230327160000 +0200" stop="20230327162800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Two and a Half Men</title>
+   <sub-title lang="nl">Release the Dogs</sub-title>
+   <desc lang="nl"> Alan kan niet slapen en gaat op advies van Charlie joggen op het strand. Nadat zijn loopje een rampzalige wending neemt, wendt Alan zich tot een psychiater in de hoop zijn slapeloosheid te verlichten.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 7/99 . </episode-num>
+</programme>
+<programme start="20230327162800 +0200" stop="20230327171700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">The Letter</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 12/99 . </episode-num>
+</programme>
+<programme start="20230327171700 +0200" stop="20230327180400 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">Tradition</sub-title>
+   <desc lang="nl"> Grey's Anatomy volgt de levens van chirurgisch stagiairs en chirurgen, die hun training naar volleerde chirurgen voltooien met hulp van hun mentors.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 14/99 . </episode-num>
+</programme>
+<programme start="20230327180400 +0200" stop="20230327185500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">The Time of Our Lives</sub-title>
+   <desc lang="nl"> Castle bevindt zich in een alternatief universum waarin hij Beckett nooit eerder ontmoette. Hij moet haar overtuigen om hem te laten helpen bij het moordonderzoek om zo zijn weg naar huis terug te vinden.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 5/99 . </episode-num>
+</programme>
+<programme start="20230327185500 +0200" stop="20230327194500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">The Slave of Duty</sub-title>
+   <desc lang="nl"> Een elite team van de FBI probeert Amerika's meest geschifte criminelen in kaart te brengen om zo te anticiperen op hun volgende stap, voordat ze opnieuw kunnen toeslaan.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 9/99 . </episode-num>
+</programme>
+<programme start="20230327194500 +0200" stop="20230327203500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Predator in the Pool</sub-title>
+   <desc lang="nl"> Dr. Temperence Brennan, een forensisch antropoloog, bezit de buitengewone vaardigheid om uit de botten van slachtoffers aanwijzingen te halen die kunnen helpen bij het oplossen van hun dood.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 17/99 . </episode-num>
+</programme>
+<programme start="20230327203500 +0200" stop="20230327234900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Dances with Wolves</title>
+   <desc lang="nl">Luitenant John Dunbar, toegewezen aan een afgelegen westelijke buitenpost van de burgeroorlog, raakt bevriend met wolven en indianen, wat hem tot een ondraaglijk buitenbeetje in het leger maakt.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230327234900 +0200" stop="20230328004000 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Assisen</title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 6/99 . </episode-num>
+</programme>
+<programme start="20230328004000 +0200" stop="20230328010900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Friends</title>
+   <sub-title lang="nl">The One With the Joke</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">5 . 11/99 . </episode-num>
+</programme>
+<programme start="20230328010900 +0200" stop="20230328013400 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Two and a Half Men</title>
+   <sub-title lang="nl">Corey's Been Dead for an Hour</sub-title>
+   <desc lang="nl"> Tijdens een dubbeldate krijgen Charlie en Alan ruzie over geld, die laatste kijkt namelijk elke keer de kat uit de boom wanneer de rekening op tafel komt.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 8/99 . </episode-num>
+</programme>
+<programme start="20230328013400 +0200" stop="20230328015800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Fresh Prince of Bel-Air</title>
+   <sub-title lang="nl">Blood Is Thicker Than Mud</sub-title>
+   <desc lang="nl"> Carlton leert een les in omgekeerde discriminatie wanneer hij een broederschap belooft.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 7/99 . </episode-num>
+</programme>
+<programme start="20230328015800 +0200" stop="20230328025900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328025900 +0200" stop="20230328045700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Without a Trace</title>
+   <sub-title lang="nl">When Darkness Falls</sub-title>
+   <desc lang="nl"> Samantha doet onderzoek naar een vrouw met geheugenverlies die misschien ook een moordenaar is. Jack's vader lijdt ondertussen aan de ziekte van Alzheimer en wil niet meer leven.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 9/99 . </episode-num>
+</programme>
+<programme start="20230328045700 +0200" stop="20230328062200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328062200 +0200" stop="20230328063200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328063200 +0200" stop="20230328073200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328073200 +0200" stop="20230328081500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Predator in the Pool</sub-title>
+   <desc lang="nl"> Dr. Temperence Brennan, een forensisch antropoloog, bezit de buitengewone vaardigheid om uit de botten van slachtoffers aanwijzingen te halen die kunnen helpen bij het oplossen van hun dood.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 17/99 . </episode-num>
+</programme>
+<programme start="20230328081500 +0200" stop="20230328091900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328091900 +0200" stop="20230328101400 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">The Letter</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 12/99 . </episode-num>
+</programme>
+<programme start="20230328101400 +0200" stop="20230328111800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328111800 +0200" stop="20230328121100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">Tradition</sub-title>
+   <desc lang="nl"> Grey's Anatomy volgt de levens van chirurgisch stagiairs en chirurgen, die hun training naar volleerde chirurgen voltooien met hulp van hun mentors.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 14/99 . </episode-num>
+</programme>
+<programme start="20230328121100 +0200" stop="20230328131500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230328131500 +0200" stop="20230328141100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Katy Keene</title>
+   <sub-title lang="nl">Chapter seven: Kiss of the Spider woman</sub-title>
+   <desc lang="nl"> Modeontwerper Katy Keene, Broadway-acteur Jorge, model Pepper en muzikante Josie. De vier creatieve twintigers willen carrière maken in New York City.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 6/99 . </episode-num>
+</programme>
+<programme start="20230328141100 +0200" stop="20230328150700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">The Time of Our Lives</sub-title>
+   <desc lang="nl"> Castle bevindt zich in een alternatief universum waarin hij Beckett nooit eerder ontmoette. Hij moet haar overtuigen om hem te laten helpen bij het moordonderzoek om zo zijn weg naar huis terug te vinden.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 5/99 . </episode-num>
+</programme>
+<programme start="20230328150700 +0200" stop="20230328153800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Friends</title>
+   <sub-title lang="nl">The One With the Joke</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">5 . 11/99 . </episode-num>
+</programme>
+<programme start="20230328153800 +0200" stop="20230328160800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Two and a Half Men</title>
+   <sub-title lang="nl">Corey's Been Dead for an Hour</sub-title>
+   <desc lang="nl"> Tijdens een dubbeldate krijgen Charlie en Alan ruzie over geld, die laatste kijkt namelijk elke keer de kat uit de boom wanneer de rekening op tafel komt.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 8/99 . </episode-num>
+</programme>
+<programme start="20230328160800 +0200" stop="20230328170100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">Boy in the Box</sub-title>
+   <desc lang="nl"> In 1936 werd een onbekend jongetje vermoord gevonden in een weiland. Tientallen jaren later staat er een doos op de stoep van een kerk met daarin een foto en de cowboyhoed van het kind. De zaak wordt heropend.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 13/99 . </episode-num>
+</programme>
+<programme start="20230328170100 +0200" stop="20230328175300 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">I'm Still Standing</sub-title>
+   <desc lang="nl"> Amerikaanse ziekenhuisserie Levi wordt toegelaten tot de vaccinatieproef. Ondertussen behandelen Amelia en Owen een auto-ongeluk patiënt, en Hayes en Jo krijgen een ontmoeting met Luna's wettelijke voogd.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 15/99 . </episode-num>
+</programme>
+<programme start="20230328175300 +0200" stop="20230328184700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">Once upon a Time in the West</sub-title>
+   <desc lang="nl"> Amerikaanse dramaserie over de schrijver Richard Castle, die de politie van New York helpt bij het oplossen van moordzaken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 6/99 . </episode-num>
+</programme>
+<programme start="20230328184700 +0200" stop="20230328194100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">Retaliation</sub-title>
+   <desc lang="nl"> Een elite team van de FBI probeert Amerika's meest geschifte criminelen in kaart te brengen om zo te anticiperen op hun volgende stap, voordat ze opnieuw kunnen toeslaan.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 10/99 . </episode-num>
+</programme>
+<programme start="20230328194100 +0200" stop="20230329022600 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Rocker in the Rinse Cycle</sub-title>
+   <desc lang="nl"> De menselijke resten van aannemer Richard Cole worden ontdekt in een hotelwasmachine. Cole was een rijke, excentrieke waaghals, altijd op zoek naar een kick in het leven en de volgende sensatie.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 18/99 . </episode-num>
+</programme>
+<programme start="20230329022600 +0200" stop="20230329030900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Without a Trace</title>
+   <sub-title lang="nl">Blood Out</sub-title>
+   <desc lang="nl"> Een paramedicus verdwijnt plotseling kort nadat hij een gewonde misdadiger behandelde die gewond raakte toen hij een ander bendelid vermoordde.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 10/99 . </episode-num>
+</programme>
+<programme start="20230329030900 +0200" stop="20230329062500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329062500 +0200" stop="20230329063500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329063500 +0200" stop="20230329073500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329073500 +0200" stop="20230329081800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Rocker in the Rinse Cycle</sub-title>
+   <desc lang="nl"> De menselijke resten van aannemer Richard Cole worden ontdekt in een hotelwasmachine. Cole was een rijke, excentrieke waaghals, altijd op zoek naar een kick in het leven en de volgende sensatie.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 18/99 . </episode-num>
+</programme>
+<programme start="20230329081800 +0200" stop="20230329092200 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329092200 +0200" stop="20230329101500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">Boy in the Box</sub-title>
+   <desc lang="nl"> In 1936 werd een onbekend jongetje vermoord gevonden in een weiland. Tientallen jaren later staat er een doos op de stoep van een kerk met daarin een foto en de cowboyhoed van het kind. De zaak wordt heropend.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 13/99 . </episode-num>
+</programme>
+<programme start="20230329101500 +0200" stop="20230329111900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329111900 +0200" stop="20230329121100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">I'm Still Standing</sub-title>
+   <desc lang="nl"> Amerikaanse ziekenhuisserie Levi wordt toegelaten tot de vaccinatieproef. Ondertussen behandelen Amelia en Owen een auto-ongeluk patiënt, en Hayes en Jo krijgen een ontmoeting met Luna's wettelijke voogd.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 15/99 . </episode-num>
+</programme>
+<programme start="20230329121100 +0200" stop="20230329131500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230329131500 +0200" stop="20230329141100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Katy Keene</title>
+   <sub-title lang="nl">Chapter Eight: It's Alright, Ma (I'm Only Bleeding)</sub-title>
+   <desc lang="nl"> Modeontwerper Katy Keene, Broadway-acteur Jorge, model Pepper en muzikante Josie. De vier creatieve twintigers willen carrière maken in New York City.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 7/99 . </episode-num>
+</programme>
+<programme start="20230329141100 +0200" stop="20230329150700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">Once upon a Time in the West</sub-title>
+   <desc lang="nl"> Amerikaanse dramaserie over de schrijver Richard Castle, die de politie van New York helpt bij het oplossen van moordzaken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 6/99 . </episode-num>
+</programme>
+<programme start="20230329150700 +0200" stop="20230329153800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Friends</title>
+   <sub-title lang="nl">The One With Rachel's Sister</sub-title>
+   <desc lang="nl"></desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">5 . 12/99 . </episode-num>
+</programme>
+<programme start="20230329153800 +0200" stop="20230329160800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Two and a Half Men</title>
+   <sub-title lang="nl">Kissing Abraham Lincolm</sub-title>
+   <desc lang="nl"> Lydia, Charlies onuitstaanbare vriendin, wil dat hij zijn relatie met zijn huishoudster Berta beëindigt. Berta laat dat niet op zich zitten en eist van Charlie, dat Lydia het veld ruimt.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 9/99 . </episode-num>
+</programme>
+<programme start="20230329160800 +0200" stop="20230329170400 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Cold Case</title>
+   <sub-title lang="nl">Disco Inferno</sub-title>
+   <desc lang="nl"> In de resten van een discotheek die in 1978 is afgebrand, vinden bouwvakkers patroonhulzen. Bij de brand kwamen 22 mensen om het leven.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 14/99 . </episode-num>
+</programme>
+<programme start="20230329170400 +0200" stop="20230329175700 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Grey's Anatomy</title>
+   <sub-title lang="nl">Someone Saved My Life Tonight</sub-title>
+   <desc lang="nl"> Amerikaanse ziekenhuisserie Het is de trouwdag voor Maggie en Winston. Ondertussen neemt Meredith een nieuwe rol aan in het ziekenhuis, en Jo neemt een levensveranderende beslissing.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">16 . 16/99 . </episode-num>
+</programme>
+<programme start="20230329175700 +0200" stop="20230329184800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Castle</title>
+   <sub-title lang="nl">Kill Switch</sub-title>
+   <desc lang="nl"> Amerikaanse dramaserie over de schrijver Richard Castle, die de politie van New York helpt bij het oplossen van moordzaken.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">6 . 7/99 . </episode-num>
+</programme>
+<programme start="20230329184800 +0200" stop="20230329194100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Criminal Minds</title>
+   <sub-title lang="nl">The Uncanny Valley</sub-title>
+   <desc lang="nl"> Een elite team van de FBI probeert Amerika's meest geschifte criminelen in kaart te brengen om zo te anticiperen op hun volgende stap, voordat ze opnieuw kunnen toeslaan.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 11/99 . </episode-num>
+</programme>
+<programme start="20230329194100 +0200" stop="20230329203500 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Witch in the Wardrobe</sub-title>
+   <desc lang="nl"> Dr. Temperence Brennan, een forensisch antropoloog, bezit de buitengewone vaardigheid om uit de botten van slachtoffers aanwijzingen te halen die kunnen helpen bij het oplossen van hun dood.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 19/99 . </episode-num>
+</programme>
+<programme start="20230329203500 +0200" stop="20230329212800 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">New Amsterdam</title>
+   <sub-title lang="nl">TBD</sub-title>
+   <desc lang="nl"> Bloom, Iggy en Reynolds scharen zich achter Max, wanneer de gevolgen van Helens beslissing zich ontvouwen. Bloom geeft Leyla extra ruimte, maar er staat haar een verrassing te wachten.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 0/99 . </episode-num>
+</programme>
+<programme start="20230329212800 +0200" stop="20230329222100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">New Amsterdam</title>
+   <sub-title lang="nl">Hook, Line and Sinker</sub-title>
+   <desc lang="nl"> Max test een gedurfd nieuw kostenbesparingsprogramma. Dit kan zowel New Amsterdam, als de patiënten die de meeste zorgen nodig hebben, helpen.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 1/99 . </episode-num>
+</programme>
+<programme start="20230329222100 +0200" stop="20230329225300 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Will &amp; Grace</title>
+   <sub-title lang="nl">The Pilot (Love &amp;amp; Marriage)</sub-title>
+   <desc lang="nl"> Comedyserie over twee beste vrienden en huisgenoten. De homoseksuele Will en de heteroseksuele Grace.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 0/99 . </episode-num>
+</programme>
+<programme start="20230329225300 +0200" stop="20230329232300 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Will &amp; Grace</title>
+   <sub-title lang="nl">A New Lease on Life</sub-title>
+   <desc lang="nl"> Will en Grace zijn al vrienden sinds hun studie. Ze wonen samen en zijn bijna onafscheidelijk. Hun vrienden, de flamboyante Jack en de obsceen rijke Karen, verrijken hun leven met feest, drama en schaamte.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">0 . 1/99 . </episode-num>
+</programme>
+<programme start="20230329232300 +0200" stop="20230329235400 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Friends</title>
+   <sub-title lang="nl">The One Where Chandler Can't Cry</sub-title>
+   <desc lang="nl"> Zes vrienden wonen en werken in Manhattan in New York waar ze dagelijkse dingen meemaken, en aan de dagelijkse sleur ontsnappen in Central Perk, het lokale koffiehuis.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">5 . 13/99 . </episode-num>
+</programme>
+<programme start="20230329235400 +0200" stop="20230330002900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Two and a Half Men</title>
+   <sub-title lang="nl">Walnuts and Demerol</sub-title>
+   <desc lang="nl"> Charlie verheugd zich op kerstavond in bed met zijn nieuwe vlam Gloria. Maar in plaats daarvan stroomt Charlie's huis steeds verder vol met ongenode gasten en wordt kerstavond toch nog een famiefeest.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 10/99 . </episode-num>
+</programme>
+<programme start="20230330002900 +0200" stop="20230330005100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">The Fresh Prince of Bel-Air</title>
+   <sub-title lang="nl">Home is Where the Heart Attack Is</sub-title>
+   <desc lang="nl"> Nadat hij moeite heeft gedaan om af te vallen, krijgt Philip een hartaanval tijdens het eten.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 9/99 . </episode-num>
+</programme>
+<programme start="20230330005100 +0200" stop="20230330015100 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230330015100 +0200" stop="20230330023300 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Without a Trace</title>
+   <sub-title lang="nl">Patient X</sub-title>
+   <desc lang="nl"> Het team zoekt naar een therapeute die verdween terwijl ze op het punt stond naar huis te gaan. Het team vermoedt dat een van haar patiënten haar heeft ontvoerd.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">3 . 11/99 . </episode-num>
+</programme>
+<programme start="20230330023300 +0200" stop="20230330061600 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230330061600 +0200" stop="20230330062600 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230330062600 +0200" stop="20230330072600 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Geen uitzending</title>
+   <desc lang="nl">Geen uitzending.</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230330072600 +0200" stop="20230330080900 +0200" channel="XTVGRABPYvijftv">
+   <title lang="nl">Bones</title>
+   <sub-title lang="nl">The Witch in the Wardrobe</sub-title>
+   <desc lang="nl"> Dr. Temperence Brennan, een forensisch antropoloog, bezit de buitengewone vaardigheid om uit de botten van slachtoffers aanwijzingen te halen die kunnen helpen bij het oplossen van hun dood.</desc>
+   <category>TVShow</category>
+   <episode-num system="xmltv_ns">4 . 19/99 . </episode-num>
+</programme>
+
+</tv>

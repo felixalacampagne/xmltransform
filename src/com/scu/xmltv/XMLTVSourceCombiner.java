@@ -1,6 +1,8 @@
 package com.scu.xmltv;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -210,7 +212,52 @@ public void combineSource(String... fieldnames)
 				log.debug("combineSource: reference {} already contains field {}", progid, fieldname);
 			}
       }
+      
+      // Compare the times for ref and alt. To maximise the chance of recording the entire program
+      // should take the earliest starttime and the latest endtime.
+      // How to change attribute values?
+      // How to compare the dates?
+      String altstart = nu.getAttributeValue(altProg, "start");
+      String altend = nu.getAttributeValue(altProg, "stop");
+      String refend = nu.getAttributeValue(refProg, "stop");
+      
+      // Can't rely on the timezone offsets being the same so convert to Date for
+      // comparing but use the original string if necessary to change the time.
+      // Should round the times to 5mins (down for start, up for end) for compatibility
+      // with the timer editor. Would then need to be able to convert the Date back
+      // to timezone aware string. The 5min adjustment is done when the web pages are
+      // generated from the merged XML so it's not so important to do it here.
+      Date refdt = getDateFromXMLTVTime(starttime);
+      Date altdt = getDateFromXMLTVTime(altstart);
+      if(altdt.before(refdt))
+      {
+      	nu.setAttributeValue(refProg, "start", altstart);
+      	log.info("combineSource: changed start for {} from {} to {}", progid, starttime, altstart);
+      }
+      
+      refdt = getDateFromXMLTVTime(refend);
+      altdt = getDateFromXMLTVTime(altend);
+      if( altdt.after(refdt))
+      {
+      	nu.setAttributeValue(refProg, "stop", altend);
+      	log.info("combineSource: changed stop for {} from {} to {}", progid, refend, altend);
+      }
    }
+}
+
+public Date getDateFromXMLTVTime(String xmltvdatetime)
+{
+String rs = "";
+SimpleDateFormat sdf = new SimpleDateFormat();
+Date dt = null;
+   try
+   {
+      sdf.applyPattern("yyyyMMddHHmmss Z");
+      dt = sdf.parse(xmltvdatetime);
+   }
+   catch(Exception ex) {}
+
+   return dt;
 }
 
 public void writeUpdatedXMLTV(String filename) throws Exception

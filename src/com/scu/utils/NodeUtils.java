@@ -286,6 +286,18 @@ String value = null;
    return value;
 }
 
+public void setAttributeValue(Node n, String attrname, String value)
+{
+NamedNodeMap attrs = n.getAttributes();
+Node attr = attrs.getNamedItem(attrname);
+
+   if(attr != null)
+   {
+   	attr.setNodeValue(value);
+   }
+   return;
+}
+
 // Methods below are not really Node utilities but are specific to
 // XSLTExtensions and the processing of XMLTV files.
 

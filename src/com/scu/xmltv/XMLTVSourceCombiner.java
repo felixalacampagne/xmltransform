@@ -91,9 +91,9 @@ public void combineSource(String fieldname)
       // Locate a matching node in altDoc with a fieldname
       String starttime = nu.getAttributeValue(refProg, "start");
       String chanid = nu.getAttributeValue(refProg, "channel");
+      String progid = title + ":" + starttime + ":" + chanid; 
 
-
-            // The starttime in alt should be for the same day as the ref item.
+      // The starttime in alt should be for the same day as the ref item.
       // A show can be broadcast multiple times during the day, eg. Grey's Anatomy
       // is shown at midday and in the evening, Minx is shown as multiple 
       // episode one after the other. The Minx case prevents a large date discrepancy
@@ -118,11 +118,11 @@ public void combineSource(String fieldname)
       Node altProg = null;
       if(altprogs == null || (altprogs.getLength() == 0))
       {
-         log.debug("combineSource: No program found in alt source for: start=" + starttime + " and channel= " + chanid + " (title=" +  title + ")");
+         log.debug("combineSource: alternative does not contain exact match for {}", progid);
          
          int refoccur = -1;
          String startday = starttime.substring(0,8);
-         String safeTitle = title; // there is not safe title - XPath just doesn't support searching for single quote! title.replace("'", "?");
+         String safeTitle = title; // there is no safe title - XPath just doesn't support searching for single quote! title.replace("'", "?");
          String occurCrit = "/tv/programme[" 
                + "starts-with(@start, '" + startday + "') and " 
 		         + "@channel='" + chanid + "' and "
@@ -136,15 +136,23 @@ public void combineSource(String fieldname)
             String occurStarttime = nu.getAttributeValue(refOccur, "start");         	
          	if(occurStarttime.equals(starttime))
          	{
-         		log.debug("combineSource: match found for start=" + startday  + " and channel= " + chanid  + " occurence=" + occurs);
+         		log.debug("combineSource: reference {} is occurrence {}", progid, occurs+1);
          		refoccur = occurs;
          		break;
          	}
          }
-         // at least one must match since starttime comes from the same list
-
+         
+         // In theory at least one must match since refProg is from the search list however special characters
+         // in the title could fork up the search. Single quote is allowed for and I can't think of a reason for
+         // the title containing a double-quote but who know what else title makers can come up with to break
+         // the very fragile XPath search.
+         if(refoccur < 0)
+         {
+         	log.info("combineSource: Failed to find reference occurrence for {} with predicate [{}]", progid, occurCrit);
+         	continue;
+         }
          NodeList altprogsoccurs = nu.getNodesByPath(altDoc, occurCrit);
-         log.debug("combineSource: refoccur={} altprogsoccurs length={}", refoccur, altprogsoccurs.getLength());
+         log.debug("combineSource: alternative occurrences of {}: {}", progid, altprogsoccurs.getLength());
          if(refoccur >=0 && refoccur < altprogsoccurs.getLength())
          {
          	altProg = altprogsoccurs.item(refoccur);
@@ -153,12 +161,13 @@ public void combineSource(String fieldname)
       }
       else if(altprogs.getLength() > 1)
       {
-         log.info("combineSource: Multiple programs found in alt source for: start=" + starttime + " and channel= " + chanid + " (title=" +  title + ")");
+         log.info("combineSource: Multiple programs found in alt source {}", progid);
          altProg = altprogs.item(0);
       }
 
       if(altProg == null)
       {
+      	log.info("combineSource: NO alternative found for {}", progid);
       	continue;
       }
       
@@ -168,20 +177,20 @@ public void combineSource(String fieldname)
          altFld = nu.getNodeByPath(altProg, fieldname);
          if((altFld == null))
          {
-            log.debug("combineSource: Alt source has no field '" + fieldname + "' for '" + title + "'");
+            log.info("combineSource: alternative for {} has no field {}", progid, fieldname);
             continue;
          }
       }
       catch(TransformerException tex)
       {
-         log.info("combineSource: exception finding field:" + fieldname + ": " + tex);
+         log.info("combineSource: exception for {} finding field: {}", progid, fieldname, tex);
          continue;
       }
 
       Node newNode = altFld.cloneNode(true);  // Create a duplicate node
       refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
       refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
-      log.info("combineSource: updated '" + title + "' (" + starttime + " " + chanid + "): " + newNode.getTextContent());
+      log.info("combineSource: updated {}: {}", progid, newNode.getTextContent());
 
    }
 }

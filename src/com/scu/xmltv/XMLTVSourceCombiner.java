@@ -31,7 +31,7 @@ import com.scu.utils.NodeUtils;
    in the day. Sometimes the difference is minutes but occasionally it is more than an hour. The large
    discrepencies appear to be relate to the designation of 'No broadcast' periods. I think in some cases
    the 'NB' period is merged into the start time of the next program. The result is that many serial programmes
-   are ending up with no episode info which is requires a lot of manual actions to recover. 
+   are ending up with no episode info which then requires a lot of manual actions to recover. 
    The tvguide source was used as the reference but to avoid this issue it is now the epg which is used as
    reference to ensure the episode info is present - the problem with this is that the epg is not reliable, 
    sometimes it disappears, especially after a reboot.
@@ -39,8 +39,14 @@ import com.scu.utils.NodeUtils;
    Currently the starttime is used as-is to match the program in the reference and alternative. In practice
    it should probably not be used at all, would be better to select based on the order of the programme, ie. first 
    occurrence of 'program' in the reference should match with the first occurrence in the alternative, maybe with a
-   sanity check on the times. This should work in the case of the midday episode, eg. Grey Anatomy, which is the repeat of
+   sanity check on the times. This should work in the case of the midday episode, eg. Grey's Anatomy, which is the repeat of
    the previous days evening episode and there is a different episode for the current evening.
+   
+   Above seems to work OK however the difference in time between the EPG and the tvguide is quite significant, more than
+   30mins for programmes early in the day. Maybe the times should also be merged to maximise the chance of
+   actually recording the whole programme. This would require taking the earliest startime and the latest endtime.
+   Don't know what effect this will have when multiple fields are updated using multiple passes like at present. 
+   Maybe a list of potential missing fields could be provided so a single search can be used.
    
  * @author Chris
  *
@@ -80,7 +86,11 @@ public void combineSource(String fieldname)
    //    title needs to be a case-insensitive match!!
    //    If one is found add it to the 'reference' node.
 
-
+   // Would be nice to support scanning for multiple missing fields in one pass.
+   // Since the entire reference list will likely be missing the fields it make little
+   // sense to do this initial search. Might as well loop through all programmes and
+   // for each programme check if the alternative has a matching program and then 
+   // check for each field in the found alternative program.
    NodeList progs = null;
    progs = nu.getNodesByPath(refDoc, "/tv/programme[not(" + fieldname + ")]");
    for(int i = 0; i <  progs.getLength(); i++)

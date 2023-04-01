@@ -227,37 +227,22 @@ public void combineSource(String... fieldnames)
       // with the timer editor. Would then need to be able to convert the Date back
       // to timezone aware string. The 5min adjustment is done when the web pages are
       // generated from the merged XML so it's not so important to do it here.
-      Date refdt = getDateFromXMLTVTime(starttime);
-      Date altdt = getDateFromXMLTVTime(altstart);
+      Date refdt = XMLTVutils.getDateFromXmltv(starttime);
+      Date altdt = XMLTVutils.getDateFromXmltv(altstart);
       if(altdt.before(refdt))
       {
       	nu.setAttributeValue(refProg, "start", altstart);
       	log.info("combineSource: changed start for {} from {} to {}", progid, starttime, altstart);
       }
       
-      refdt = getDateFromXMLTVTime(refend);
-      altdt = getDateFromXMLTVTime(altend);
+      refdt = XMLTVutils.getDateFromXmltv(refend);
+      altdt = XMLTVutils.getDateFromXmltv(altend);
       if( altdt.after(refdt))
       {
       	nu.setAttributeValue(refProg, "stop", altend);
       	log.info("combineSource: changed stop for {} from {} to {}", progid, refend, altend);
       }
    }
-}
-
-public Date getDateFromXMLTVTime(String xmltvdatetime)
-{
-String rs = "";
-SimpleDateFormat sdf = new SimpleDateFormat();
-Date dt = null;
-   try
-   {
-      sdf.applyPattern("yyyyMMddHHmmss Z");
-      dt = sdf.parse(xmltvdatetime);
-   }
-   catch(Exception ex) {}
-
-   return dt;
 }
 
 public void writeUpdatedXMLTV(String filename) throws Exception

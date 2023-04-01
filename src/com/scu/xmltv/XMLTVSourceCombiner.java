@@ -1,6 +1,8 @@
 package com.scu.xmltv;
 
 import java.io.File;
+import java.util.List;
+import java.util.Optional;
 
 import javax.xml.transform.TransformerException;
 
@@ -71,7 +73,7 @@ public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
    altXMLTV = new File(alternateXMLTV);
 }
 
-public void combineSource(String fieldname)
+public void combineSource(String... fieldnames)
 {
    if(refDoc == null)
    {
@@ -92,7 +94,8 @@ public void combineSource(String fieldname)
    // for each programme check if the alternative has a matching program and then 
    // check for each field in the found alternative program.
    NodeList progs = null;
-   progs = nu.getNodesByPath(refDoc, "/tv/programme[not(" + fieldname + ")]");
+   //progs = nu.getNodesByPath(refDoc, "/tv/programme[not(" + fieldname + ")]");
+   progs = nu.getNodesByPath(refDoc, "/tv/programme");
    for(int i = 0; i <  progs.getLength(); i++)
    {
       Node refProg = progs.item(i);
@@ -109,21 +112,16 @@ public void combineSource(String fieldname)
       // episode one after the other. The Minx case prevents a large date discrepancy
       // from being accepted (Minx is ca.25mins!)
       
-      // Need to figure out a way to determine the occurrence of the current program in
-      // the day for both ref and alt.
-      //
-      // Can't think of a simple way to do it.
+      // Determine the occurrence of the program in the reference then find same occurrence in alternative.
       // The procedure will be something like:
       //   select using starttime,chanid. 
-      //     single match use it directly
+      //     single match - use it directly
       //     no match 
       //        select from 'ref' for chanid, 'programme',starttime[day] 
       //           select from alt with criteria chanid, 'programme',starttime[day] - should give same number
-      //           different count - goto next ref node
-      //              determine occurrence number of ref node (1 if there is only one occurrence!)
-      //              locate occurrence number of alt node
-      //              sanity check starttime
-      //              use alt details.
+      //              different count - goto next ref node
+      //           determine occurrence number of ref node (1 if there is only one occurrence!)
+      //           locate occurrence number of alt node
       NodeList altprogs = nu.getNodesByPath(altDoc, "/tv/programme[@start='" + starttime + "' and @channel='" + chanid + "']");
       Node altProg = null;
       if(altprogs == null || (altprogs.getLength() == 0))
@@ -181,27 +179,37 @@ public void combineSource(String fieldname)
       	continue;
       }
       
-      Node altFld = null;
-      try
+      for(String fieldname : fieldnames)
       {
-         altFld = nu.getNodeByPath(altProg, fieldname);
-         if((altFld == null))
-         {
-            log.info("combineSource: alternative for {} has no field {}", progid, fieldname);
-            continue;
-         }
+			Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
+			if( ! optrefFld.isPresent())
+			{
+		      Node altFld = null;
+		      try
+		      {
+		         altFld = nu.getNodeByPath(altProg, fieldname);
+		         if((altFld == null))
+		         {
+		            log.info("combineSource: alternative for {} has no field {}", progid, fieldname);
+		            continue;
+		         }
+		      }
+		      catch(TransformerException tex)
+		      {
+		         log.info("combineSource: exception for {} finding field: {}", progid, fieldname, tex);
+		         continue;
+		      }
+		
+		      Node newNode = altFld.cloneNode(true);  // Create a duplicate node
+		      refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
+		      refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
+		      log.info("combineSource: updated field {} of {}: {}", fieldname, progid, newNode.getTextContent());
+			}
+			else
+			{
+				log.debug("combineSource: reference {} already contains field {}", progid, fieldname);
+			}
       }
-      catch(TransformerException tex)
-      {
-         log.info("combineSource: exception for {} finding field: {}", progid, fieldname, tex);
-         continue;
-      }
-
-      Node newNode = altFld.cloneNode(true);  // Create a duplicate node
-      refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
-      refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
-      log.info("combineSource: updated {}: {}", progid, newNode.getTextContent());
-
    }
 }
 
@@ -246,8 +254,8 @@ String [] keys = null;
 
 
    XMLTVSourceCombiner sc = new XMLTVSourceCombiner(ref, alt);
-   sc.combineSource("sub-title");
-   sc.combineSource("episode-num");
+   sc.combineSource("episode-num", "sub-title");
+  // sc.combineSource("episode-num");
    sc.writeUpdatedXMLTV(result);
 }
 }

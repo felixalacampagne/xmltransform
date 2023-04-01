@@ -36,6 +36,8 @@ class XMLTVutilsTest
 		
 		int off = mins % 5;
 
+		
+		// This will need to be 0 aware!!
 		zdt1 = zdt2.plusMinutes(5-off);
 		System.out.println("2 5mins adjusted up: " + zdt1);
 		
@@ -44,6 +46,15 @@ class XMLTVutilsTest
 		
 		xmltvdt = XMLTVutils.getXmltvFromZDate(zdt1);
 		System.out.println("2 5mins adjusted down XMLTV: " + xmltvdt);
+		
+		off = 0;
+		zdt1 = zdt2.plusMinutes(off);
+		System.out.println("2 5mins adjusted up 0 off: " + zdt1);
+		
+		
+		zdt1 = zdt2.minusMinutes(off);
+		System.out.println("2 5mins adjusted down 0 off: " + zdt1);
+		
 	}
 
 }

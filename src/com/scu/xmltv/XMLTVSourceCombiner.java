@@ -2,6 +2,7 @@ package com.scu.xmltv;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -227,20 +228,23 @@ public void combineSource(String... fieldnames)
       // with the timer editor. Would then need to be able to convert the Date back
       // to timezone aware string. The 5min adjustment is done when the web pages are
       // generated from the merged XML so it's not so important to do it here.
-      Date refdt = XMLTVutils.getDateFromXmltv(starttime);
-      Date altdt = XMLTVutils.getDateFromXmltv(altstart);
-      if(altdt.before(refdt))
-      {
-      	nu.setAttributeValue(refProg, "start", altstart);
-      	log.info("combineSource: changed start for {} from {} to {}", progid, starttime, altstart);
+      ZonedDateTime refdt = XMLTVutils.getZDateFromXmltv(starttime);
+      ZonedDateTime altdt = XMLTVutils.getZDateFromXmltv(altstart);
+      String zxmltvdt = null;
+      if(altdt.isBefore(refdt))
+      { 
+      	zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
+      	nu.setAttributeValue(refProg, "start", zxmltvdt);
+      	log.info("combineSource: changed start for {} from {} to {}", progid, starttime, zxmltvdt);
       }
       
-      refdt = XMLTVutils.getDateFromXmltv(refend);
-      altdt = XMLTVutils.getDateFromXmltv(altend);
-      if( altdt.after(refdt))
+      refdt = XMLTVutils.getZDateFromXmltv(refend);
+      altdt = XMLTVutils.getZDateFromXmltv(altend);
+      if( altdt.isAfter(refdt))
       {
-      	nu.setAttributeValue(refProg, "stop", altend);
-      	log.info("combineSource: changed stop for {} from {} to {}", progid, refend, altend);
+      	zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
+      	nu.setAttributeValue(refProg, "stop", zxmltvdt);
+      	log.info("combineSource: changed stop for {} from {} to {}", progid, refend, zxmltvdt);
       }
    }
 }

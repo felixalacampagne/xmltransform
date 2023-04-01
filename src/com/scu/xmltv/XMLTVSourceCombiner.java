@@ -206,7 +206,7 @@ public void combineSource(String... fieldnames)
 		      Node newNode = altFld.cloneNode(true);  // Create a duplicate node
 		      refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
 		      refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
-		      log.info("combineSource: updated field {} of {}: {}", fieldname, progid, newNode.getTextContent());
+		      log.info("combineSource: added field {} to {}: {}", fieldname, progid, newNode.getTextContent());
 			}
 			else
 			{
@@ -231,16 +231,32 @@ public void combineSource(String... fieldnames)
       ZonedDateTime refdt = XMLTVutils.getZDateFromXmltv(starttime);
       ZonedDateTime altdt = XMLTVutils.getZDateFromXmltv(altstart);
       String zxmltvdt = null;
-      if(altdt.isBefore(refdt))
+      
+      // Get the earliest start time then quantize it down. Update the reference if necessary.
+      if(altdt.isAfter(refdt))
       { 
+      	altdt = refdt;
+      }
+      altdt = XMLTVutils.getQuantizedDate(altdt, 5, -1);
+      
+      if(!altdt.equals(refdt) )
+      {
       	zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
       	nu.setAttributeValue(refProg, "start", zxmltvdt);
       	log.info("combineSource: changed start for {} from {} to {}", progid, starttime, zxmltvdt);
       }
-      
+     
       refdt = XMLTVutils.getZDateFromXmltv(refend);
       altdt = XMLTVutils.getZDateFromXmltv(altend);
-      if( altdt.isAfter(refdt))
+      
+      // Get the latest stop time then quantize it up. Update the reference if necessary.
+      if( altdt.isBefore(refdt))
+      {
+         	altdt = refdt;
+      }
+      altdt = XMLTVutils.getQuantizedDate(altdt, 5, 1);
+    
+      if(!altdt.equals(refdt) )
       {
       	zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
       	nu.setAttributeValue(refProg, "stop", zxmltvdt);

@@ -79,4 +79,26 @@ public class XMLTVutils
 		String xmltv = format.format(zdt);
 		return xmltv;		
 	}
+
+	public static ZonedDateTime getQuantizedDate(ZonedDateTime zdt, int quantum, int direction)
+	{
+		int mins = zdt.getMinute(); 
+		
+		
+		int off = mins % quantum;	
+		if(off == 0)
+			return zdt;
+		
+		ZonedDateTime adj;
+		if(direction < 0)
+		{
+			adj = zdt.minusMinutes(off);
+		}
+		else
+		{
+			adj = zdt.plusMinutes(quantum-off);
+		}
+		
+		return adj;
+	}	
 }

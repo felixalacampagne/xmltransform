@@ -84,9 +84,7 @@ public void combineSource(String... fieldnames)
       altDoc = nu.parseXML(altXMLTV);
    }
 
-   NodeList progs = null;
-   //progs = nu.getNodesByPath(refDoc, "/tv/programme[not(" + fieldname + ")]");
-   progs = nu.getNodesByPath(refDoc, "/tv/programme");
+   NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
    for(int i = 0; i <  progs.getLength(); i++)
    {
       Node refProg = progs.item(i);
@@ -96,19 +94,27 @@ public void combineSource(String... fieldnames)
       		        + nu.getAttributeValue(refProg, "channel"); 
       log.info("combineSource: processing {}", progid);
       
-      Optional<Node> optaltProg = this.findAltNode(refProg, progid);
+//      Optional<Node> optaltProg = this.findAltNode(refProg, progid);
+//      if( ! optaltProg.isPresent())
+//      {
+//      	log.info("combineSource: NO alternative found for {}", progid);
+//      	continue;
+//      }
+//      
+//      Node altProg = optaltProg.get();
+//      
+//      copyFields(refProg, altProg, fieldnames, progid);
+//      
+//      adjustTimes(refProg, altProg, progid);
+//      
+      // The 'modern' way to do it - but no way to log a message if nothing found - 
+      // so much for continuous improvement...
+      this.findAltNode(refProg, progid).ifPresent(altn ->
+	      {
+	      	copyFields(refProg, altn, fieldnames, progid);
+	      	adjustTimes(refProg, altn, progid);
+	      });
       
-      if( ! optaltProg.isPresent())
-      {
-      	log.info("combineSource: NO alternative found for {}", progid);
-      	continue;
-      }
-      
-      Node altProg = optaltProg.get();
-      
-      copyFields(refProg, altProg, fieldnames, progid);
-      
-      adjustTimes(refProg, altProg, progid);
    }
 }
 
@@ -186,6 +192,12 @@ private Optional<Node> findAltNode(Node refProg, String progid)
       altProg = altprogs.item(0);
    }
 
+   // Must log here as Optional does not have ifNotPresent capability so 
+   // caller cannot log a message when Node is absent and do processing when present
+   if( altProg == null)
+   {
+   	log.info("findAltNode: NO alternative found for {}", progid);
+   }
    
    return Optional.ofNullable(altProg);
 }

@@ -94,27 +94,29 @@ public void combineSource(String... fieldnames)
       		        + nu.getAttributeValue(refProg, "channel"); 
       log.info("combineSource: processing {}", progid);
       
-//      Optional<Node> optaltProg = this.findAltNode(refProg, progid);
-//      if( ! optaltProg.isPresent())
-//      {
-//      	log.info("combineSource: NO alternative found for {}", progid);
-//      	continue;
-//      }
-//      
-//      Node altProg = optaltProg.get();
-//      
-//      copyFields(refProg, altProg, fieldnames, progid);
-//      
-//      adjustTimes(refProg, altProg, progid);
-//      
-      // The 'modern' way to do it - but no way to log a message if nothing found - 
-      // so much for continuous improvement...
-      this.findAltNode(refProg, progid).ifPresent(altn ->
-	      {
-	      	copyFields(refProg, altn, fieldnames, progid);
-	      	adjustTimes(refProg, altn, progid);
-	      });
+//      // The 'modern' way to do it - but no way to log a message if nothing found - 
+//      // so much for continuous improvement...
+//      this.findAltNode(refProg, progid).ifPresent(altn ->
+//	      {
+//	      	copyFields(refProg, altn, fieldnames, progid);
+//	      	adjustTimes(refProg, altn, progid);
+//	      });
       
+      // Kludge to use modern way and do what I want to do. It is confusing using
+      // map to map the object to itself and then having the end result of findAltNode being
+      // null defeats the purpose of using Optional plus it is certainly not more readable
+      // than the 'old' way of doing things (ifPresent.ifNotPresent would have been OK)
+      // but Hey! That's Progress for you. Apparently Java 11 supports ifNotPresent, seems
+      // the Java committee took a leaf out of the Apple iPhone playbook and only provided the
+      // blindingly obvious 3 or 4 versions later (think copy/paste function).
+      this.findAltNode(refProg, progid)
+      .map( altn -> {
+      	copyFields(refProg, altn, fieldnames, progid);
+      	adjustTimes(refProg, altn, progid);
+      	return Optional.of(altn); } )
+      .orElseGet( () -> {
+      	log.info("combineSource: NO alternative found for {}", progid);	
+      	return null; } );
    }
 }
 
@@ -192,12 +194,12 @@ private Optional<Node> findAltNode(Node refProg, String progid)
       altProg = altprogs.item(0);
    }
 
-   // Must log here as Optional does not have ifNotPresent capability so 
-   // caller cannot log a message when Node is absent and do processing when present
-   if( altProg == null)
-   {
-   	log.info("findAltNode: NO alternative found for {}", progid);
-   }
+//   // Must log here as Optional does not have ifNotPresent capability so 
+//   // caller cannot log a message when Node is absent and do processing when present
+//   if( altProg == null)
+//   {
+//   	log.info("findAltNode: NO alternative found for {}", progid);
+//   }
    
    return Optional.ofNullable(altProg);
 }

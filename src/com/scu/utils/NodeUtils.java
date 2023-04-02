@@ -8,6 +8,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.security.MessageDigest;
+import java.util.Optional;
 import java.util.logging.Level;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -22,6 +23,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.apache.xpath.XPathAPI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -32,7 +35,7 @@ import org.xml.sax.InputSource;
 public class NodeUtils
 {
 public final static String XML_DEFAULT_ENCODING = "UTF-8";
-java.util.logging.Logger log = java.util.logging.Logger.getLogger(this.getClass().getName());
+Logger log = LoggerFactory.getLogger(this.getClass().getName());
 private final static NodeUtils singleton = new NodeUtils();
 
 public static NodeUtils getNodeUtils()
@@ -141,7 +144,7 @@ String anodevalue = null;
    }
    catch (Exception ex)
    {
-      log.log(Level.INFO, "getNodeValue: Failed to extract value of " + anodename + " from " + annode.getLocalName(), ex);
+      log.info("getNodeValue: Failed to extract value of {} from {}", anodename, annode.getLocalName(), ex);
    }
    return anodevalue;
 }
@@ -160,7 +163,7 @@ String anodevalue = null;
    }
    catch (Exception ex)
    {
-      log.log(Level.WARNING, "getNodeValue: Failed to extract value from " + annode.getLocalName(), ex);
+      log.warn( "getNodeValue: Failed to extract value from {}", annode.getLocalName(), ex);
    }
    return anodevalue;
 }
@@ -176,7 +179,7 @@ NodeList nl = null;
    }
    catch(Exception ex)
    {
-      log.log(Level.WARNING, "getNodesByPath: Error getting " + xpath, ex);
+      log.warn("getNodesByPath: Error getting {}", xpath, ex);
    }
    return nl;
 }
@@ -256,6 +259,21 @@ Node n = null;
    return n;
 }
 
+public Optional<Node> findNodeByPath(Node doc, String xpath)
+{
+	Node n = null;
+	
+	try
+	{
+		n = getNodeByPath(doc,xpath);
+	}
+	catch (TransformerException e)
+	{
+		log.debug("No node for xpath: {}" , xpath, e);
+	}
+	return Optional.ofNullable(n);
+}
+
 public String getAttributeValue(Node n, String attrname)
 {
 NamedNodeMap attrs = n.getAttributes();
@@ -266,6 +284,18 @@ String value = null;
       value = attr.getNodeValue();
    }
    return value;
+}
+
+public void setAttributeValue(Node n, String attrname, String value)
+{
+NamedNodeMap attrs = n.getAttributes();
+Node attr = attrs.getNamedItem(attrname);
+
+   if(attr != null)
+   {
+   	attr.setNodeValue(value);
+   }
+   return;
 }
 
 // Methods below are not really Node utilities but are specific to

@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.scu.utils.FileTools;
 import com.scu.utils.NodeUtils;
 
+import static com.scu.xmltv.XMLTVutils.getXMLTVDateFormat;
 
 public class XSLTExtensions
 {
@@ -172,7 +173,7 @@ static ObjectMapper mapper = new ObjectMapper();
 
    public static String formatDate(String xmltvdatetime, String format)
    {
-      return formatDate(getDateFromXmltv(xmltvdatetime), format);
+      return formatDate(XMLTVutils.getDateFromXmltv(xmltvdatetime), format);
    }
 
 
@@ -191,20 +192,20 @@ static ObjectMapper mapper = new ObjectMapper();
    }
 
 
-   // This is for use by Java code, it is not really as an XSLTExtension
-   public static Date getDateFromXmltv(String xmltvdatetime)
-   {
-      SimpleDateFormat sdf = new SimpleDateFormat();
-      Date dt = null;
-      try
-      {
-         sdf.applyPattern(getXMLTVDateFormat(xmltvdatetime));
-         dt = sdf.parse(xmltvdatetime);
-      }
-      catch(Exception ex) {}
-
-      return dt;
-   }
+//   // This is for use by Java code, it is not really as an XSLTExtension
+//   public static Date getDateFromXmltv(String xmltvdatetime)
+//   {
+//      SimpleDateFormat sdf = new SimpleDateFormat();
+//      Date dt = null;
+//      try
+//      {
+//         sdf.applyPattern(getXMLTVDateFormat(xmltvdatetime));
+//         dt = sdf.parse(xmltvdatetime);
+//      }
+//      catch(Exception ex) {}
+//
+//      return dt;
+//   }
 
    public static String getTime(String xmltvdatetime)
    {
@@ -315,48 +316,6 @@ static ObjectMapper mapper = new ObjectMapper();
    }
    
    
-   /**
-    * SimpleDateFormat is too stupid to realise that not all of a date has been passed in,
-    * ie 20060728 instead of 20060728000000 +0000.
-    * So this method adjusts the pattern to fit the number of fields which have been supplied.
-    * The string must contain an integral number of fields or an exception will still result
-    * @param xmltvdatetime
-    * @return
-    */
-   private static String getXMLTVDateFormat(String xmltvdatetime)
-   {
-   String pattern="";
-
-      switch(xmltvdatetime.length())
-      {
-      case 4:
-         pattern = "yyyy";
-         break;
-      case 6:
-         pattern = "yyyyMM";
-         break;
-      case 8:
-         pattern = "yyyyMMdd";
-         break;
-      case 10:
-         pattern = "yyyyMMddHH";
-         break;
-      case 12:
-         pattern = "yyyyMMddHHmm";
-         break;
-      case 14:
-         pattern = "yyyyMMddHHmmss";
-         break;
-      case 18:  // Be version uses "200704071755 +0200"
-         pattern = "yyyyMMddHHmm Z";
-         break;
-      default:
-         pattern = "yyyyMMddHHmmss Z";
-         break;
-      }
-      return pattern;
-   }
-
    public static boolean isDateInRange(String mindate, String maxdate, String xmltvdatetime)
    {
    boolean rb = false;

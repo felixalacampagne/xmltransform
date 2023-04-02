@@ -29,7 +29,7 @@ String uid = "";
       super(episodenum, subtitle);
 
       NodeUtils nu = NodeUtils.getNodeUtils();
-      Date date = XSLTExtensions.getDateFromXmltv(start);
+      Date date = XMLTVutils.getDateFromXmltv(start);
       cleanshow = nu.sanitizeTitle(show);
       showDate = XSLTExtensions.formatDate(date, "yy-MM-dd");
       eventName = cleanshow;

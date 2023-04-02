@@ -17,6 +17,18 @@
   
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <!-- Force inclusion of the logback.xml file as a source file so it is included in the executable HTMLMaker.jar.
+         Note it must be explicitly excluded when building the xmltransform jar. There is no practical way
+         to include additional non-source files in HTMLMaker.jar - it might be possible but the maven-assembly-plugin
+         documentation is incomprehensible, so the solution is to get the file included as a source file and then
+         exclude it when building the artifact used by other projects, since the documentation for maven-jar-plugin
+         makes more sense.
+      -->
+    <resources>
+      <resource>
+         <directory>resources</directory>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -32,10 +44,14 @@
          <version>2.6</version>
          <configuration>
             <skipIfEmpty>true</skipIfEmpty>
+            <!-- don't want a logback.xml in xmltransform to interfere with dependents logback configs -->
+            <excludes>
+                <exclude>logback.xml</exclude>
+            </excludes>            
          </configuration>
       </plugin>  
       
-         <!-- This generates HTMLMaker.jar as an 'executable' a jar -->
+         <!-- This generates HTMLMaker.jar as an 'executable' a jar in addition to the xmltransform jar used by pagebuilderrest-->
          <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <configuration>

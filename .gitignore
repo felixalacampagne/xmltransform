@@ -19,3 +19,4 @@ tvguide/**
 !tvguide/crit/*
 **/*.bak
 *.diff
+*.log

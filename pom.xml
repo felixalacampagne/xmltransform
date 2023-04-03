@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.felixalacampagne</groupId>
   <artifactId>xmltransform</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.17.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>xmltransform</name>
   <description>Perform enhanced XSLT transforms</description>
@@ -82,7 +82,7 @@
                            <mainClass>com.scu.xmltv.HTMLMaker</mainClass>
                         </manifest>
                      </archive>
-                     <finalName>../HTMLMaker</finalName>
+                     <finalName>../HTMLMaker17</finalName>
                   </configuration>                 
                </execution>
             </executions>

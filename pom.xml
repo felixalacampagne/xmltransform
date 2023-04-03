@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.felixalacampagne</groupId>
   <artifactId>xmltransform</artifactId>
-  <version>0.17.1-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>xmltransform</name>
   <description>Perform enhanced XSLT transforms</description>
@@ -82,66 +82,46 @@
                            <mainClass>com.scu.xmltv.HTMLMaker</mainClass>
                         </manifest>
                      </archive>
-                     <finalName>../HTMLMaker17</finalName>
+                     <finalName>../HTMLMaker</finalName>
                   </configuration>                 
                </execution>
             </executions>
          </plugin>      
-      
-      
-          
     </plugins>
   </build>
   <dependencies>
-  	<dependency>
-  		<groupId>xalan</groupId>
-  		<artifactId>xalan</artifactId>
-  	</dependency>
-  	<dependency>
-  		<groupId>xalan</groupId>
-  		<artifactId>serializer</artifactId>
-  	</dependency>
+      <dependency>
+         <groupId>xalan</groupId>
+         <artifactId>xalan</artifactId>
+         <version>2.7.2</version>
+         <!-- xalan -> serializer -> xml-apis
+              xml-apis contains org.w3c.dom packages which are now included in Java 17 java.xml. 
+              eclipse fails if package is defined in more than one Jar with no way to disable the check.
+              eventually stumbled on the 'exclusions' option which stops xml-apis being 
+              referenced by maven which means eclipse is happy.
+           -->
+         <exclusions>
+            <exclusion>
+                <groupId>xml-apis</groupId>
+                <artifactId>xml-apis</artifactId>
+            </exclusion>
+         </exclusions>         
+      </dependency>
    <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
+      <version>2.9.8</version>
    </dependency>
    <dependency>
    	<groupId>ch.qos.logback</groupId>
    	<artifactId>logback-classic</artifactId>
+      <version>1.3.6</version>
    </dependency>
    <dependency>
        <groupId>org.junit.jupiter</groupId>
        <artifactId>junit-jupiter-engine</artifactId>
+       <version>5.9.2</version>
        <scope>test</scope>
    </dependency> 	  
   </dependencies>
-  <dependencyManagement>
-  	<dependencies>
-  		<dependency>
-  			<groupId>xalan</groupId>
-  			<artifactId>xalan</artifactId>
-  			<version>2.7.2</version>
-  		</dependency>
-  		<dependency>
-  			<groupId>xalan</groupId>
-  			<artifactId>serializer</artifactId>
-  			<version>2.7.2</version>
-  		</dependency>
-      <dependency>
-         <groupId>com.fasterxml.jackson.core</groupId>
-         <artifactId>jackson-databind</artifactId>
-         <version>2.9.8</version>
-      </dependency>
-      <dependency>
-      	<groupId>ch.qos.logback</groupId>
-      	<artifactId>logback-classic</artifactId>
-      	<version>1.3.6</version>
-      </dependency>
-      <dependency>
-          <groupId>org.junit.jupiter</groupId>
-          <artifactId>junit-jupiter-engine</artifactId>
-          <version>5.9.2</version>
-      </dependency>      
-  	</dependencies>
-  </dependencyManagement>
 </project>

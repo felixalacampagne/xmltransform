@@ -2,7 +2,7 @@ trclogging.properties
 *.patch
 .settings
 bin
-HTMLMaker.jar
+*.jar
 lib
 *.zip
 xmltv*.*

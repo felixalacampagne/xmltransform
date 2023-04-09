@@ -46,7 +46,8 @@ class XMLTVutilsTest
 		
 		xmltvdt = XMLTVutils.getXmltvFromZDate(zdt1);
 		System.out.println("2 5mins adjusted down XMLTV: " + xmltvdt);
-		
+		assertEquals("20230327093000 +0200", xmltvdt.toString());
+      		
 		off = 0;
 		zdt1 = zdt2.plusMinutes(off);
 		System.out.println("2 5mins adjusted up 0 off: " + zdt1);
@@ -55,6 +56,23 @@ class XMLTVutilsTest
 		zdt1 = zdt2.minusMinutes(off);
 		System.out.println("2 5mins adjusted down 0 off: " + zdt1);
 		
+		// DST change is 02:00->03:00 on 26 Mar 2023. Deducting 20 mins from
+		// 03:10(+02:00) should give 01:50(+01:00) but instead give 02:50(+02:00).
+		// Not sure how this would be handled by enigma but both times should
+		// give the same GMT unix time... in theory!
+      xmltvdt = "20230326031000 +0200";
+      zdt2 = XMLTVutils.getZDateFromXmltv(xmltvdt);
+      System.out.println("XMLTV:" + xmltvdt + " ZDT2:" + zdt2);
+      off = 20;
+      zdt1 = zdt2.minusMinutes(off);
+      System.out.println("20 mins back over DST change: " + zdt1);
+     	
+      long unx1 = zdt1.toEpochSecond();
+      
+      xmltvdt = "20230326015000 +0100";
+      zdt2 = XMLTVutils.getZDateFromXmltv(xmltvdt); 
+      long unx2 = zdt2.toEpochSecond();
+      assertEquals(unx1, unx2, "Check '015000 +0100' gives same Unix time as '031000 +0200' - 20mins");
 	}
 
 }

@@ -1,7 +1,5 @@
 package com.scu.xmltv;
 
-import static com.scu.xmltv.XMLTVutils.getXMLTVDateFormat;
-
 import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;

@@ -4,57 +4,83 @@
 <CRIT>David Gilmour</CRIT>
 <CRIT>Pink Floyd</CRIT>
 <CRIT>orset</CRIT>
-<CRIT>The A Word</CRIT>
 <CRIT>The Blacklist=[56789]x</CRIT>
 <CRIT>Silent Witness=2[3-9]x</CRIT>
 <CRIT>His Dark Materials</CRIT>
 <CRIT>The Americans=[4789]x</CRIT>
-<CRIT>Grey's Anatomy=1[6789]x</CRIT>
 <CRIT>Last Tango in Halifax</CRIT>
-<CRIT>The Graham Norton Show=2[789]x</CRIT>
 <CRIT>Cold Feet=1[0-9]x</CRIT>
 <CRIT>Cardinal=[5-9]x</CRIT>
-<CRIT>The Sinner=[3-9]x</CRIT>
 <CRIT>Liar=[3-9]x</CRIT>
 <CRIT>Big Little Lies=[3-9]x</CRIT>
 <CRIT>^Us=2x</CRIT>
 <CRIT>ZeroZeroZero=[^1]x</CRIT>
-<CRIT>Better Things=[56789]x</CRIT>
 <CRIT>Craith=[3456789]x</CRIT>
 <CRIT>Innocent=[3-9]x</CRIT>
 <CRIT>Raised By Wolves</CRIT>
-<CRIT>The Handmaid's Tale=[56789]x</CRIT>
 <CRIT>Doctor Who</CRIT>
 <CRIT>Picard</CRIT>
 <CRIT>This Is Going to Hurt</CRIT>
-<CRIT>The Split</CRIT>
-<CRIT>Deadline</CRIT>
-<CRIT>Close To Me</CRIT>
 <CRIT>The Bay=[5-9]x</CRIT>
-<CRIT>^Sherwood=</CRIT>
-<CRIT>^PRU=</CRIT>
 <CRIT>State of the Union=[3-9]x</CRIT>
-<CRIT>Critical Incident</CRIT>
+<CRIT>The Undeclared War</CRIT>
 <CRIT>The Control Room</CRIT>
-<CRIT>The Newsreader</CRIT>
-<CRIT>The Secrets She Keeps</CRIT>
-<CRIT>Capture</CRIT>
-<CRIT>Ridley</CRIT>
 <CRIT>^Marriage=</CRIT>
 <CRIT>Killing Eve=[567]x</CRIT>
 <CRIT>The Suspect</CRIT>
-<CRIT>Crossfire</CRIT>
-<CRIT>Bloodlands</CRIT>
-<CRIT>Inside Man</CRIT>
 <CRIT>DI Ray=[2-9]x</CRIT>
 <CRIT>^Grace=[3-9]x</CRIT>
-<CRIT>The Graham Norton Show</CRIT>
 <CRIT>Am I Being Unreasonable</CRIT>
 <CRIT>The Fades</CRIT>
 <CRIT>This England</CRIT>
-<CRIT>Mood</CRIT>
 <CRIT>The Pact</CRIT>
 <CRIT>The Secret Genius of Modern Life</CRIT>
 <CRIT>Louis Theroux Interviews</CRIT>
 <CRIT>Somewhere Boy=[23]x</CRIT>
-<CRIT>The English</CRIT></CRITS>
+<CRIT>The Graham Norton Show=(29|30)x</CRIT>
+<CRIT>Tokyo Vice</CRIT>
+<CRIT>Shrill</CRIT>
+<CRIT>Bloodlands=3x</CRIT>
+<CRIT>The Sinner=[5-9]x</CRIT>
+<CRIT>Mayflies</CRIT>
+<CRIT>Mood=[2-9]x</CRIT>
+<CRIT>Marie Antoinette</CRIT>
+<CRIT>The Light in the Hall</CRIT>
+<CRIT>The Split=[4-9]x</CRIT>
+<CRIT>Pretty Little Liars</CRIT>
+<CRIT>Mystery Road</CRIT>
+<CRIT>Penance</CRIT>
+<CRIT>The Catch=</CRIT>
+<CRIT>The Last of Us</CRIT>
+<CRIT>Mare of Easttown</CRIT>
+<CRIT>Grey's Anatomy=1[789]x</CRIT>
+<CRIT>The Gold=</CRIT>
+<CRIT>Desperate Measures</CRIT>
+<CRIT>The Undoing</CRIT>
+<CRIT>Minx</CRIT>
+<CRIT>The Cockfields</CRIT>
+<CRIT>Blue Lights</CRIT>
+<CRIT>The Inbetweeners</CRIT>
+<CRIT>The Handmaid's Tale=[6789]x</CRIT>
+<CRIT>Starstruck</CRIT>
+<CRIT>Colin from Accounts</CRIT>
+<CRIT>Rain Dogs</CRIT>
+<CRIT>Matt Baker's Travels in the Country: USA</CRIT>
+<CRIT>Malpractice</CRIT>
+<CRIT>Skymed</CRIT>
+<CRIT>Better Things=[6789]x</CRIT>
+<CRIT>Ten Pound Poms</CRIT>
+<CRIT>Steeltown Murders</CRIT>
+<CRIT>Without Sin</CRIT>
+<CRIT>Annika</CRIT>
+<CRIT>For Her Sins</CRIT>
+<CRIT>Queen of Oz</CRIT>
+<CRIT>The Change</CRIT>
+<CRIT>The Neighborhood</CRIT>
+<CRIT>We Hunt Together</CRIT>
+<CRIT>La Brea-[2-9]x</CRIT>
+<CRIT>Blindspot</CRIT>
+<CRIT>^Wreck=</CRIT>
+<CRIT>Heat</CRIT>
+<CRIT>A Spy Among Friends</CRIT>
+<CRIT>Joanna Lumley's Spice Trail Adventure</CRIT></CRITS>

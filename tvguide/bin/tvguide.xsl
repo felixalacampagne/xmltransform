@@ -15,6 +15,7 @@ version="1.0">
 <xsl:preserve-space elements="*"/>
 <xsl:param name="FAVFILE" />
 <xsl:param name="OUTPATH" />
+<xsl:variable name="NFOPATH">..\tv\nfo\</xsl:variable>
 <xsl:variable name="DRMBOXSRV">dm7025</xsl:variable>
 <xsl:variable name="VUPUSRV">vuultimo</xsl:variable>
 <xsl:variable name="FAVCRIT" select="document($FAVFILE)/node()" />
@@ -42,13 +43,12 @@ version="1.0">
   -->
 <xsl:variable name="DBENT_RTF">
 <DBENTS_REF>
-<dbent><dbref>1:0:1:189D:7FD:2:11A0000:0:0:0:</dbref><dbname>BBC One Lon</dbname></dbent>
-<dbent><dbref>1:0:1:189E:7FD:2:11A0000:0:0:0:</dbref><dbname>BBC Two</dbname></dbent>
-<dbent><dbref>1:0:1:286F:800:2:11A0000:0:0:0:</dbref><dbname>BBC Three</dbname></dbent>
-<dbent><dbref>1:0:1:18AC:7FD:2:11A0000:0:0:0:</dbref><dbname>BBC Four</dbname></dbent>
-<dbent><dbref>1:0:1:27A6:805:2:11A0000:0:0:0:</dbref><dbname>ITV</dbname></dbent>
+<dbent><dbref>1:0:1:190B:7FF:2:11A0000:0:0:0:</dbref><dbname>BBC One</dbname></dbent>
+<dbent><dbref>1:0:1:190C:7FF:2:11A0000:0:0:0:</dbref><dbname>BBC Two</dbname></dbent>   
+<dbent><dbref>1:0:1:190D:7FF:2:11A0000:0:0:0:</dbref><dbname>BBC Three</dbname></dbent>
+<dbent><dbref>1:0:1:190E:7FF:2:11A0000:0:0:0:</dbref><dbname>BBC Four</dbname></dbent>
+<dbent><dbref>1:0:1:27A6:805:2:11A0000:0:0:0:</dbref><dbname>ITV1</dbname></dbent>
 <dbent><dbref>1:0:1:23FC:7F9:2:11A0000:0:0:0:</dbref><dbname>Channel 4</dbname></dbent>
-<dbent><dbref>1:0:1:1E15:809:2:11A0000:0:0:0:</dbref><dbname>Channel 5</dbname></dbent>
 <dbent><dbref>1:0:1:27DA:806:2:11A0000:0:0:0:</dbref><dbname>ITV2</dbname></dbent>
 <dbent><dbref>1:0:1:27B3:805:2:11A0000:0:0:0:</dbref><dbname>ITV3</dbname></dbent>
 <dbent><dbref>1:0:1:27B4:805:2:11A0000:0:0:0:</dbref><dbname>ITV4</dbname></dbent>
@@ -56,9 +56,7 @@ version="1.0">
 <dbent><dbref>1:0:1:2419:7F9:2:11A0000:0:0:0:</dbref><dbname>E4</dbname></dbent>
 <dbent><dbref>1:0:1:5302:814:2:11A0000:0:0:0:</dbref><dbname>4seven</dbname></dbent>
 <dbent><dbref>1:0:1:2404:7F9:2:11A0000:0:0:0:</dbref><dbname>Film4</dbname></dbent>
-<dbent><dbref>1:0:1:1E1E:809:2:11A0000:0:0:0:</dbref><dbname>5 USA</dbname></dbent>
-<dbent><dbref>1:0:1:1E23:809:2:11A0000:0:0:0:</dbref><dbname>5STAR</dbname></dbent>
-<dbent><dbref>1:0:1:280F:806:2:11A0000:0:0:0:</dbref><dbname>ITV+1</dbname></dbent>
+<dbent><dbref>1:0:1:280F:806:2:11A0000:0:0:0:</dbref><dbname>ITV1+1</dbname></dbent>
 <dbent><dbref>1:0:1:27B5:805:2:11A0000:0:0:0:</dbref><dbname>ITV2+1</dbname></dbent>
 <dbent><dbref>1:0:1:2815:806:2:11A0000:0:0:0:</dbref><dbname>ITV3+1</dbname></dbent>
 <dbent><dbref>1:0:1:2805:806:2:11A0000:0:0:0:</dbref><dbname>ITV4+1</dbname></dbent>
@@ -66,23 +64,26 @@ version="1.0">
 <dbent><dbref>1:0:1:240E:7F9:2:11A0000:0:0:0:</dbref><dbname>More4+1</dbname></dbent>
 <dbent><dbref>1:0:1:206C:808:2:11A0000:0:0:0:</dbref><dbname>E4+1</dbname></dbent>
 <dbent><dbref>1:0:1:2095:808:2:11A0000:0:0:0:</dbref><dbname>Film4+1</dbname></dbent>
-<dbent><dbref>1:0:1:1E28:809:2:11A0000:0:0:0:</dbref><dbname>Channel 5+1</dbname></dbent>
-<dbent><dbref>1:0:1:1E1F:809:2:11A0000:0:0:0:</dbref><dbname>5USA+1</dbname></dbent>
-<dbent><dbref>1:0:1:1E24:809:2:11A0000:0:0:0:</dbref><dbname>5SELECT</dbname></dbent>
-<dbent><dbref>1:0:1:1E25:809:2:11A0000:0:0:0:</dbref><dbname>5STAR+1</dbname></dbent>
 <dbent><dbref>1:0:1:27F9:806:2:11A0000:0:0:0:</dbref><dbname>ITVBe</dbname></dbent>
-<dbent><dbref>1:0:1:279B:805:2:11A0000:0:0:0:</dbref><dbname>ITVBe+1</dbname></dbent>
+<dbent><dbref>1:0:1:83B:83D:2:11A0000:0:0:0:</dbref><dbname>Channel 5+1</dbname></dbent>
+<dbent><dbref>1:0:1:835:83D:2:11A0000:0:0:0:</dbref><dbname>Channel 5</dbname></dbent>
+<dbent><dbref>1:0:1:83D:83D:2:11A0000:0:0:0:</dbref><dbname>5ACTION</dbname></dbent>
+<dbent><dbref>1:0:1:839:83D:2:11A0000:0:0:0:</dbref><dbname>5SELECT</dbname></dbent>
+<dbent><dbref>1:0:1:838:83D:2:11A0000:0:0:0:</dbref><dbname>5STAR</dbname></dbent>
+<dbent><dbref>1:0:1:83A:83D:2:11A0000:0:0:0:</dbref><dbname>5STAR+1</dbname></dbent>
+<dbent><dbref>1:0:1:837:83D:2:11A0000:0:0:0:</dbref><dbname>5USA+1</dbname></dbent>
+<dbent><dbref>1:0:1:836:83D:2:11A0000:0:0:0:</dbref><dbname>5 USA</dbname></dbent>
 </DBENTS_REF>
 </xsl:variable>
 <xsl:variable name="VUUENT_RTF">
 <DBENTS_REF>
-<dbent><dbref>1:0:19:1B1D:802:2:11A0000:0:0:0:</dbref><dbname>BBC One HD</dbname></dbent>
+<dbent><dbref>1:0:19:287B:800:2:11A0000:0:0:0:</dbref><dbname>BBC One Lon HD</dbname></dbent>
 <dbent><dbref>1:0:19:1B1C:802:2:11A0000:0:0:0:</dbref><dbname>BBC Two HD</dbname></dbent>
-<dbent><dbref>1:0:19:1B27:802:2:11A0000:0:0:0:</dbref><dbname>BBC Three HD</dbname></dbent>
-<dbent><dbref>1:0:19:5230:812:2:11A0000:0:0:0:</dbref><dbname>ITV HD</dbname></dbent>
+<dbent><dbref>1:0:19:5230:812:2:11A0000:0:0:0:</dbref><dbname>ITV1 HD</dbname></dbent>
 <dbent><dbref>1:0:19:52D0:814:2:11A0000:0:0:0:</dbref><dbname>Channel 4 HD</dbname></dbent>
-<dbent><dbref>1:0:19:1E46:809:2:11A0000:0:0:0:</dbref><dbname>Channel 5 HD</dbname></dbent>
-<dbent><dbref>1:0:19:22E3:80D:2:11A0000:0:0:0:</dbref><dbname>BBC Four HD</dbname></dbent>
+<dbent><dbref>1:0:19:83C:83D:2:11A0000:0:0:0:</dbref><dbname>Channel 5 HD</dbname></dbent>
+<dbent><dbref>1:0:19:1B27:802:2:11A0000:0:0:0:</dbref><dbname>BBC Three HD</dbname></dbent>
+<dbent><dbref>1:0:19:287D:800:2:11A0000:0:0:0:</dbref><dbname>BBC Four HD</dbname></dbent>
 <dbent><dbref>1:0:1:27DA:806:2:11A0000:0:0:0:</dbref><dbname>ITV2</dbname></dbent>
 <dbent><dbref>1:0:1:27B3:805:2:11A0000:0:0:0:</dbref><dbname>ITV3</dbname></dbent>
 <dbent><dbref>1:0:1:27B4:805:2:11A0000:0:0:0:</dbref><dbname>ITV4</dbname></dbent>
@@ -90,54 +91,61 @@ version="1.0">
 <dbent><dbref>1:0:1:2094:808:2:11A0000:0:0:0:</dbref><dbname>More4</dbname></dbent>
 <dbent><dbref>1:0:1:5302:814:2:11A0000:0:0:0:</dbref><dbname>4seven</dbname></dbent>
 <dbent><dbref>1:0:1:2404:7F9:2:11A0000:0:0:0:</dbref><dbname>Film4</dbname></dbent>
-<dbent><dbref>1:0:1:1E1E:809:2:11A0000:0:0:0:</dbref><dbname>5 USA</dbname></dbent>
-<dbent><dbref>1:0:1:1E23:809:2:11A0000:0:0:0:</dbref><dbname>5STAR</dbname></dbent>
-<dbent><dbref>1:0:1:1E24:809:2:11A0000:0:0:0:</dbref><dbname>5SELECT</dbname></dbent>
+<dbent><dbref>1:0:1:839:83D:2:11A0000:0:0:0:</dbref><dbname>5SELECT</dbname></dbent>
+<dbent><dbref>1:0:1:838:83D:2:11A0000:0:0:0:</dbref><dbname>5STAR</dbname></dbent>
+<dbent><dbref>1:0:1:836:83D:2:11A0000:0:0:0:</dbref><dbname>5 USA</dbname></dbent>
 <dbent><dbref>1:0:1:18F6:7FD:2:11A0000:0:0:0:</dbref><dbname>BBC RB 1</dbname></dbent>
 <dbent><dbref>1:0:1:27F9:806:2:11A0000:0:0:0:</dbref><dbname>ITVBe</dbname></dbent>
-<dbent><dbref>1:0:1:1146:404:1:C00000:0:0:0:</dbref><dbname>CNN Int.</dbname></dbent>
 <dbent><dbref>1:0:19:5221:C99:3:EB0000:0:0:0:</dbref><dbname>een HD</dbname></dbent>
 <dbent><dbref>1:0:19:5226:C99:3:EB0000:0:0:0:</dbref><dbname>Canvas HD</dbname></dbent>
 <dbent><dbref>1:0:19:1B76:C88:3:EB0000:0:0:0:</dbref><dbname>VTM HD</dbname></dbent>
+<dbent><dbref>1:0:19:1B90:C88:3:EB0000:0:0:0:</dbref><dbname>VTM 2 HD</dbname></dbent>
+<dbent><dbref>1:0:16:5280:C96:3:EB0000:0:0:0:</dbref><dbname>VTM 3</dbname></dbent>
+<dbent><dbref>1:0:16:5282:C96:3:EB0000:0:0:0:</dbref><dbname>VTM 4</dbname></dbent>
 <dbent><dbref>1:0:19:1B91:C88:3:EB0000:0:0:0:</dbref><dbname>Play4</dbname></dbent>
 <dbent><dbref>1:0:16:5286:C96:3:EB0000:0:0:0:</dbref><dbname>Play5</dbname></dbent>
 <dbent><dbref>1:0:16:1B95:C88:3:EB0000:0:0:0:</dbref><dbname>Play6</dbname></dbent>
 <dbent><dbref>1:0:16:5287:C96:3:EB0000:0:0:0:</dbref><dbname>Play7</dbname></dbent>
-<dbent><dbref>1:0:19:1B90:C88:3:EB0000:0:0:0:</dbref><dbname>VTM 2 HD</dbname></dbent>
-<dbent><dbref>1:0:16:5280:C96:3:EB0000:0:0:0:</dbref><dbname>VTM 3</dbname></dbent>
-<dbent><dbref>1:0:16:5282:C96:3:EB0000:0:0:0:</dbref><dbname>VTM 4</dbname></dbent>
 <dbent><dbref>1:0:19:5225:C99:3:EB0000:0:0:0:</dbref><dbname>NPO1 HD</dbname></dbent>
 <dbent><dbref>1:0:19:17C0:C82:3:EB0000:0:0:0:</dbref><dbname>NPO2 HD</dbname></dbent>
 <dbent><dbref>1:0:19:5230:C99:3:EB0000:0:0:0:</dbref><dbname>NPO3 HD</dbname></dbent>
 <dbent><dbref>1:0:19:283E:3FB:1:C00000:0:0:0:</dbref><dbname>arte HD</dbname></dbent>
 <dbent><dbref>1:0:19:51E5:C96:3:EB0000:0:0:0:</dbref><dbname>NGC HD</dbname></dbent>
-<dbent><dbref>1:0:1:189D:7FD:2:11A0000:0:0:0:</dbref><dbname>BBC One Lon</dbname></dbent>
-<dbent><dbref>1:0:1:189E:7FD:2:11A0000:0:0:0:</dbref><dbname>BBC Two</dbname></dbent>
-<dbent><dbref>1:0:1:286F:800:2:11A0000:0:0:0:</dbref><dbname>BBC Three</dbname></dbent>
-<dbent><dbref>1:0:1:18AC:7FD:2:11A0000:0:0:0:</dbref><dbname>BBC Four</dbname></dbent>
-<dbent><dbref>1:0:1:2789:805:2:11A0000:0:0:0:</dbref><dbname>ITV</dbname></dbent>
-<dbent><dbref>1:0:1:280F:806:2:11A0000:0:0:0:</dbref><dbname>ITV+1</dbname></dbent>
+<dbent><dbref>1:0:1:1146:404:1:C00000:0:0:0:</dbref><dbname>CNN Int.</dbname></dbent>
+<dbent><dbref>1:0:1:195B:7FF:2:11A0000:0:0:0:</dbref><dbname>BBC One</dbname></dbent>
+<dbent><dbref>1:0:1:190C:7FF:2:11A0000:0:0:0:</dbref><dbname>BBC Two</dbname></dbent>
+<dbent><dbref>1:0:1:190D:7FF:2:11A0000:0:0:0:</dbref><dbname>BBC Three</dbname></dbent>
+<dbent><dbref>1:0:1:190E:7FF:2:11A0000:0:0:0:</dbref><dbname>BBC Four</dbname></dbent>
+<dbent><dbref>1:0:1:2789:805:2:11A0000:0:0:0:</dbref><dbname>ITV1</dbname></dbent>
+<dbent><dbref>1:0:1:280F:806:2:11A0000:0:0:0:</dbref><dbname>ITV1+1</dbname></dbent>
 <dbent><dbref>1:0:1:27B5:805:2:11A0000:0:0:0:</dbref><dbname>ITV2+1</dbname></dbent>
 <dbent><dbref>1:0:1:2815:806:2:11A0000:0:0:0:</dbref><dbname>ITV3+1</dbname></dbent>
 <dbent><dbref>1:0:1:2805:806:2:11A0000:0:0:0:</dbref><dbname>ITV4+1</dbname></dbent>
 <dbent><dbref>1:0:1:2400:7F9:2:11A0000:0:0:0:</dbref><dbname>Channel 4</dbname></dbent>
 <dbent><dbref>1:0:1:2077:808:2:11A0000:0:0:0:</dbref><dbname>Channel 4+1</dbname></dbent>
+<dbent><dbref>1:0:1:835:83D:2:11A0000:0:0:0:</dbref><dbname>Channel 5</dbname></dbent>
+<dbent><dbref>1:0:1:83B:83D:2:11A0000:0:0:0:</dbref><dbname>Channel 5+1</dbname></dbent>
 <dbent><dbref>1:0:1:206C:808:2:11A0000:0:0:0:</dbref><dbname>E4+1</dbname></dbent>
 <dbent><dbref>1:0:1:240E:7F9:2:11A0000:0:0:0:</dbref><dbname>More4+1</dbname></dbent>
 <dbent><dbref>1:0:1:2095:808:2:11A0000:0:0:0:</dbref><dbname>Film4+1</dbname></dbent>
-<dbent><dbref>1:0:1:1E15:809:2:11A0000:0:0:0:</dbref><dbname>Channel 5</dbname></dbent>
-<dbent><dbref>1:0:1:1E28:809:2:11A0000:0:0:0:</dbref><dbname>Channel 5+1</dbname></dbent>
-<dbent><dbref>1:0:1:1E1F:809:2:11A0000:0:0:0:</dbref><dbname>5USA+1</dbname></dbent>
-<dbent><dbref>1:0:1:1E25:809:2:11A0000:0:0:0:</dbref><dbname>5STAR+1</dbname></dbent>
+<dbent><dbref>1:0:1:83D:83D:2:11A0000:0:0:0:</dbref><dbname>5ACTION</dbname></dbent>
+<dbent><dbref>1:0:1:83A:83D:2:11A0000:0:0:0:</dbref><dbname>5STAR+1</dbname></dbent>
+<dbent><dbref>1:0:1:837:83D:2:11A0000:0:0:0:</dbref><dbname>5USA+1</dbname></dbent>
 <dbent><dbref>1:0:19:22D9:80D:2:11A0000:0:0:0:</dbref><dbname>BBC NEWS HD</dbname></dbent>
-<dbent><dbref>1:0:16:52B0:C99:3:EB0000:0:0:0:</dbref><dbname>Discovery Showcase HD virt</dbname></dbent>
-<dbent><dbref>1:0:16:5276:C96:3:EB0000:0:0:0:</dbref><dbname>VTM Gold</dbname></dbent>
 <dbent><dbref>1:0:19:52B0:C99:3:EB0000:0:0:0:</dbref><dbname>BBC First </dbname></dbent>
-<dbent><dbref>1:0:16:17D1:C82:3:EB0000:0:0:0:</dbref><dbname>BBC Entertainment</dbname></dbent>
+<dbent><dbref>1:0:19:1B1D:802:2:11A0000:0:0:0:</dbref><dbname>BBC One HD</dbname></dbent>
 </DBENTS_REF>
 </xsl:variable>
 <xsl:variable name="CHNREF_RTF">
 <CHANID_TO_DB_CHAN_REFS>
+   
+<!--  Channel id used by the test data -->
+<channel id="XMLTVTestChannel">
+   <display-name>BBC1</display-name>
+   <dbname>BBC One</dbname>
+   <vuuname>BBC One</vuuname>
+</channel>
+   
   <!-- For BE listings generated by tvgrabnlpy using my custom IDs 
        Started using this as from 12-Sep-2015 since the MS Mediacenter listings
        appear to have been turned off.       
@@ -198,17 +206,10 @@ version="1.0">
       <display-name>ARTE</display-name>
       <vuuname>arte HD</vuuname>
    </channel>
-   
-<!--  Channel id used by the test data -->
-<channel id="XMLTVTestChannel">
-   <display-name>BBC1</display-name>
-   <dbname>BBC One Lon</dbname>
-   <vuuname>BBC One Lon</vuuname>
-</channel>
 
 <channel id="683.tvguide.co.uk">
    <display-name>BBC1HD</display-name>
-   <vuuname>BBC One HD</vuuname>
+   <vuuname>BBC One Lon HD</vuuname>
 </channel>
 <channel id="387.tvguide.co.uk">
    <display-name>BBC2HD</display-name>
@@ -224,7 +225,7 @@ version="1.0">
 </channel>
 <channel id="642.tvguide.co.uk">
    <display-name>ITV1HD</display-name>
-   <vuuname>ITV HD</vuuname>
+   <vuuname>ITV1 HD</vuuname>
 </channel>
 <channel id="476.tvguide.co.uk">
    <display-name>Channel4HD</display-name>
@@ -237,8 +238,8 @@ version="1.0">
 
 <channel id="74.tvguide.co.uk">
    <display-name>BBC1</display-name>
-   <dbname>BBC One Lon</dbname>
-   <vuuname>BBC One Lon</vuuname>
+   <dbname>BBC One</dbname>
+   <vuuname>BBC One</vuuname>
 </channel>
 <channel id="89.tvguide.co.uk">
    <display-name>BBC2</display-name>
@@ -257,8 +258,8 @@ version="1.0">
 </channel>
 <channel id="172.tvguide.co.uk">
    <display-name>ITV1</display-name>
-   <dbname>ITV</dbname>
-   <vuuname>ITV</vuuname>
+   <dbname>ITV1</dbname>
+   <vuuname>ITV1</vuuname>
 </channel>
 <channel id="121.tvguide.co.uk">
    <display-name>Channel4</display-name>
@@ -311,8 +312,8 @@ version="1.0">
    <vuuname>5STAR</vuuname></channel>
 <channel id="697.tvguide.co.uk">
    <display-name>ITV1+1</display-name>
-   <dbname>ITV+1</dbname>
-   <vuuname>ITV+1</vuuname>
+   <dbname>ITV1+1</dbname>
+   <vuuname>ITV1+1</vuuname>
 </channel>
 <channel id="428.tvguide.co.uk">
    <display-name>Channel4+1</display-name>
@@ -1028,7 +1029,9 @@ version="1.0">
 <xsl:if test="$dbref">
 <xsl:variable name="ostart" select="scu:addToDate($prog/@start, 'MINUTE', -10)" />
 <xsl:variable name="epnum" select="$prog/episode-num[@system='xmltv_ns']" />
-<xsl:variable name="event"><xsl:value-of select="scu:getEventName($epnum, $prog/sub-title, $prog/title, $ostart)" /></xsl:variable>
+<!-- Must use unadjusted starttime for the event name to ensure consistency with the generated 
+     NFO filename to avoid discrepencies for programs starting around midnight -->
+<xsl:variable name="event"><xsl:value-of select="scu:getEventName($epnum, $prog/sub-title, $prog/title, $prog/@start)" /></xsl:variable>
 <xsl:variable name="oend"><xsl:call-template name="stopoff"><xsl:with-param name="pnode" select="$prog" /></xsl:call-template></xsl:variable>
 <xsl:variable name="pref"><xsl:value-of select="$dbref/dbref" /></xsl:variable>
 
@@ -1181,7 +1184,8 @@ version="1.0">
          <xsl:element name="aired"><xsl:value-of select="$fave/EPDATE" /></xsl:element>
       </xsl:element>
    </xsl:variable>   
-   <xsl:variable name="nfoname"><xsl:value-of disable-output-escaping="yes" select="$OUTPATH"/>\nfo\<xsl:value-of select="$fave/RECNAME" />.nfo</xsl:variable>
+   <!-- xsl:variable name="nfoname"><xsl:value-of disable-output-escaping="yes" select="$OUTPATH"/>\nfo\<xsl:value-of select="$fave/RECNAME" />.nfo</xsl:variable -->
+   <xsl:variable name="nfoname"><xsl:value-of disable-output-escaping="yes" select="$NFOPATH"/><xsl:value-of select="$fave/RECNAME" />.nfo</xsl:variable>
    <xsl:value-of select="scu:writeXMLToFile($nfo, $nfoname)" />
 </xsl:template>
 

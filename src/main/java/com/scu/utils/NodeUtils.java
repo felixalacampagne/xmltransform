@@ -9,8 +9,6 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.security.MessageDigest;
 import java.util.Optional;
-import java.util.logging.Level;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -361,7 +359,7 @@ String clean = "";
 
    if(title != null)
    {
-      clean = title.replace("(New Series)", "").replace("&", " And ").replaceAll("[\"'?/\\*&:;!$%<>,.|@]", "");;
+      clean = title.replace("(New Series)", "").replace("&", " And ").replaceAll("[\"'?/\\*&:;!$%<>,.|@#]", "");;
    }
    return clean;
 }

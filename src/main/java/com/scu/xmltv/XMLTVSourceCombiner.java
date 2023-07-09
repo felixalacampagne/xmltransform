@@ -1,10 +1,7 @@
 package com.scu.xmltv;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import javax.xml.transform.TransformerException;
@@ -109,14 +106,22 @@ public void combineSource(String... fieldnames)
       // but Hey! That's Progress for you. Apparently Java 11 supports ifNotPresent, seems
       // the Java committee took a leaf out of the Apple iPhone playbook and only provided the
       // blindingly obvious 3 or 4 versions later (think copy/paste function).
-      this.findAltNode(refProg, progid)
-      .map( altn -> {
-      	copyFields(refProg, altn, fieldnames, progid);
-      	adjustTimes(refProg, altn, progid);
-      	return Optional.of(altn); } )
-      .orElseGet( () -> {
-      	log.info("combineSource: NO alternative found for {}", progid);	
-      	return null; } );
+//      this.findAltNode(refProg, progid)
+//      .map( altn -> {
+//      	copyFields(refProg, altn, fieldnames, progid);
+//      	adjustTimes(refProg, altn, progid);
+//      	return Optional.of(altn); } )
+//      .orElseGet( () -> {
+//      	log.info("combineSource: NO alternative found for {}", progid);	
+//      	return null; } );
+      
+      this.findAltNode(refProg, progid).ifPresentOrElse(
+            altn -> {
+               copyFields(refProg, altn, fieldnames, progid);
+               adjustTimes(refProg, altn, progid); 
+               },
+            () -> {log.info("combineSource: NO alternative found for {}", progid); }
+            );
    }
 }
 

@@ -51,7 +51,7 @@ class NodeUtilsTest
       assertEquals("1x01", ei.getEpinfx());
       assertEquals("Title And forwtfisthis", ei.getEptitle());
 
-      subtitle = "Title&for:w.t,f;<is>this?";
+      subtitle = "Title#&for:w.t,f;<is>this?";
       episodenum = "3 . 114 . ";
       ei = new EpisodeTitle(episodenum, subtitle);
       assertEquals("4x115", ei.getEpinfx());

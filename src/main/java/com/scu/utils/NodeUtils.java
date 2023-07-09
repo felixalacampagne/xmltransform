@@ -359,7 +359,7 @@ String clean = "";
 
    if(title != null)
    {
-      clean = title.replace("(New Series)", "").replace("&", " And ").replaceAll("[\"'?/\\*&:;!$%<>,.|@]", "");;
+      clean = title.replace("(New Series)", "").replace("&", " And ").replaceAll("[\"'?/\\*&:;!$%<>,.|@#]", "");;
    }
    return clean;
 }

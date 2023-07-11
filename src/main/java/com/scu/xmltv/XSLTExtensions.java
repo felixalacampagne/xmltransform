@@ -1,4 +1,5 @@
 package com.scu.xmltv;
+
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.net.URLEncoder;
@@ -286,7 +287,7 @@ static ObjectMapper mapper = new ObjectMapper();
          // This is the Unix way of representing a datetime. Will use this to try and avoid timezone
          // issues when setting programmes from a device using a different timezone to the set-top box, eg.
          // when using iPhone in UK and STB in Be.
-         rs = "" + dt.getTime(); 
+         rs = "" + dt.getTime();
       }
       catch(Exception ex) {}
 
@@ -296,7 +297,7 @@ static ObjectMapper mapper = new ObjectMapper();
    // This is to allow the timerlist page to issue a warning that the device
    // timezone is not the same as the one used for the EPG times. Only required
    // because I couldn't find a way in 'standard' jaavascript to force the unix Date
-   // values to be displayed using a summertime aware timezone. 
+   // values to be displayed using a summertime aware timezone.
    // This is only an issue when using iPhone which adjusts the local timezone
    // according to the location and javascript converts Dates using the local
    // device timezone.
@@ -304,18 +305,18 @@ static ObjectMapper mapper = new ObjectMapper();
    // WARNING: This doesn't really do what is required as it gives the timezone offset
    // in effect when the EPG pages are generated but the device will be calculating
    // the offset when the link is clicked and the page is viewed so the two calculations
-   // could be made either side of a daylight saving transition! It should only give 
-   // false positives though so is good enough provided the value is not used 
+   // could be made either side of a daylight saving transition! It should only give
+   // false positives though so is good enough provided the value is not used
    // for any program time calculations.
-   public static String getTimeZoneOffset() 
+   public static String getTimeZoneOffset()
    {
    	// NB. All the relevant methods of Date have been deprecated so should use Calendar!
    	Calendar nowlocal = Calendar.getInstance();
    	int off = nowlocal.getTimeZone().getOffset(nowlocal.getTimeInMillis()) / 1000 / 60;
    	return String.valueOf(off);
    }
-   
-   
+
+
    public static boolean isDateInRange(String mindate, String maxdate, String xmltvdatetime)
    {
    boolean rb = false;
@@ -383,7 +384,8 @@ static ObjectMapper mapper = new ObjectMapper();
          Transformer tfmr = TransformerFactory.newInstance().newTransformer();
          tfmr.setOutputProperty(OutputKeys.MEDIA_TYPE, "text/xml");
          tfmr.setOutputProperty(OutputKeys.INDENT, "yes"); // This doesn't give indenting
-
+         tfmr.setOutputProperty(OutputKeys.ENCODING, "utf8");
+         
          // This gives unrecognised property exception, with or without xalan: prefix.
          // Google revealed the weird URL format to me which doesn't give an error.
          // The indentation only appears if the output type is set to XML.
@@ -405,7 +407,7 @@ static ObjectMapper mapper = new ObjectMapper();
    String xml =  null;
 
       xml = nodeToXml(value);
-      FileTools.writeStringToFile(file, xml);
+      FileTools.writeStringToFile(file, xml, "utf-8");
       return "";
    }
 

@@ -1,6 +1,6 @@
 trclogging.properties
 *.patch
-.settings
+/.settings/
 bin
 *.jar
 lib

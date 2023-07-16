@@ -1,11 +1,13 @@
 package com.scu.utils;
 import java.util.Properties;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class CmdArgMgr
 {
-public final static Logger LOG = Logger.getLogger(CmdArgMgr.class.getName());
+Logger log = LoggerFactory.getLogger(this.getClass());
 public final static String CAM_NOKEY = "#nokey";
 Properties mArgs = new Properties();
 
@@ -59,7 +61,7 @@ Properties mArgs = new Properties();
 
          }
 
-         LOG.fine("Command line parameter: " + key + " = " + val);
+         log.debug("Command line parameter: {} = {}", key, val);
          mArgs.setProperty(key, val);
       }
    }

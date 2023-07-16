@@ -19,7 +19,7 @@ import com.scu.utils.XMLTransform;
 // one single favourites file....
 public class MergeFiles
 {
-Logger log = LoggerFactory.getLogger(this.getClass().getName());	
+Logger log = LoggerFactory.getLogger(this.getClass());	
 public final static String ARG_OUTFILE = "-merge";
 private List<String> mFiles = new ArrayList<String>();
 private String mOutFile = null;

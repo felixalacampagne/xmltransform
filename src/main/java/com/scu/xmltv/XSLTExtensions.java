@@ -147,7 +147,7 @@ static Logger log = LoggerFactory.getLogger(XSLTExtensions.class);
       {
          match = Pattern.compile(regexp, flags).matcher(value);
          boolean found = match.find();
-         log.trace("value:{0} expression:{1} match:{2}", new Object[] {value, regexp, found});
+         log.trace("isMatch: value:{} expression:{} match:{}", value, regexp, found);
          if(found)
          {
             return true;

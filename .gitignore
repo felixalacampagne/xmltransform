@@ -1,11 +1,16 @@
 trclogging.properties
 *.patch
-.settings
+/.settings/
 bin
 *.jar
 lib
 *.zip
-xmltv*.*
+
+# WARNING: git bash on Windows treats filenames as case INSENSITIVE and eclipse treats them (correctly) as case SENSITIVE.
+# Thus for git bash 'xmltv*.*' matches 'XMLTVSourceCombiner.java' and 'xmltv_epg.xml' but eclipse only matches 'xmltv_epg.xml'
+# Obviously this leads to a discrepency in what is reported as changed in git bash and eclipse.
+# In this case, exceptionally, BELIEVE IN ECLIPSE
+# xmltv*.*
 /target/
 /target_test/
 tvguide/**

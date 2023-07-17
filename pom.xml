@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.felixalacampagne</groupId>
-  <artifactId>xmltransform</artifactId>
-  <version>0.17.3-SNAPSHOT</version>
-  <packaging>jar</packaging>
-  <name>xmltransform</name>
-  <description>Perform enhanced XSLT transforms</description>
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>com.felixalacampagne</groupId>
+   <artifactId>xmltransform</artifactId>
+   <version>0.17.4-RELEASE</version>
+   <packaging>jar</packaging>
+   <name>xmltransform</name>
+   <description>Perform enhanced XSLT transforms</description>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  
-  <build>
-    <!-- sourceDirectory>src</sourceDirectory -->
-    <!-- Force inclusion of the logback.xml file as a source file so it is included in the executable HTMLMaker.jar.
-         Note it must be explicitly excluded when building the xmltransform jar. There is no practical way
-         to include additional non-source files in HTMLMaker.jar - it might be possible but the maven-assembly-plugin
-         documentation is incomprehensible, so the solution is to get the file included as a source file and then
-         exclude it when building the artifact used by other projects, since the documentation for maven-jar-plugin
-         makes more sense.
+   <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   </properties>
+
+   <build>
+      <!-- sourceDirectory>src</sourceDirectory -->
+      <!-- Force inclusion of the logback.xml file as a source file so it is included in the executable HTMLMaker.jar.
+      Note it must be explicitly excluded when building the xmltransform jar. There is no practical way
+      to include additional non-source files in HTMLMaker.jar - it might be possible but the maven-assembly-plugin
+      documentation is incomprehensible, so the solution is to get the file included as a source file and then
+      exclude it when building the artifact used by other projects, since the documentation for maven-jar-plugin
+      makes more sense.
       -->
-    <!-- resources>
+      <!-- resources>
       <resource>
-         <directory>resources</directory>
+      <directory>resources</directory>
       </resource>
-    </resources -->
-    <plugins>
+   </resources -->
+   <plugins>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-          <source>17</source>
-          <target>17</target>
-        </configuration>
+         <artifactId>maven-compiler-plugin</artifactId>
+         <version>3.8.1</version>
+         <configuration>
+            <source>17</source>
+            <target>17</target>
+         </configuration>
       </plugin>
       <plugin>
          <groupId>org.apache.maven.plugins</groupId>
@@ -44,82 +44,107 @@
             <skipIfEmpty>true</skipIfEmpty>
             <!-- don't want a logback.xml in xmltransform to interfere with dependents logback configs -->
             <excludes>
-                <exclude>logback.xml</exclude>
-            </excludes>            
+               <exclude>logback.xml</exclude>
+            </excludes>
          </configuration>
-      </plugin>  
-      
-         <!-- This generates HTMLMaker.jar as an 'executable' a jar in addition to the xmltransform jar used by pagebuilderrest-->
-         <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <configuration>
-               <appendAssemblyId>false</appendAssemblyId>
-               <descriptorRefs>
-                  <descriptorRef>jar-with-dependencies</descriptorRef>
-               </descriptorRefs>
-            </configuration>
-            <!-- This magic means the combined jar is built as part of the 
-                 normal 'clean install' build of the parent project (see FLACtagger pom.xml for more details).
-                 
-                 The original project was used to produce a number of slightly different variations of the app
-                 which allowed double click invocation in the appropriate mode, eg. QR of clipboard, QR EPC of
-                 account information on the clipboard, GUI to enter transaction details and show QR.
-                 Rather than mess with sub-projects etc. I just want to generate all variations each time
-                 a build is performed. This is acheived by using multiple execution blocks with the different
-                 configurations required for each app. According to the internet this is highly frowned upon
-                 however it seems to work like a charm!!
-            -->
-            <executions>
-               <execution>
-                  <id>make-HTMLMaker</id>
-                  <phase>package</phase>
-                  <goals><goal>single</goal></goals>
-                  <configuration>
-                     <archive>
-                        <manifest>
-                           <mainClass>com.scu.xmltv.HTMLMaker</mainClass>
-                        </manifest>
-                     </archive>
-                     <finalName>../HTMLMaker</finalName>
-                  </configuration>                 
-               </execution>
-            </executions>
-         </plugin>      
-    </plugins>
-  </build>
-  <dependencies>
-      <dependency>
-         <groupId>xalan</groupId>
-         <artifactId>xalan</artifactId>
-         <version>2.7.2</version>
-         <!-- xalan -> serializer -> xml-apis
-              xml-apis contains org.w3c.dom packages which are now included in Java 17 java.xml. 
-              eclipse fails if package is defined in more than one Jar with no way to disable the check.
-              eventually stumbled on the 'exclusions' option which stops xml-apis being 
-              referenced by maven which means eclipse is happy.
-           -->
-         <exclusions>
-            <exclusion>
-                <groupId>xml-apis</groupId>
-                <artifactId>xml-apis</artifactId>
-            </exclusion>
-         </exclusions>         
-      </dependency>
+      </plugin>
+
+      <!-- This generates HTMLMaker.jar as an 'executable' a jar in addition to the xmltransform jar used by pagebuilderrest
+      Unfortunately it seems that it also 'installs' the combined HTMLMaker.jar as 'xmltransform-0.17.3-SNAPSHOT.jar'
+      in the local maven repository with the result that HTMLMaker.jar is used by the pagebuilderrest project
+      instead of the xmltransform-0.17.3-SNAPSHOT.jar which appears in the target directly. This may be what has
+      caused me so much hassle trying to get logging to work.
+
+      Fork only knows how I;m going to fix this since the whole thing is black magic and the document as such
+      is incomprehensible.
+      -->
+      <plugin>
+         <artifactId>maven-assembly-plugin</artifactId>
+
+         <!-- This magic means the combined jar is built as part of the
+         normal 'clean install' build of the parent project (see FLACtagger pom.xml for more details).
+
+         The original project was used to produce a number of slightly different variations of the app
+         which allowed double click invocation in the appropriate mode, eg. QR of clipboard, QR EPC of
+         account information on the clipboard, GUI to enter transaction details and show QR.
+         Rather than mess with sub-projects etc. I just want to generate all variations each time
+         a build is performed. This is acheived by using multiple execution blocks with the different
+         configurations required for each app. According to the internet this is highly frowned upon
+         however it seems to work like a charm!!
+         -->
+         <executions>
+            <execution>
+               <id>make-HTMLMaker</id>
+               <phase>package</phase>
+               <goals><goal>single</goal></goals>
+               <configuration>
+                  <appendAssemblyId>false</appendAssemblyId>
+                  <descriptorRefs>
+                     <descriptorRef>jar-with-dependencies</descriptorRef>
+                  </descriptorRefs>
+                  <archive>
+                     <manifest>
+                        <mainClass>com.scu.xmltv.HTMLMaker</mainClass>
+                     </manifest>
+                  </archive>
+                  <outputDirectory>${project.basedir}</outputDirectory>
+                  <finalName>HTMLMaker</finalName>
+                  <attach>false</attach> <!-- hopefully this mean do not install htmlmaker as 'xmltransform-0.17.3-SNAPSHOT.jar -->
+               </configuration>
+            </execution>
+         </executions>
+      </plugin>
+   </plugins>
+</build>
+<dependencies>
+   <dependency>
+      <groupId>xalan</groupId>
+      <artifactId>xalan</artifactId>
+      <version>2.7.2</version>
+      <!-- xalan -> serializer -> xml-apis
+      xml-apis contains org.w3c.dom packages which are now included in Java 17 java.xml.
+      eclipse fails if package is defined in more than one Jar with no way to disable the check.
+      eventually stumbled on the 'exclusions' option which stops xml-apis being
+      referenced by maven which means eclipse is happy.
+      -->
+      <exclusions>
+         <exclusion>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+         </exclusion>
+      </exclusions>
+   </dependency>
    <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <version>2.9.8</version>
    </dependency>
+   <!-- logback dependencies. Not sure if alll need to be specified but logging in tomcat
+   did not work until all three were present in the webapp pom.xml
+   -->
+   <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
    <dependency>
-   	<groupId>ch.qos.logback</groupId>
-   	<artifactId>logback-classic</artifactId>
-      <version>1.3.6</version>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.7</version>
+   </dependency>
+   <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-core -->
+   <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>1.4.8</version>
+   </dependency>
+   <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+   <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.4.8</version>
    </dependency>
    <dependency>
-       <groupId>org.junit.jupiter</groupId>
-       <artifactId>junit-jupiter-engine</artifactId>
-       <version>5.9.2</version>
-       <scope>test</scope>
-   </dependency> 	  
-  </dependencies>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.9.2</version>
+      <scope>test</scope>
+   </dependency>
+</dependencies>
 </project>

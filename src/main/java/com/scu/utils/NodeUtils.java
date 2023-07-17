@@ -33,7 +33,7 @@ import org.xml.sax.InputSource;
 public class NodeUtils
 {
 public final static String XML_DEFAULT_ENCODING = "UTF-8";
-Logger log = LoggerFactory.getLogger(this.getClass().getName());
+Logger log = LoggerFactory.getLogger(this.getClass());
 private final static NodeUtils singleton = new NodeUtils();
 
 public static NodeUtils getNodeUtils()

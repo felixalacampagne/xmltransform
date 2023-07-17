@@ -9,9 +9,9 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.*;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
@@ -25,10 +25,10 @@ import javax.xml.transform.stream.*;
 
 public class XMLTransform
 {
-   public final static Logger LOG = Logger.getLogger(XMLTransform.class.getName());
 public final static String ARG_XMLFILE = "-xml";
 public final static String ARG_XSLTFILE = "-xsl";
 public final static String ARG_OUTFILE = "-out";
+final static Logger log = LoggerFactory.getLogger(XMLTransform.class);
 
 
 
@@ -82,18 +82,15 @@ public final static String ARG_OUTFILE = "-out";
       try
       {
 
-         LOG.log(Level.ALL, " Transforming {0} with {1} into {2}", new Object[] {xmlfile, xsltfile, outfile});
+         log.info("main: Transforming {0} with {1} into {2}", xmlfile, xsltfile, outfile);
          xmlt.transformXML(xmlfile, xsltfile, outfile);
       }
-      catch(Exception ex)
+
+      catch(Throwable er)
       {
-         ex.printStackTrace();
+      	log.info("main: Transform of {} failed", xmlfile, er);
       }
-      catch(Error er)
-      {
-            er.printStackTrace();
-      }
-      LOG.log(Level.ALL, "Done!");
+      log.info("main: Done!");
    }
 
 
@@ -117,7 +114,7 @@ public final static String ARG_OUTFILE = "-out";
          mxslfile = new FileInputStream(xslurl);
          moutfile = new FileOutputStream(output);
       }
-      catch(Exception ex) { ex.printStackTrace(); }
+      catch(Exception ex) { log.info("<init>: initialisation failed for {}, {}, {}", srcxml, xslurl, output); }
    }
 
    public void setXMLstream(InputStream srcxml)

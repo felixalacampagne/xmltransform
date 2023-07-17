@@ -11,6 +11,7 @@ import com.scu.utils.XMLTransform;
 
 public class HTMLMaker
 {
+	private Logger log = LoggerFactory.getLogger(this.getClass());
    public final static String ARG_XMLFILE = "-xml";
    public final static String ARG_XSLTFILE = "-xsl";
    public final static String ARG_OUTDIR = "-out";
@@ -132,17 +133,13 @@ public class HTMLMaker
          xmlt.addParameter("OUTPATH", outdir + File.separator);
          xmlt.addParameter("FAVFILE", mFavListFile);
 
-         System.out.println("Generating listings.");
+         log.info("doTransform: Generating listings.");
          xmlt.transformXML(xmlfile, xsltfile, f.getAbsolutePath());
-         System.out.println("Done.");
+         log.info("doTransform: Done.");
       }
-      catch (Exception ex)
+      catch (Throwable er)
       {
-         ex.printStackTrace();
-      }
-      catch (Error er)
-      {
-         er.printStackTrace();
+         log.info("doTransform: Failed to transform: ", er);
       }
 
    }

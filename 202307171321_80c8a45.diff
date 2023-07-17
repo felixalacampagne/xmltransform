@@ -1,0 +1,57 @@
+diff --git a/.gitignore b/.gitignore
+index a989cb8..802f27b 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -5,7 +5,12 @@ bin
+ *.jar
+ lib
+ *.zip
+-xmltv*.*
++
++# WARNING: git bash on Windows treats filenames as case INSENSITIVE and eclipse treats them (correctly) as case SENSITIVE.
++# Thus for git bash 'xmltv*.*' matches 'XMLTVSourceCombiner.java' and 'xmltv_epg.xml' but eclipse only matches 'xmltv_epg.xml'
++# Obviously this leads to a discrepency in what is reported as changed in git bash and eclipse.
++# In this case, exceptionally, BELIEVE IN ECLIPSE
++# xmltv*.*
+ /target/
+ /target_test/
+ tvguide/**
+diff --git a/pom.xml b/pom.xml
+index 6f393e0..93c66c7 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -60,13 +60,7 @@
+          -->
+          <plugin>
+             <artifactId>maven-assembly-plugin</artifactId>
+-            <configuration>
+-               <appendAssemblyId>false</appendAssemblyId>
+-               <attach>false</attach> <!-- hopefully this mean do not install htmlmaker as 'xmltransform-0.17.3-SNAPSHOT.jar -->
+-               <descriptorRefs>
+-                  <descriptorRef>jar-with-dependencies</descriptorRef>
+-               </descriptorRefs>
+-            </configuration>
++
+             <!-- This magic means the combined jar is built as part of the 
+                  normal 'clean install' build of the parent project (see FLACtagger pom.xml for more details).
+                  
+@@ -84,12 +78,18 @@
+                   <phase>package</phase>
+                   <goals><goal>single</goal></goals>
+                   <configuration>
++               <appendAssemblyId>false</appendAssemblyId>
++               <descriptorRefs>
++                  <descriptorRef>jar-with-dependencies</descriptorRef>
++               </descriptorRefs>
+                      <archive>
+                         <manifest>
+                            <mainClass>com.scu.xmltv.HTMLMaker</mainClass>
+                         </manifest>
+                      </archive>
+-                     <finalName>../HTMLMaker</finalName>
++                     <outputDirectory>${project.basedir}</outputDirectory>
++                     <finalName>HTMLMaker</finalName>
++               <attach>false</attach> <!-- hopefully this mean do not install htmlmaker as 'xmltransform-0.17.3-SNAPSHOT.jar -->
+                   </configuration>                 
+                </execution>
+             </executions>

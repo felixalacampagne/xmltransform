@@ -1,6 +1,7 @@
 package com.scu.xmltv;
 
 import java.io.File;
+import java.io.Writer;
 import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -353,6 +354,11 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
 public void writeUpdatedXMLTV(String filename) throws Exception
 {
    nu.outputNode(this.refDoc, new File(filename));
+}
+
+public void writeUpdatedXMLTV(Writer writer) throws Exception
+{
+   nu.outputNode(this.refDoc, writer);
 }
 
 

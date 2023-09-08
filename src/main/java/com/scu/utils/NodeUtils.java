@@ -289,10 +289,12 @@ public void setAttributeValue(Node n, String attrname, String value)
 NamedNodeMap attrs = n.getAttributes();
 Node attr = attrs.getNamedItem(attrname);
 
-   if(attr != null)
+   if(attr == null)
    {
-   	attr.setNodeValue(value);
+      attr = n.getOwnerDocument().createAttribute(attrname);
+      attrs.setNamedItem(attr);
    }
+   attr.setNodeValue(value);
    return;
 }
 

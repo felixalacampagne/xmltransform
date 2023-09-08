@@ -122,18 +122,19 @@ public void combineSource(String... fieldnames)
 //      	log.info("combineSource: NO alternative found for {}", progid);	
 //      	return null; } );
       
-      this.findAltNode(refProg, progid).ifPresentOrElse(
+      findAltNode(refProg, progid).ifPresentOrElse(
             altn -> {
                copyFields(refProg, altn, fieldnames, progid);
-               extractMissingEpisodeInfo(refProg, altn, progid);
+               
                adjustTimes(refProg, altn, progid); 
                },
             () -> {log.info("combineSource: NO alternative found for {}", progid); }
             );
+      extractMissingEpisodeInfo(refProg, progid);
    }
 }
 
-private void extractMissingEpisodeInfo(Node refProg, Node altn, String progid)
+private void extractMissingEpisodeInfo(Node refProg, String progid)
 {
    // Aim of function is to extract missing "episode-num" and "sub-title" data from the show description.
    // This mainly applies to the UK show info from the Ultimo EPG data which is not handled by the python

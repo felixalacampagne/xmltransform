@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
-
-<tv source-info-url="https://www.tvguide.co.uk/" source-info-name="TV Guide UK" generator-info-name="tv_grab_uk_tvguide" generator-info-url="http://wiki.xmltv.org/index.php/XMLTVProject">
+<tv generator-info-name="scu-owiepg-grabber)" generator-info-url="https://localhost">
 <channel id="371.tvguide.co.uk">
-<display-name lang="nl">E4+1</display-name>
-</channel>
-<programme channel="371.tvguide.co.uk" start="20230912021000 +0200" stop="20230912031000 +0200">
-   <title lang="nl">New: Cruel Summer</title>
-   <desc lang="nl">Brand new series - A Secret of My Own: Kate's closely held secrets and fragmented memories of her time in Martin's house are brought to the surface. (S1 Ep9)  [AD,S]</desc>
-   <category>TVShow</category>
-</programme><channel id="371.tvguide.co.uk">
 <display-name lang="nl">E4+1</display-name>
 </channel>
 <programme channel="371.tvguide.co.uk" start="20230912021000 +0200" stop="20230912031000 +0200">

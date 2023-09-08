@@ -21,7 +21,7 @@ class XMLTVSourceCombinerTest
       
       StringWriter strwrite = new StringWriter();
       srccmb.writeUpdatedXMLTV(strwrite);
-      
+      srccmb.writeUpdatedXMLTV("combineTestResult.xml");
       log.info("testCombineSource: result:\n{}", strwrite.toString());
    }
 

@@ -3,6 +3,8 @@ package com.scu.xmltv;
 import java.io.File;
 import java.time.ZonedDateTime;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.transform.TransformerException;
 
@@ -14,6 +16,7 @@ import org.w3c.dom.NodeList;
 
 import com.scu.utils.CmdArgMgr;
 import com.scu.utils.NodeUtils;
+import com.scu.utils.Utils;
 
 
 /**
@@ -67,6 +70,9 @@ private Document refDoc = null;
 private Document altDoc = null;
 Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
+Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
+
+
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
    refXMLTV = new File(referenceXMLTV);
@@ -118,11 +124,58 @@ public void combineSource(String... fieldnames)
       this.findAltNode(refProg, progid).ifPresentOrElse(
             altn -> {
                copyFields(refProg, altn, fieldnames, progid);
+               extractMissingEpisodeInfo(refProg, altn, progid);
                adjustTimes(refProg, altn, progid); 
                },
             () -> {log.info("combineSource: NO alternative found for {}", progid); }
             );
    }
+}
+
+private void extractMissingEpisodeInfo(Node refProg, Node altn, String progid)
+{
+   // Aim of function is to extract missing "episode-num" and "sub-title" data from the show description.
+   // This mainly applies to the UK show info from the Ultimo EPG data which is not handled by the python
+   // grabber - it seems to work OK for the TVV shows - and is now required since the UK tvguide has stopped
+   // working. I have noticed that there is sometimes some episode info buried in the description so the idea
+   // is to use it if there is none already present in the refProg - I'm assuming that anything useful in 
+   // altn has already been copied into refProg.
+   String epnum = nu.getNodeValue(refProg, "episode-num");
+   if( ! Utils.safeIsEmpty(epnum)) {
+      // info is already present so no need to extract anything
+      return;
+   }
+   String desc = nu.getNodeValue(refProg, "desc");
+   if( Utils.safeIsEmpty(desc)) {
+      // no desc field so nothing to extract anything from
+      return;
+   }
+   
+   int season = -1;
+   int ep = -1;
+   
+   Matcher m = sEpPattern.matcher(desc);
+   if(m.find())
+   {
+      season = nu.stringToInt(m.group(1));
+      ep = nu.stringToInt(m.group(2));
+   }
+   
+   if((season > 0) && (ep > 0))
+   {
+      // S2 Ep13
+      // <episode-num system="xmltv_ns">1 . 12/99 . </episode-num>
+      epnum = String.format("%d . %d/99 . ", season - 1, ep - 1);
+      
+      Node newNode = refDoc.createElement("episode-num");  // new episode-num node
+      nu.setAttributeValue(newNode, "system", "xmltv_ns");
+      newNode.appendChild(refDoc.createTextNode(epnum));
+      
+      refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
+      refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
+      log.info("extractMissingEpisodeInfo: added field episode-num to {}: {}", progid, newNode.getTextContent());
+   }
+
 }
 
 private Optional<Node> findAltNode(Node refProg, String progid)

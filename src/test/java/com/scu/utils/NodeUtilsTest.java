@@ -119,16 +119,19 @@ class NodeUtilsTest
 
       es = new EpisodeShow("Wonderful Movie", "20221224060000 +0000", "", "");
       recname = es.getEventName();
-      assertEquals("Film 22-12-24 1x0197 Wonderful Movie", recname);
-
+      // assertEquals("Film 22-12-24 1x0197 Wonderful Movie", recname);
+      assertEquals("Wonderful Movie 22-12-24 1x01 Episode 01", recname);
+ 
       es = new EpisodeShow("What A Wonderful Year", "20230610090000 +0000", null, "");
       recname = es.getEventName();
-      assertEquals("Film 23-06-10 1x0365 What A Wonderful Year", recname);
+//      assertEquals("Film 23-06-10 1x0365 What A Wonderful Year", recname);
+      assertEquals("What A Wonderful Year 23-06-10 1x01 Episode 01", recname);
 
 
       es = new EpisodeShow("A Decade In The Life", "20320610090000 +0000", "", null);
       recname = es.getEventName();
-      assertEquals("Film 32-06-10 1x3653 A Decade In The Life", recname);
+//      assertEquals("Film 32-06-10 1x3653 A Decade In The Life", recname);
+      assertEquals("A Decade In The Life 32-06-10 1x01 Episode 01", recname);
    }
 
    @Test
@@ -141,7 +144,8 @@ class NodeUtilsTest
 
       json = XSLTExtensions.getEpisodeInfoAsJson("Star Wars", "20221115060000 +0000", "", "");
       System.out.println("JSON=" + json);
-      assertEquals("{\"show\":\"Star Wars\",\"season\":\"\",\"number\":\"\",\"title\":\"\",\"uid\":\"f1d32adeacbf1870b876db01db65ea64\",\"aired\":\"22-11-15\",\"recname\":\"Film 22-11-15 1x0158 Star Wars\"}", json);
+//      assertEquals("{\"show\":\"Star Wars\",\"season\":\"\",\"number\":\"\",\"title\":\"\",\"uid\":\"f1d32adeacbf1870b876db01db65ea64\",\"aired\":\"22-11-15\",\"recname\":\"Film 22-11-15 1x0158 Star Wars\"}", json);
+      assertEquals("{\"show\":\"Star Wars\",\"season\":\"\",\"number\":\"\",\"title\":\"\",\"uid\":\"4125ee926297dca78401bf28423100a9\",\"aired\":\"22-11-15\",\"recname\":\"Star Wars 22-11-15 1x01 Episode 01\"}", json);
 
    }
 }

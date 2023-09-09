@@ -6,9 +6,15 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+// NB. These are manual tests intended to see if the functionality of the XML apis etc.
+// is actually doing what I think it is supposed to and to assist
+// in getting it to do what I need it to. The results are intended for manual inspection
 class XMLTVSourceCombinerTest
 {
    Logger log = LoggerFactory.getLogger(this.getClass().getName());
+   
+   
    @Test
    void testCombineSource() throws Exception
    {
@@ -27,7 +33,7 @@ class XMLTVSourceCombinerTest
 
    @Test
    void testFilter() throws Exception
-   {  
+   {   
       // getFile returns the fullpathname of the file prefixed with '/' which appears to be
       // ignored when opening the file.
       String ref = this.getClass().getClassLoader().getResource("xmltv_epg-filter.xml").getFile();

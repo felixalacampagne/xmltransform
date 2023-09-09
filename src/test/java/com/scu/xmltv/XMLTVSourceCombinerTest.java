@@ -21,8 +21,23 @@ class XMLTVSourceCombinerTest
       
       StringWriter strwrite = new StringWriter();
       srccmb.writeUpdatedXMLTV(strwrite);
-      srccmb.writeUpdatedXMLTV("combineTestResult.xml");
+      srccmb.writeUpdatedXMLTV("TestResult-combine.xml");
       log.info("testCombineSource: result:\n{}", strwrite.toString());
    }
 
+   @Test
+   void testFilter() throws Exception
+   {  
+      // getFile returns the fullpathname of the file prefixed with '/' which appears to be
+      // ignored when opening the file.
+      String ref = this.getClass().getClassLoader().getResource("xmltv_epg-filter.xml").getFile();
+      String alt = this.getClass().getClassLoader().getResource("xmltv_gb-filter.xml").getFile();
+      XMLTVSourceCombiner srccmb = new XMLTVSourceCombiner(ref, alt);
+      srccmb.filterProgrammes();
+      
+      StringWriter strwrite = new StringWriter();
+      srccmb.writeUpdatedXMLTV(strwrite);
+      srccmb.writeUpdatedXMLTV("TestResult-filter.xml");
+      log.info("testFilter: result:\n{}", strwrite.toString());
+   }   
 }

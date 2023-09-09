@@ -27,3 +27,6 @@ tvguide/**
 **/*.bak
 *.diff
 *.log
+xmltv_epg_full.xml
+xmltv_gb_full.xml
+TestResult*.*

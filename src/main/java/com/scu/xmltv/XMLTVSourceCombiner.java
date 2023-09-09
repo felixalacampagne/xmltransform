@@ -6,6 +6,9 @@ import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.transform.TransformerException;
 
@@ -54,6 +57,15 @@ import com.scu.utils.Utils;
    Don't know what effect this will have when multiple fields are updated using multiple passes like at present. 
    Maybe a list of potential missing fields could be provided so a single search can be used.
    
+   08 Sep 2023 The GB guide has stopped working so now forced to rely on the Ultimo EPG data. The EPG data does not
+   contain the episode info for GB channels. Given that I'm not sure how the EPG xmltv extractor works (it is written
+   in python) an attempt is made here to extract missing episode info from the description.
+   Use the same xmltv file for both BE and GB progs results in duplications when the BE EPG data is combined with
+   guide data and then merged with the original EPG data used as the GB guide (if you see what I mean). Still want
+   to keep the combining of EPG and guide info so now the combine filter programmes which do not have a channel in
+   both the ref and alt sources - this means a combined GB guide with only GB progs and a combined BE guide with only
+   BE progs can be produced from the original EPG containing all progs - this should avoid the duplicate programs, I hope!
+   
  * @author Chris
  *
  */
@@ -80,12 +92,30 @@ public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
    altXMLTV = new File(alternateXMLTV);
 }
 
-public void combineSource(String... fieldnames)
+protected void initDocs()
 {
    if(refDoc == null)
    {
       refDoc = nu.parseXML(refXMLTV);
       altDoc = nu.parseXML(altXMLTV);
+   }   
+}
+
+public void combineSource(String... fieldnames)
+{
+   initDocs();
+   
+   // Remove programmes from ref doc that do not have a channel in both docs.
+   // This is to avoid duplicates appearing when ref is used for both GB and BE
+   // programmes against different alt sources.
+   try
+   {
+      filterProgrammes();
+   }
+   catch (TransformerException e)
+   {
+      // Continue anyway as it's better to have a listing with too much than no listing at all
+      log.info("combineSource: filter failed: {}", e.toString());
    }
 
    NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
@@ -98,30 +128,6 @@ public void combineSource(String... fieldnames)
       		        + nu.getAttributeValue(refProg, "channel"); 
       log.info("combineSource: processing {}", progid);
       
-//      // The 'modern' way to do it - but no way to log a message if nothing found - 
-//      // so much for continuous improvement...
-//      this.findAltNode(refProg, progid).ifPresent(altn ->
-//	      {
-//	      	copyFields(refProg, altn, fieldnames, progid);
-//	      	adjustTimes(refProg, altn, progid);
-//	      });
-      
-      // Kludge to use modern way and do what I want to do. It is confusing using
-      // map to map the object to itself and then having the end result of findAltNode being
-      // null defeats the purpose of using Optional plus it is certainly not more readable
-      // than the 'old' way of doing things (ifPresent.ifNotPresent would have been OK)
-      // but Hey! That's Progress for you. Apparently Java 11 supports ifNotPresent, seems
-      // the Java committee took a leaf out of the Apple iPhone playbook and only provided the
-      // blindingly obvious 3 or 4 versions later (think copy/paste function).
-//      this.findAltNode(refProg, progid)
-//      .map( altn -> {
-//      	copyFields(refProg, altn, fieldnames, progid);
-//      	adjustTimes(refProg, altn, progid);
-//      	return Optional.of(altn); } )
-//      .orElseGet( () -> {
-//      	log.info("combineSource: NO alternative found for {}", progid);	
-//      	return null; } );
-      
       findAltNode(refProg, progid).ifPresentOrElse(
             altn -> {
                copyFields(refProg, altn, fieldnames, progid);
@@ -132,6 +138,61 @@ public void combineSource(String... fieldnames)
             );
       extractMissingEpisodeInfo(refProg, progid);
    }
+}
+
+
+// 'protected' so it can be tested.
+protected void filterProgrammes() throws TransformerException
+{
+   initDocs();  // so it can be tested
+   
+NodeList altchans = nu.getNodesByPath(altDoc, "/tv/channel");
+NodeList refchans = nu.getNodesByPath(refDoc, "/tv/channel");
+
+List<String> altchanids = new ArrayList<>();
+List<String> refchanids = new ArrayList<>();
+
+   // Crudely build a list of channel ids common to both docs
+   for(int idx=0 ; idx<altchans.getLength() ; idx++)
+   {
+      Node channel = altchans.item(idx);
+      String chanId = nu.getAttributeValue(channel, "id");
+      altchanids.add(chanId);
+   }
+   
+   for(int idx=0 ; idx<refchans.getLength() ; idx++)
+   {
+      Node channel = refchans.item(idx);
+      String chanId = nu.getAttributeValue(channel, "id");
+      refchanids.add(chanId);
+   }   
+
+   refchanids = refchanids.stream().filter(rc -> altchanids.contains(rc)).collect(Collectors.toList());
+   
+   // Now remove programes from ref doc for channel ids not in the filtered list
+   NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
+   Node tvNode = nu.getNodeByPath(refDoc, "/tv");
+   for(int i = 0; i <  progs.getLength(); i++)
+   {
+      Node refProg = progs.item(i);
+      String progchan = nu.getAttributeValue(refProg, "channel");
+      if( ! refchanids.contains(progchan))
+      {
+         tvNode.removeChild(refProg);
+      }
+   }
+   
+   // refDoc still contains the extra channels, might be best to remove them as well
+   for(int i = 0; i <  refchans.getLength(); i++)
+   {
+      Node channel = refchans.item(i);
+      String chanid = nu.getAttributeValue(channel, "id");
+      if( ! refchanids.contains(chanid))
+      {
+         tvNode.removeChild(channel);
+      }
+   }   
+   
 }
 
 private void extractMissingEpisodeInfo(Node refProg, String progid)

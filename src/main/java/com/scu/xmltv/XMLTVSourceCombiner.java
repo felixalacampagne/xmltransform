@@ -84,7 +84,8 @@ private Document altDoc = null;
 Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
 Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
-
+Pattern bbcPatternA = Pattern.compile("^(\\d{1,2})/(\\d{1,2})\\. ");
+Pattern bbcPatternB = Pattern.compile("^\\.\\.\\.\\S.*?\\. (\\d{1,2})/(\\d{1,2})\\. ");
 
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
@@ -220,6 +221,12 @@ protected void shadowChannel(String srcChannel, String destChannel, String destD
    NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme[@channel='" + srcChannel + "']");
    Node tvNode = nu.getNodeByPath(refDoc, "/tv");
    
+   if(progs.getLength() < 1)
+   {
+      log.info("shadowChannel: no programmes found for channel '{}'", srcChannel);
+      return;
+   }
+   
    for(int i = 0; i <  progs.getLength(); i++)
    {
       Node prog = progs.item(i);
@@ -273,6 +280,7 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
    
    int season = -1;
    int ep = -1;
+   int eptot = 99;
    
    Matcher m = sEpPattern.matcher(desc);
    if(m.find())
@@ -280,12 +288,25 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
       season = nu.stringToInt(m.group(1));
       ep = nu.stringToInt(m.group(2));
    }
+   else if( (m=bbcPatternA.matcher(desc)).find() )
+   {
+      season = 1;
+      ep = nu.stringToInt(m.group(1));
+      eptot = nu.stringToInt(m.group(2));
+   }
+   else if( (m=bbcPatternB.matcher(desc)).find() )
+   {
+      season = 1;
+      ep = nu.stringToInt(m.group(1));
+      eptot = nu.stringToInt(m.group(2));
+   }
    
    if((season > 0) && (ep > 0))
    {
       // S2 Ep13
       // <episode-num system="xmltv_ns">1 . 12/99 . </episode-num>
-      epnum = String.format("%d . %d/99 . ", season - 1, ep - 1);
+      // should eptot be -1? Don't use it so don't really care...
+      epnum = String.format("%d . %d/%d . ", season - 1, ep - 1, eptot);
       
       Node newNode = refDoc.createElement("episode-num");  // new episode-num node
       nu.setAttributeValue(newNode, "system", "xmltv_ns");

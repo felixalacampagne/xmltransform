@@ -137,6 +137,16 @@ public void combineSource(String... fieldnames)
             () -> {log.info("combineSource: NO alternative found for {}", progid); }
             );
       extractMissingEpisodeInfo(refProg, progid);
+      
+      // BBC One Lon HD -> BBC One
+      try
+      {
+         shadowChannel("683.tvguide.co.uk", "74.tvguide.co.uk", "BBC One");
+      }
+      catch (TransformerException e)
+      {
+         log.error("combineSource: failed to duplicate BBC One Lon HD -> BBC One: {}", e.toString() );
+      }
    }
 }
 
@@ -193,6 +203,53 @@ List<String> refchanids = new ArrayList<>();
       }
    }   
    
+}
+
+
+// 10-Sep-2023 Kludge to workaround EPG missing BBC1 programme info.
+// It appears that BBC1 programme info is no longer available. This makes it
+// difficult to add BBC1 progs on the Dreambox, which only has SD channels, and 
+// annoying on the Ultimo which has both HD and SD but HD is more likely to cause a
+// conflict with existing timers.
+// For now the solution will copy the programmes for one channel into another channel.
+// Must be done after the filter since the chances are dest channel will be absent from one or both the inputs.
+// Need to add a <channel> for the dest channel since there probably wont already be one.
+protected void shadowChannel(String srcChannel, String destChannel, String destDisplayName) throws TransformerException
+{
+   initDocs();
+   NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme[@channel='" + srcChannel + "']");
+   Node tvNode = nu.getNodeByPath(refDoc, "/tv");
+   
+   for(int i = 0; i <  progs.getLength(); i++)
+   {
+      Node prog = progs.item(i);
+      Node newNode = prog.cloneNode(true);  
+      nu.setAttributeValue(newNode, "channel", destChannel);
+      refDoc.adoptNode(newNode);
+      tvNode.appendChild(newNode);
+   }
+   
+   Node destChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + destChannel + "']");
+   if(destChanNode == null)
+   {
+      // Probably easier to copy the source node and update the bits which are known.
+      Node srcChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + srcChannel + "']");
+      if(srcChanNode == null)
+      {
+         log.error("shadowChannel: channel '{}' not found - this should not happen!", srcChannel);
+         return;
+      }
+      Node newNode = srcChanNode.cloneNode(true);  
+      nu.setAttributeValue(newNode, "id", destChannel);
+      Node disp = nu.getNodeByPath(newNode, "display-name"); // maybe need the text child node
+      disp.setTextContent(destDisplayName);
+      
+      refDoc.adoptNode(newNode);
+//      tvNode.appendChild(newNode); This inserts after the programme block, which might mess something up
+      // Ideally new node should go at end of channel block or after the src channel but this is easier!
+      tvNode.insertBefore(newNode, srcChanNode);
+      
+   }
 }
 
 private void extractMissingEpisodeInfo(Node refProg, String progid)

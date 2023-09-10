@@ -25,15 +25,16 @@ class XMLTVSourceCombinerTest
       XMLTVSourceCombiner srccmb = new XMLTVSourceCombiner(ref, alt);
       srccmb.combineSource("episode-num");
       
+      srccmb.writeUpdatedXMLTV("TestResult-combine.xml");
+
       StringWriter strwrite = new StringWriter();
       srccmb.writeUpdatedXMLTV(strwrite);
-      srccmb.writeUpdatedXMLTV("TestResult-combine.xml");
       log.info("testCombineSource: result:\n{}", strwrite.toString());
    }
 
    @Test
    void testFilter() throws Exception
-   {   
+   {
       // getFile returns the fullpathname of the file prefixed with '/' which appears to be
       // ignored when opening the file.
       String ref = this.getClass().getClassLoader().getResource("xmltv_epg-filter.xml").getFile();
@@ -41,9 +42,28 @@ class XMLTVSourceCombinerTest
       XMLTVSourceCombiner srccmb = new XMLTVSourceCombiner(ref, alt);
       srccmb.filterProgrammes();
       
+      srccmb.writeUpdatedXMLTV("TestResult-filter.xml");
+
       StringWriter strwrite = new StringWriter();
       srccmb.writeUpdatedXMLTV(strwrite);
-      srccmb.writeUpdatedXMLTV("TestResult-filter.xml");
       log.info("testFilter: result:\n{}", strwrite.toString());
    }   
+   
+   @Test
+   void testShadow() throws Exception
+   { 
+      // getFile returns the fullpathname of the file prefixed with '/' which appears to be
+      // ignored when opening the file.
+      String ref = this.getClass().getClassLoader().getResource("xmltv_epg-shadow.xml").getFile();
+      String alt = this.getClass().getClassLoader().getResource("xmltv_gb-shadow.xml").getFile();
+      XMLTVSourceCombiner srccmb = new XMLTVSourceCombiner(ref, alt);
+      
+      srccmb.shadowChannel("683.tvguide.co.uk", "001.tvguide.co.uk", "BBC One SD");
+      
+      srccmb.writeUpdatedXMLTV("TestResult-shadow.xml");
+
+      StringWriter strwrite = new StringWriter();
+      srccmb.writeUpdatedXMLTV(strwrite);
+      log.info("testFilter: result:\n{}", strwrite.toString());
+   }    
 }

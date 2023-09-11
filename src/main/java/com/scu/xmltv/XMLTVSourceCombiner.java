@@ -116,7 +116,7 @@ public void combineSource(String... fieldnames)
    catch (TransformerException e)
    {
       // Continue anyway as it's better to have a listing with too much than no listing at all
-      log.info("combineSource: filter failed: {}", e.toString());
+      log.warn("combineSource: filter failed: {}", e.toString());
    }
 
    NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
@@ -132,23 +132,22 @@ public void combineSource(String... fieldnames)
       findAltNode(refProg, progid).ifPresentOrElse(
             altn -> {
                copyFields(refProg, altn, fieldnames, progid);
-               
                adjustTimes(refProg, altn, progid); 
                },
-            () -> {log.info("combineSource: NO alternative found for {}", progid); }
+            () -> {log.debug("combineSource: NO alternative found for {}", progid); }
             );
       extractMissingEpisodeInfo(refProg, progid);
-      
-      // BBC One Lon HD -> BBC One
-      try
-      {
-         shadowChannel("683.tvguide.co.uk", "74.tvguide.co.uk", "BBC One");
-      }
-      catch (TransformerException e)
-      {
-         log.error("combineSource: failed to duplicate BBC One Lon HD -> BBC One: {}", e.toString() );
-      }
    }
+   
+   // copy BBC One Lon HD -> BBC One
+   try
+   {
+      shadowChannel("683.tvguide.co.uk", "74.tvguide.co.uk", "BBC One");
+   }
+   catch (TransformerException e)
+   {
+      log.error("combineSource: failed to duplicate BBC One Lon HD -> BBC One: {}", e.toString() );
+   }   
 }
 
 
@@ -180,7 +179,7 @@ List<String> refchanids = new ArrayList<>();
 
    refchanids = refchanids.stream().filter(rc -> altchanids.contains(rc)).collect(Collectors.toList());
    
-   // Now remove programes from ref doc for channel ids not in the filtered list
+   // Now remove programmes from ref doc for channel ids not in the filtered list
    NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
    Node tvNode = nu.getNodeByPath(refDoc, "/tv");
    for(int i = 0; i <  progs.getLength(); i++)
@@ -189,6 +188,7 @@ List<String> refchanids = new ArrayList<>();
       String progchan = nu.getAttributeValue(refProg, "channel");
       if( ! refchanids.contains(progchan))
       {
+         log.debug("filterProgrammes: removing program: {}:{}", nu.getAttributeValue(refProg, "channel"),  nu.getNodeValue(refProg, "title"));
          tvNode.removeChild(refProg);
       }
    }
@@ -314,7 +314,7 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
       
       refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
       refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
-      log.info("extractMissingEpisodeInfo: added field episode-num to {}: {}", progid, newNode.getTextContent());
+      log.debug("extractMissingEpisodeInfo: added field episode-num to {}: {}", progid, newNode.getTextContent());
    }
 
 }
@@ -475,14 +475,14 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
 	      }
 	      catch(TransformerException tex)
 	      {
-	         log.info("copyFields: exception for {} finding field: {}", progid, fieldname, tex);
+	         log.warn("copyFields: exception for {} finding field: {}", progid, fieldname, tex);
 	         continue;
 	      }
 	
 	      Node newNode = altFld.cloneNode(true);  // Create a duplicate node
 	      refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
 	      refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
-	      log.info("copyFields: added field {} to {}: {}", fieldname, progid, newNode.getTextContent());
+	      log.debug("copyFields: added field {} to {}: {}", fieldname, progid, newNode.getTextContent());
 		}
 		else
 		{

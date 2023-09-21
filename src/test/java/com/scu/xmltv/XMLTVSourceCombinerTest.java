@@ -39,7 +39,7 @@ class XMLTVSourceCombinerTest
       // ignored when opening the file.
       String ref = this.getClass().getClassLoader().getResource("xmltv_epg-filter.xml").getFile();
       String alt = this.getClass().getClassLoader().getResource("xmltv_gb-filter.xml").getFile();
-      XMLTVSourceCombiner srccmb = new XMLTVSourceCombiner(ref, alt);
+      XMLTVSourceCombiner srccmb = new XMLTVSourceCombiner(ref, alt, "XTVGRABPY.*");  // "\\d+\\.tvguide\\.co\\.uk");
       srccmb.filterProgrammes();
       
       srccmb.writeUpdatedXMLTV("TestResult-filter.xml");

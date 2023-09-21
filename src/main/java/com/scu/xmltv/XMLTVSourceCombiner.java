@@ -75,12 +75,23 @@ public final static String ARG_OUTFILE = "-combine";
 private static final String ARG_REF = "-ref";
 private static final String ARG_ALT = "-alt";
 private static final String ARG_RESULT = "-res";
+private static final String ARG_FILTER = "-filter";
 
 private final File refXMLTV;
 private final File altXMLTV;
 private final NodeUtils nu = NodeUtils.getNodeUtils();
+private final Pattern regexFilter;
+
 private Document refDoc = null;
 private Document altDoc = null;
+
+
+public Optional<Pattern> getRegexFilter()
+{
+   return Optional.ofNullable(regexFilter);
+}
+
+
 Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
 Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
@@ -90,7 +101,16 @@ Pattern bbcPatternB = Pattern.compile("^\\.\\.\\.\\S.*?\\. (\\d{1,2})/(\\d{1,2})
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
    refXMLTV = new File(referenceXMLTV);
-   altXMLTV = new File(alternateXMLTV);
+   altXMLTV = new File(alternateXMLTV); 
+   regexFilter = null;
+}
+
+public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV, String regexFilter)
+{
+   // Can't init files in a shared method because they must be initd in the constructor!
+   refXMLTV = new File(referenceXMLTV);
+   altXMLTV = new File(alternateXMLTV); 
+   this.regexFilter = Pattern.compile(regexFilter);
 }
 
 protected void initDocs()
@@ -158,20 +178,21 @@ public void combineSource(String... fieldnames)
 protected void filterProgrammes() throws TransformerException
 {
    initDocs();  // so it can be tested
-   
-NodeList altchans = nu.getNodesByPath(altDoc, "/tv/channel");
+Optional<Pattern> regex = getRegexFilter();
+
 NodeList refchans = nu.getNodesByPath(refDoc, "/tv/channel");
 
-List<String> altchanids = new ArrayList<>();
 List<String> refchanids = new ArrayList<>();
-
-   // Crudely build a list of channel ids common to both docs
-   for(int idx=0 ; idx<altchans.getLength() ; idx++)
-   {
-      Node channel = altchans.item(idx);
-      String chanId = nu.getAttributeValue(channel, "id");
-      altchanids.add(chanId);
-   }
+//NodeList altchans = nu.getNodesByPath(altDoc, "/tv/channel");
+//List<String> altchanids = new ArrayList<>();
+//
+//   // Crudely build a list of channel ids common to both docs
+//   for(int idx=0 ; idx<altchans.getLength() ; idx++)
+//   {
+//      Node channel = altchans.item(idx);
+//      String chanId = nu.getAttributeValue(channel, "id");
+//      altchanids.add(chanId);
+//   }
    
    for(int idx=0 ; idx<refchans.getLength() ; idx++)
    {
@@ -179,8 +200,12 @@ List<String> refchanids = new ArrayList<>();
       String chanId = nu.getAttributeValue(channel, "id");
       refchanids.add(chanId);
    }   
-
-   refchanids = refchanids.stream().filter(rc -> altchanids.contains(rc)).collect(Collectors.toList());
+   if(regex.isPresent())
+   {
+      //refchanids = refchanids.stream().filter(rc -> altchanids.contains(rc)).collect(Collectors.toList());
+      final Pattern pat =  regex.get();
+      refchanids = refchanids.stream().filter(rc -> pat.matcher(rc).matches() ).collect(Collectors.toList());
+   }
    
    // Now remove programmes from ref doc for channel ids not in the filtered list
    NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
@@ -196,7 +221,7 @@ List<String> refchanids = new ArrayList<>();
       }
    }
    
-   // refDoc still contains the extra channels, might be best to remove them as well
+   // refDoc still contains the extra channels which should not appear int he channels list of the output document
    for(int i = 0; i <  refchans.getLength(); i++)
    {
       Node channel = refchans.item(i);
@@ -511,6 +536,7 @@ CmdArgMgr cmd = new CmdArgMgr();
 String ref = null;
 String alt = null;
 String result = null;
+String filter = null;
 String [] keys = null;
 
    cmd.parseArgs(args);
@@ -526,6 +552,8 @@ String [] keys = null;
          alt = val;
       else if(ARG_RESULT.compareTo(keys[i]) == 0)
          result = val;
+      else if(ARG_FILTER.compareTo(keys[i]) == 0)
+         filter = val;
    }
 
 
@@ -539,7 +567,7 @@ String [] keys = null;
 
 
 
-   XMLTVSourceCombiner sc = new XMLTVSourceCombiner(ref, alt);
+   XMLTVSourceCombiner sc = new XMLTVSourceCombiner(ref, alt, filter);
    sc.combineSource("episode-num", "sub-title");
   // sc.combineSource("episode-num");
    sc.writeUpdatedXMLTV(result);

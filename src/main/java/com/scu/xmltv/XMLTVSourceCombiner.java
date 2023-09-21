@@ -140,14 +140,17 @@ public void combineSource(String... fieldnames)
    }
    
    // copy BBC One Lon HD -> BBC One
-   try
-   {
-      shadowChannel("683.tvguide.co.uk", "74.tvguide.co.uk", "BBC One");
-   }
-   catch (TransformerException e)
-   {
-      log.error("combineSource: failed to duplicate BBC One Lon HD -> BBC One: {}", e.toString() );
-   }   
+   // Temporary kludge to duplicate the BBC1HD progs to BBC1.
+   // No longer required as an alternative solution has been implemented
+   // at the level of the EPG and TVGuide grabbers themselves
+//   try
+//   {
+//      shadowChannel("683.tvguide.co.uk", "74.tvguide.co.uk", "BBC One");
+//   }
+//   catch (TransformerException e)
+//   {
+//      log.error("combineSource: failed to duplicate BBC One Lon HD -> BBC One: {}", e.toString() );
+//   }   
 }
 
 

@@ -4,7 +4,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.felixalacampagne</groupId>
    <artifactId>xmltransform</artifactId>
-   <version>0.17.5-RELEASE</version>
+   <version>0.17.6.6-SNAPSHOT</version>
    <packaging>jar</packaging>
    <name>xmltransform</name>
    <description>Perform enhanced XSLT transforms</description>
@@ -27,7 +27,51 @@
       <directory>resources</directory>
       </resource>
    </resources -->
+   
    <plugins>
+         <!-- Stupidly the maven build timestamp does not use the local timezone and there is no
+              way to tell it to do so. Google provided a solution which somehow uses build.localtime
+              but for me that just gives a value of 'build.localtime' instead of the timestamp.
+              The build-helper-maven-plugin is used below to set a variable to the time of the build using
+              a timezone but unfortunately the zone must be hard coded instead of just using the
+              locally configured timezone.
+          -->      
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <version>1.9.1</version>
+            <executions>
+                <execution>
+                    <id>timestamp-property</id>
+                    <goals>
+                        <goal>timestamp-property</goal>
+                    </goals>
+                    <configuration>
+                        <name>localtime</name>
+                        <pattern>yyyy-MM-dd HH:mm</pattern>
+                        <timeZone>Europe/Brussels</timeZone>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>      
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>templating-maven-plugin</artifactId>
+            <version>1.0.0</version>
+            <executions>
+                <execution>
+                    <id>filtering-java-templates</id>
+                    <goals>
+                        <goal>filter-sources</goal>
+                    </goals>
+                <configuration>              
+                  <!-- sourceDirectory: defaults to ${basedir}/src/main/java-templates -->
+                  <!-- outputDirectory>${project.build.directory}/generated-sources/java-templates</outputDirectory -->
+                </configuration>                    
+                </execution>
+            </executions>
+        </plugin>
+      
       <plugin>
          <artifactId>maven-compiler-plugin</artifactId>
          <version>3.8.1</version>

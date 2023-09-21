@@ -1,8 +1,14 @@
 package com.scu.xmltv;
 
 import java.io.File;
+import java.io.Writer;
 import java.time.ZonedDateTime;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.transform.TransformerException;
 
@@ -14,6 +20,7 @@ import org.w3c.dom.NodeList;
 
 import com.scu.utils.CmdArgMgr;
 import com.scu.utils.NodeUtils;
+import com.scu.utils.Utils;
 
 
 /**
@@ -50,6 +57,15 @@ import com.scu.utils.NodeUtils;
    Don't know what effect this will have when multiple fields are updated using multiple passes like at present. 
    Maybe a list of potential missing fields could be provided so a single search can be used.
    
+   08 Sep 2023 The GB guide has stopped working so now forced to rely on the Ultimo EPG data. The EPG data does not
+   contain the episode info for GB channels. Given that I'm not sure how the EPG xmltv extractor works (it is written
+   in python) an attempt is made here to extract missing episode info from the description.
+   Use the same xmltv file for both BE and GB progs results in duplications when the BE EPG data is combined with
+   guide data and then merged with the original EPG data used as the GB guide (if you see what I mean). Still want
+   to keep the combining of EPG and guide info so now the combine filter programmes which do not have a channel in
+   both the ref and alt sources - this means a combined GB guide with only GB progs and a combined BE guide with only
+   BE progs can be produced from the original EPG containing all progs - this should avoid the duplicate programs, I hope!
+   
  * @author Chris
  *
  */
@@ -67,18 +83,40 @@ private Document refDoc = null;
 private Document altDoc = null;
 Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
+Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
+Pattern bbcPatternA = Pattern.compile("^(\\d{1,2})/(\\d{1,2})\\. ");
+Pattern bbcPatternB = Pattern.compile("^\\.\\.\\.\\S.*?\\. (\\d{1,2})/(\\d{1,2})\\. ");
+
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
    refXMLTV = new File(referenceXMLTV);
    altXMLTV = new File(alternateXMLTV);
 }
 
-public void combineSource(String... fieldnames)
+protected void initDocs()
 {
    if(refDoc == null)
    {
       refDoc = nu.parseXML(refXMLTV);
       altDoc = nu.parseXML(altXMLTV);
+   }   
+}
+
+public void combineSource(String... fieldnames)
+{
+   initDocs();
+   
+   // Remove programmes from ref doc that do not have a channel in both docs.
+   // This is to avoid duplicates appearing when ref is used for both GB and BE
+   // programmes against different alt sources.
+   try
+   {
+      filterProgrammes();
+   }
+   catch (TransformerException e)
+   {
+      // Continue anyway as it's better to have a listing with too much than no listing at all
+      log.warn("combineSource: filter failed: {}", e.toString());
    }
 
    NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
@@ -91,38 +129,197 @@ public void combineSource(String... fieldnames)
       		        + nu.getAttributeValue(refProg, "channel"); 
       log.info("combineSource: processing {}", progid);
       
-//      // The 'modern' way to do it - but no way to log a message if nothing found - 
-//      // so much for continuous improvement...
-//      this.findAltNode(refProg, progid).ifPresent(altn ->
-//	      {
-//	      	copyFields(refProg, altn, fieldnames, progid);
-//	      	adjustTimes(refProg, altn, progid);
-//	      });
-      
-      // Kludge to use modern way and do what I want to do. It is confusing using
-      // map to map the object to itself and then having the end result of findAltNode being
-      // null defeats the purpose of using Optional plus it is certainly not more readable
-      // than the 'old' way of doing things (ifPresent.ifNotPresent would have been OK)
-      // but Hey! That's Progress for you. Apparently Java 11 supports ifNotPresent, seems
-      // the Java committee took a leaf out of the Apple iPhone playbook and only provided the
-      // blindingly obvious 3 or 4 versions later (think copy/paste function).
-//      this.findAltNode(refProg, progid)
-//      .map( altn -> {
-//      	copyFields(refProg, altn, fieldnames, progid);
-//      	adjustTimes(refProg, altn, progid);
-//      	return Optional.of(altn); } )
-//      .orElseGet( () -> {
-//      	log.info("combineSource: NO alternative found for {}", progid);	
-//      	return null; } );
-      
-      this.findAltNode(refProg, progid).ifPresentOrElse(
+      findAltNode(refProg, progid).ifPresentOrElse(
             altn -> {
                copyFields(refProg, altn, fieldnames, progid);
                adjustTimes(refProg, altn, progid); 
                },
-            () -> {log.info("combineSource: NO alternative found for {}", progid); }
+            () -> {log.debug("combineSource: NO alternative found for {}", progid); }
             );
+      extractMissingEpisodeInfo(refProg, progid);
    }
+   
+   // copy BBC One Lon HD -> BBC One
+   // Temporary kludge to duplicate the BBC1HD progs to BBC1.
+   // No longer required as an alternative solution has been implemented
+   // at the level of the EPG and TVGuide grabbers themselves
+//   try
+//   {
+//      shadowChannel("683.tvguide.co.uk", "74.tvguide.co.uk", "BBC One");
+//   }
+//   catch (TransformerException e)
+//   {
+//      log.error("combineSource: failed to duplicate BBC One Lon HD -> BBC One: {}", e.toString() );
+//   }   
+}
+
+
+// 'protected' so it can be tested.
+protected void filterProgrammes() throws TransformerException
+{
+   initDocs();  // so it can be tested
+   
+NodeList altchans = nu.getNodesByPath(altDoc, "/tv/channel");
+NodeList refchans = nu.getNodesByPath(refDoc, "/tv/channel");
+
+List<String> altchanids = new ArrayList<>();
+List<String> refchanids = new ArrayList<>();
+
+   // Crudely build a list of channel ids common to both docs
+   for(int idx=0 ; idx<altchans.getLength() ; idx++)
+   {
+      Node channel = altchans.item(idx);
+      String chanId = nu.getAttributeValue(channel, "id");
+      altchanids.add(chanId);
+   }
+   
+   for(int idx=0 ; idx<refchans.getLength() ; idx++)
+   {
+      Node channel = refchans.item(idx);
+      String chanId = nu.getAttributeValue(channel, "id");
+      refchanids.add(chanId);
+   }   
+
+   refchanids = refchanids.stream().filter(rc -> altchanids.contains(rc)).collect(Collectors.toList());
+   
+   // Now remove programmes from ref doc for channel ids not in the filtered list
+   NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
+   Node tvNode = nu.getNodeByPath(refDoc, "/tv");
+   for(int i = 0; i <  progs.getLength(); i++)
+   {
+      Node refProg = progs.item(i);
+      String progchan = nu.getAttributeValue(refProg, "channel");
+      if( ! refchanids.contains(progchan))
+      {
+         log.debug("filterProgrammes: removing program: {}:{}", nu.getAttributeValue(refProg, "channel"),  nu.getNodeValue(refProg, "title"));
+         tvNode.removeChild(refProg);
+      }
+   }
+   
+   // refDoc still contains the extra channels, might be best to remove them as well
+   for(int i = 0; i <  refchans.getLength(); i++)
+   {
+      Node channel = refchans.item(i);
+      String chanid = nu.getAttributeValue(channel, "id");
+      if( ! refchanids.contains(chanid))
+      {
+         tvNode.removeChild(channel);
+      }
+   }   
+   
+}
+
+
+// 10-Sep-2023 Kludge to workaround EPG missing BBC1 programme info.
+// It appears that BBC1 programme info is no longer available. This makes it
+// difficult to add BBC1 progs on the Dreambox, which only has SD channels, and 
+// annoying on the Ultimo which has both HD and SD but HD is more likely to cause a
+// conflict with existing timers.
+// For now the solution will copy the programmes for one channel into another channel.
+// Must be done after the filter since the chances are dest channel will be absent from one or both the inputs.
+// Need to add a <channel> for the dest channel since there probably wont already be one.
+protected void shadowChannel(String srcChannel, String destChannel, String destDisplayName) throws TransformerException
+{
+   initDocs();
+   NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme[@channel='" + srcChannel + "']");
+   Node tvNode = nu.getNodeByPath(refDoc, "/tv");
+   
+   if(progs.getLength() < 1)
+   {
+      log.info("shadowChannel: no programmes found for channel '{}'", srcChannel);
+      return;
+   }
+   
+   for(int i = 0; i <  progs.getLength(); i++)
+   {
+      Node prog = progs.item(i);
+      Node newNode = prog.cloneNode(true);  
+      nu.setAttributeValue(newNode, "channel", destChannel);
+      refDoc.adoptNode(newNode);
+      tvNode.appendChild(newNode);
+   }
+   
+   Node destChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + destChannel + "']");
+   if(destChanNode == null)
+   {
+      // Probably easier to copy the source node and update the bits which are known.
+      Node srcChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + srcChannel + "']");
+      if(srcChanNode == null)
+      {
+         log.error("shadowChannel: channel '{}' not found - this should not happen!", srcChannel);
+         return;
+      }
+      Node newNode = srcChanNode.cloneNode(true);  
+      nu.setAttributeValue(newNode, "id", destChannel);
+      Node disp = nu.getNodeByPath(newNode, "display-name"); // maybe need the text child node
+      disp.setTextContent(destDisplayName);
+      
+      refDoc.adoptNode(newNode);
+//      tvNode.appendChild(newNode); This inserts after the programme block, which might mess something up
+      // Ideally new node should go at end of channel block or after the src channel but this is easier!
+      tvNode.insertBefore(newNode, srcChanNode);
+      
+   }
+}
+
+private void extractMissingEpisodeInfo(Node refProg, String progid)
+{
+   // Aim of function is to extract missing "episode-num" and "sub-title" data from the show description.
+   // This mainly applies to the UK show info from the Ultimo EPG data which is not handled by the python
+   // grabber - it seems to work OK for the TVV shows - and is now required since the UK tvguide has stopped
+   // working. I have noticed that there is sometimes some episode info buried in the description so the idea
+   // is to use it if there is none already present in the refProg - I'm assuming that anything useful in 
+   // altn has already been copied into refProg.
+   String epnum = nu.getNodeValue(refProg, "episode-num");
+   if( ! Utils.safeIsEmpty(epnum)) {
+      // info is already present so no need to extract anything
+      return;
+   }
+   String desc = nu.getNodeValue(refProg, "desc");
+   if( Utils.safeIsEmpty(desc)) {
+      // no desc field so nothing to extract anything from
+      return;
+   }
+   
+   int season = -1;
+   int ep = -1;
+   int eptot = 99;
+   
+   Matcher m = sEpPattern.matcher(desc);
+   if(m.find())
+   {
+      season = nu.stringToInt(m.group(1));
+      ep = nu.stringToInt(m.group(2));
+   }
+   else if( (m=bbcPatternA.matcher(desc)).find() )
+   {
+      season = 1;
+      ep = nu.stringToInt(m.group(1));
+      eptot = nu.stringToInt(m.group(2));
+   }
+   else if( (m=bbcPatternB.matcher(desc)).find() )
+   {
+      season = 1;
+      ep = nu.stringToInt(m.group(1));
+      eptot = nu.stringToInt(m.group(2));
+   }
+   
+   if((season > 0) && (ep > 0))
+   {
+      // S2 Ep13
+      // <episode-num system="xmltv_ns">1 . 12/99 . </episode-num>
+      // should eptot be -1? Don't use it so don't really care...
+      epnum = String.format("%d . %d/%d . ", season - 1, ep - 1, eptot);
+      
+      Node newNode = refDoc.createElement("episode-num");  // new episode-num node
+      nu.setAttributeValue(newNode, "system", "xmltv_ns");
+      newNode.appendChild(refDoc.createTextNode(epnum));
+      
+      refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
+      refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
+      log.debug("extractMissingEpisodeInfo: added field episode-num to {}: {}", progid, newNode.getTextContent());
+   }
+
 }
 
 private Optional<Node> findAltNode(Node refProg, String progid)
@@ -281,14 +478,14 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
 	      }
 	      catch(TransformerException tex)
 	      {
-	         log.info("copyFields: exception for {} finding field: {}", progid, fieldname, tex);
+	         log.warn("copyFields: exception for {} finding field: {}", progid, fieldname, tex);
 	         continue;
 	      }
 	
 	      Node newNode = altFld.cloneNode(true);  // Create a duplicate node
 	      refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
 	      refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
-	      log.info("copyFields: added field {} to {}: {}", fieldname, progid, newNode.getTextContent());
+	      log.debug("copyFields: added field {} to {}: {}", fieldname, progid, newNode.getTextContent());
 		}
 		else
 		{
@@ -300,6 +497,11 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
 public void writeUpdatedXMLTV(String filename) throws Exception
 {
    nu.outputNode(this.refDoc, new File(filename));
+}
+
+public void writeUpdatedXMLTV(Writer writer) throws Exception
+{
+   nu.outputNode(this.refDoc, writer);
 }
 
 

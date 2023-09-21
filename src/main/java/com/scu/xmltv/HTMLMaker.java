@@ -6,6 +6,7 @@ import java.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.felixalacampagne.xmltv.BuildInfo;
 import com.scu.utils.CmdArgMgr;
 import com.scu.utils.XMLTransform;
 
@@ -55,7 +56,7 @@ public class HTMLMaker
          
       }
       Logger log = LoggerFactory.getLogger(HTMLMaker.class.getName());
-      log.info("main: starting");
+      log.info("main: HTMLMaker starting - buildinfo: {}", BuildInfo.getAppTitle());
 
       // Can't override the jar manifest start class by specifying
       // a class on the command line, so have to provide access from here!

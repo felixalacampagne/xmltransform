@@ -383,6 +383,14 @@ private Optional<Node> findAltNode(Node refProg, String progid)
 	         + "@channel='" + chanid + "' and "
 	         + "title=\"" + safeTitle + "\""
             + "]";
+      
+      // TODO: getNodesByPath: Error getting /tv/programme[starts-with(@start, '20230922') and @channel='XTVGRABPYcanvas' and title="Jan Van Looveren: "Loslaten""]
+      // javax.xml.transform.TransformerException: Expected ], but found: Loslaten
+      // the title contains &quote;Loslaten&quote;
+      // I expected quotes could be an issue and now it is one.
+      // Should trap any exceptions, log message, and behave as if no alt node is found 
+      // Should find a way to allow for quote, or double quote, in the title or
+      // skip titles containing quotes.
       NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
 
       for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)

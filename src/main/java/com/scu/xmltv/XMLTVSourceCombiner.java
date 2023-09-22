@@ -377,38 +377,52 @@ private Optional<Node> findAltNode(Node refProg, String progid)
       //           locate occurrence number of alt node      
       int refoccur = -1;
       String startday = starttime.substring(0,8);
-      String safeTitle = title; // there is no safe title - XPath just doesn't support searching for single quote! title.replace("'", "?");
+      
+      // there is no safe title - XPath just doesn't support searching for single quote! 
+      String safeTitle = title.replace("\"", "?");
       String occurCrit = "/tv/programme[" 
             + "starts-with(@start, '" + startday + "') and " 
 	         + "@channel='" + chanid + "' and "
 	         + "title=\"" + safeTitle + "\""
             + "]";
       
-      // TODO: getNodesByPath: Error getting /tv/programme[starts-with(@start, '20230922') and @channel='XTVGRABPYcanvas' and title="Jan Van Looveren: "Loslaten""]
+      // getNodesByPath: Error getting /tv/programme[starts-with(@start, '20230922') and @channel='XTVGRABPYcanvas' and title="Jan Van Looveren: "Loslaten""]
       // javax.xml.transform.TransformerException: Expected ], but found: Loslaten
       // the title contains &quote;Loslaten&quote;
       // I expected quotes could be an issue and now it is one.
-      // Should trap any exceptions, log message, and behave as if no alt node is found 
-      // Should find a way to allow for quote, or double quote, in the title or
-      // skip titles containing quotes.
-      NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
-
-      for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)
+      // Quotes are now converted to a wildcard character which may produce some strange
+      // matches.
+      // It turns out that getNodesByPath trapped the error, logged it and returned null.
+      // The problem was the NPE in here resulting from the null return when an
+      // empty list was expected. An empty list should now be returned but the
+      // try...catch can remain here just in case.
+      try
       {
-      	Node refOccur = refprogsoccurs.item(occurs);
-         String occurStarttime = nu.getAttributeValue(refOccur, "start");         	
-      	if(occurStarttime.equals(starttime))
-      	{
-      		log.debug("findAltNode: reference {} is occurrence {}", progid, occurs+1);
-      		refoccur = occurs;
-      		break;
-      	}
+         NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
+   
+         for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)
+         {
+         	Node refOccur = refprogsoccurs.item(occurs);
+            String occurStarttime = nu.getAttributeValue(refOccur, "start");         	
+         	if(occurStarttime.equals(starttime))
+         	{
+         		log.debug("findAltNode: reference {} is occurrence {}", progid, occurs+1);
+         		refoccur = occurs;
+         		break;
+         	}
+         }
+      }
+      catch(Exception ex)
+      {
+         log.warn("findAltNode: search criteria:{} exception:{}", occurCrit, ex.toString()); 
       }
       
       // In theory at least one must match since refProg is from the search list however special characters
       // in the title could fork up the search. Single quote is allowed for and I can't think of a reason for
       // the title containing a double-quote but who know what else title makers can come up with to break
       // the very fragile XPath search.
+      //
+      // Of course there was title with a double-quote which messed up the search
       if(refoccur < 0)
       {
       	log.info("findAltNode: Failed to find reference occurrence for {} with predicate [{}]", progid, occurCrit);

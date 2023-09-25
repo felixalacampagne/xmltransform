@@ -75,12 +75,23 @@ public final static String ARG_OUTFILE = "-combine";
 private static final String ARG_REF = "-ref";
 private static final String ARG_ALT = "-alt";
 private static final String ARG_RESULT = "-res";
+private static final String ARG_FILTER = "-filter";
 
 private final File refXMLTV;
 private final File altXMLTV;
 private final NodeUtils nu = NodeUtils.getNodeUtils();
+private final Pattern regexFilter;
+
 private Document refDoc = null;
 private Document altDoc = null;
+
+
+public Optional<Pattern> getRegexFilter()
+{
+   return Optional.ofNullable(regexFilter);
+}
+
+
 Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
 Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
@@ -90,7 +101,16 @@ Pattern bbcPatternB = Pattern.compile("^\\.\\.\\.\\S.*?\\. (\\d{1,2})/(\\d{1,2})
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
    refXMLTV = new File(referenceXMLTV);
-   altXMLTV = new File(alternateXMLTV);
+   altXMLTV = new File(alternateXMLTV); 
+   regexFilter = null;
+}
+
+public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV, String regexFilter)
+{
+   // Can't init files in a shared method because they must be initd in the constructor!
+   refXMLTV = new File(referenceXMLTV);
+   altXMLTV = new File(alternateXMLTV); 
+   this.regexFilter = Pattern.compile(regexFilter);
 }
 
 protected void initDocs()
@@ -158,20 +178,21 @@ public void combineSource(String... fieldnames)
 protected void filterProgrammes() throws TransformerException
 {
    initDocs();  // so it can be tested
-   
-NodeList altchans = nu.getNodesByPath(altDoc, "/tv/channel");
+Optional<Pattern> regex = getRegexFilter();
+
 NodeList refchans = nu.getNodesByPath(refDoc, "/tv/channel");
 
-List<String> altchanids = new ArrayList<>();
 List<String> refchanids = new ArrayList<>();
-
-   // Crudely build a list of channel ids common to both docs
-   for(int idx=0 ; idx<altchans.getLength() ; idx++)
-   {
-      Node channel = altchans.item(idx);
-      String chanId = nu.getAttributeValue(channel, "id");
-      altchanids.add(chanId);
-   }
+//NodeList altchans = nu.getNodesByPath(altDoc, "/tv/channel");
+//List<String> altchanids = new ArrayList<>();
+//
+//   // Crudely build a list of channel ids common to both docs
+//   for(int idx=0 ; idx<altchans.getLength() ; idx++)
+//   {
+//      Node channel = altchans.item(idx);
+//      String chanId = nu.getAttributeValue(channel, "id");
+//      altchanids.add(chanId);
+//   }
    
    for(int idx=0 ; idx<refchans.getLength() ; idx++)
    {
@@ -179,8 +200,12 @@ List<String> refchanids = new ArrayList<>();
       String chanId = nu.getAttributeValue(channel, "id");
       refchanids.add(chanId);
    }   
-
-   refchanids = refchanids.stream().filter(rc -> altchanids.contains(rc)).collect(Collectors.toList());
+   if(regex.isPresent())
+   {
+      //refchanids = refchanids.stream().filter(rc -> altchanids.contains(rc)).collect(Collectors.toList());
+      final Pattern pat =  regex.get();
+      refchanids = refchanids.stream().filter(rc -> pat.matcher(rc).matches() ).collect(Collectors.toList());
+   }
    
    // Now remove programmes from ref doc for channel ids not in the filtered list
    NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
@@ -196,7 +221,7 @@ List<String> refchanids = new ArrayList<>();
       }
    }
    
-   // refDoc still contains the extra channels, might be best to remove them as well
+   // refDoc still contains the extra channels which should not appear int he channels list of the output document
    for(int i = 0; i <  refchans.getLength(); i++)
    {
       Node channel = refchans.item(i);
@@ -352,30 +377,52 @@ private Optional<Node> findAltNode(Node refProg, String progid)
       //           locate occurrence number of alt node      
       int refoccur = -1;
       String startday = starttime.substring(0,8);
-      String safeTitle = title; // there is no safe title - XPath just doesn't support searching for single quote! title.replace("'", "?");
+      
+      // there is no safe title - XPath just doesn't support searching for single quote! 
+      String safeTitle = title.replace("\"", "?");
       String occurCrit = "/tv/programme[" 
             + "starts-with(@start, '" + startday + "') and " 
 	         + "@channel='" + chanid + "' and "
 	         + "title=\"" + safeTitle + "\""
             + "]";
-      NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
-
-      for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)
+      
+      // getNodesByPath: Error getting /tv/programme[starts-with(@start, '20230922') and @channel='XTVGRABPYcanvas' and title="Jan Van Looveren: "Loslaten""]
+      // javax.xml.transform.TransformerException: Expected ], but found: Loslaten
+      // the title contains &quote;Loslaten&quote;
+      // I expected quotes could be an issue and now it is one.
+      // Quotes are now converted to a wildcard character which may produce some strange
+      // matches.
+      // It turns out that getNodesByPath trapped the error, logged it and returned null.
+      // The problem was the NPE in here resulting from the null return when an
+      // empty list was expected. An empty list should now be returned but the
+      // try...catch can remain here just in case.
+      try
       {
-      	Node refOccur = refprogsoccurs.item(occurs);
-         String occurStarttime = nu.getAttributeValue(refOccur, "start");         	
-      	if(occurStarttime.equals(starttime))
-      	{
-      		log.debug("findAltNode: reference {} is occurrence {}", progid, occurs+1);
-      		refoccur = occurs;
-      		break;
-      	}
+         NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
+   
+         for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)
+         {
+         	Node refOccur = refprogsoccurs.item(occurs);
+            String occurStarttime = nu.getAttributeValue(refOccur, "start");         	
+         	if(occurStarttime.equals(starttime))
+         	{
+         		log.debug("findAltNode: reference {} is occurrence {}", progid, occurs+1);
+         		refoccur = occurs;
+         		break;
+         	}
+         }
+      }
+      catch(Exception ex)
+      {
+         log.warn("findAltNode: search criteria:{} exception:{}", occurCrit, ex.toString()); 
       }
       
       // In theory at least one must match since refProg is from the search list however special characters
       // in the title could fork up the search. Single quote is allowed for and I can't think of a reason for
       // the title containing a double-quote but who know what else title makers can come up with to break
       // the very fragile XPath search.
+      //
+      // Of course there was title with a double-quote which messed up the search
       if(refoccur < 0)
       {
       	log.info("findAltNode: Failed to find reference occurrence for {} with predicate [{}]", progid, occurCrit);
@@ -511,6 +558,7 @@ CmdArgMgr cmd = new CmdArgMgr();
 String ref = null;
 String alt = null;
 String result = null;
+String filter = null;
 String [] keys = null;
 
    cmd.parseArgs(args);
@@ -526,6 +574,8 @@ String [] keys = null;
          alt = val;
       else if(ARG_RESULT.compareTo(keys[i]) == 0)
          result = val;
+      else if(ARG_FILTER.compareTo(keys[i]) == 0)
+         filter = val;
    }
 
 
@@ -539,7 +589,7 @@ String [] keys = null;
 
 
 
-   XMLTVSourceCombiner sc = new XMLTVSourceCombiner(ref, alt);
+   XMLTVSourceCombiner sc = new XMLTVSourceCombiner(ref, alt, filter);
    sc.combineSource("episode-num", "sub-title");
   // sc.combineSource("episode-num");
    sc.writeUpdatedXMLTV(result);

@@ -136,13 +136,18 @@ String anodevalue = null;
       {
          if (nl.item(k).getNodeName().compareTo(anodename) == 0)
          {
-            anodevalue = nl.item(k).getChildNodes().item(0).getNodeValue();
+            // node might exist but it might be empty, eg. <desc />
+            if(nl.item(k).hasChildNodes())
+            {
+               anodevalue = nl.item(k).getChildNodes().item(0).getNodeValue();
+            }
+            break;
          }
       }
    }
    catch (Exception ex)
    {
-      log.info("getNodeValue: Failed to extract value of {} from {}", anodename, annode.getLocalName(), ex);
+      log.info("getNodeValue: Failed to extract value of {} from {}: {}", anodename, annode.getLocalName(), ex.toString());
    }
    return anodevalue;
 }
@@ -161,15 +166,36 @@ String anodevalue = null;
    }
    catch (Exception ex)
    {
-      log.warn( "getNodeValue: Failed to extract value from {}", annode.getLocalName(), ex);
+      log.warn( "getNodeValue: Failed to extract value from {}: {}", annode.getLocalName(), ex.toString());
    }
    return anodevalue;
 }
 
 // Returns null if the xpath is not valid.
+// Ideally would just return an empty list but can't find a way to create one.
+public final static NodeList EMPTYNODELIST =  new NodeList()
+{
+   @Override
+   public Node item(int index)
+   {
+      return null;
+   }
+
+   @Override
+   public int getLength()
+   {
+      return 0;
+   }
+};
+
+// Returns an empty list if the XPath is invalid or for any other failure reason.
+// The 'experts' always say this is a BAD THING and that an exception should
+// be thrown or a null returned so a NPE can be thrown by the caller. I disagree.
+// These same 'experts' are probably the same ones responsible for 'Error 0' and 
+// 'File not found'...
 public NodeList getNodesByPath(Node doc, String xpath)
 {
-NodeList nl = null;
+NodeList nl = EMPTYNODELIST;
 
    try
    {

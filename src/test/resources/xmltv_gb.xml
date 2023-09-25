@@ -6,7 +6,12 @@
 </channel>
 <programme channel="371.tvguide.co.uk" start="20230912021000 +0200" stop="20230912031000 +0200">
    <title lang="nl">New: Cruel Summer</title>
-   <desc lang="nl">Brand new series - A Secret of My Own: Kate's closely held secrets and fragmented memories of her time in Martin's house are brought to the surface. (S1 Ep9)  [AD,S]</desc>
+   <desc lang="nl">Brand new series - A Secret of My Own: a short desc</desc>
+   <category>TVShow</category>
+</programme>
+<programme channel="371.tvguide.co.uk" start="20230913011000 +0200" stop="20230913021000 +0200">
+   <title lang="nl">New: Cruel Summer</title>
+   <desc lang="nl">Brand new series - Hostile Witness: Kate and Jeannette's worlds collide as the court date arrives, finally forcing the two young women to answer the question on everyone's mind. (S1 Ep10)  [AD,S]</desc>
    <category>TVShow</category>
 </programme>
 </tv>

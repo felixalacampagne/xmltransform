@@ -96,12 +96,6 @@ private Document refDoc = null;
 private Document altDoc = null;
 
 
-public Optional<Pattern> getRegexFilter()
-{
-   return Optional.ofNullable(regexFilter);
-}
-
-
 Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
 Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
@@ -120,7 +114,7 @@ public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV, String 
    // Can't init files in a shared method because they must be initd in the constructor!
    refXMLTV = new File(referenceXMLTV);
    altXMLTV = new File(alternateXMLTV);
-   this.regexFilter = Pattern.compile(regexFilter);
+   this.regexFilter = regexFilter!=null ? Pattern.compile(regexFilter) : null;
 }
 
 protected void initDocs()
@@ -205,18 +199,21 @@ protected void cleanFields()
 
 protected void cleanProg(Node refProg)
 {
-   String fieldname = "desc";
-   Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
-   if(optrefFld.isPresent())
+   String [] fields = new String[] { "desc", "title" };
+   Pattern newpfxes = Pattern.compile("(?:\\.\\.\\.\\S.*?: )?(?:Brand new series - |Brand new: |New: )");
+   for(String fieldname : fields)
    {
-      Node refFld = optrefFld.get();
-      String refDesc = Utils.safeString(refFld.getTextContent());
-
-      String updDesc = refDesc.replaceAll("^Brand new series - ", "")
-                               .replaceAll("^New: ", "");
-      if(!refDesc.equals(updDesc))  // Is it worth doing this check?
+      Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
+      if(optrefFld.isPresent())
       {
-         refFld.setTextContent(updDesc);
+         Node refFld = optrefFld.get();
+         String origTxt = Utils.safeString(refFld.getTextContent());
+         Matcher m = newpfxes.matcher(origTxt);
+         String updTxt = m.replaceAll("");  // origTxt.replaceAll("^Brand new series - ", "").replaceAll("^New: ", "");
+         if(!origTxt.equals(updTxt))  // Is it worth doing this check?
+         {
+            refFld.setTextContent(updTxt);
+         }
       }
    }
 }
@@ -488,7 +485,7 @@ private Optional<Node> findAltNode(Node refProg, String progid)
       // Of course there was title with a double-quote which messed up the search
       if(refoccur < 0)
       {
-      	log.info("findAltNode: Failed to find reference occurrence for {} with predicate [{}]", progid, occurCrit);
+      	log.debug("findAltNode: Failed to find reference occurrence for {} with predicate [{}]", progid, occurCrit);
       }
       else
       {
@@ -502,7 +499,7 @@ private Optional<Node> findAltNode(Node refProg, String progid)
    }
    else if(altprogs.getLength() > 0)
    {
-      log.info("findAltNode: alternative programs with same start time for {}: {}", progid, altprogs.getLength());
+      log.debug("findAltNode: alternative programs with same start time for {}: {}", progid, altprogs.getLength());
       altProg = altprogs.item(0);
    }
 
@@ -593,7 +590,7 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
 		   Optional<Node> optAltFld = safeGetNodeByPath(altProg, fieldname);
 		   if(! optAltFld.isPresent() )
          {
-            log.info("copyFields: alternative for {} has no field {}", progid, fieldname);
+            log.debug("copyFields: alternative for {} has no field {}", progid, fieldname);
             continue;
          }
 
@@ -609,7 +606,7 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
          Optional<Node> optAltFld = safeGetNodeByPath(altProg, fieldname);
          if(! optAltFld.isPresent() )
          {
-            log.info("copyFields: alternative for {} has no field {}", progid, fieldname);
+            log.debug("copyFields: alternative for {} has no field {}", progid, fieldname);
             continue;
          }
          Node altFld = optAltFld.get();
@@ -638,6 +635,11 @@ public void writeUpdatedXMLTV(Writer writer) throws Exception
    nu.outputNode(this.refDoc, writer);
 }
 
+
+public Optional<Pattern> getRegexFilter()
+{
+   return Optional.ofNullable(regexFilter);
+}
 
 public static void main(String[] args) throws Exception
 {
@@ -681,4 +683,5 @@ String [] keys = null;
 
    sc.writeUpdatedXMLTV(result);
 }
+
 }

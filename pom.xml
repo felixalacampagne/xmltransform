@@ -4,7 +4,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.felixalacampagne</groupId>
    <artifactId>xmltransform</artifactId>
-   <version>0.17.6.8-SNAPSHOT</version>
+   <version>0.17.7.2-SNAPSHOT</version>
    <packaging>jar</packaging>
    <name>xmltransform</name>
    <description>Perform enhanced XSLT transforms</description>
@@ -99,8 +99,11 @@
       instead of the xmltransform-0.17.3-SNAPSHOT.jar which appears in the target directly. This may be what has
       caused me so much hassle trying to get logging to work.
 
-      Fork only knows how I;m going to fix this since the whole thing is black magic and the document as such
+      Fork only knows how I'm going to fix this since the whole thing is black magic and the document as such
       is incomprehensible.
+      
+      Ugh! Just now realised that excluding logback.xml from the xmltransform.jar creation above is causing
+      logback.xml to be absent from the HTMLMaker.jar built below!
       -->
       <plugin>
          <artifactId>maven-assembly-plugin</artifactId>

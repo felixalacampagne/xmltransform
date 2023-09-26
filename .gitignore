@@ -22,8 +22,7 @@ tvguide/**
 !tvguide/script/*
 !tvguide/crit
 !tvguide/crit/*
-!tvguide/xml
-!tvguide/xml/mergexmltv.xmltv
+
 **/*.bak
 *.diff
 *.log

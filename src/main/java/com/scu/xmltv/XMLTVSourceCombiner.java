@@ -101,7 +101,7 @@ Logger log = LoggerFactory.getLogger(this.getClass().getName());
 Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
 Pattern bbcPatternA = Pattern.compile("^(\\d{1,2})/(\\d{1,2})\\. ");
 Pattern bbcPatternB = Pattern.compile("^\\.\\.\\.\\S.*?\\. (\\d{1,2})/(\\d{1,2})\\. ");
-Pattern subtitPattern = Pattern.compile("^(\\S.*?): ");
+Pattern subtitPattern = Pattern.compile("^(?:\\.\\.\\.\\S.*?: )?(\\S.*?): ");
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
    refXMLTV = new File(referenceXMLTV);
@@ -193,7 +193,7 @@ protected void cleanFields()
 protected void cleanProg(Node refProg)
 {
    String [] fields = new String[] { "desc", "title" };
-   Pattern newpfxes = Pattern.compile("(?:\\.\\.\\.\\S.*?: )?(?:Brand new series - |Brand new: |New: )");
+   Pattern newpfxes = Pattern.compile("(\\.\\.\\.\\S.*?: )?(?:Brand new series - |Brand new: |New: )");
    for(String fieldname : fields)
    {
       Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
@@ -202,7 +202,7 @@ protected void cleanProg(Node refProg)
          Node refFld = optrefFld.get();
          String origTxt = Utils.safeString(refFld.getTextContent());
          Matcher m = newpfxes.matcher(origTxt);
-         String updTxt = m.replaceAll("");  // origTxt.replaceAll("^Brand new series - ", "").replaceAll("^New: ", "");
+         String updTxt = m.replaceAll("$1");  // origTxt.replaceAll("^Brand new series - ", "").replaceAll("^New: ", "");
          if(!origTxt.equals(updTxt))  // Is it worth doing this check?
          {
             refFld.setTextContent(updTxt);

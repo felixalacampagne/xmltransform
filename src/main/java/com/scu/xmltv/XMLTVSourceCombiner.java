@@ -176,13 +176,6 @@ public void combineSource(String... fieldnames)
 //   {
 //      log.error("combineSource: failed to duplicate BBC One Lon HD -> BBC One: {}", e.toString() );
 //   }
-
-   // Crudely clean up the desc fields. Eventually could make this take a list of field names
-   // and replacements to be applied but for now it's just the desc field and some specific
-   // annoying strings to be removed. Specifying the name/replacements could not really
-   // be done via the command line so would need some sort of property file handling which is
-   // definitely not for today!
-   cleanFields();
 }
 
 // Cleans the 'desc' fields of refDoc - not used, decided to do it per prog before extracting missing info

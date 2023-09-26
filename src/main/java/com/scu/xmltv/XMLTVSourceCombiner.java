@@ -98,10 +98,12 @@ private Document altDoc = null;
 
 Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
-Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
-Pattern bbcPatternA = Pattern.compile("^(\\d{1,2})/(\\d{1,2})\\. ");
-Pattern bbcPatternB = Pattern.compile("^\\.\\.\\.\\S.*?\\. (\\d{1,2})/(\\d{1,2})\\. ");
-Pattern subtitPattern = Pattern.compile("^(?:\\.\\.\\.\\S.*?: )?(\\S.*?): ");
+private static final Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
+private static final Pattern bbcPatternA = Pattern.compile("^(\\d{1,2})/(\\d{1,2})\\. ");
+private static final Pattern bbcPatternB = Pattern.compile("^\\.\\.\\.\\S.*?\\. (\\d{1,2})/(\\d{1,2})\\. ");
+private static final Pattern subtitPattern = Pattern.compile("^(?:\\.\\.\\.\\S.*?: )?(\\S.*?): ");
+private static final Pattern newpfxes = Pattern.compile("(\\.\\.\\.\\S.*?: )?(?:Brand new series - |Brand new: |New: )");
+
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
    refXMLTV = new File(referenceXMLTV);
@@ -193,7 +195,7 @@ protected void cleanFields()
 protected void cleanProg(Node refProg)
 {
    String [] fields = new String[] { "desc", "title" };
-   Pattern newpfxes = Pattern.compile("(\\.\\.\\.\\S.*?: )?(?:Brand new series - |Brand new: |New: )");
+   
    for(String fieldname : fields)
    {
       Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
@@ -577,17 +579,17 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
 {
 	for(String fieldname : fieldnames)
 	{
+      Optional<Node> optAltFld = safeGetNodeByPath(altProg, fieldname);
+      if(! optAltFld.isPresent() )
+      {
+         log.debug("copyFields: alternative for {} has no field {}", progid, fieldname);
+         continue;
+      }
+      Node altFld = optAltFld.get();
+      
 		Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
 		if( ! optrefFld.isPresent())
 		{
-		   Optional<Node> optAltFld = safeGetNodeByPath(altProg, fieldname);
-		   if(! optAltFld.isPresent() )
-         {
-            log.debug("copyFields: alternative for {} has no field {}", progid, fieldname);
-            continue;
-         }
-
-		   Node altFld = optAltFld.get();
          Node newNode = altFld.cloneNode(true);  // Create a duplicate node
          refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
          refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
@@ -596,13 +598,6 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
 		else if(optrefFld.isPresent() && "desc".equals(fieldname))
       {
 		   // Special handling for 'desc' as the field might be present in ref but contain more info in the alt
-         Optional<Node> optAltFld = safeGetNodeByPath(altProg, fieldname);
-         if(! optAltFld.isPresent() )
-         {
-            log.debug("copyFields: alternative for {} has no field {}", progid, fieldname);
-            continue;
-         }
-         Node altFld = optAltFld.get();
          Node refFld = optrefFld.get();
          String refDesc = Utils.safeString(refFld.getTextContent());
          String altDesc = Utils.safeString(altFld.getTextContent());

@@ -7,8 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,6 +19,8 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Node;
@@ -36,8 +36,9 @@ import static com.scu.xmltv.XMLTVutils.getXMLTVDateFormat;
 
 public class XSLTExtensions
 {
-static Logger LOG = Logger.getLogger(XSLTExtensions.class.getName());
+	// All methods are static so fields also need to be static
 static ObjectMapper mapper = new ObjectMapper();
+static Logger log = LoggerFactory.getLogger(XSLTExtensions.class);
    /**
     * Test whether a value matches one of a list
     * of regular expressions.
@@ -146,7 +147,7 @@ static ObjectMapper mapper = new ObjectMapper();
       {
          match = Pattern.compile(regexp, flags).matcher(value);
          boolean found = match.find();
-         LOG.log(Level.FINEST, "value:{0} expression:{1} match:{2}", new Object[] {value, regexp, found});
+         log.trace("isMatch: value:{} expression:{} match:{}", value, regexp, found);
          if(found)
          {
             return true;
@@ -759,7 +760,7 @@ static ObjectMapper mapper = new ObjectMapper();
       }
       catch (JsonProcessingException e)
       {
-         LOG.info("Failed to generate JSON for EpisodeShow: " + e.getMessage());
+         log.info("Failed to generate JSON for EpisodeShow: " + e.getMessage());
          e.printStackTrace();
       }
       return json;
@@ -812,7 +813,7 @@ static ObjectMapper mapper = new ObjectMapper();
    {
       String result = "";
       result = dumpNode(node, "");
-      LOG.info("\n" + result.toString());
+      log.info("\n" + result.toString());
       return result;
    }
 

@@ -19,7 +19,7 @@ import com.scu.utils.XMLTransform;
 // one single favourites file....
 public class MergeFiles
 {
-Logger log = LoggerFactory.getLogger(this.getClass().getName());	
+Logger log = LoggerFactory.getLogger(this.getClass());	
 public final static String ARG_OUTFILE = "-merge";
 private List<String> mFiles = new ArrayList<String>();
 private String mOutFile = null;
@@ -101,8 +101,8 @@ int tve = 0;
       FileOutputStream fos = new FileOutputStream(fout);
       fos.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n".getBytes("UTF-8"));
       fos.write("<tv>\n".getBytes("UTF-8"));
-      fos.write(sbchans.toString().getBytes("UTF-8"));
-      fos.write(sbprogs.toString().getBytes("UTF-8"));
+      fos.write(sbchans.toString().replaceAll("(?m)^\\s*$\\R", "").getBytes("UTF-8"));
+      fos.write(sbprogs.toString().replaceAll("(?m)^\\s*$\\R", "").getBytes("UTF-8"));
       fos.write("\n</tv>\n".getBytes("UTF-8"));
       fos.close();
    }

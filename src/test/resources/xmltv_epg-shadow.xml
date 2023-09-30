@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv generator-info-name="scu-owiepg-grabber)" generator-info-url="https://localhost">
+<channel id="375.tvguide.co.uk"><display-name lang="nl">5 USA</display-name></channel>
+<channel id="572.tvguide.co.uk"><display-name lang="nl">5USA+1</display-name></channel>
+<channel id="376.tvguide.co.uk"><display-name lang="nl">ITV2+1</display-name></channel>
+<channel id="146.tvguide.co.uk"><display-name lang="nl">Film4+1</display-name></channel>
+<channel id="139.tvguide.co.uk"><display-name lang="nl">E4</display-name></channel>
+<channel id="XTVGRABPY2be"><display-name lang="nl">VTM 2 HD</display-name></channel>
+<channel id="729.tvguide.co.uk"><display-name lang="nl">Channel 5+1</display-name></channel>
+<channel id="474.tvguide.co.uk"><display-name lang="nl">ITV3+1</display-name></channel>
+  
+  <channel id="683.tvguide.co.uk">
+    <display-name lang="en">BBC One HD</display-name>
+  </channel>
+  
+<programme channel="376.tvguide.co.uk" start="20230912021000 +0200" stop="20230912031000 +0200">
+   <title lang="nl">p376</title>
+   <desc lang="nl">test p376</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230913011000 +0200" stop="20230913021000 +0200" channel="XTVGRABPY2be">
+   <title lang="nl">XTVGRABPY2be</title>
+   <desc lang="nl">test XTVGRABPY2be</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230913011000 +0200" stop="20230913021000 +0200" channel="146.tvguide.co.uk">
+   <title lang="nl">p146</title>
+   <desc lang="nl">test p146</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230908070000 +0200" stop="20230908101500 +0200" channel="683.tvguide.co.uk">
+   <title lang="nl">Breakfast</title>
+   <desc lang="nl">The latest news, sport, business and weather from the BBC's Breakfast team. [S] [HD]</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230908101500 +0200" stop="20230908110000 +0200" channel="683.tvguide.co.uk">
+   <title lang="nl">Morning Live</title>
+   <desc lang="nl">Conversation, advice and great company to make your morning. [S] [HD]</desc>
+   <category>TVShow</category>
+</programme>
+<programme start="20230908110000 +0200" stop="20230908114500 +0200" channel="683.tvguide.co.uk">
+   <title lang="nl">Critical Incident</title>
+   <desc lang="nl">15/15. It's a busy night in Newcastle for Northumbria Police as they work the night-time economy shift. We take a look at one of the most dangerous specialties in the police - firearms. [S] [HD]</desc>
+   <category>TVShow</category>
+</programme>
+
+</tv>

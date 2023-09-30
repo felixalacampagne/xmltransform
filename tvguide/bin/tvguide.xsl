@@ -15,7 +15,7 @@ version="1.0">
 <xsl:preserve-space elements="*"/>
 <xsl:param name="FAVFILE" />
 <xsl:param name="OUTPATH" />
-<xsl:variable name="NFOPATH">..\tv\nfo\</xsl:variable>
+<xsl:variable name="NFOPATH">\\NAS\public\Videos\mp4\ZZnforepo\</xsl:variable>
 <xsl:variable name="DRMBOXSRV">dm7025</xsl:variable>
 <xsl:variable name="VUPUSRV">vuultimo</xsl:variable>
 <xsl:variable name="FAVCRIT" select="document($FAVFILE)/node()" />

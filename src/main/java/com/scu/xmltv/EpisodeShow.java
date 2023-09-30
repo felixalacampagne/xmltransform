@@ -52,6 +52,14 @@ String uid = "";
       // than 4 digits are required, and then just wrap around.
       // Actually better to just use the number of days since a reference date,
       // 4 digits gives 9999 days = 27 years!!
+      //
+      // 08 Sep 2023 Episode number and title is no longer available for UK TV shows so everything
+      // is labelled as Film which means nearly all titles need to be edited and recordings
+      // are not marked as repeating. Until the show info is available again or I think of
+      // a better solution all shows will be handled as if they are series. I didn't like the Film
+      // handling anyway.
+      // NB. Can't use Episode 1 as the default as it would every program will be added to the 
+      // new series list which would not be helpful!
 
       boolean film = (Utils.safeIsEmpty(episodenum) && Utils.safeIsEmpty(subtitle));
       if(!getEpfulltitle().isEmpty())
@@ -60,7 +68,8 @@ String uid = "";
       }
       else if(film)
       {
-         eventName = String.format("Film %s 1x%s %s", showDate, getFilmNumber(date), cleanshow);
+        // eventName = String.format("Film %s 1x%s %s", showDate, getFilmNumber(date), cleanshow);
+         eventName = String.format("%s %s 1x99 Episode 99", cleanshow, showDate);
       }
       uid = nu.calcDigest(eventName);
    }

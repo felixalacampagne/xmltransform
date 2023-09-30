@@ -1,9 +1,12 @@
 package com.scu.utils;
 import java.io.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class FileTools
 {
-
+private static Logger log = LoggerFactory.getLogger(FileTools.class);
 
 public static void copyFile(String srcfile, String dstfile) throws IOException
 {
@@ -97,7 +100,7 @@ FileOutputStream fos=null;
     }
     catch(Exception ex)
     {
-        ex.printStackTrace();
+   	 log.info("writeStringToFile: Failed to write to file {} using encoding {}", aToWriteS, encoding, ex);
     }
 
     try { fos.close(); } catch(Exception e) {}
@@ -122,7 +125,7 @@ byte [] bytea=null;
         datfile = new File(fname);
         if(! datfile.exists())
         {
-            System.out.println("Apparently " + datfile.getCanonicalPath() + " doesn't exist!");
+            log.info("readStringFromFile: Apparently {} doesn't exist!", datfile.getCanonicalPath());
         }
         else
         {
@@ -141,8 +144,7 @@ byte [] bytea=null;
     }
     catch(Exception e)
     {
-        e.printStackTrace();
-        System.out.println( "Failed to read from " + fname);
+        log.info("readStringFromFile: Failed to read from {}", fname, e);
     }
 
     try { fisin.close(); } catch(Exception e) {}

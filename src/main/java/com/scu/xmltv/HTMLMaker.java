@@ -6,11 +6,13 @@ import java.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.felixalacampagne.xmltv.BuildInfo;
 import com.scu.utils.CmdArgMgr;
 import com.scu.utils.XMLTransform;
 
 public class HTMLMaker
 {
+	private Logger log = LoggerFactory.getLogger(this.getClass());
    public final static String ARG_XMLFILE = "-xml";
    public final static String ARG_XSLTFILE = "-xsl";
    public final static String ARG_OUTDIR = "-out";
@@ -54,7 +56,7 @@ public class HTMLMaker
          
       }
       Logger log = LoggerFactory.getLogger(HTMLMaker.class.getName());
-      log.info("main: starting");
+      log.info("main: HTMLMaker starting - buildinfo: {}", BuildInfo.getAppTitle());
 
       // Can't override the jar manifest start class by specifying
       // a class on the command line, so have to provide access from here!
@@ -132,17 +134,13 @@ public class HTMLMaker
          xmlt.addParameter("OUTPATH", outdir + File.separator);
          xmlt.addParameter("FAVFILE", mFavListFile);
 
-         System.out.println("Generating listings.");
+         log.info("doTransform: Generating listings.");
          xmlt.transformXML(xmlfile, xsltfile, f.getAbsolutePath());
-         System.out.println("Done.");
+         log.info("doTransform: Done.");
       }
-      catch (Exception ex)
+      catch (Throwable er)
       {
-         ex.printStackTrace();
-      }
-      catch (Error er)
-      {
-         er.printStackTrace();
+         log.info("doTransform: Failed to transform: ", er);
       }
 
    }

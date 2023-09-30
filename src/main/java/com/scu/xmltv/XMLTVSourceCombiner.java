@@ -31,14 +31,14 @@ import com.scu.utils.Utils;
  * tvgrabnl does a good job of getting descriptions of programmes etc.
  * but recently it has not been getting the episode info. The episode info
  * seems to be reliably available from the VUUltimo EPG, but the
- * descriptions are pretty poor. The aim is to take use the tvgrabnl
+ * descriptions are pretty poor. The aim is to use the tvgrabnl
  * file as the source and fill in missing episode infos from the
  * epg file.
  *
    Many moons later...
    The TVguide and EPG times are not the same. This seems to be especially the case for programmes early
    in the day. Sometimes the difference is minutes but occasionally it is more than an hour. The large
-   discrepencies appear to be relate to the designation of 'No broadcast' periods. I think in some cases
+   discrepencies appear to be related to the designation of 'No broadcast' periods. I think in some cases
    the 'NB' period is merged into the start time of the next program. The result is that many serial programmes
    are ending up with no episode info which then requires a lot of manual actions to recover.
    The tvguide source was used as the reference but to avoid this issue it is now the epg which is used as
@@ -69,7 +69,7 @@ import com.scu.utils.Utils;
    18 Sep 2023 Alt guide is sometimes missing required channels which results in them being excluded even though they
    are present in the ref guide. Changed the filter to simply use a regex expression for the channel ids to keep. Thus
    when combining EPG and GB guide the regex matches the GB guide ids, and matches the BE guide ids when combining the
-   EPG and BE guides. Much easier to use providing the IDs are readily distinguishable, which is the case.
+   EPG and BE guides. Much easier to use providing the IDs are readily distinguishable.
 
    25 Sep 2023 GB tvguide is working again so would like to switch back to using it as the ref since it is generally
    more reliable than the EPG. The EPG contains more detailed descriptions. Neither contains explicit sub-title info.
@@ -101,8 +101,8 @@ Logger log = LoggerFactory.getLogger(this.getClass().getName());
 private static final Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
 private static final Pattern bbcPatternA = Pattern.compile("^(\\d{1,2})/(\\d{1,2})\\. ");
 private static final Pattern bbcPatternB = Pattern.compile("^\\.\\.\\.\\S.*?\\. (\\d{1,2})/(\\d{1,2})\\. ");
-private static final Pattern subtitPattern = Pattern.compile("^(?:\\.\\.\\.\\S.*?: )?(\\S.*?): ");
-private static final Pattern newpfxes = Pattern.compile("(\\.\\.\\.\\S.*?: )?(?:Brand new series - |Brand new: |New: )");
+private static final Pattern subtitPattern = Pattern.compile("^(?:\\.\\.\\.\\S.*?: )?(\\S.*?): "); // ignore case?
+private static final Pattern newpfxes = Pattern.compile("(\\.\\.\\.\\S.*?: )?(?:Brand new series *[:-] *|Brand new: |New: )");
 
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
@@ -132,9 +132,6 @@ public void combineSource(String... fieldnames)
 {
    initDocs();
 
-   // Remove programmes from ref doc that do not have a channel in both docs.
-   // This is to avoid duplicates appearing when ref is used for both GB and BE
-   // programmes against different alt sources.
    try
    {
       filterProgrammes();
@@ -152,7 +149,7 @@ public void combineSource(String... fieldnames)
 
       String progid = nu.getNodeValue(refProg, "title") + ":"
                     + nu.getAttributeValue(refProg, "start") + ":"
-      		        + nu.getAttributeValue(refProg, "channel");
+                    + nu.getAttributeValue(refProg, "channel");
       log.info("combineSource: processing {}", progid);
 
       findAltNode(refProg, progid).ifPresentOrElse(
@@ -165,22 +162,9 @@ public void combineSource(String... fieldnames)
       cleanProg(refProg);
       extractMissingEpisodeInfo(refProg, progid);
    }
-
-   // copy BBC One Lon HD -> BBC One
-   // Temporary kludge to duplicate the BBC1HD progs to BBC1.
-   // No longer required as an alternative solution has been implemented
-   // at the level of the EPG and TVGuide grabbers themselves
-//   try
-//   {
-//      shadowChannel("683.tvguide.co.uk", "74.tvguide.co.uk", "BBC One");
-//   }
-//   catch (TransformerException e)
-//   {
-//      log.error("combineSource: failed to duplicate BBC One Lon HD -> BBC One: {}", e.toString() );
-//   }
 }
 
-// Cleans the 'desc' fields of refDoc - not used, decided to do it per prog before extracting missing info
+// Clean fields of all programmes in refDoc - not used, decided to do it per prog before extracting missing info
 protected void cleanFields()
 {
    initDocs();
@@ -217,21 +201,9 @@ protected void cleanProg(Node refProg)
 protected void filterProgrammes() throws TransformerException
 {
    initDocs();  // so it can be tested
-Optional<Pattern> regex = getRegexFilter();
-
-NodeList refchans = nu.getNodesByPath(refDoc, "/tv/channel");
-
-List<String> refchanids = new ArrayList<>();
-//NodeList altchans = nu.getNodesByPath(altDoc, "/tv/channel");
-//List<String> altchanids = new ArrayList<>();
-//
-//   // Crudely build a list of channel ids common to both docs
-//   for(int idx=0 ; idx<altchans.getLength() ; idx++)
-//   {
-//      Node channel = altchans.item(idx);
-//      String chanId = nu.getAttributeValue(channel, "id");
-//      altchanids.add(chanId);
-//   }
+   Optional<Pattern> regex = getRegexFilter();
+   NodeList refchans = nu.getNodesByPath(refDoc, "/tv/channel");
+   List<String> refchanids = new ArrayList<>();
 
    for(int idx=0 ; idx<refchans.getLength() ; idx++)
    {
@@ -239,9 +211,10 @@ List<String> refchanids = new ArrayList<>();
       String chanId = nu.getAttributeValue(channel, "id");
       refchanids.add(chanId);
    }
+
+   // TODO: if there is no regex then should immediately return from method
    if(regex.isPresent())
    {
-      //refchanids = refchanids.stream().filter(rc -> altchanids.contains(rc)).collect(Collectors.toList());
       final Pattern pat =  regex.get();
       refchanids = refchanids.stream().filter(rc -> pat.matcher(rc).matches() ).collect(Collectors.toList());
    }
@@ -282,6 +255,8 @@ List<String> refchanids = new ArrayList<>();
 // For now the solution will copy the programmes for one channel into another channel.
 // Must be done after the filter since the chances are dest channel will be absent from one or both the inputs.
 // Need to add a <channel> for the dest channel since there probably wont already be one.
+// TODO: Remove this. Issue is moot as BBC SD has become unwatchable due to the red stopping banner
+// and this was not used anyway as it was easier to map a dummy BBC1HD channel to BBC1SD in the grabbers. 
 protected void shadowChannel(String srcChannel, String destChannel, String destDisplayName) throws TransformerException
 {
    initDocs();
@@ -330,14 +305,12 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
 {
    // Aim of function is to extract missing "episode-num" and "sub-title" data from the show description.
    // This mainly applies to the UK show info from the Ultimo EPG data which is not handled by the python
-   // grabber - it seems to work OK for the TVV shows - and is now required since the UK tvguide has stopped
-   // working. I have noticed that there is sometimes some episode info buried in the description so the idea
-   // is to use it if there is none already present in the refProg - I'm assuming that anything useful in
-   // altn has already been copied into refProg.
+   // grabber - it seems to work OK for the TVV shows. I have noticed that there is sometimes some episode 
+   // info buried in the description so the idea is to use it if there is none already present in the
+   // refProg - I'm assuming that anything useful in altn has already been copied into refProg.
 
    String desc = nu.getNodeValue(refProg, "desc");
    if( Utils.safeIsEmpty(desc)) {
-      // no desc field so nothing to extract anything from
       return;
    }
 
@@ -441,19 +414,10 @@ private Optional<Node> findAltNode(Node refProg, String progid)
 	         + "title=\"" + safeTitle + "\""
             + "]";
 
-      // getNodesByPath: Error getting /tv/programme[starts-with(@start, '20230922') and @channel='XTVGRABPYcanvas' and title="Jan Van Looveren: "Loslaten""]
-      // javax.xml.transform.TransformerException: Expected ], but found: Loslaten
-      // the title contains &quote;Loslaten&quote;
-      // I expected quotes could be an issue and now it is one.
-      // Quotes are now converted to a wildcard character which may produce some strange
-      // matches.
-      // It turns out that getNodesByPath trapped the error, logged it and returned null.
-      // The problem was the NPE in here resulting from the null return when an
-      // empty list was expected. An empty list should now be returned but the
-      // try...catch can remain here just in case.
       try
       {
-         NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
+         // TODO: Use safeGetNodeByPath
+	     NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
 
          for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)
          {
@@ -472,12 +436,6 @@ private Optional<Node> findAltNode(Node refProg, String progid)
          log.warn("findAltNode: search criteria:{} exception:{}", occurCrit, ex.toString());
       }
 
-      // In theory at least one must match since refProg is from the search list however special characters
-      // in the title could fork up the search. Single quote is allowed for and I can't think of a reason for
-      // the title containing a double-quote but who know what else title makers can come up with to break
-      // the very fragile XPath search.
-      //
-      // Of course there was title with a double-quote which messed up the search
       if(refoccur < 0)
       {
       	log.debug("findAltNode: Failed to find reference occurrence for {} with predicate [{}]", progid, occurCrit);
@@ -498,13 +456,6 @@ private Optional<Node> findAltNode(Node refProg, String progid)
       altProg = altprogs.item(0);
    }
 
-//   // Must log here as Optional does not have ifNotPresent capability so
-//   // caller cannot log a message when Node is absent and do processing when present
-//   if( altProg == null)
-//   {
-//   	log.info("findAltNode: NO alternative found for {}", progid);
-//   }
-
    return Optional.ofNullable(altProg);
 }
 
@@ -512,8 +463,6 @@ private void adjustTimes(Node refProg, Node altProg, String progid)
 {
    // Compare the times for ref and alt. To maximise the chance of recording the entire program
    // should take the earliest starttime and the latest endtime.
-   // How to change attribute values?
-   // How to compare the dates?
    String refstart = nu.getAttributeValue(refProg, "start");
    String altstart = nu.getAttributeValue(altProg, "start");
    String altend = nu.getAttributeValue(altProg, "stop");
@@ -522,9 +471,7 @@ private void adjustTimes(Node refProg, Node altProg, String progid)
    // Can't rely on the timezone offsets being the same so convert to Date for
    // comparing but use the original string if necessary to change the time.
    // Should round the times to 5mins (down for start, up for end) for compatibility
-   // with the timer editor. Would then need to be able to convert the Date back
-   // to timezone aware string. The 5min adjustment is done when the web pages are
-   // generated from the merged XML so it's not so important to do it here.
+   // with the timer editor.
    ZonedDateTime refdt = XMLTVutils.getZDateFromXmltv(refstart);
    ZonedDateTime altdt = XMLTVutils.getZDateFromXmltv(altstart);
    String zxmltvdt = null;

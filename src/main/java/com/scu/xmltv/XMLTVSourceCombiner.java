@@ -675,6 +675,15 @@ String [] keys = null;
    //                                                                                     Time Elapsed: 00:11:44.409
    // findAltNode fuzzy/reduced log:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:26:00.307
    
+   // Timings show that it takes longer and longer to find the alternative program, probably because the
+   // XPath is doing a linear search from the first item. 
+   // Anything involving caching is going to create a NodeList which cannot be searched with XPath. Getting the
+   // values out of the nodes in the nodelist is very cumbersome so the thought is to parse the XMLTV into a
+   // Java object model so the fields are easily accessible for searching. Could write my own which would probably
+   // use jaxb however I don't want to have to create the schema from scratch.
+   // By chnace I found an XMLTV to Java object model parser which might make creating something which can be searched faster than 
+   // the XML DOM 
+   // https://github.com/raydouglass/xmltv-to-mxf/blob/master/pom.xml.
    sc.writeUpdatedXMLTV(result);
 }
 

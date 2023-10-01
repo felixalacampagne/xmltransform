@@ -673,6 +673,7 @@ String [] keys = null;
    // findAltNode nofuzzy:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:11:56.247
    // findAltNode nofuzzy/reduced log:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:11:53.861
    //                                                                                     Time Elapsed: 00:11:44.409
+   // findAltNode fuzzy/reduced log:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:26:00.307
    
    sc.writeUpdatedXMLTV(result);
 }

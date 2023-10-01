@@ -2,7 +2,11 @@ package com.scu.xmltv;
 
 import java.io.File;
 import java.io.Writer;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +16,8 @@ import java.util.stream.Collectors;
 
 import javax.xml.transform.TransformerException;
 
+import org.apache.commons.lang3.time.DurationFormatUtils;
+import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -96,13 +102,16 @@ private Document refDoc = null;
 private Document altDoc = null;
 
 
-Logger log = LoggerFactory.getLogger(this.getClass().getName());
+static Logger log = LoggerFactory.getLogger(XMLTVSourceCombiner.class);
 
 private static final Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
 private static final Pattern bbcPatternA = Pattern.compile("^(\\d{1,2})/(\\d{1,2})\\. ");
 private static final Pattern bbcPatternB = Pattern.compile("^\\.\\.\\.\\S.*?\\. (\\d{1,2})/(\\d{1,2})\\. ");
 private static final Pattern subtitPattern = Pattern.compile("^(?:\\.\\.\\.\\S.*?: )?(\\S.*?): "); // ignore case?
 private static final Pattern newpfxes = Pattern.compile("(\\.\\.\\.\\S.*?: )?(?:Brand new series *[:-] *|Brand new: |New: )");
+
+private final ZoneId zoneId = ZoneId.systemDefault(); // Use the system default time zone
+private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
@@ -143,14 +152,17 @@ public void combineSource(String... fieldnames)
    }
 
    NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
-   for(int i = 0; i <  progs.getLength(); i++)
+   int progcnt = progs.getLength();
+   StopWatch sw = StopWatch.createStarted();
+   int lastpcDone = 0;
+   for(int i = 0; i <  progcnt; i++)
    {
       Node refProg = progs.item(i);
 
       String progid = nu.getNodeValue(refProg, "title") + ":"
                     + nu.getAttributeValue(refProg, "start") + ":"
                     + nu.getAttributeValue(refProg, "channel");
-      log.info("combineSource: processing {}", progid);
+      log.debug("combineSource: processing {}", progid);
 
       findAltNode(refProg, progid).ifPresentOrElse(
             altn -> {
@@ -161,6 +173,19 @@ public void combineSource(String... fieldnames)
             );
       cleanProg(refProg);
       extractMissingEpisodeInfo(refProg, progid);
+      
+      int pcDone = ((i *100 ) / progcnt);
+      if((pcDone != lastpcDone) && (pcDone % 5) == 0)
+      {
+      	long estElapsed = sw.getTime() * progcnt / i;
+      	String FormattedElapsed = DurationFormatUtils.formatDurationHMS(estElapsed);
+      	Instant instant = Instant.ofEpochMilli(sw.getStartTime() + estElapsed);
+      	LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
+      	String formattedDateTime = localDateTime.format(formatter);
+      	log.info("combineSource: Progress:{}({}%) Elapsed:{} Est. End:{} Duration:{}", 
+      			String.format("%04d",i), pcDone, sw.formatTime(), formattedDateTime, FormattedElapsed);
+      	lastpcDone = pcDone; // avoid multiple output for same %age
+      }
    }
 }
 
@@ -381,81 +406,95 @@ private Optional<Node> findAltNode(Node refProg, String progid)
 	String title = nu.getNodeValue(refProg, "title");
    String starttime = nu.getAttributeValue(refProg, "start");
    String chanid = nu.getAttributeValue(refProg, "channel");
-
+   boolean fuzzyMatch = false;
+   // TODO: Could cache the programmes for chanid since they are usually processed in channel order
+   // Could maybe cache on chanid and day
+   // Could keep a map of the lists so it's not important that the progs are processed in order.
+   // Don't know how to do an xpath using nodelist as target though which would mean having to manually
+   // search through the list which is potentially slow.
+   // The cache is a list of lists.
+   // The top list has key channel/day and the value is a list with key programme/starttime
+   //   - should it be starttime/programme to ensure the order of multiple episodes is preserved.
+   // This might not work for multi-episodes which occur either side of midnight
+   //   - this probably doesn't matter unless there is a time discrepancy which the episode is today
+   //     in one guide and tomorrow in the other
    NodeList altprogs = nu.getNodesByPath(altDoc, "/tv/programme[@start='" + starttime + "' and @channel='" + chanid + "']");
 
-   if(altprogs == null || (altprogs.getLength() == 0))
+   if(fuzzyMatch)
    {
-      log.debug("findAltNode: alternative does not contain exact match for {}", progid);
-      // The starttime in alt should be for the same day as the ref item.
-      // A show can be broadcast multiple times during the day, eg. Grey's Anatomy
-      // is shown at midday and in the evening, Minx is shown as multiple
-      // episodes one after the other. The Minx case prevents a large date discrepancy
-      // from being accepted (Minx is ca.25mins!)
-      //
-      // Determine the occurrence of the program in the reference then find same occurrence in alternative.
-      // The procedure will be something like:
-      //   select using starttime,chanid.
-      //     single match - use it directly
-      //     no match
-      //        select from 'ref' for chanid, 'programme',starttime[day]
-      //           select from alt with criteria chanid, 'programme',starttime[day] - should give same number
-      //              different count - goto next ref node
-      //           determine occurrence number of ref node (1 if there is only one occurrence!)
-      //           locate occurrence number of alt node
-      int refoccur = -1;
-      String startday = starttime.substring(0,8);
-
-      // there is no safe title - XPath just doesn't support searching for single quote!
-      String safeTitle = title.replace("\"", "?");
-      String occurCrit = "/tv/programme["
-            + "starts-with(@start, '" + startday + "') and "
-	         + "@channel='" + chanid + "' and "
-	         + "title=\"" + safeTitle + "\""
-            + "]";
-
-      try
-      {
-         // TODO: Use safeGetNodeByPath
-	     NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
-
-         for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)
-         {
-         	Node refOccur = refprogsoccurs.item(occurs);
-            String occurStarttime = nu.getAttributeValue(refOccur, "start");
-         	if(occurStarttime.equals(starttime))
-         	{
-         		log.debug("findAltNode: reference {} is occurrence {}", progid, occurs+1);
-         		refoccur = occurs;
-         		break;
-         	}
-         }
-      }
-      catch(Exception ex)
-      {
-         log.warn("findAltNode: search criteria:{} exception:{}", occurCrit, ex.toString());
-      }
-
-      if(refoccur < 0)
-      {
-      	log.debug("findAltNode: Failed to find reference occurrence for {} with predicate [{}]", progid, occurCrit);
-      }
-      else
-      {
-	      NodeList altprogsoccurs = nu.getNodesByPath(altDoc, occurCrit);
-	      log.debug("findAltNode: alternative occurrences of {}: {}", progid, altprogsoccurs.getLength());
-	      if(refoccur >=0 && refoccur < altprogsoccurs.getLength())
+	   if(altprogs == null || (altprogs.getLength() == 0))
+	   {
+	   	// Cache might be more useful here
+	      log.debug("findAltNode: alternative does not contain exact match for {}", progid);
+	      // The starttime in alt should be for the same day as the ref item.
+	      // A show can be broadcast multiple times during the day, eg. Grey's Anatomy
+	      // is shown at midday and in the evening, Minx is shown as multiple
+	      // episodes one after the other. The Minx case prevents a large date discrepancy
+	      // from being accepted (Minx is ca.25mins!)
+	      //
+	      // Determine the occurrence of the program in the reference then find same occurrence in alternative.
+	      // The procedure will be something like:
+	      //   select using starttime,chanid.
+	      //     single match - use it directly
+	      //     no match
+	      //        select from 'ref' for chanid, 'programme',starttime[day]
+	      //           select from alt with criteria chanid, 'programme',starttime[day] - should give same number
+	      //              different count - goto next ref node
+	      //           determine occurrence number of ref node (1 if there is only one occurrence!)
+	      //           locate occurrence number of alt node
+	      int refoccur = -1;
+	      String startday = starttime.substring(0,8);
+	
+	      // there is no safe title - XPath just doesn't support searching for single quote!
+	      String safeTitle = title.replace("\"", "?");
+	      String occurCrit = "/tv/programme["
+	            + "starts-with(@start, '" + startday + "') and "
+		         + "@channel='" + chanid + "' and "
+		         + "title=\"" + safeTitle + "\""
+	            + "]";
+	
+	      try
 	      {
-	      	altProg = altprogsoccurs.item(refoccur);
+	         // TODO: Use safeGetNodeByPath
+		     NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
+	
+	         for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)
+	         {
+	         	Node refOccur = refprogsoccurs.item(occurs);
+	            String occurStarttime = nu.getAttributeValue(refOccur, "start");
+	         	if(occurStarttime.equals(starttime))
+	         	{
+	         		log.debug("findAltNode: reference {} is occurrence {}", progid, occurs+1);
+	         		refoccur = occurs;
+	         		break;
+	         	}
+	         }
 	      }
-      }
+	      catch(Exception ex)
+	      {
+	         log.warn("findAltNode: search criteria:{} exception:{}", occurCrit, ex.toString());
+	      }
+	
+	      if(refoccur < 0)
+	      {
+	      	log.debug("findAltNode: Failed to find reference occurrence for {} with predicate [{}]", progid, occurCrit);
+	      }
+	      else
+	      {
+		      NodeList altprogsoccurs = nu.getNodesByPath(altDoc, occurCrit);
+		      log.debug("findAltNode: alternative occurrences of {}: {}", progid, altprogsoccurs.getLength());
+		      if(refoccur >=0 && refoccur < altprogsoccurs.getLength())
+		      {
+		      	altProg = altprogsoccurs.item(refoccur);
+		      }
+	      }
+	   }
+	   else if(altprogs.getLength() > 0)
+	   {
+	      log.debug("findAltNode: alternative programs with same start time for {}: {}", progid, altprogs.getLength());
+	      altProg = altprogs.item(0);
+	   }
    }
-   else if(altprogs.getLength() > 0)
-   {
-      log.debug("findAltNode: alternative programs with same start time for {}: {}", progid, altprogs.getLength());
-      altProg = altprogs.item(0);
-   }
-
    return Optional.ofNullable(altProg);
 }
 
@@ -614,8 +653,16 @@ String [] keys = null;
 
 
    XMLTVSourceCombiner sc = new XMLTVSourceCombiner(ref, alt, filter);
+   log.info("main: combine starting");
+   StopWatch sw = StopWatch.createStarted();
    sc.combineSource("episode-num", "sub-title", "desc");
-
+   sw.stop();
+   log.info("main: combine done: Time Elapsed: {}", sw.formatTime());
+   // For 
+   // findAltNode enabled:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:26:59.684
+   // findAltNode disabled: speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:06:08.759
+   // findAltNode nofuzzy:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:11:56.247
+   // findAltNode nofuzzy/reduced log:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:11:53.861
    sc.writeUpdatedXMLTV(result);
 }
 

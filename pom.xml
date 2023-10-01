@@ -4,7 +4,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.felixalacampagne</groupId>
    <artifactId>xmltransform</artifactId>
-   <version>0.17.7.5-RELEASE</version>
+   <version>0.17.7.6-SNAPSHOT</version>
    <packaging>jar</packaging>
    <name>xmltransform</name>
    <description>Perform enhanced XSLT transforms</description>
@@ -193,5 +193,10 @@
       <version>5.9.2</version>
       <scope>test</scope>
    </dependency>
+   <dependency>
+       <groupId>org.apache.commons</groupId>
+       <artifactId>commons-lang3</artifactId>
+       <version>3.13.0</version>
+   </dependency>   
 </dependencies>
 </project>

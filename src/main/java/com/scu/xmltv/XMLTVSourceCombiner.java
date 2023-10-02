@@ -154,7 +154,9 @@ public void combineSource(String... fieldnames)
    NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
    int progcnt = progs.getLength();
    StopWatch sw = StopWatch.createStarted();
+   String durationFormat = "mm:ss";
    int lastpcDone = 0;
+   long lastSplit = 0;
    for(int i = 0; i <  progcnt; i++)
    {
       Node refProg = progs.item(i);
@@ -177,13 +179,20 @@ public void combineSource(String... fieldnames)
       int pcDone = ((i *100 ) / progcnt);
       if((pcDone != lastpcDone) && (pcDone % 5) == 0)
       {
-      	long estElapsed = sw.getTime() * progcnt / i;
-      	String FormattedElapsed = DurationFormatUtils.formatDurationHMS(estElapsed);
-      	Instant instant = Instant.ofEpochMilli(sw.getStartTime() + estElapsed);
+      	long split = sw.getTime();
+      	long estTotalElapsed = split * progcnt / i;  // gives an estimate of the total time to process all records
+      	String formattedEstTotalElapsed = DurationFormatUtils.formatDuration(estTotalElapsed, durationFormat);
+      	
+      	// Want time to do the 5% as it appears to get longer as the processing get closer to the end
+      	String formattedSplit = DurationFormatUtils.formatPeriod(lastSplit, split, durationFormat);
+      	lastSplit = split;
+      	
+      	Instant instant = Instant.ofEpochMilli(sw.getStartTime() + estTotalElapsed);
       	LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
       	String formattedDateTime = localDateTime.format(formatter);
-      	log.info("combineSource: Progress:{}({}%) Elapsed:{} Est. End:{} Duration:{}", 
-      			String.format("%04d",i), pcDone, sw.formatTime(), formattedDateTime, FormattedElapsed);
+      	log.info("combineSource: Progress:{}({}%) Elapsed: split:{} total:{} Est.End:{} Duration:{}", 
+      			String.format("%04d",i), pcDone, formattedSplit, 
+      			DurationFormatUtils.formatDuration(split, durationFormat), formattedDateTime, formattedEstTotalElapsed);
       	lastpcDone = pcDone; // avoid multiple output for same %age
       }
    }
@@ -406,7 +415,7 @@ private Optional<Node> findAltNode(Node refProg, String progid)
 	String title = nu.getNodeValue(refProg, "title");
    String starttime = nu.getAttributeValue(refProg, "start");
    String chanid = nu.getAttributeValue(refProg, "channel");
-   boolean fuzzyMatch = false;
+   boolean fuzzyMatch = true;
    // TODO: Could cache the programmes for chanid since they are usually processed in channel order
    // Could maybe cache on chanid and day
    // Could keep a map of the lists so it's not important that the progs are processed in order.
@@ -526,7 +535,7 @@ private void adjustTimes(Node refProg, Node altProg, String progid)
    {
    	zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
    	nu.setAttributeValue(refProg, "start", zxmltvdt);
-   	log.info("adjustTimes: changed start for {} from {} to {}", progid, refstart, zxmltvdt);
+   	log.debug("adjustTimes: changed start for {} from {} to {}", progid, refstart, zxmltvdt);
    }
 
    refdt = XMLTVutils.getZDateFromXmltv(refend);
@@ -543,7 +552,7 @@ private void adjustTimes(Node refProg, Node altProg, String progid)
    {
    	zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
    	nu.setAttributeValue(refProg, "stop", zxmltvdt);
-   	log.info("adjustTimes: changed stop for {} from {} to {}", progid, refend, zxmltvdt);
+   	log.debug("adjustTimes: changed stop for {} from {} to {}", progid, refend, zxmltvdt);
    }
 }
 
@@ -663,6 +672,18 @@ String [] keys = null;
    // findAltNode disabled: speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:06:08.759
    // findAltNode nofuzzy:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:11:56.247
    // findAltNode nofuzzy/reduced log:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:11:53.861
+   //                                                                                     Time Elapsed: 00:11:44.409
+   // findAltNode fuzzy/reduced log:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:26:00.307
+   
+   // Timings show that it takes longer and longer to find the alternative program, probably because the
+   // XPath is doing a linear search from the first item. 
+   // Anything involving caching is going to create a NodeList which cannot be searched with XPath. Getting the
+   // values out of the nodes in the nodelist is very cumbersome so the thought is to parse the XMLTV into a
+   // Java object model so the fields are easily accessible for searching. Could write my own which would probably
+   // use jaxb however I don't want to have to create the schema from scratch.
+   // By chnace I found an XMLTV to Java object model parser which might make creating something which can be searched faster than 
+   // the XML DOM 
+   // https://github.com/raydouglass/xmltv-to-mxf/blob/master/pom.xml.
    sc.writeUpdatedXMLTV(result);
 }
 

@@ -14,7 +14,7 @@ import com.dontocsata.xmltv.XmlTvParseException;
 public class XmltvParser
 {
 
-   public void parse(String filename, XmlTVDataSorage storage) throws FileNotFoundException, XmlTvParseException
+   static public void parse(String filename, XmlTVDataSorage storage) throws FileNotFoundException, XmlTvParseException
    {
       File xmlTvFile = new File(filename);
       InputStream inStream = new FileInputStream(xmlTvFile);

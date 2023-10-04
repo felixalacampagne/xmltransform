@@ -1,6 +1,7 @@
 package com.scu.xmltv;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.Writer;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -24,6 +25,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.dontocsata.xmltv.XmlTvParseException;
+import com.dontocsata.xmltv.model.XmlTvProgram;
+import com.scu.jxmltv.XmltvParser;
+import com.scu.jxmltv.XmltvStore;
 import com.scu.utils.CmdArgMgr;
 import com.scu.utils.NodeUtils;
 import com.scu.utils.Utils;
@@ -101,6 +106,7 @@ private final Pattern regexFilter;
 private Document refDoc = null;
 private Document altDoc = null;
 
+private XmltvStore altStore = new XmltvStore();
 
 static Logger log = LoggerFactory.getLogger(XMLTVSourceCombiner.class);
 
@@ -128,12 +134,23 @@ public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV, String 
    this.regexFilter = regexFilter!=null ? Pattern.compile(regexFilter) : null;
 }
 
-protected void initDocs()
+protected void initDocs() 
 {
    if(refDoc == null)
    {
       refDoc = nu.parseXML(refXMLTV);
       altDoc = nu.parseXML(altXMLTV);
+      try
+      {
+         XmltvParser.parse(altXMLTV, altStore);
+      }
+      catch (FileNotFoundException | XmlTvParseException e)
+      {
+         // This means that there will be no combining with the alt file,
+         // but at least a guide will continue to be produced
+         log.warn("initDocs: failed to parse alt file: {}", altXMLTV.getAbsolutePath(), e);
+      }
+      
    }
 }
 
@@ -407,6 +424,36 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
          log.debug("extractMissingEpisodeInfo: added field sub-title to {}: {}", progid, newNode.getTextContent());
       }
    }
+}
+
+private Optional<XmlTvProgram> findAltProgram(Node refProg, String progid)
+{
+   XmlTvProgram xprog = null;
+   String title = nu.getNodeValue(refProg, "title");
+   String starttime = nu.getAttributeValue(refProg, "start");
+   String day = starttime.substring(0,8);
+   String chanid = nu.getAttributeValue(refProg, "channel");  
+   
+   List<XmlTvProgram> progs;
+   progs = this.altStore.getProgrammesForDayChannel(day, chanid);  
+   
+   // TODO: find the programmes with matching title
+   // If there is only one that that's the one to return
+   // If more than one check if there is a match for the start time
+   // If no match then do the 'fuzzy' match which requires determining the occurrence of the 
+   // program in ref, which is a slow process.
+   List<XmlTvProgram> titles = progs.stream()
+         .filter(p -> p.getTitle().equalsIgnoreCase(title))
+         .toList();
+   if(titles.size() == 1)
+   {
+      xprog = titles.get(0);
+   }
+   else if(titles.size() > 1)
+   {
+      // TODO: first look for exact matching time 
+   }
+   return Optional.ofNullable(xprog);
 }
 
 private Optional<Node> findAltNode(Node refProg, String progid)

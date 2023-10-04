@@ -1,13 +1,21 @@
 package com.scu.jxmltv;
 
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileNotFoundException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import com.dontocsata.xmltv.XmlTvParseException;
+import com.dontocsata.xmltv.model.XmlTvChannel;
+import com.dontocsata.xmltv.model.XmlTvProgram;
 
 class XmltvParserTest
 {
@@ -21,6 +29,11 @@ class XmltvParserTest
       XmltvParser.parse(filename, store);
       
       assertTrue(store.getChannels().size() > 0, "There should be some channels");
+      
+      
+      List<XmlTvProgram> progs;
+      progs = store.getProgrammesForDayChannel("20230929", "TVG.C4.HD");
+      assertNotNull(progs);
    }
 
    @Test
@@ -47,5 +60,35 @@ class XmltvParserTest
 
       progs = store.getProgrammesForDayChannel("20230610", "CHN2");
       assertTrue(4 == progs.size());
+      
+      progs = store.getProgrammesForDayChannel("20230610", "CHN2");
    }
+
+   private XmlTvProgram createProg(String channel, String programme, String start)
+   {
+   
+      XmlTvProgram prog = new XmlTvProgram();
+      prog.setChannelId(channel);
+      prog.setTitle(programme);
+      prog.setStart(parseZonedDateTime(start));
+      return prog;
+   }
+   
+   // RIpped from xmltv-to-mxf
+   private static final DateTimeFormatter[] FORMATS = new DateTimeFormatter[] {
+         DateTimeFormatter.ofPattern("yyyyMMddHHmmss Z"),
+         DateTimeFormatter.ofPattern("yyyyMMddHHmmss").withZone(ZoneId.of("UTC")),
+         DateTimeFormatter.ofPattern("yyyyMMddHHmm"), DateTimeFormatter.ofPattern("yyyyMMddHH"),
+         DateTimeFormatter.ofPattern("yyyyMMdd") };
+   
+   private ZonedDateTime parseZonedDateTime(String text) {
+      for (DateTimeFormatter dtf : FORMATS) {
+         try {
+            return ZonedDateTime.parse(text, dtf);
+         } catch (DateTimeParseException e) {
+            // no-op
+         }
+      }
+      throw new IllegalArgumentException("Unparseable: " + text);
+   }   
 }

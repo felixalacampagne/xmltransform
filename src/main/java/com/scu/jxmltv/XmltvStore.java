@@ -62,6 +62,8 @@ public class XmltvStore implements XmlTVDataSorage
    private List<XmlTvProgram> programmes = new ArrayList<>();
    private Map<DayKey, List<XmlTvProgram>> daymap =  new HashMap<>();
 
+   private static Map.Entry<DayKey, List<XmlTvProgram>> lastdaymap = null;
+   
    @Override
    public void save(XmlTvChannel channel)
    {
@@ -93,12 +95,18 @@ public class XmltvStore implements XmlTVDataSorage
 
    protected List<XmlTvProgram> getDayChannel(DayKey dk)
    {
+      if((lastdaymap != null) && lastdaymap.getKey().equals(dk))
+      { 
+         return lastdaymap.getValue();
+      }
+      
       List<XmlTvProgram> dayprogs = daymap.get(dk);
       if(dayprogs == null)
       {
          dayprogs = new ArrayList<>();
          daymap.put(dk, dayprogs);
       }
+      lastdaymap = Map.entry(dk, dayprogs);
       return dayprogs;
    }
 

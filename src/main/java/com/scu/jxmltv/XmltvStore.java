@@ -1,8 +1,11 @@
 package com.scu.jxmltv;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.dontocsata.xmltv.XmlTVDataSorage;
 import com.dontocsata.xmltv.model.XmlTvChannel;
@@ -10,14 +13,59 @@ import com.dontocsata.xmltv.model.XmlTvProgram;
 
 public class XmltvStore implements XmlTVDataSorage
 {
+   class DayKey
+   {
+      final String key;
+      DayKey(String day, String channel)
+      {
+         key = day + channel;
+      }
+
+      DayKey(ZonedDateTime day, String channel)
+      {
+         this(String.format("%04d%02d%02d", day.getYear(), day.getMonthValue(), day.getDayOfMonth()), channel);
+      }
+
+      DayKey(XmlTvProgram prog)
+      {
+         this(prog.getStart(), prog.getChannelId());
+      }
+
+      public String getKey()
+      {
+         return key;
+      }
+
+      //
+      @Override
+      public boolean equals(Object o)
+      {
+         if (this == o)
+         {
+            return true;
+         }
+
+         if((o instanceof DayKey) && (o != null))
+            return key.equals( ((DayKey)o).getKey());
+
+         return false;
+      }
+
+      @Override
+      public int hashCode()
+      {
+         return key.hashCode();
+      }
+   }
+
    private List<XmlTvChannel> channels = new ArrayList<>();
    private List<XmlTvProgram> programmes = new ArrayList<>();
-   
+   private Map<DayKey, List<XmlTvProgram>> daymap =  new HashMap<>();
+
    @Override
    public void save(XmlTvChannel channel)
    {
       channels.add(channel);
-      
    }
 
    // TODO Remove this from interface?
@@ -37,13 +85,33 @@ public class XmltvStore implements XmlTVDataSorage
    public void save(XmlTvProgram program)
    {
      programmes.add(program);
+     DayKey dk = new DayKey(program);
+
+     List<XmlTvProgram> dayprogs = getDayChannel(dk);
+     dayprogs.add(program);
+   }
+
+   protected List<XmlTvProgram> getDayChannel(DayKey dk)
+   {
+      List<XmlTvProgram> dayprogs = daymap.get(dk);
+      if(dayprogs == null)
+      {
+         dayprogs = new ArrayList<>();
+         daymap.put(dk, dayprogs);
+      }
+      return dayprogs;
    }
 
    @Override
    public Collection<XmlTvProgram> getXmlTvPrograms()
    {
-      // TODO Auto-generated method stub
       return programmes;
    }
 
+   // Format for 'day' is 'YYYYMMDD'
+   public List<XmlTvProgram> getProgrammesForDayChannel(String day, String channel)
+   {
+      DayKey dk = new DayKey(day, channel);
+      return getDayChannel(dk);
+   }
 }

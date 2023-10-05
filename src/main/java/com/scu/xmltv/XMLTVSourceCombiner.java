@@ -266,12 +266,14 @@ protected void filterProgrammes() throws TransformerException
       refchanids.add(chanId);
    }
 
-   // TODO: if there is no regex then should immediately return from method
-   if(regex.isPresent())
+   if(!regex.isPresent())
    {
-      final Pattern pat =  regex.get();
-      refchanids = refchanids.stream().filter(rc -> pat.matcher(rc).matches() ).collect(Collectors.toList());
+      return;
    }
+   
+   final Pattern pat =  regex.get();
+   refchanids = refchanids.stream().filter(rc -> pat.matcher(rc).matches() ).collect(Collectors.toList());
+   
 
    // Now remove programmes from ref doc for channel ids not in the filtered list
    NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
@@ -309,8 +311,9 @@ protected void filterProgrammes() throws TransformerException
 // For now the solution will copy the programmes for one channel into another channel.
 // Must be done after the filter since the chances are dest channel will be absent from one or both the inputs.
 // Need to add a <channel> for the dest channel since there probably wont already be one.
-// TODO: Remove this. Issue is moot as BBC SD has become unwatchable due to the red stopping banner
+// Remove this. Issue is moot as BBC SD has become unwatchable due to the red stopping banner
 // and this was not used anyway as it was easier to map a dummy BBC1HD channel to BBC1SD in the grabbers.
+@Deprecated
 protected void shadowChannel(String srcChannel, String destChannel, String destDisplayName) throws TransformerException
 {
    initDocs();
@@ -440,7 +443,6 @@ private Optional<XmlTvProgram> findAltProgram(Node refProg, String progid)
    List<XmlTvProgram> progs;
    progs = this.altStore.getProgrammesForDayChannel(day, chanid);
 
-   // TODO: find the programmes with matching title
    // If there is only one that that's the one to return
    // If more than one check if there is a match for the start time
    // If no match then do the 'fuzzy' match which requires determining the occurrence of the
@@ -455,8 +457,7 @@ private Optional<XmlTvProgram> findAltProgram(Node refProg, String progid)
    }
    else if(titles.size() > 1)
    {
-      // TODO: first look for exact matching time
-      // Need to convert the node time string to a date object
+      // first look for exact matching time
       ZonedDateTime zdt = XmltvParser.XMLTVToZonedDateTime(starttime);
 
       // Assume there can only be one exact match for a real guide
@@ -546,7 +547,7 @@ private Optional<Node> findAltNode(Node refProg, String progid)
    String starttime = nu.getAttributeValue(refProg, "start");
    String chanid = nu.getAttributeValue(refProg, "channel");
    boolean fuzzyMatch = true;
-   // TODO: Could cache the programmes for chanid since they are usually processed in channel order
+   // Could cache the programmes for chanid since they are usually processed in channel order
    // Could maybe cache on chanid and day
    // Could keep a map of the lists so it's not important that the progs are processed in order.
    // Don't know how to do an xpath using nodelist as target though which would mean having to manually
@@ -737,6 +738,73 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
 		}
 	}
 }
+
+
+private Optional<String> getEpisodenum(XmlTvProgram prog)
+{
+   String epnum = null;
+   // TODO format as an xmltv epdisode-num
+   
+   return Optional.ofNullable(epnum);
+}
+
+private void copyFields(Node refProg, XmlTvProgram altProg, String[] fieldnames, String progid)
+{
+   // Not so easy to use an array of fields names against a Java object
+   // For now a simple if equals list will have to do. Using reflection is a bit over
+   // the top and kind of slow given that this is a performace enhancement!
+   // "episode-num", "sub-title", "desc"
+   
+   for(String fieldname : fieldnames)
+   {
+      Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
+      String fieldval = null;
+      if("episode-num".equals(fieldname))
+      {
+         if( ! optrefFld.isPresent())
+         {
+            Optional<String> o = getEpisodenum(altProg);
+            if(o.isPresent())
+            {
+               fieldval = o.get();
+               // TODO Add new Node
+            }
+            
+         }
+      }
+      else if("sub-title".equals(fieldname))
+      {
+         if( ! optrefFld.isPresent())
+         {
+            fieldval = altProg.getSubTitle();
+            if(fieldval != null)
+            {
+               // TODO Add new Node
+            }
+         }
+      }
+      else if("desc".equals(fieldname))
+      {
+         String refDesc = "";
+         // Special handling for 'desc' as the field might be present in ref but contain more info in the alt
+         if(optrefFld.isPresent())
+         {
+            Node refFld = optrefFld.get();
+            refDesc = Utils.safeString(refFld.getTextContent());
+            String altDesc = Utils.safeString(altProg.getDescription());
+            if(altDesc.length() > refDesc.length())
+            {
+               refFld.setTextContent(altDesc);
+            }
+         }
+      }
+      else
+      {
+         log.debug("copyFields: reference {} already contains field {}", progid, fieldname);
+      }
+   }
+}
+
 
 public void writeUpdatedXMLTV(String filename) throws Exception
 {

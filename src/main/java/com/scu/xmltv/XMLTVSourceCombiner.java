@@ -9,7 +9,10 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -134,7 +137,7 @@ public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV, String 
    this.regexFilter = regexFilter!=null ? Pattern.compile(regexFilter) : null;
 }
 
-protected void initDocs() 
+protected void initDocs()
 {
    if(refDoc == null)
    {
@@ -150,7 +153,7 @@ protected void initDocs()
          // but at least a guide will continue to be produced
          log.warn("initDocs: failed to parse alt file: {}", altXMLTV.getAbsolutePath(), e);
       }
-      
+
    }
 }
 
@@ -192,23 +195,23 @@ public void combineSource(String... fieldnames)
             );
       cleanProg(refProg);
       extractMissingEpisodeInfo(refProg, progid);
-      
+
       int pcDone = ((i *100 ) / progcnt);
       if((pcDone != lastpcDone) && (pcDone % 5) == 0)
       {
       	long split = sw.getTime();
       	long estTotalElapsed = split * progcnt / i;  // gives an estimate of the total time to process all records
       	String formattedEstTotalElapsed = DurationFormatUtils.formatDuration(estTotalElapsed, durationFormat);
-      	
+
       	// Want time to do the 5% as it appears to get longer as the processing get closer to the end
       	String formattedSplit = DurationFormatUtils.formatPeriod(lastSplit, split, durationFormat);
       	lastSplit = split;
-      	
+
       	Instant instant = Instant.ofEpochMilli(sw.getStartTime() + estTotalElapsed);
       	LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
       	String formattedDateTime = localDateTime.format(formatter);
-      	log.info("combineSource: Progress:{}({}%) Elapsed: split:{} total:{} Est.End:{} Duration:{}", 
-      			String.format("%04d",i), pcDone, formattedSplit, 
+      	log.info("combineSource: Progress:{}({}%) Elapsed: split:{} total:{} Est.End:{} Duration:{}",
+      			String.format("%04d",i), pcDone, formattedSplit,
       			DurationFormatUtils.formatDuration(split, durationFormat), formattedDateTime, formattedEstTotalElapsed);
       	lastpcDone = pcDone; // avoid multiple output for same %age
       }
@@ -230,7 +233,7 @@ protected void cleanFields()
 protected void cleanProg(Node refProg)
 {
    String [] fields = new String[] { "desc", "title" };
-   
+
    for(String fieldname : fields)
    {
       Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
@@ -307,7 +310,7 @@ protected void filterProgrammes() throws TransformerException
 // Must be done after the filter since the chances are dest channel will be absent from one or both the inputs.
 // Need to add a <channel> for the dest channel since there probably wont already be one.
 // TODO: Remove this. Issue is moot as BBC SD has become unwatchable due to the red stopping banner
-// and this was not used anyway as it was easier to map a dummy BBC1HD channel to BBC1SD in the grabbers. 
+// and this was not used anyway as it was easier to map a dummy BBC1HD channel to BBC1SD in the grabbers.
 protected void shadowChannel(String srcChannel, String destChannel, String destDisplayName) throws TransformerException
 {
    initDocs();
@@ -356,7 +359,7 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
 {
    // Aim of function is to extract missing "episode-num" and "sub-title" data from the show description.
    // This mainly applies to the UK show info from the Ultimo EPG data which is not handled by the python
-   // grabber - it seems to work OK for the TVV shows. I have noticed that there is sometimes some episode 
+   // grabber - it seems to work OK for the TVV shows. I have noticed that there is sometimes some episode
    // info buried in the description so the idea is to use it if there is none already present in the
    // refProg - I'm assuming that anything useful in altn has already been copied into refProg.
 
@@ -432,18 +435,19 @@ private Optional<XmlTvProgram> findAltProgram(Node refProg, String progid)
    String title = nu.getNodeValue(refProg, "title");
    String starttime = nu.getAttributeValue(refProg, "start");
    String day = starttime.substring(0,8);
-   String chanid = nu.getAttributeValue(refProg, "channel");  
-   
+   String chanid = nu.getAttributeValue(refProg, "channel");
+
    List<XmlTvProgram> progs;
-   progs = this.altStore.getProgrammesForDayChannel(day, chanid);  
-   
+   progs = this.altStore.getProgrammesForDayChannel(day, chanid);
+
    // TODO: find the programmes with matching title
    // If there is only one that that's the one to return
    // If more than one check if there is a match for the start time
-   // If no match then do the 'fuzzy' match which requires determining the occurrence of the 
+   // If no match then do the 'fuzzy' match which requires determining the occurrence of the
    // program in ref, which is a slow process.
    List<XmlTvProgram> titles = progs.stream()
          .filter(p -> p.getTitle().equalsIgnoreCase(title))
+         .sorted((t1, t2) -> (t1.getStart().compareTo(t2.getStart())))
          .toList();
    if(titles.size() == 1)
    {
@@ -451,9 +455,88 @@ private Optional<XmlTvProgram> findAltProgram(Node refProg, String progid)
    }
    else if(titles.size() > 1)
    {
-      // TODO: first look for exact matching time 
+      // TODO: first look for exact matching time
+      // Need to convert the node time string to a date object
+      ZonedDateTime zdt = XmltvParser.XMLTVToZonedDateTime(starttime);
+
+      // Assume there can only be one exact match for a real guide
+      Optional<XmlTvProgram> optexacttime = titles.stream()
+         .filter(p -> p.getStart().equals(zdt))
+         .findAny();
+
+      if(optexacttime.isPresent())
+      {
+         xprog = optexacttime.get();
+      }
+      else
+      {
+         // this is where it gets really ugly!!!
+         // Need to determine the occurrence no. of the node and then pick the corresponding occurrence from the alt list.
+         // Orig version searched the entire list for matches for the day/channel/title
+         // Going to try to use some caching to reduce the list of nodes to search through.
+         // Can't use XPath to search a nodelist but on the plus side don't need to worry about making the title safe
+
+         int refoccur = -1;
+         String startday = starttime.substring(0,8);
+         NodeList refNodes = getNodesForDayChannel(startday, chanid);
+         List<Node> ntitles = new ArrayList<>();
+
+         for(int occurs = 0; occurs <  refNodes.getLength(); occurs++)
+         {
+            Node refOccur = refNodes.item(occurs);
+            if(title.equalsIgnoreCase(nu.getNodeValue(refOccur, "title")))
+            {
+               ntitles.add(refOccur);
+            }
+         }
+         Collections.sort(ntitles, (n1, n2) -> nu.getNodeValue(n1, "start").compareTo(nu.getNodeValue(n2, "start")) );
+
+         // Find occurrence of refProg
+         int i=0;
+         for(Node n : ntitles)
+         {
+
+            if(starttime.equals(nu.getNodeValue(n, "start")) )
+            {
+               refoccur = i;
+               break;
+            }
+            i++;
+         }
+
+         if(refoccur < 0)
+         {
+            log.debug("findAltProg: Failed to find reference occurrence for {}", progid);
+         }
+         else if(titles.size() > refoccur)
+         {
+            xprog = titles.get(refoccur);
+         }
+         else
+         {
+            log.debug("findAltProg: no alt occurrence {} for {}", refoccur, progid);
+         }
+      }
    }
    return Optional.ofNullable(xprog);
+}
+
+private Map<String, NodeList> nodesDayChan = new HashMap<>();
+private NodeList getNodesForDayChannel(String startday, String chanid)
+{
+   String key = startday + ":" + chanid;
+   NodeList refprogs = nodesDayChan.get(key);
+   if(refprogs == null)
+   {
+      String occurCrit = "/tv/programme["
+         + "starts-with(@start, '" + startday + "') and "
+         + "@channel='" + chanid + "'"
+         + "]";
+      refprogs = nu.getNodesByPath(refDoc, occurCrit);
+      nodesDayChan.put(key, refprogs);
+   }
+
+   return refprogs;
 }
 
 private Optional<Node> findAltNode(Node refProg, String progid)
@@ -500,7 +583,7 @@ private Optional<Node> findAltNode(Node refProg, String progid)
 	      //           locate occurrence number of alt node
 	      int refoccur = -1;
 	      String startday = starttime.substring(0,8);
-	
+
 	      // there is no safe title - XPath just doesn't support searching for single quote!
 	      String safeTitle = title.replace("\"", "?");
 	      String occurCrit = "/tv/programme["
@@ -508,12 +591,12 @@ private Optional<Node> findAltNode(Node refProg, String progid)
 		         + "@channel='" + chanid + "' and "
 		         + "title=\"" + safeTitle + "\""
 	            + "]";
-	
+
 	      try
 	      {
 	         // TODO: Use safeGetNodeByPath
 		     NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
-	
+
 	         for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)
 	         {
 	         	Node refOccur = refprogsoccurs.item(occurs);
@@ -530,7 +613,7 @@ private Optional<Node> findAltNode(Node refProg, String progid)
 	      {
 	         log.warn("findAltNode: search criteria:{} exception:{}", occurCrit, ex.toString());
 	      }
-	
+
 	      if(refoccur < 0)
 	      {
 	      	log.debug("findAltNode: Failed to find reference occurrence for {} with predicate [{}]", progid, occurCrit);
@@ -628,7 +711,7 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
          continue;
       }
       Node altFld = optAltFld.get();
-      
+
 		Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
 		if( ! optrefFld.isPresent())
 		{
@@ -714,22 +797,22 @@ String [] keys = null;
    sc.combineSource("episode-num", "sub-title", "desc");
    sw.stop();
    log.info("main: combine done: Time Elapsed: {}", sw.formatTime());
-   // For 
+   // For
    // findAltNode enabled:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:26:59.684
    // findAltNode disabled: speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:06:08.759
    // findAltNode nofuzzy:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:11:56.247
    // findAltNode nofuzzy/reduced log:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:11:53.861
    //                                                                                     Time Elapsed: 00:11:44.409
    // findAltNode fuzzy/reduced log:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:26:00.307
-   
+
    // Timings show that it takes longer and longer to find the alternative program, probably because the
-   // XPath is doing a linear search from the first item. 
+   // XPath is doing a linear search from the first item.
    // Anything involving caching is going to create a NodeList which cannot be searched with XPath. Getting the
    // values out of the nodes in the nodelist is very cumbersome so the thought is to parse the XMLTV into a
    // Java object model so the fields are easily accessible for searching. Could write my own which would probably
    // use jaxb however I don't want to have to create the schema from scratch.
-   // By chnace I found an XMLTV to Java object model parser which might make creating something which can be searched faster than 
-   // the XML DOM 
+   // By chnace I found an XMLTV to Java object model parser which might make creating something which can be searched faster than
+   // the XML DOM
    // https://github.com/raydouglass/xmltv-to-mxf/blob/master/pom.xml.
    sc.writeUpdatedXMLTV(result);
 }

@@ -30,6 +30,7 @@ import org.w3c.dom.NodeList;
 
 import com.dontocsata.xmltv.XmlTvParseException;
 import com.dontocsata.xmltv.model.XmlTvProgram;
+import com.dontocsata.xmltv.model.XmlTvProgramId;
 import com.scu.jxmltv.XmltvParser;
 import com.scu.jxmltv.XmltvStore;
 import com.scu.utils.CmdArgMgr;
@@ -186,13 +187,23 @@ public void combineSource(String... fieldnames)
                     + nu.getAttributeValue(refProg, "channel");
       log.debug("combineSource: processing {}", progid);
 
-      findAltNode(refProg, progid).ifPresentOrElse(
-            altn -> {
-               copyFields(refProg, altn, fieldnames, progid);
-               adjustTimes(refProg, altn, progid);
+//      findAltNode(refProg, progid).ifPresentOrElse(
+//            altn -> {
+//               copyFields(refProg, altn, fieldnames, progid);
+//               adjustTimes(refProg, altn, progid);
+//               },
+//            () -> {log.debug("combineSource: NO alternative found for {}", progid); }
+//            );
+      
+      findAltProgram(refProg, progid).ifPresentOrElse(
+            altp -> {
+               copyFields(refProg, altp, fieldnames, progid);
+               adjustTimes(refProg, altp, progid);
                },
             () -> {log.debug("combineSource: NO alternative found for {}", progid); }
             );
+      
+      
       cleanProg(refProg);
       extractMissingEpisodeInfo(refProg, progid);
 
@@ -487,10 +498,16 @@ private Optional<XmlTvProgram> findAltProgram(Node refProg, String progid)
             Node refOccur = refNodes.item(occurs);
             if(title.equalsIgnoreCase(nu.getNodeValue(refOccur, "title")))
             {
+               String stime = nu.getAttributeValue(refOccur, "start");
+               if(stime == null)
+               {
+                  log.info("findAltProgram: no start time for {}", progid);
+               }
+               
                ntitles.add(refOccur);
             }
          }
-         Collections.sort(ntitles, (n1, n2) -> nu.getNodeValue(n1, "start").compareTo(nu.getNodeValue(n2, "start")) );
+         Collections.sort(ntitles, (n1, n2) -> nu.getAttributeValue(n1, "start").compareTo(nu.getAttributeValue(n2, "start")) );
 
          // Find occurrence of refProg
          int i=0;
@@ -687,6 +704,56 @@ private void adjustTimes(Node refProg, Node altProg, String progid)
    }
 }
 
+private void adjustTimes(Node refProg, XmlTvProgram altProg, String progid)
+{
+   // Compare the times for ref and alt. To maximise the chance of recording the entire program
+   // should take the earliest starttime and the latest endtime.
+   String refstart = nu.getAttributeValue(refProg, "start");
+//   String altstart = nu.getAttributeValue(altProg, "start");
+//   String altend = nu.getAttributeValue(altProg, "stop");
+   String refend = nu.getAttributeValue(refProg, "stop");
+
+   // Can't rely on the timezone offsets being the same so convert to Date for
+   // comparing but use the original string if necessary to change the time.
+   // Should round the times to 5mins (down for start, up for end) for compatibility
+   // with the timer editor.
+   ZonedDateTime refdt = XMLTVutils.getZDateFromXmltv(refstart);
+   ZonedDateTime altdt =altProg.getStart(); // XMLTVutils.getZDateFromXmltv(altstart);
+   String zxmltvdt = null;
+
+   // Get the earliest start time then quantize it down. Update the reference if necessary.
+   if(altdt.isAfter(refdt))
+   {
+      altdt = refdt;
+   }
+   altdt = XMLTVutils.getQuantizedDate(altdt, 5, -1);
+
+   if(!altdt.equals(refdt) )
+   {
+      zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
+      nu.setAttributeValue(refProg, "start", zxmltvdt);
+      log.debug("adjustTimes: changed start for {} from {} to {}", progid, refstart, zxmltvdt);
+   }
+
+   refdt = XMLTVutils.getZDateFromXmltv(refend);
+   altdt = altProg.getStop(); // XMLTVutils.getZDateFromXmltv(altend);
+
+   // Get the latest stop time then quantize it up. Update the reference if necessary.
+   if( altdt.isBefore(refdt))
+   {
+         altdt = refdt;
+   }
+   altdt = XMLTVutils.getQuantizedDate(altdt, 5, 1);
+
+   if(!altdt.equals(refdt) )
+   {
+      zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
+      nu.setAttributeValue(refProg, "stop", zxmltvdt);
+      log.debug("adjustTimes: changed stop for {} from {} to {}", progid, refend, zxmltvdt);
+   }
+}
+
+
 private Optional<Node> safeGetNodeByPath(Node altProg, String fieldname)
 {
 Node node = null;
@@ -742,9 +809,42 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
 
 private Optional<String> getEpisodenum(XmlTvProgram prog)
 {
-   String epnum = null;
-   // TODO format as an xmltv epdisode-num
    
+   String epnum = null;
+   Integer iobj = null;
+   // 0 . 2/99 
+   // actually it is
+   // S/TS . E/TE . P/TP
+   // where S = season, E = episode, P = part, T = total
+   // the S,E,P values are 0 based BUT the totals are 1 based
+   // so first ever episode in two parts is of the only season or 10 episodes is
+   // 0/1 . 0/10 . 0/2
+   // I've only seen S, E, and TE so that's all I'll support for now
+   // S is optional
+   // If S and E are absent then return null
+   XmlTvProgramId prgid = prog.getXmlTvProgramId();
+   if(prgid != null)
+   {
+      StringBuffer sb = new StringBuffer();
+      if((iobj = prgid.getSeason()) != null)
+      {
+         sb.append(iobj - 1);
+      }
+      
+      if((iobj = prgid.getEpisode()) != null)
+      {
+         sb.append(" . ").append(iobj - 1);
+         if((iobj = prgid.getNumberOfEpisodes()) != null)
+         {
+            sb.append(" / ").append(iobj);
+         }
+      }
+      
+      if(sb.length() > 0)
+      {
+         epnum = sb.toString();
+      }
+   }
    return Optional.ofNullable(epnum);
 }
 

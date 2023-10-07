@@ -115,6 +115,8 @@ private XmltvStore altStore = new XmltvStore();
 static Logger log = LoggerFactory.getLogger(XMLTVSourceCombiner.class);
 
 private static final Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
+private static final Pattern sEpPatternBare = Pattern.compile(" *S(\\d{1,2}) *Ep(\\d{1,2}) *$"); // S1 Ep9
+
 private static final Pattern bbcPatternA = Pattern.compile("^(\\d{1,2})/(\\d{1,2})\\. ");
 private static final Pattern bbcPatternB = Pattern.compile("^\\.\\.\\.\\S.*?\\. (\\d{1,2})/(\\d{1,2})\\. ");
 private static final Pattern subtitPattern = Pattern.compile("^(?:\\.\\.\\.\\S.*?: )?(\\S.*?): "); // ignore case?
@@ -123,6 +125,13 @@ private static final Pattern newpfxes = Pattern.compile("(\\.\\.\\.\\S.*?: )?(?:
 private final ZoneId zoneId = ZoneId.systemDefault(); // Use the system default time zone
 private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 private final String durationFormat = "mm:ss";
+
+private final StopWatch swfindalt = StopWatch.create();
+private final StopWatch swcopyfields = StopWatch.create();
+private final StopWatch swadjustTimes = StopWatch.create();
+private final StopWatch swcleanProg = StopWatch.create();
+private final StopWatch swextract = StopWatch.create();
+
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
    refXMLTV = new File(referenceXMLTV);
@@ -181,6 +190,7 @@ public void combineSource(String... fieldnames)
 
    int lastpcDone = 0;
    long lastSplit = 0;
+   
    for(int i = 0; i <  progcnt; i++)
    {
       Node refProg = progs.item(i);
@@ -233,6 +243,22 @@ public void combineSource(String... fieldnames)
          log.info("combineSource: Progress:{}({}%) Elapsed: split:{} total:{} Est.End:{} Duration:{}",
                String.format("%04d",i), pcDone, formattedSplit,
                DurationFormatUtils.formatDuration(split, durationFormat), formattedDateTime, formattedEstTotalElapsed);
+         
+         if(log.isDebugEnabled())
+         {
+            String tfindalt = formatTime(this.swfindalt);
+            String tcopyf = formatTime(this.swcopyfields);
+            String tadjust = formatTime(this.swadjustTimes);
+            String tclean = formatTime(swcleanProg);
+            String textract = formatTime(swextract);
+            resetStopWatch(this.swfindalt);
+            resetStopWatch(this.swcopyfields);
+            resetStopWatch(swadjustTimes);
+            resetStopWatch(this.swcleanProg);
+            resetStopWatch(this.swextract);
+            log.debug("combineSource: Progress:{}% split:{} cleanProg:{} extractInfo:{} adjustTImes: {} copyfields:{} findalt:{}", pcDone, 
+                  formattedSplit, tclean, textract, tadjust, tcopyf, tfindalt);
+         }
          lastpcDone = pcDone; // avoid multiple output for same %age
       }
    }
@@ -252,11 +278,12 @@ protected void cleanFields()
 
 protected void cleanProg(Node refProg)
 {
+   resumeStopWatch(swcleanProg);
    String [] fields = new String[] { "desc", "title" };
 
    for(String fieldname : fields)
    {
-      Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
+      Optional<Node> optrefFld = nu.getChildByName(refProg, fieldname); // findNodeByPath(refProg, fieldname);
       if(optrefFld.isPresent())
       {
          Node refFld = optrefFld.get();
@@ -269,9 +296,9 @@ protected void cleanProg(Node refProg)
          }
       }
    }
+   suspendStopWatch(swcleanProg);
 }
 
-// 'protected' so it can be tested.
 protected void filterProgrammes() throws TransformerException
 {
    initDocs();  // so it can be tested
@@ -385,7 +412,7 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
    // grabber - it seems to work OK for the TVV shows. I have noticed that there is sometimes some episode
    // info buried in the description so the idea is to use it if there is none already present in the
    // refProg - I'm assuming that anything useful in altn has already been copied into refProg.
-
+   resumeStopWatch(this.swextract);
    String desc = nu.getNodeValue(refProg, "desc");
    if( Utils.safeIsEmpty(desc)) {
       return;
@@ -403,6 +430,11 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
       {
          season = nu.stringToInt(m.group(1));
          ep = nu.stringToInt(m.group(2));
+      }
+      else if ( (m = sEpPatternBare.matcher(desc)).find())
+      {
+         season = nu.stringToInt(m.group(1));
+         ep = nu.stringToInt(m.group(2));         
       }
       else if( (m=bbcPatternA.matcher(desc)).find() )
       {
@@ -422,7 +454,7 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
          // S2 Ep13
          // <episode-num system="xmltv_ns">1 . 12/99 . </episode-num>
          // should eptot be -1? Don't use it so don't really care...
-         epnum = String.format("%d . %d/%d . ", season - 1, ep - 1, eptot);
+         epnum = formatEpisodeInfo(season, ep, eptot);
          addEpisodeNumToProgram(refProg, epnum);
          log.debug("extractMissingEpisodeInfo: added field episode-num to {}: {}", progid, epnum);
       }
@@ -439,6 +471,13 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
          log.debug("extractMissingEpisodeInfo: added field sub-title to {}: {}", progid, subtitle);
       }
    }
+   suspendStopWatch(this.swextract);
+}
+
+private String formatEpisodeInfo(Integer season, Integer episodenumber, Integer totalEpisodesInSeason)
+{
+   String epnum = String.format("%d . %d/%d . ", season - 1, episodenumber - 1, totalEpisodesInSeason); 
+   return epnum;
 }
 
 private void addSubtitleToProgramNode(Node refProg, String subtitle)
@@ -462,129 +501,153 @@ private void addEpisodeNumToProgram(Node refProg, String xmltvEpnum)
    refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
 }
 
+private void resumeStopWatch(StopWatch sw)
+{
+   if(sw.isStopped())
+   {
+      sw.start();
+   }
+   else if(sw.isSuspended())
+   {
+      sw.resume();
+   }   
+}
+
+private void suspendStopWatch(StopWatch sw)
+{
+   if(!sw.isSuspended())
+   {
+      sw.suspend();
+   }
+}
+
+private void resetStopWatch(StopWatch sw)
+{
+   if(!sw.isStopped())
+   {
+      sw.stop();
+   }
+   sw.reset();
+}
+
+private String formatTime(StopWatch sw)
+{
+   String t = DurationFormatUtils.formatDuration(sw.getTime(), durationFormat);
+   return t;
+}
+
 private Optional<XmlTvProgram> findAltProgram(Node refProg, String progid)
 {
+   resumeStopWatch(swfindalt);
+   
    XmlTvProgram xprog = null;
    String title = nu.getNodeValue(refProg, "title");
    String starttime = nu.getAttributeValue(refProg, "start");
    String day = starttime.substring(0,8);
    String chanid = nu.getAttributeValue(refProg, "channel");
-
+   ZonedDateTime zdt = XmltvParser.XMLTVToZonedDateTime(starttime);
    List<XmlTvProgram> progs;
    progs = this.altStore.getProgrammesForDayChannel(day, chanid);
 
-   // If there is only one that that's the one to return
-   // If more than one check if there is a match for the start time
-   // If no match then do the 'fuzzy' match which requires determining the occurrence of the
-   // program in ref, which is a slow process.
-   List<XmlTvProgram> titles = progs.stream()
-         .filter(p -> p.getTitle().equalsIgnoreCase(title))
-         .sorted((t1, t2) -> (t1.getStart().compareTo(t2.getStart())))
-         .toList();
-   if(titles.size() == 1)
-   {
-      xprog = titles.get(0);
-   }
-   else if(titles.size() > 1)
-   {
-      // first look for exact matching time
-      ZonedDateTime zdt = XmltvParser.XMLTVToZonedDateTime(starttime);
-
-      // Assume there can only be one exact match for a real guide
-      Optional<XmlTvProgram> optexacttime = titles.stream()
-         .filter(p -> p.getStart().equals(zdt))
+   // TODO: need to maximise the chances of the titles matching
+   // either just look for an exact time match and assume it must be the same program
+   // or normalize the titles to reduce the chance of mismatch
+   // This doesn't work when there is an exact match for the time but the titles
+   // in the two guides are not the same, eg. 'Magnum, PI' vs 'Magnum P.I'
+   // Spotted this when comparing the 'slow' and 'fast' versions. epnum info was missing from the
+   // 'fast' version. The 'slow' version matches the different titles because it does an explicit
+   // check for a program with the exact time, regardless of the title.
+   //
+   Optional<XmlTvProgram> progtime = progs.stream()
+         .filter(p -> p.getStart().isEqual(zdt))
          .findAny();
-
-      if(optexacttime.isPresent())
+   
+   if(progtime.isPresent()) 
+   {
+      // Assume that exact match for time MUST be the right programm
+      xprog = progtime.get();
+   }
+   else
+   {
+      // this is where it gets really ugly!!!
+      List<XmlTvProgram> xtitles = getXTitleForDay(day, chanid, title); 
+      List<Node> ntitles = getTitleForDay(day, chanid, title); 
+      // Occurrence matching only valid if both ref and alt contain same number of occurrences
+      if(ntitles.size() == xtitles.size())
       {
-         xprog = optexacttime.get();
+         if(xtitles.size() == 1)
+         {
+            xprog = xtitles.get(0);
+         }
+         else if(xtitles.size() > 1)
+         {
+            // Find occurrence of refProg
+            int refoccur = -1;
+            int i=0;
+            for(Node n : ntitles)
+            {
+               if(starttime.equals(nu.getNodeValue(n, "start")) )
+               {
+                  refoccur = i;
+                  break;
+               }
+               i++;
+            }
+
+            if(refoccur < 0)
+            {
+               // This should not happen!!
+               log.warn("findAltProg: Failed to find reference occurrence for {}", progid);
+            }
+            else
+            {
+               xprog = xtitles.get(refoccur);
+            }
+         }
       }
       else
       {
-         // this is where it gets really ugly!!!
-         // Need to determine the occurrence no. of the node and then pick the corresponding occurrence from the alt list.
-         // Orig version searched the entire list for matches for the day/channel/title
-         // Going to try to use some caching to reduce the list of nodes to search through.
-         // Can't use XPath to search a nodelist but on the plus side don't need to worry about making the title safe
-
-         int refoccur = -1;
-         String startday = starttime.substring(0,8);
-//         NodeList refNodes = getNodesForDayChannel(startday, chanid);
-//         List<Node> ntitles = new ArrayList<>();
-//
-//         for(int occurs = 0; occurs <  refNodes.getLength(); occurs++)
-//         {
-//            Node refOccur = refNodes.item(occurs);
-//            if(title.equalsIgnoreCase(nu.getNodeValue(refOccur, "title")))
-//            {
-//               String stime = nu.getAttributeValue(refOccur, "start");
-//               if(stime == null)
-//               {
-//                  log.info("findAltProgram: no start time for {}", progid);
-//               }
-//
-//               ntitles.add(refOccur);
-//            }
-//         }
-         HashMap<String, Node> refNodes = getDayChannel(startday, chanid);
-         List<Node> ntitles = new ArrayList<>();
-         for(Node refOccur : refNodes.values())
-         {
-            if(title.equalsIgnoreCase(nu.getNodeValue(refOccur, "title")))
-            {
-               ntitles.add(refOccur);
-            }
-         }
-
-         Collections.sort(ntitles, (n1, n2) -> nu.getAttributeValue(n1, "start").compareTo(nu.getAttributeValue(n2, "start")) );
-
-         // Find occurrence of refProg
-         int i=0;
-         for(Node n : ntitles)
-         {
-
-            if(starttime.equals(nu.getNodeValue(n, "start")) )
-            {
-               refoccur = i;
-               break;
-            }
-            i++;
-         }
-
-         if(refoccur < 0)
-         {
-            log.debug("findAltProg: Failed to find reference occurrence for {}", progid);
-         }
-         else if(titles.size() > refoccur)
-         {
-            xprog = titles.get(refoccur);
-         }
-         else
-         {
-            log.debug("findAltProg: no alt occurrence {} for {}", refoccur, progid);
-         }
+         // This is usually occurs because the data available for the last day of the range is not
+         // always complete
+         log.debug("findAltProg: found different no. of occurrences of '{}' for {} {}: ref:{} alt:{}",
+               title, chanid, day, ntitles.size(), xtitles.size());
       }
    }
+   suspendStopWatch(swfindalt);
    return Optional.ofNullable(xprog);
 }
 
-//private Map<String, NodeList> nodesDayChan = new HashMap<>();
-//private NodeList getNodesForDayChannel(String startday, String chanid)
-//{
-//   String key = startday + ":" + chanid;
-//   NodeList refprogs = nodesDayChan.get(key);
-//   if(refprogs == null)
+private List<Node> getTitleForDay(String day, String chanid, String title)
+{
+   HashMap<String, Node> refNodes = getDayChannel(day, chanid);
+//   List<Node> ntitles = new ArrayList<>();
+//   for(Node refOccur : refNodes.values())
 //   {
-//      String occurCrit = "/tv/programme["
-//         + "starts-with(@start, '" + startday + "') and "
-//         + "@channel='" + chanid + "'"
-//         + "]";
-//      refprogs = nu.getNodesByPath(refDoc, occurCrit);
-//      nodesDayChan.put(key, refprogs);
+//      if(title.equalsIgnoreCase(nu.getNodeValue(refOccur, "title")))
+//      {
+//         ntitles.add(refOccur);
+//      }
 //   }
-//
-//   return refprogs;
-//}
+//   Collections.sort(ntitles, (n1, n2) -> nu.getAttributeValue(n1, "start").compareTo(nu.getAttributeValue(n2, "start")) );
+   
+   List<Node> ntitles = refNodes.values().stream()
+                    .filter(n -> title.equalsIgnoreCase(nu.getNodeValue(n, "title")))
+                    .sorted((n1, n2) -> nu.getAttributeValue(n1, "start").compareTo(nu.getAttributeValue(n2, "start")))
+                    .toList();
+   return ntitles;
+}
+
+private List<XmlTvProgram> getXTitleForDay(String day, String chanid, String title)
+{
+   List<XmlTvProgram> progs;
+   progs = this.altStore.getProgrammesForDayChannel(day, chanid);
+
+   List<XmlTvProgram> xtitles =  progs.stream()
+            .filter(p -> p.getTitle().equalsIgnoreCase(title))
+            .sorted((t1, t2) -> (t1.getStart().compareTo(t2.getStart())))
+            .toList();
+   return xtitles;
+}
 
 // Processing is faster by using jxmltv but still slows down as more records are processed
 // I'm guessing that this is because it takes longer and longer to search for the Nodes for a given day/channel
@@ -675,7 +738,6 @@ private Optional<Node> findAltNode(Node refProg, String progid)
 
          try
          {
-            // TODO: Use safeGetNodeByPath
            NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
 
             for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)
@@ -769,6 +831,7 @@ private void adjustTimes(Node refProg, Node altProg, String progid)
 
 private void adjustTimes(Node refProg, XmlTvProgram altProg, String progid)
 {
+   resumeStopWatch(swadjustTimes);
    // Compare the times for ref and alt. To maximise the chance of recording the entire program
    // should take the earliest starttime and the latest endtime.
    String refstart = nu.getAttributeValue(refProg, "start");
@@ -814,6 +877,7 @@ private void adjustTimes(Node refProg, XmlTvProgram altProg, String progid)
       nu.setAttributeValue(refProg, "stop", zxmltvdt);
       log.debug("adjustTimes: changed stop for {} from {} to {}", progid, refend, zxmltvdt);
    }
+   suspendStopWatch(swadjustTimes);
 }
 
 
@@ -899,8 +963,9 @@ private Optional<String> getEpisodenum(XmlTvProgram prog)
          sb.append(" . ").append(iobj - 1);
          if((iobj = prgid.getNumberOfEpisodes()) != null)
          {
-            sb.append(" / ").append(iobj);
+            sb.append("/").append(iobj);
          }
+         sb.append(" . ");
       }
 
       if(sb.length() > 0)
@@ -913,14 +978,16 @@ private Optional<String> getEpisodenum(XmlTvProgram prog)
 
 private void copyFields(Node refProg, XmlTvProgram altProg, String[] fieldnames, String progid)
 {
-   // Not so easy to use an array of fields names against a Java object
+   // Not so easy to use an array of field names against a Java object
    // For now a simple if equals list will have to do. Using reflection is a bit over
    // the top and kind of slow given that this is a performace enhancement!
    // "episode-num", "sub-title", "desc"
-
+   resumeStopWatch(this.swcopyfields);
    for(String fieldname : fieldnames)
    {
-      Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
+      Optional<Node> optrefFld;
+//      optrefFld = nu.findNodeByPath(refProg, fieldname);
+      optrefFld = nu.getChildByName(refProg, fieldname);
       String fieldval = null;
       if("episode-num".equals(fieldname))
       {
@@ -965,6 +1032,7 @@ private void copyFields(Node refProg, XmlTvProgram altProg, String[] fieldnames,
          log.debug("copyFields: reference {} already contains field {}", progid, fieldname);
       }
    }
+   suspendStopWatch(this.swcopyfields);
 }
 
 

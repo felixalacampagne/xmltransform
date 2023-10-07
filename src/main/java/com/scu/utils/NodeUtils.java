@@ -271,6 +271,26 @@ public void outputNode( Node n, Writer w) throws Exception
    return;
 }
 
+public Optional<Node> getChildByName(Node parent, String name)
+{
+Node n = null;
+
+   Node c = parent.getFirstChild();
+   while(c != null )
+   {
+      String ln = c.getLocalName();
+      String nn = c.getNodeName();
+      if( (ln != null) && (ln.equals(name)) )
+      {
+         n = c;
+         break;
+      }
+      c = c.getNextSibling();
+            
+   };
+   return Optional.ofNullable(n);
+}
+
 public Node getNodeByPath(Node doc, String xpath) throws TransformerException
 {
 NodeList nl = null;

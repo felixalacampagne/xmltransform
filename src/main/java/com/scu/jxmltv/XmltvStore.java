@@ -7,12 +7,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.dontocsata.xmltv.XmlTVDataSorage;
 import com.dontocsata.xmltv.model.XmlTvChannel;
 import com.dontocsata.xmltv.model.XmlTvProgram;
+import com.scu.xmltv.XMLTVSourceCombiner;
 
 public class XmltvStore implements XmlTVDataSorage
 {
+   static Logger log = LoggerFactory.getLogger(XmltvStore.class);
+
    class DayKey
    {
       final String key;
@@ -87,6 +93,7 @@ public class XmltvStore implements XmlTVDataSorage
    public void save(XmlTvProgram program)
    {
      programmes.add(program);
+
      DayKey dk = new DayKey(program);
 
      List<XmlTvProgram> dayprogs = getDayChannel(dk);

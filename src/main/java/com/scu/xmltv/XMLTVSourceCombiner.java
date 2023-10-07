@@ -350,60 +350,6 @@ protected void filterProgrammes() throws TransformerException
 }
 
 
-// 10-Sep-2023 Kludge to workaround EPG missing BBC1 programme info.
-// It appears that BBC1 programme info is no longer available. This makes it
-// difficult to add BBC1 progs on the Dreambox, which only has SD channels, and
-// annoying on the Ultimo which has both HD and SD but HD is more likely to cause a
-// conflict with existing timers.
-// For now the solution will copy the programmes for one channel into another channel.
-// Must be done after the filter since the chances are dest channel will be absent from one or both the inputs.
-// Need to add a <channel> for the dest channel since there probably wont already be one.
-// Remove this. Issue is moot as BBC SD has become unwatchable due to the red stopping banner
-// and this was not used anyway as it was easier to map a dummy BBC1HD channel to BBC1SD in the grabbers.
-@Deprecated
-protected void shadowChannel(String srcChannel, String destChannel, String destDisplayName) throws TransformerException
-{
-   initDocs();
-   NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme[@channel='" + srcChannel + "']");
-   Node tvNode = nu.getNodeByPath(refDoc, "/tv");
-
-   if(progs.getLength() < 1)
-   {
-      log.info("shadowChannel: no programmes found for channel '{}'", srcChannel);
-      return;
-   }
-
-   for(int i = 0; i <  progs.getLength(); i++)
-   {
-      Node prog = progs.item(i);
-      Node newNode = prog.cloneNode(true);
-      nu.setAttributeValue(newNode, "channel", destChannel);
-      refDoc.adoptNode(newNode);
-      tvNode.appendChild(newNode);
-   }
-
-   Node destChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + destChannel + "']");
-   if(destChanNode == null)
-   {
-      // Probably easier to copy the source node and update the bits which are known.
-      Node srcChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + srcChannel + "']");
-      if(srcChanNode == null)
-      {
-         log.error("shadowChannel: channel '{}' not found - this should not happen!", srcChannel);
-         return;
-      }
-      Node newNode = srcChanNode.cloneNode(true);
-      nu.setAttributeValue(newNode, "id", destChannel);
-      Node disp = nu.getNodeByPath(newNode, "display-name"); // maybe need the text child node
-      disp.setTextContent(destDisplayName);
-
-      refDoc.adoptNode(newNode);
-//      tvNode.appendChild(newNode); This inserts after the programme block, which might mess something up
-      // Ideally new node should go at end of channel block or after the src channel but this is easier!
-      tvNode.insertBefore(newNode, srcChanNode);
-
-   }
-}
 
 private void extractMissingEpisodeInfo(Node refProg, String progid)
 {
@@ -451,12 +397,7 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
 
       if((season > 0) && (ep > 0))
       {
-         // S2 Ep13
-         // <episode-num system="xmltv_ns">1 . 12/99 . </episode-num>
-         // should eptot be -1? Don't use it so don't really care...
-         epnum = formatEpisodeInfo(season, ep, eptot);
-         addEpisodeNumToProgram(refProg, epnum);
-         log.debug("extractMissingEpisodeInfo: added field episode-num to {}: {}", progid, epnum);
+         getEpisodenum(season, ep, eptot).ifPresent(e -> addEpisodeNumToProgram(refProg, e, progid));
       }
    }
 
@@ -474,10 +415,61 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
    suspendStopWatch(this.swextract);
 }
 
-private String formatEpisodeInfo(Integer season, Integer episodenumber, Integer totalEpisodesInSeason)
+private Optional<String> getEpisodenum(Integer season, Integer episodenumber, Integer totalEpisodesInSeason)
 {
-   String epnum = String.format("%d . %d/%d . ", season - 1, episodenumber - 1, totalEpisodesInSeason); 
-   return epnum;
+   String epnum = null;
+   // 0 . 2/99
+   // actually it is
+   // S/TS . E/TE . P/TP
+   // where S = season, E = episode, P = part, T = total
+   // the S,E,P values are 0 based BUT the totals are 1 based
+   // so first ever episode in two parts is of the only season or 10 episodes is
+   // 0/1 . 0/10 . 0/2
+   // I've only seen S, E, and TE so that's all I'll support for now
+   // S is optional
+   // If S and E are absent then return null
+   StringBuffer sb = new StringBuffer();
+   if(season != null)
+   {
+      sb.append(season - 1);
+   }
+
+   if(episodenumber != null)
+   {
+      sb.append(" . ").append(episodenumber - 1);
+      if(totalEpisodesInSeason != null)
+      {
+         sb.append("/").append(totalEpisodesInSeason);
+      }
+      sb.append(" . ");
+   }
+
+   if(sb.length() > 0)
+   {
+      epnum = sb.toString();
+   }
+   return Optional.ofNullable(epnum);   
+}
+
+private Optional<String> getEpisodenum(XmlTvProgram prog)
+{
+   Optional<String> ropt = Optional.empty();
+   // 0 . 2/99
+   // actually it is
+   // S/TS . E/TE . P/TP
+   // where S = season, E = episode, P = part, T = total
+   // the S,E,P values are 0 based BUT the totals are 1 based
+   // so first ever episode in two parts is of the only season or 10 episodes is
+   // 0/1 . 0/10 . 0/2
+   // I've only seen S, E, and TE so that's all I'll support for now
+   // S is optional
+   // If S and E are absent then return null
+   XmlTvProgramId prgid = prog.getXmlTvProgramId();
+   if(prgid != null)
+   {
+      ropt = getEpisodenum(prgid.getSeason(), prgid.getEpisode(), prgid.getNumberOfEpisodes());
+   }
+   return ropt;
 }
 
 private void addSubtitleToProgramNode(Node refProg, String subtitle)
@@ -491,7 +483,7 @@ private void addSubtitleToProgramNode(Node refProg, String subtitle)
 
 }
 
-private void addEpisodeNumToProgram(Node refProg, String xmltvEpnum)
+private void addEpisodeNumToProgram(Node refProg, String xmltvEpnum, String progid)
 {
    Node newNode = refDoc.createElement("episode-num");  // new episode-num node
    nu.setAttributeValue(newNode, "system", "xmltv_ns");
@@ -499,6 +491,8 @@ private void addEpisodeNumToProgram(Node refProg, String xmltvEpnum)
 
    refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
    refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
+   log.debug("extractMissingEpisodeInfo: added field episode-num to {}: {}", progid, xmltvEpnum);
+
 }
 
 private void resumeStopWatch(StopWatch sw)
@@ -569,6 +563,11 @@ private Optional<XmlTvProgram> findAltProgram(Node refProg, String progid)
    }
    else
    {
+//      if(progid.equals("Minder:20230927015500 +0200:TVG.ITV4.HD"))
+//      {
+//         log.info("what's so special about this!");
+//      }
+            
       // this is where it gets really ugly!!!
       List<XmlTvProgram> xtitles = getXTitleForDay(day, chanid, title); 
       List<Node> ntitles = getTitleForDay(day, chanid, title); 
@@ -586,7 +585,8 @@ private Optional<XmlTvProgram> findAltProgram(Node refProg, String progid)
             int i=0;
             for(Node n : ntitles)
             {
-               if(starttime.equals(nu.getNodeValue(n, "start")) )
+               String s = nu.getAttributeValue(n, "start"); //nu.getNodeValue(n, "start");
+               if(starttime.equals(s) )
                {
                   refoccur = i;
                   break;
@@ -607,7 +607,7 @@ private Optional<XmlTvProgram> findAltProgram(Node refProg, String progid)
       }
       else
       {
-         // This is usually occurs because the data available for the last day of the range is not
+         // This usually occurs because the data available for the last day of the range is not
          // always complete
          log.debug("findAltProg: found different no. of occurrences of '{}' for {} {}: ref:{} alt:{}",
                title, chanid, day, ntitles.size(), xtitles.size());
@@ -620,16 +620,6 @@ private Optional<XmlTvProgram> findAltProgram(Node refProg, String progid)
 private List<Node> getTitleForDay(String day, String chanid, String title)
 {
    HashMap<String, Node> refNodes = getDayChannel(day, chanid);
-//   List<Node> ntitles = new ArrayList<>();
-//   for(Node refOccur : refNodes.values())
-//   {
-//      if(title.equalsIgnoreCase(nu.getNodeValue(refOccur, "title")))
-//      {
-//         ntitles.add(refOccur);
-//      }
-//   }
-//   Collections.sort(ntitles, (n1, n2) -> nu.getAttributeValue(n1, "start").compareTo(nu.getAttributeValue(n2, "start")) );
-   
    List<Node> ntitles = refNodes.values().stream()
                     .filter(n -> title.equalsIgnoreCase(nu.getNodeValue(n, "title")))
                     .sorted((n1, n2) -> nu.getAttributeValue(n1, "start").compareTo(nu.getAttributeValue(n2, "start")))
@@ -683,151 +673,6 @@ private HashMap<String, Node> getDayChannel(String startday, String chanid)
 }
 
 
-private Optional<Node> findAltNode(Node refProg, String progid)
-{
-   Node altProg = null;
-   String title = nu.getNodeValue(refProg, "title");
-   String starttime = nu.getAttributeValue(refProg, "start");
-   String chanid = nu.getAttributeValue(refProg, "channel");
-   boolean fuzzyMatch = true;
-   // Could cache the programmes for chanid since they are usually processed in channel order
-   // Could maybe cache on chanid and day
-   // Could keep a map of the lists so it's not important that the progs are processed in order.
-   // Don't know how to do an xpath using nodelist as target though which would mean having to manually
-   // search through the list which is potentially slow.
-   // The cache is a list of lists.
-   // The top list has key channel/day and the value is a list with key programme/starttime
-   //   - should it be starttime/programme to ensure the order of multiple episodes is preserved.
-   // This might not work for multi-episodes which occur either side of midnight
-   //   - this probably doesn't matter unless there is a time discrepancy which the episode is today
-   //     in one guide and tomorrow in the other
-   NodeList altprogs = nu.getNodesByPath(altDoc, "/tv/programme[@start='" + starttime + "' and @channel='" + chanid + "']");
-
-   if(fuzzyMatch)
-   {
-      if(altprogs == null || (altprogs.getLength() == 0))
-      {
-         // Cache might be more useful here
-         log.debug("findAltNode: alternative does not contain exact match for {}", progid);
-         // The starttime in alt should be for the same day as the ref item.
-         // A show can be broadcast multiple times during the day, eg. Grey's Anatomy
-         // is shown at midday and in the evening, Minx is shown as multiple
-         // episodes one after the other. The Minx case prevents a large date discrepancy
-         // from being accepted (Minx is ca.25mins!)
-         //
-         // Determine the occurrence of the program in the reference then find same occurrence in alternative.
-         // The procedure will be something like:
-         //   select using starttime,chanid.
-         //     single match - use it directly
-         //     no match
-         //        select from 'ref' for chanid, 'programme',starttime[day]
-         //           select from alt with criteria chanid, 'programme',starttime[day] - should give same number
-         //              different count - goto next ref node
-         //           determine occurrence number of ref node (1 if there is only one occurrence!)
-         //           locate occurrence number of alt node
-         int refoccur = -1;
-         String startday = starttime.substring(0,8);
-
-         // there is no safe title - XPath just doesn't support searching for single quote!
-         String safeTitle = title.replace("\"", "?");
-         String occurCrit = "/tv/programme["
-               + "starts-with(@start, '" + startday + "') and "
-               + "@channel='" + chanid + "' and "
-               + "title=\"" + safeTitle + "\""
-               + "]";
-
-         try
-         {
-           NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
-
-            for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)
-            {
-               Node refOccur = refprogsoccurs.item(occurs);
-               String occurStarttime = nu.getAttributeValue(refOccur, "start");
-               if(occurStarttime.equals(starttime))
-               {
-                  log.debug("findAltNode: reference {} is occurrence {}", progid, occurs+1);
-                  refoccur = occurs;
-                  break;
-               }
-            }
-         }
-         catch(Exception ex)
-         {
-            log.warn("findAltNode: search criteria:{} exception:{}", occurCrit, ex.toString());
-         }
-
-         if(refoccur < 0)
-         {
-            log.debug("findAltNode: Failed to find reference occurrence for {} with predicate [{}]", progid, occurCrit);
-         }
-         else
-         {
-            NodeList altprogsoccurs = nu.getNodesByPath(altDoc, occurCrit);
-            log.debug("findAltNode: alternative occurrences of {}: {}", progid, altprogsoccurs.getLength());
-            if(refoccur >=0 && refoccur < altprogsoccurs.getLength())
-            {
-               altProg = altprogsoccurs.item(refoccur);
-            }
-         }
-      }
-      else if(altprogs.getLength() > 0)
-      {
-         log.debug("findAltNode: alternative programs with same start time for {}: {}", progid, altprogs.getLength());
-         altProg = altprogs.item(0);
-      }
-   }
-   return Optional.ofNullable(altProg);
-}
-
-private void adjustTimes(Node refProg, Node altProg, String progid)
-{
-   // Compare the times for ref and alt. To maximise the chance of recording the entire program
-   // should take the earliest starttime and the latest endtime.
-   String refstart = nu.getAttributeValue(refProg, "start");
-   String altstart = nu.getAttributeValue(altProg, "start");
-   String altend = nu.getAttributeValue(altProg, "stop");
-   String refend = nu.getAttributeValue(refProg, "stop");
-
-   // Can't rely on the timezone offsets being the same so convert to Date for
-   // comparing but use the original string if necessary to change the time.
-   // Should round the times to 5mins (down for start, up for end) for compatibility
-   // with the timer editor.
-   ZonedDateTime refdt = XMLTVutils.getZDateFromXmltv(refstart);
-   ZonedDateTime altdt = XMLTVutils.getZDateFromXmltv(altstart);
-   String zxmltvdt = null;
-
-   // Get the earliest start time then quantize it down. Update the reference if necessary.
-   if(altdt.isAfter(refdt))
-   {
-      altdt = refdt;
-   }
-   altdt = XMLTVutils.getQuantizedDate(altdt, 5, -1);
-
-   if(!altdt.equals(refdt) )
-   {
-      zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
-      nu.setAttributeValue(refProg, "start", zxmltvdt);
-      log.debug("adjustTimes: changed start for {} from {} to {}", progid, refstart, zxmltvdt);
-   }
-
-   refdt = XMLTVutils.getZDateFromXmltv(refend);
-   altdt = XMLTVutils.getZDateFromXmltv(altend);
-
-   // Get the latest stop time then quantize it up. Update the reference if necessary.
-   if( altdt.isBefore(refdt))
-   {
-         altdt = refdt;
-   }
-   altdt = XMLTVutils.getQuantizedDate(altdt, 5, 1);
-
-   if(!altdt.equals(refdt) )
-   {
-      zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
-      nu.setAttributeValue(refProg, "stop", zxmltvdt);
-      log.debug("adjustTimes: changed stop for {} from {} to {}", progid, refend, zxmltvdt);
-   }
-}
 
 private void adjustTimes(Node refProg, XmlTvProgram altProg, String progid)
 {
@@ -895,86 +740,6 @@ Node node = null;
    return Optional.ofNullable(node);
 }
 
-private void copyFields(Node refProg, Node altProg, String[] fieldnames, String progid)
-{
-   for(String fieldname : fieldnames)
-   {
-      Optional<Node> optAltFld = safeGetNodeByPath(altProg, fieldname);
-      if(! optAltFld.isPresent() )
-      {
-         log.debug("copyFields: alternative for {} has no field {}", progid, fieldname);
-         continue;
-      }
-      Node altFld = optAltFld.get();
-
-      Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
-      if( ! optrefFld.isPresent())
-      {
-         Node newNode = altFld.cloneNode(true);  // Create a duplicate node
-         refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
-         refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
-         log.debug("copyFields: added field {} to {}: {}", fieldname, progid, newNode.getTextContent());
-      }
-      else if(optrefFld.isPresent() && "desc".equals(fieldname))
-      {
-         // Special handling for 'desc' as the field might be present in ref but contain more info in the alt
-         Node refFld = optrefFld.get();
-         String refDesc = Utils.safeString(refFld.getTextContent());
-         String altDesc = Utils.safeString(altFld.getTextContent());
-         if(altDesc.length() > refDesc.length())
-         {
-            refFld.setTextContent(altDesc);
-         }
-      }
-      else
-      {
-         log.debug("copyFields: reference {} already contains field {}", progid, fieldname);
-      }
-   }
-}
-
-
-private Optional<String> getEpisodenum(XmlTvProgram prog)
-{
-
-   String epnum = null;
-   Integer iobj = null;
-   // 0 . 2/99
-   // actually it is
-   // S/TS . E/TE . P/TP
-   // where S = season, E = episode, P = part, T = total
-   // the S,E,P values are 0 based BUT the totals are 1 based
-   // so first ever episode in two parts is of the only season or 10 episodes is
-   // 0/1 . 0/10 . 0/2
-   // I've only seen S, E, and TE so that's all I'll support for now
-   // S is optional
-   // If S and E are absent then return null
-   XmlTvProgramId prgid = prog.getXmlTvProgramId();
-   if(prgid != null)
-   {
-      StringBuffer sb = new StringBuffer();
-      if((iobj = prgid.getSeason()) != null)
-      {
-         sb.append(iobj - 1);
-      }
-
-      if((iobj = prgid.getEpisode()) != null)
-      {
-         sb.append(" . ").append(iobj - 1);
-         if((iobj = prgid.getNumberOfEpisodes()) != null)
-         {
-            sb.append("/").append(iobj);
-         }
-         sb.append(" . ");
-      }
-
-      if(sb.length() > 0)
-      {
-         epnum = sb.toString();
-      }
-   }
-   return Optional.ofNullable(epnum);
-}
 
 private void copyFields(Node refProg, XmlTvProgram altProg, String[] fieldnames, String progid)
 {
@@ -993,12 +758,13 @@ private void copyFields(Node refProg, XmlTvProgram altProg, String[] fieldnames,
       {
          if( ! optrefFld.isPresent())
          {
-            Optional<String> o = getEpisodenum(altProg);
-            if(o.isPresent())
-            {
-               fieldval = o.get();
-               addEpisodeNumToProgram(refProg, fieldval);
-            }
+//            Optional<String> o = getEpisodenum(altProg);
+//            if(o.isPresent())
+//            {
+//               fieldval = o.get();
+//               addEpisodeNumToProgram(refProg, fieldval, progid);
+//            }
+            getEpisodenum(altProg).ifPresent(e -> addEpisodeNumToProgram(refProg, e, progid));
          }
       }
       else if("sub-title".equals(fieldname))
@@ -1113,6 +879,248 @@ String [] keys = null;
    // the XML DOM
    // https://github.com/raydouglass/xmltv-to-mxf/blob/master/pom.xml.
    sc.writeUpdatedXMLTV(result);
+}
+
+
+@Deprecated
+private Optional<Node> findAltNode(Node refProg, String progid)
+{
+   Node altProg = null;
+   String title = nu.getNodeValue(refProg, "title");
+   String starttime = nu.getAttributeValue(refProg, "start");
+   String chanid = nu.getAttributeValue(refProg, "channel");
+   boolean fuzzyMatch = true;
+   // Could cache the programmes for chanid since they are usually processed in channel order
+   // Could maybe cache on chanid and day
+   // Could keep a map of the lists so it's not important that the progs are processed in order.
+   // Don't know how to do an xpath using nodelist as target though which would mean having to manually
+   // search through the list which is potentially slow.
+   // The cache is a list of lists.
+   // The top list has key channel/day and the value is a list with key programme/starttime
+   //   - should it be starttime/programme to ensure the order of multiple episodes is preserved.
+   // This might not work for multi-episodes which occur either side of midnight
+   //   - this probably doesn't matter unless there is a time discrepancy which the episode is today
+   //     in one guide and tomorrow in the other
+   NodeList altprogs = nu.getNodesByPath(altDoc, "/tv/programme[@start='" + starttime + "' and @channel='" + chanid + "']");
+
+   if(fuzzyMatch)
+   {
+      if(altprogs == null || (altprogs.getLength() == 0))
+      {
+         // Cache might be more useful here
+         log.debug("findAltNode: alternative does not contain exact match for {}", progid);
+         // The starttime in alt should be for the same day as the ref item.
+         // A show can be broadcast multiple times during the day, eg. Grey's Anatomy
+         // is shown at midday and in the evening, Minx is shown as multiple
+         // episodes one after the other. The Minx case prevents a large date discrepancy
+         // from being accepted (Minx is ca.25mins!)
+         //
+         // Determine the occurrence of the program in the reference then find same occurrence in alternative.
+         // The procedure will be something like:
+         //   select using starttime,chanid.
+         //     single match - use it directly
+         //     no match
+         //        select from 'ref' for chanid, 'programme',starttime[day]
+         //           select from alt with criteria chanid, 'programme',starttime[day] - should give same number
+         //              different count - goto next ref node
+         //           determine occurrence number of ref node (1 if there is only one occurrence!)
+         //           locate occurrence number of alt node
+         int refoccur = -1;
+         String startday = starttime.substring(0,8);
+
+         // there is no safe title - XPath just doesn't support searching for single quote!
+         String safeTitle = title.replace("\"", "?");
+         String occurCrit = "/tv/programme["
+               + "starts-with(@start, '" + startday + "') and "
+               + "@channel='" + chanid + "' and "
+               + "title=\"" + safeTitle + "\""
+               + "]";
+
+         try
+         {
+           NodeList refprogsoccurs = nu.getNodesByPath(refDoc, occurCrit);
+
+            for(int occurs = 0; occurs <  refprogsoccurs.getLength(); occurs++)
+            {
+               Node refOccur = refprogsoccurs.item(occurs);
+               String occurStarttime = nu.getAttributeValue(refOccur, "start");
+               if(occurStarttime.equals(starttime))
+               {
+                  log.debug("findAltNode: reference {} is occurrence {}", progid, occurs+1);
+                  refoccur = occurs;
+                  break;
+               }
+            }
+         }
+         catch(Exception ex)
+         {
+            log.warn("findAltNode: search criteria:{} exception:{}", occurCrit, ex.toString());
+         }
+
+         if(refoccur < 0)
+         {
+            log.debug("findAltNode: Failed to find reference occurrence for {} with predicate [{}]", progid, occurCrit);
+         }
+         else
+         {
+            NodeList altprogsoccurs = nu.getNodesByPath(altDoc, occurCrit);
+            log.debug("findAltNode: alternative occurrences of {}: {}", progid, altprogsoccurs.getLength());
+            if(refoccur >=0 && refoccur < altprogsoccurs.getLength())
+            {
+               altProg = altprogsoccurs.item(refoccur);
+            }
+         }
+      }
+      else if(altprogs.getLength() > 0)
+      {
+         log.debug("findAltNode: alternative programs with same start time for {}: {}", progid, altprogs.getLength());
+         altProg = altprogs.item(0);
+      }
+   }
+   return Optional.ofNullable(altProg);
+}
+
+@Deprecated
+private void adjustTimes(Node refProg, Node altProg, String progid)
+{
+   // Compare the times for ref and alt. To maximise the chance of recording the entire program
+   // should take the earliest starttime and the latest endtime.
+   String refstart = nu.getAttributeValue(refProg, "start");
+   String altstart = nu.getAttributeValue(altProg, "start");
+   String altend = nu.getAttributeValue(altProg, "stop");
+   String refend = nu.getAttributeValue(refProg, "stop");
+
+   // Can't rely on the timezone offsets being the same so convert to Date for
+   // comparing but use the original string if necessary to change the time.
+   // Should round the times to 5mins (down for start, up for end) for compatibility
+   // with the timer editor.
+   ZonedDateTime refdt = XMLTVutils.getZDateFromXmltv(refstart);
+   ZonedDateTime altdt = XMLTVutils.getZDateFromXmltv(altstart);
+   String zxmltvdt = null;
+
+   // Get the earliest start time then quantize it down. Update the reference if necessary.
+   if(altdt.isAfter(refdt))
+   {
+      altdt = refdt;
+   }
+   altdt = XMLTVutils.getQuantizedDate(altdt, 5, -1);
+
+   if(!altdt.equals(refdt) )
+   {
+      zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
+      nu.setAttributeValue(refProg, "start", zxmltvdt);
+      log.debug("adjustTimes: changed start for {} from {} to {}", progid, refstart, zxmltvdt);
+   }
+
+   refdt = XMLTVutils.getZDateFromXmltv(refend);
+   altdt = XMLTVutils.getZDateFromXmltv(altend);
+
+   // Get the latest stop time then quantize it up. Update the reference if necessary.
+   if( altdt.isBefore(refdt))
+   {
+         altdt = refdt;
+   }
+   altdt = XMLTVutils.getQuantizedDate(altdt, 5, 1);
+
+   if(!altdt.equals(refdt) )
+   {
+      zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
+      nu.setAttributeValue(refProg, "stop", zxmltvdt);
+      log.debug("adjustTimes: changed stop for {} from {} to {}", progid, refend, zxmltvdt);
+   }
+}
+
+@Deprecated
+private void copyFields(Node refProg, Node altProg, String[] fieldnames, String progid)
+{
+   for(String fieldname : fieldnames)
+   {
+      Optional<Node> optAltFld = safeGetNodeByPath(altProg, fieldname);
+      if(! optAltFld.isPresent() )
+      {
+         log.debug("copyFields: alternative for {} has no field {}", progid, fieldname);
+         continue;
+      }
+      Node altFld = optAltFld.get();
+
+      Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
+      if( ! optrefFld.isPresent())
+      {
+         Node newNode = altFld.cloneNode(true);  // Create a duplicate node
+         refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
+         refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
+         log.debug("copyFields: added field {} to {}: {}", fieldname, progid, newNode.getTextContent());
+      }
+      else if(optrefFld.isPresent() && "desc".equals(fieldname))
+      {
+         // Special handling for 'desc' as the field might be present in ref but contain more info in the alt
+         Node refFld = optrefFld.get();
+         String refDesc = Utils.safeString(refFld.getTextContent());
+         String altDesc = Utils.safeString(altFld.getTextContent());
+         if(altDesc.length() > refDesc.length())
+         {
+            refFld.setTextContent(altDesc);
+         }
+      }
+      else
+      {
+         log.debug("copyFields: reference {} already contains field {}", progid, fieldname);
+      }
+   }
+}
+//10-Sep-2023 Kludge to workaround EPG missing BBC1 programme info.
+//It appears that BBC1 programme info is no longer available. This makes it
+//difficult to add BBC1 progs on the Dreambox, which only has SD channels, and
+//annoying on the Ultimo which has both HD and SD but HD is more likely to cause a
+//conflict with existing timers.
+//For now the solution will copy the programmes for one channel into another channel.
+//Must be done after the filter since the chances are dest channel will be absent from one or both the inputs.
+//Need to add a <channel> for the dest channel since there probably wont already be one.
+//Remove this. Issue is moot as BBC SD has become unwatchable due to the red stopping banner
+//and this was not used anyway as it was easier to map a dummy BBC1HD channel to BBC1SD in the grabbers.
+@Deprecated
+protected void shadowChannel(String srcChannel, String destChannel, String destDisplayName) throws TransformerException
+{
+initDocs();
+NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme[@channel='" + srcChannel + "']");
+Node tvNode = nu.getNodeByPath(refDoc, "/tv");
+
+if(progs.getLength() < 1)
+{
+   log.info("shadowChannel: no programmes found for channel '{}'", srcChannel);
+   return;
+}
+
+for(int i = 0; i <  progs.getLength(); i++)
+{
+   Node prog = progs.item(i);
+   Node newNode = prog.cloneNode(true);
+   nu.setAttributeValue(newNode, "channel", destChannel);
+   refDoc.adoptNode(newNode);
+   tvNode.appendChild(newNode);
+}
+
+Node destChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + destChannel + "']");
+if(destChanNode == null)
+{
+   // Probably easier to copy the source node and update the bits which are known.
+   Node srcChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + srcChannel + "']");
+   if(srcChanNode == null)
+   {
+      log.error("shadowChannel: channel '{}' not found - this should not happen!", srcChannel);
+      return;
+   }
+   Node newNode = srcChanNode.cloneNode(true);
+   nu.setAttributeValue(newNode, "id", destChannel);
+   Node disp = nu.getNodeByPath(newNode, "display-name"); // maybe need the text child node
+   disp.setTextContent(destDisplayName);
+
+   refDoc.adoptNode(newNode);
+//   tvNode.appendChild(newNode); This inserts after the programme block, which might mess something up
+   // Ideally new node should go at end of channel block or after the src channel but this is easier!
+   tvNode.insertBefore(newNode, srcChanNode);
+
+}
 }
 
 }

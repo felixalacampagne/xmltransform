@@ -14,7 +14,7 @@
       <java.version>17</java.version>
       <maven.compiler.target>${java.version}</maven.compiler.target>
       <maven.compiler.source>${java.version}</maven.compiler.source>   
-      <xmltv-to-mxf.version>0.0.5.0-FALC-SNAPSHOT</xmltv-to-mxf.version>
+      <xmltv-to-mxf.version>0.0.5.1-FALC-RELEASE</xmltv-to-mxf.version>
    </properties>
 
    <build>

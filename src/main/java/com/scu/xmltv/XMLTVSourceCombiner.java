@@ -680,8 +680,6 @@ private void adjustTimes(Node refProg, XmlTvProgram altProg, String progid)
    // Compare the times for ref and alt. To maximise the chance of recording the entire program
    // should take the earliest starttime and the latest endtime.
    String refstart = nu.getAttributeValue(refProg, "start");
-//   String altstart = nu.getAttributeValue(altProg, "start");
-//   String altend = nu.getAttributeValue(altProg, "stop");
    String refend = nu.getAttributeValue(refProg, "stop");
 
    // Can't rely on the timezone offsets being the same so convert to Date for
@@ -743,9 +741,9 @@ Node node = null;
 
 private void copyFields(Node refProg, XmlTvProgram altProg, String[] fieldnames, String progid)
 {
-   // Not so easy to use an array of field names against a Java object
+   // Not so easy to use an array of field names against a Java object.
    // For now a simple if equals list will have to do. Using reflection is a bit over
-   // the top and kind of slow given that this is a performace enhancement!
+   // the top and kind of slow given that this is a performance enhancement!
    // "episode-num", "sub-title", "desc"
    resumeStopWatch(this.swcopyfields);
    for(String fieldname : fieldnames)
@@ -758,12 +756,6 @@ private void copyFields(Node refProg, XmlTvProgram altProg, String[] fieldnames,
       {
          if( ! optrefFld.isPresent())
          {
-//            Optional<String> o = getEpisodenum(altProg);
-//            if(o.isPresent())
-//            {
-//               fieldval = o.get();
-//               addEpisodeNumToProgram(refProg, fieldval, progid);
-//            }
             getEpisodenum(altProg).ifPresent(e -> addEpisodeNumToProgram(refProg, e, progid));
          }
       }
@@ -875,9 +867,29 @@ String [] keys = null;
    // values out of the nodes in the nodelist is very cumbersome so the thought is to parse the XMLTV into a
    // Java object model so the fields are easily accessible for searching. Could write my own which would probably
    // use jaxb however I don't want to have to create the schema from scratch.
-   // By chnace I found an XMLTV to Java object model parser which might make creating something which can be searched faster than
+   // By chance I found an XMLTV to Java object model parser which might make creating something which can be searched faster than
    // the XML DOM
    // https://github.com/raydouglass/xmltv-to-mxf/blob/master/pom.xml.
+   //
+   // Well the conversion to a java model took a while but did result in an improvement in speed however the
+   // split timing still showed it getting slower and slower.
+   // By using the 'accumulating' stop watches I saw that it was the copyFields method which seemed to be responsible
+   // for this slow down. This was very surprising given that it operates on a single node each time so should be
+   // consistent in timings. As all it is doing is getting a child Node with a given name from a parent Node I wrote 
+   // a method which iterated through the children looking for one with a matching name. Obviously wont work if it
+   // is not a child node which is required but the xmltv programs have all the relevant details at child level.
+   // Use of this new way of getting the child nodes produced a very dramatic speed improvement - from 6mins to 6secs!
+   // So the overall speed improvement is from 26mins to 6secs. Not bad!!Saving the planet one tvguide at a time!
+   //
+   // Not sure whether I'm going to keep the java objects - the code is a bit buggy, ie. unusable without the 
+   // changes I made. I'm thinking that reverting to the use of xml nodes throughout might still be as fast with the
+   // copyFields change in place and reducing the dependency on an external library, which is not really intended to
+   // be a library, would be a good thing.
+   //
+   // The ref nodes have now been indexed by day/channel. The same could be done for the alt node.
+   // findAltNode would need to be modified to use the caches and the node versions of copyfields, adjustTimes
+   // updated to use the new getChild method. That;s something for a rainy day though, for now I'm using the
+   // java objects version
    sc.writeUpdatedXMLTV(result);
 }
 
@@ -899,7 +911,7 @@ private Optional<Node> findAltNode(Node refProg, String progid)
    // The top list has key channel/day and the value is a list with key programme/starttime
    //   - should it be starttime/programme to ensure the order of multiple episodes is preserved.
    // This might not work for multi-episodes which occur either side of midnight
-   //   - this probably doesn't matter unless there is a time discrepancy which the episode is today
+   //   - this probably doesn't matter unless there is a time discrepancy where the episode is today
    //     in one guide and tomorrow in the other
    NodeList altprogs = nu.getNodesByPath(altDoc, "/tv/programme[@start='" + starttime + "' and @channel='" + chanid + "']");
 

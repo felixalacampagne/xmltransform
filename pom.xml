@@ -97,13 +97,13 @@
          </configuration>
       </plugin>
 
-      <!-- This generates HTMLMaker.jar as an 'executable' a jar in addition to the xmltransform jar used by pagebuilderrest
+      <!-- This generates HTMLMaker.jar as an 'executable' jar in addition to the xmltransform jar used by pagebuilderrest
       Unfortunately it seems that it also 'installs' the combined HTMLMaker.jar as 'xmltransform-0.17.3-SNAPSHOT.jar'
       in the local maven repository with the result that HTMLMaker.jar is used by the pagebuilderrest project
       instead of the xmltransform-0.17.3-SNAPSHOT.jar which appears in the target directly. This may be what has
       caused me so much hassle trying to get logging to work.
 
-      Fork only knows how I'm going to fix this since the whole thing is black magic and the document as such
+      Fork only knows how I'm going to fix this since the whole thing is black magic and the documentation as such
       is incomprehensible.
       
       Ugh! Just now realised that excluding logback.xml from the xmltransform.jar creation above is causing

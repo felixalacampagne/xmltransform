@@ -26,10 +26,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.dontocsata.xmltv.model.XmlTvProgram;
-import com.dontocsata.xmltv.model.XmlTvProgramId;
-import com.scu.jxmltv.XmltvParser;
-import com.scu.jxmltv.XmltvStore;
 import com.scu.utils.CmdArgMgr;
 import com.scu.utils.NodeUtils;
 import com.scu.utils.Utils;
@@ -107,8 +103,6 @@ private final Pattern regexFilter;
 private Document refDoc = null;
 private Document altDoc = null;
 
-private XmltvStore altStore = new XmltvStore();
-
 static Logger log = LoggerFactory.getLogger(XMLTVSourceCombiner.class);
 
 private static final Pattern sEpPattern = Pattern.compile("\\( *S(\\d{1,2}) *Ep(\\d{1,2}) *\\)"); // (S1 Ep9)
@@ -131,6 +125,91 @@ private final StopWatch swextract = StopWatch.create();
 
 private final Map<String, Map<ZonedDateTime, Node>> refDayChanIndex = new HashMap<>();
 private final Map<String, Map<ZonedDateTime, Node>> altDayChanIndex = new HashMap<>();
+
+
+public static void main(String[] args) throws Exception
+{
+CmdArgMgr cmd = new CmdArgMgr();
+String ref = null;
+String alt = null;
+String result = null;
+String filter = null;
+String [] keys = null;
+
+   cmd.parseArgs(args);
+   keys = cmd.getArgNames();
+
+
+   for(int i = 0; i<keys.length; i++)
+   {
+      String val = cmd.getArg(keys[i]);
+      if(ARG_REF.compareTo(keys[i]) == 0)
+         ref = val;
+      else if(ARG_ALT.compareTo(keys[i]) == 0)
+         alt = val;
+      else if(ARG_RESULT.compareTo(keys[i]) == 0)
+         result = val;
+      else if(ARG_FILTER.compareTo(keys[i]) == 0)
+         filter = val;
+   }
+
+
+   if((ref==null) || (alt==null) || (result==null))
+   {
+      System.out.println("Usage: HTMLMaker " + ARG_REF + "=<reference file> " +
+            ARG_ALT + "=<alternative file> " +
+            ARG_RESULT + "=<result> ");
+      System.exit(1);
+   }
+
+
+
+   XMLTVSourceCombiner sc = new XMLTVSourceCombiner(ref, alt, filter);
+   log.info("main: combine starting");
+   StopWatch sw = StopWatch.createStarted();
+   sc.combineSource("episode-num", "sub-title", "desc");
+   sw.stop();
+   log.info("main: combine done: Time Elapsed: {}", sw.formatTime());
+   // For
+   // findAltNode enabled:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:26:59.684
+   // findAltNode disabled: speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:06:08.759
+   // findAltNode nofuzzy:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:11:56.247
+   // findAltNode nofuzzy/reduced log:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:11:53.861
+   //                                                                                     Time Elapsed: 00:11:44.409
+   // findAltNode fuzzy/reduced log:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:26:00.307
+
+   // Timings show that it takes longer and longer to find the alternative program, probably because the
+   // XPath is doing a linear search from the first item.
+   // Anything involving caching is going to create a NodeList which cannot be searched with XPath. Getting the
+   // values out of the nodes in the nodelist is very cumbersome so the thought is to parse the XMLTV into a
+   // Java object model so the fields are easily accessible for searching. Could write my own which would probably
+   // use jaxb however I don't want to have to create the schema from scratch.
+   // By chance I found an XMLTV to Java object model parser which might make creating something which can be searched faster than
+   // the XML DOM
+   // https://github.com/raydouglass/xmltv-to-mxf/blob/master/pom.xml.
+   //
+   // Well the conversion to a java model took a while but did result in an improvement in speed however the
+   // split timing still showed it getting slower and slower.
+   // By using the 'accumulating' stop watches I saw that it was the copyFields method which seemed to be responsible
+   // for this slow down. This was very surprising given that it operates on a single node each time so should be
+   // consistent in timings. As all it is doing is getting a child Node with a given name from a parent Node I wrote
+   // a method which iterated through the children looking for one with a matching name. Obviously wont work if it
+   // is not a child node which is required but the xmltv programs have all the relevant details at child level.
+   // Use of this new way of getting the child nodes produced a very dramatic speed improvement - from 6mins to 6secs!
+   // So the overall speed improvement is from 26mins to 6secs. Not bad!!Saving the planet one tvguide at a time!
+   //
+   // Not sure whether I'm going to keep the java objects - the code is a bit buggy, ie. unusable without the
+   // changes I made. I'm thinking that reverting to the use of xml nodes throughout might still be as fast with the
+   // copyFields change in place and reducing the dependency on an external library, which is not really intended to
+   // be a library, would be a good thing.
+   //
+   // The ref nodes have now been indexed by day/channel. The same could be done for the alt node.
+   // findAltNode would need to be modified to use the caches and the node versions of copyfields, adjustTimes
+   // updated to use the new getChild method. That;s something for a rainy day though, for now I'm using the
+   // java objects version
+   sc.writeUpdatedXMLTV(result);
+}
+
 
 public XMLTVSourceCombiner(String referenceXMLTV, String alternateXMLTV)
 {
@@ -203,27 +282,13 @@ public void combineSource(String... fieldnames)
       log.debug("combineSource: processing {}", progid);
 
 
-      boolean useJxmltv = false;
-      if(! useJxmltv )
-      {
-         findAltNode(refProg, progid).ifPresentOrElse(
-               altn -> {
-                  copyFields(refProg, altn, fieldnames, progid);
-                  adjustTimes(refProg, altn, progid);
-                  },
-               () -> {log.debug("combineSource: NO alternative found for {}", progid); }
-               );
-      }
-      else
-      {
-         findAltProgram(refProg, progid).ifPresentOrElse(
-               altp -> {
-                  copyFields(refProg, altp, fieldnames, progid);
-                  adjustTimes(refProg, altp, progid);
-                  },
-               () -> {log.debug("combineSource: NO alternative found for {}", progid); }
-               );
-      }
+      findAltNode(refProg, progid).ifPresentOrElse(
+            altn -> {
+               copyFields(refProg, altn, fieldnames, progid);
+               adjustTimes(refProg, altn, progid);
+               },
+            () -> {log.debug("combineSource: NO alternative found for {}", progid); }
+            );
 
       cleanProg(refProg);
       extractMissingEpisodeInfo(refProg, progid);
@@ -441,27 +506,6 @@ private Optional<String> getEpisodenum(Integer season, Integer episodenumber, In
    return Optional.ofNullable(epnum);
 }
 
-private Optional<String> getEpisodenum(XmlTvProgram prog)
-{
-   Optional<String> ropt = Optional.empty();
-   // 0 . 2/99
-   // actually it is
-   // S/TS . E/TE . P/TP
-   // where S = season, E = episode, P = part, T = total
-   // the S,E,P values are 0 based BUT the totals are 1 based
-   // so first ever episode in two parts is of the only season or 10 episodes is
-   // 0/1 . 0/10 . 0/2
-   // I've only seen S, E, and TE so that's all I'll support for now
-   // S is optional
-   // If S and E are absent then return null
-   XmlTvProgramId prgid = prog.getXmlTvProgramId();
-   if(prgid != null)
-   {
-      ropt = getEpisodenum(prgid.getSeason(), prgid.getEpisode(), prgid.getNumberOfEpisodes());
-   }
-   return ropt;
-}
-
 private void addSubtitleToProgramNode(Node refProg, String subtitle)
 {
    Node newNode = refDoc.createElement("sub-title");
@@ -535,106 +579,6 @@ private List<Node> getTitleForDay(String day, String chanid, String title, Map<S
    return ntitles;
 }
 
-@Deprecated
-private Optional<XmlTvProgram> findAltProgram(Node refProg, String progid)
-{
-   resumeStopWatch(swfindalt);
-
-   XmlTvProgram xprog = null;
-   String title = nu.getNodeValue(refProg, "title");
-   String starttime = nu.getAttributeValue(refProg, "start");
-   String day = starttime.substring(0,8);
-   String chanid = nu.getAttributeValue(refProg, "channel");
-   ZonedDateTime zdt = XmltvParser.XMLTVToZonedDateTime(starttime);
-   List<XmlTvProgram> progs;
-   progs = this.altStore.getProgrammesForDayChannel(day, chanid);
-
-   // TODO: need to maximise the chances of the titles matching
-   // either just look for an exact time match and assume it must be the same program
-   // or normalize the titles to reduce the chance of mismatch
-   // This doesn't work when there is an exact match for the time but the titles
-   // in the two guides are not the same, eg. 'Magnum, PI' vs 'Magnum P.I'
-   // Spotted this when comparing the 'slow' and 'fast' versions. epnum info was missing from the
-   // 'fast' version. The 'slow' version matches the different titles because it does an explicit
-   // check for a program with the exact time, regardless of the title.
-   //
-   Optional<XmlTvProgram> progtime = progs.stream()
-         .filter(p -> p.getStart().isEqual(zdt))
-         .findAny();
-
-   if(progtime.isPresent())
-   {
-      // Assume that exact match for time MUST be the right programm
-      xprog = progtime.get();
-   }
-   else
-   {
-      // this is where it gets really ugly!!!
-      List<XmlTvProgram> xtitles = getXTitleForDay(day, chanid, title);
-      List<Node> ntitles = getTitleForDay(day, chanid, title, refDayChanIndex);
-      // Occurrence matching only valid if both ref and alt contain same number of occurrences
-      if(ntitles.size() == xtitles.size())
-      {
-         if(xtitles.size() == 1)
-         {
-            xprog = xtitles.get(0);
-         }
-         else if(xtitles.size() > 1)
-         {
-            // Find occurrence of refProg
-            int refoccur = -1;
-            int i=0;
-            for(Node n : ntitles)
-            {
-               String s = nu.getAttributeValue(n, "start"); //nu.getNodeValue(n, "start");
-               if(starttime.equals(s) )
-               {
-                  refoccur = i;
-                  break;
-               }
-               i++;
-            }
-
-            if(refoccur < 0)
-            {
-               // This should not happen!!
-               log.warn("findAltProg: Failed to find reference occurrence for {}", progid);
-            }
-            else
-            {
-               xprog = xtitles.get(refoccur);
-            }
-         }
-      }
-      else
-      {
-         // This usually occurs because the data available for the last day of the range is not
-         // always complete
-         log.debug("findAltProg: found different no. of occurrences of '{}' for {} {}: ref:{} alt:{}",
-               title, chanid, day, ntitles.size(), xtitles.size());
-      }
-   }
-   suspendStopWatch(swfindalt);
-   return Optional.ofNullable(xprog);
-}
-
-
-private List<XmlTvProgram> getXTitleForDay(String day, String chanid, String title)
-{
-   List<XmlTvProgram> progs;
-   progs = this.altStore.getProgrammesForDayChannel(day, chanid);
-
-   List<XmlTvProgram> xtitles =  progs.stream()
-            .filter(p -> p.getTitle().equalsIgnoreCase(title))
-            .sorted((t1, t2) -> (t1.getStart().compareTo(t2.getStart())))
-            .toList();
-   return xtitles;
-}
-
-// Processing is faster by using jxmltv but still slows down as more records are processed
-// I'm guessing that this is because it takes longer and longer to search for the Nodes for a given day/channel
-// So the idea here is to pre-build the day/channel list of programmes and to index the list on the start string
-
 private void buildDayChannelIndex(NodeList progs, Map<String, Map<ZonedDateTime, Node>> dayChanIndex)
 {
    int progcnt = progs.getLength();
@@ -646,7 +590,7 @@ private void buildDayChannelIndex(NodeList progs, Map<String, Map<ZonedDateTime,
       String chanid = nu.getAttributeValue(refProg, "channel");
 
       String startday = starttime.substring(0,8);
-      ZonedDateTime zdtstart = XmltvParser.XMLTVToZonedDateTime(starttime);
+      ZonedDateTime zdtstart = XMLTVutils.getZDateFromXmltv(starttime);
       Map<ZonedDateTime, Node> daychanmap = getDayChannel(startday, chanid, dayChanIndex);
       daychanmap.put(zdtstart, refProg);
    }
@@ -667,127 +611,6 @@ private Map<ZonedDateTime, Node> getDayChannel(String startday, String chanid, M
 }
 
 
-@Deprecated
-private void adjustTimes(Node refProg, XmlTvProgram altProg, String progid)
-{
-   resumeStopWatch(swadjustTimes);
-   // Compare the times for ref and alt. To maximise the chance of recording the entire program
-   // should take the earliest starttime and the latest endtime.
-   String refstart = nu.getAttributeValue(refProg, "start");
-   String refend = nu.getAttributeValue(refProg, "stop");
-
-   // Can't rely on the timezone offsets being the same so convert to Date for
-   // comparing but use the original string if necessary to change the time.
-   // Should round the times to 5mins (down for start, up for end) for compatibility
-   // with the timer editor.
-   ZonedDateTime refdt = XMLTVutils.getZDateFromXmltv(refstart);
-   ZonedDateTime altdt =altProg.getStart(); // XMLTVutils.getZDateFromXmltv(altstart);
-   String zxmltvdt = null;
-
-   // Get the earliest start time then quantize it down. Update the reference if necessary.
-   if(altdt.isAfter(refdt))
-   {
-      altdt = refdt;
-   }
-   altdt = XMLTVutils.getQuantizedDate(altdt, 5, -1);
-
-   if(!altdt.equals(refdt) )
-   {
-      zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
-      nu.setAttributeValue(refProg, "start", zxmltvdt);
-      log.debug("adjustTimes: changed start for {} from {} to {}", progid, refstart, zxmltvdt);
-   }
-
-   refdt = XMLTVutils.getZDateFromXmltv(refend);
-   altdt = altProg.getStop(); // XMLTVutils.getZDateFromXmltv(altend);
-
-   // Get the latest stop time then quantize it up. Update the reference if necessary.
-   if( altdt.isBefore(refdt))
-   {
-         altdt = refdt;
-   }
-   altdt = XMLTVutils.getQuantizedDate(altdt, 5, 1);
-
-   if(!altdt.equals(refdt) )
-   {
-      zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
-      nu.setAttributeValue(refProg, "stop", zxmltvdt);
-      log.debug("adjustTimes: changed stop for {} from {} to {}", progid, refend, zxmltvdt);
-   }
-   suspendStopWatch(swadjustTimes);
-}
-
-
-private Optional<Node> safeGetNodeByPath(Node altProg, String fieldname)
-{
-Node node = null;
-   try
-   {
-      node = nu.getNodeByPath(altProg, fieldname);
-   }
-   catch(TransformerException tex)
-   {
-      log.info("safeGetNodeByPath: exception finding field '{}': ", fieldname, tex.toString());
-   }
-   return Optional.ofNullable(node);
-}
-
-@Deprecated
-private void copyFields(Node refProg, XmlTvProgram altProg, String[] fieldnames, String progid)
-{
-   // Not so easy to use an array of field names against a Java object.
-   // For now a simple if equals list will have to do. Using reflection is a bit over
-   // the top and kind of slow given that this is a performance enhancement!
-   // "episode-num", "sub-title", "desc"
-   resumeStopWatch(this.swcopyfields);
-   for(String fieldname : fieldnames)
-   {
-      Optional<Node> optrefFld;
-//      optrefFld = nu.findNodeByPath(refProg, fieldname);
-      optrefFld = nu.getChildByName(refProg, fieldname);
-      String fieldval = null;
-      if("episode-num".equals(fieldname))
-      {
-         if( ! optrefFld.isPresent())
-         {
-            getEpisodenum(altProg).ifPresent(e -> addEpisodeNumToProgram(refProg, e, progid));
-         }
-      }
-      else if("sub-title".equals(fieldname))
-      {
-         if( ! optrefFld.isPresent())
-         {
-            fieldval = altProg.getSubTitle();
-            if(fieldval != null)
-            {
-               addSubtitleToProgramNode(refProg, fieldval);
-            }
-         }
-      }
-      else if("desc".equals(fieldname))
-      {
-         String refDesc = "";
-         // Special handling for 'desc' as the field might be present in ref but contain more info in the alt
-         if(optrefFld.isPresent())
-         {
-            Node refFld = optrefFld.get();
-            refDesc = Utils.safeString(refFld.getTextContent());
-            String altDesc = Utils.safeString(altProg.getDescription());
-            if(altDesc.length() > refDesc.length())
-            {
-               refFld.setTextContent(altDesc);
-            }
-         }
-      }
-      else
-      {
-         log.debug("copyFields: reference {} already contains field {}", progid, fieldname);
-      }
-   }
-   suspendStopWatch(this.swcopyfields);
-}
-
-
 public void writeUpdatedXMLTV(String filename) throws Exception
 {
    nu.outputNode(this.refDoc, new File(filename));
@@ -798,93 +621,9 @@ public void writeUpdatedXMLTV(Writer writer) throws Exception
    nu.outputNode(this.refDoc, writer);
 }
 
-
 public Optional<Pattern> getRegexFilter()
 {
    return Optional.ofNullable(regexFilter);
-}
-
-public static void main(String[] args) throws Exception
-{
-CmdArgMgr cmd = new CmdArgMgr();
-String ref = null;
-String alt = null;
-String result = null;
-String filter = null;
-String [] keys = null;
-
-   cmd.parseArgs(args);
-   keys = cmd.getArgNames();
-
-
-   for(int i = 0; i<keys.length; i++)
-   {
-      String val = cmd.getArg(keys[i]);
-      if(ARG_REF.compareTo(keys[i]) == 0)
-         ref = val;
-      else if(ARG_ALT.compareTo(keys[i]) == 0)
-         alt = val;
-      else if(ARG_RESULT.compareTo(keys[i]) == 0)
-         result = val;
-      else if(ARG_FILTER.compareTo(keys[i]) == 0)
-         filter = val;
-   }
-
-
-   if((ref==null) || (alt==null) || (result==null))
-   {
-      System.out.println("Usage: HTMLMaker " + ARG_REF + "=<reference file> " +
-            ARG_ALT + "=<alternative file> " +
-            ARG_RESULT + "=<result> ");
-      System.exit(1);
-   }
-
-
-
-   XMLTVSourceCombiner sc = new XMLTVSourceCombiner(ref, alt, filter);
-   log.info("main: combine starting");
-   StopWatch sw = StopWatch.createStarted();
-   sc.combineSource("episode-num", "sub-title", "desc");
-   sw.stop();
-   log.info("main: combine done: Time Elapsed: {}", sw.formatTime());
-   // For
-   // findAltNode enabled:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:26:59.684
-   // findAltNode disabled: speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:06:08.759
-   // findAltNode nofuzzy:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:11:56.247
-   // findAltNode nofuzzy/reduced log:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:11:53.861
-   //                                                                                     Time Elapsed: 00:11:44.409
-   // findAltNode fuzzy/reduced log:  speedy/eclipse debug/normal size guide/no cache   Time Elapsed: 00:26:00.307
-
-   // Timings show that it takes longer and longer to find the alternative program, probably because the
-   // XPath is doing a linear search from the first item.
-   // Anything involving caching is going to create a NodeList which cannot be searched with XPath. Getting the
-   // values out of the nodes in the nodelist is very cumbersome so the thought is to parse the XMLTV into a
-   // Java object model so the fields are easily accessible for searching. Could write my own which would probably
-   // use jaxb however I don't want to have to create the schema from scratch.
-   // By chance I found an XMLTV to Java object model parser which might make creating something which can be searched faster than
-   // the XML DOM
-   // https://github.com/raydouglass/xmltv-to-mxf/blob/master/pom.xml.
-   //
-   // Well the conversion to a java model took a while but did result in an improvement in speed however the
-   // split timing still showed it getting slower and slower.
-   // By using the 'accumulating' stop watches I saw that it was the copyFields method which seemed to be responsible
-   // for this slow down. This was very surprising given that it operates on a single node each time so should be
-   // consistent in timings. As all it is doing is getting a child Node with a given name from a parent Node I wrote
-   // a method which iterated through the children looking for one with a matching name. Obviously wont work if it
-   // is not a child node which is required but the xmltv programs have all the relevant details at child level.
-   // Use of this new way of getting the child nodes produced a very dramatic speed improvement - from 6mins to 6secs!
-   // So the overall speed improvement is from 26mins to 6secs. Not bad!!Saving the planet one tvguide at a time!
-   //
-   // Not sure whether I'm going to keep the java objects - the code is a bit buggy, ie. unusable without the
-   // changes I made. I'm thinking that reverting to the use of xml nodes throughout might still be as fast with the
-   // copyFields change in place and reducing the dependency on an external library, which is not really intended to
-   // be a library, would be a good thing.
-   //
-   // The ref nodes have now been indexed by day/channel. The same could be done for the alt node.
-   // findAltNode would need to be modified to use the caches and the node versions of copyfields, adjustTimes
-   // updated to use the new getChild method. That;s something for a rainy day though, for now I'm using the
-   // java objects version
-   sc.writeUpdatedXMLTV(result);
 }
 
 
@@ -897,7 +636,7 @@ private Optional<Node> findAltNode(Node refProg, String progid)
    boolean fuzzyMatch = true;
 
    String day = starttime.substring(0,8);
-   ZonedDateTime zdtStart = XmltvParser.XMLTVToZonedDateTime(starttime);
+   ZonedDateTime zdtStart = XMLTVutils.getZDateFromXmltv(starttime);
    Map<ZonedDateTime, Node> altprogs = getDayChannel(day, chanid, altDayChanIndex);
 
    altProg = altprogs.get(zdtStart);
@@ -1064,43 +803,43 @@ protected void shadowChannel(String srcChannel, String destChannel, String destD
 initDocs();
 NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme[@channel='" + srcChannel + "']");
 Node tvNode = nu.getNodeByPath(refDoc, "/tv");
-
-if(progs.getLength() < 1)
-{
-   log.info("shadowChannel: no programmes found for channel '{}'", srcChannel);
-   return;
-}
-
-for(int i = 0; i <  progs.getLength(); i++)
-{
-   Node prog = progs.item(i);
-   Node newNode = prog.cloneNode(true);
-   nu.setAttributeValue(newNode, "channel", destChannel);
-   refDoc.adoptNode(newNode);
-   tvNode.appendChild(newNode);
-}
-
-Node destChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + destChannel + "']");
-if(destChanNode == null)
-{
-   // Probably easier to copy the source node and update the bits which are known.
-   Node srcChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + srcChannel + "']");
-   if(srcChanNode == null)
+   
+   if(progs.getLength() < 1)
    {
-      log.error("shadowChannel: channel '{}' not found - this should not happen!", srcChannel);
+      log.info("shadowChannel: no programmes found for channel '{}'", srcChannel);
       return;
    }
-   Node newNode = srcChanNode.cloneNode(true);
-   nu.setAttributeValue(newNode, "id", destChannel);
-   Node disp = nu.getNodeByPath(newNode, "display-name"); // maybe need the text child node
-   disp.setTextContent(destDisplayName);
-
-   refDoc.adoptNode(newNode);
-//   tvNode.appendChild(newNode); This inserts after the programme block, which might mess something up
-   // Ideally new node should go at end of channel block or after the src channel but this is easier!
-   tvNode.insertBefore(newNode, srcChanNode);
-
-}
+   
+   for(int i = 0; i <  progs.getLength(); i++)
+   {
+      Node prog = progs.item(i);
+      Node newNode = prog.cloneNode(true);
+      nu.setAttributeValue(newNode, "channel", destChannel);
+      refDoc.adoptNode(newNode);
+      tvNode.appendChild(newNode);
+   }
+   
+   Node destChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + destChannel + "']");
+   if(destChanNode == null)
+   {
+      // Probably easier to copy the source node and update the bits which are known.
+      Node srcChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + srcChannel + "']");
+      if(srcChanNode == null)
+      {
+         log.error("shadowChannel: channel '{}' not found - this should not happen!", srcChannel);
+         return;
+      }
+      Node newNode = srcChanNode.cloneNode(true);
+      nu.setAttributeValue(newNode, "id", destChannel);
+      Node disp = nu.getNodeByPath(newNode, "display-name"); // maybe need the text child node
+      disp.setTextContent(destDisplayName);
+   
+      refDoc.adoptNode(newNode);
+   //   tvNode.appendChild(newNode); This inserts after the programme block, which might mess something up
+      // Ideally new node should go at end of channel block or after the src channel but this is easier!
+      tvNode.insertBefore(newNode, srcChanNode);
+   
+   }
 }
 
 }

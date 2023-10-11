@@ -243,7 +243,8 @@ public void combineSource(String... fieldnames)
          LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
          String formattedDateTime = localDateTime.format(formatter);
 
-         if(log.isDebugEnabled())
+         boolean logsws = false;  // log.isDebugEnabled(); always true even though log.debug outputs nothing
+         if(logsws) 
          {
             String tfindalt = resetStopWatch(this.swfindalt);
             String tcopyf = resetStopWatch(this.swcopyfields);
@@ -251,7 +252,7 @@ public void combineSource(String... fieldnames)
             String tclean = resetStopWatch(swcleanProg);
             String textract = resetStopWatch(swextract);
 
-            log.debug("combineSource: Progress:{}% split:{} cleanProg:{} extractInfo:{} adjustTImes: {} copyfields:{} findalt:{}", pcDone,
+            log.info("combineSource: Progress:{}% split:{} cleanProg:{} extractInfo:{} adjustTImes: {} copyfields:{} findalt:{}", pcDone,
                   formattedSplit, tclean, textract, tadjust, tcopyf, tfindalt);
          }
          else
@@ -1010,7 +1011,7 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
    resumeStopWatch(this.swcopyfields);
    for(String fieldname : fieldnames)
    {
-      Optional<Node> optAltFld = safeGetNodeByPath(altProg, fieldname);
+      Optional<Node> optAltFld = nu.getChildByName(altProg, fieldname); // safeGetNodeByPath(altProg, fieldname);
       if(! optAltFld.isPresent() )
       {
          log.debug("copyFields: alternative for {} has no field {}", progid, fieldname);
@@ -1018,7 +1019,9 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
       }
       Node altFld = optAltFld.get();
 
-      Optional<Node> optrefFld = nu.findNodeByPath(refProg, fieldname);
+      Optional<Node> optrefFld;
+//      optrefFld = nu.findNodeByPath(refProg, fieldname);
+      optrefFld = nu.getChildByName(refProg, fieldname);
       if( ! optrefFld.isPresent())
       {
          Node newNode = altFld.cloneNode(true);  // Create a duplicate node

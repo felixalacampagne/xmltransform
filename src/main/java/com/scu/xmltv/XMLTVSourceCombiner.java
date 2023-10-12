@@ -22,6 +22,7 @@ import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -110,8 +111,8 @@ private static final Pattern sEpPatternBare = Pattern.compile(" *S(\\d{1,2}) *Ep
 
 private static final Pattern bbcPatternA = Pattern.compile("^(\\d{1,2})/(\\d{1,2})\\. ");
 private static final Pattern bbcPatternB = Pattern.compile("^\\.\\.\\.\\S.*?\\. (\\d{1,2})/(\\d{1,2})\\. ");
-private static final Pattern subtitPattern = Pattern.compile("^(?:\\.\\.\\.\\S.*?: )?(\\S.*?): "); // ignore case?
-private static final Pattern newpfxes = Pattern.compile("(\\.\\.\\.\\S.*?: )?(?:Brand new series *[:-] *|Brand new: |New: )");
+
+private static final Pattern newpfxes = Pattern.compile("(\\.\\.\\.\\S.*?: )?(?i:Brand new series *[:-] *|Brand new: |New: )");
 
 private final ZoneId zoneId = ZoneId.systemDefault(); // Use the system default time zone
 private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -279,19 +280,21 @@ public void combineSource(String... fieldnames)
       String progid = nu.getNodeValue(refProg, "title") + ":"
                     + nu.getAttributeValue(refProg, "start") + ":"
                     + nu.getAttributeValue(refProg, "channel");
+
+      MDC.put("progid", progid); // Use MDC to avoid passing progid around just for logging purposes
       log.debug("combineSource: processing {}", progid);
 
 
-      findAltNode(refProg, progid).ifPresentOrElse(
+      findAltNode(refProg).ifPresentOrElse(
             altn -> {
-               copyFields(refProg, altn, fieldnames, progid);
-               adjustTimes(refProg, altn, progid);
+               copyFields(refProg, altn, fieldnames);
+               adjustTimes(refProg, altn);
                },
-            () -> {log.debug("combineSource: NO alternative found for {}", progid); }
+            () -> {log.debug("combineSource: NO alternative found"); }
             );
 
       cleanProg(refProg);
-      extractMissingEpisodeInfo(refProg, progid);
+      extractMissingEpisodeInfo(refProg);
 
       int pcDone = ((i *100 ) / progcnt);
       if((pcDone != lastpcDone) && (pcDone % 5) == 0)
@@ -309,7 +312,7 @@ public void combineSource(String... fieldnames)
          String formattedDateTime = localDateTime.format(formatter);
 
          boolean logsws = false;  // log.isDebugEnabled(); always true even though log.debug outputs nothing
-         if(logsws) 
+         if(logsws)
          {
             String tfindalt = resetStopWatch(this.swfindalt);
             String tcopyf = resetStopWatch(this.swcopyfields);
@@ -406,7 +409,7 @@ protected void filterProgrammes() throws TransformerException
 
 
 
-private void extractMissingEpisodeInfo(Node refProg, String progid)
+private void extractMissingEpisodeInfo(Node refProg)
 {
    // Aim of function is to extract missing "episode-num" and "sub-title" data from the show description.
    // This mainly applies to the UK show info from the Ultimo EPG data which is not handled by the python
@@ -452,23 +455,18 @@ private void extractMissingEpisodeInfo(Node refProg, String progid)
 
       if((season > 0) && (ep > 0))
       {
-         getEpisodenum(season, ep, eptot).ifPresent(e -> addEpisodeNumToProgram(refProg, e, progid));
+         getEpisodenum(season, ep, eptot).ifPresent(e -> addEpisodeNumToProgram(refProg, e));
+         epnum = nu.getNodeValue(refProg, "episode-num");
       }
    }
 
-   String subtitle = nu.getNodeValue(refProg, "sub-title");
-   if( Utils.safeIsEmpty(subtitle))
+   if( (! Utils.safeIsEmpty(epnum)) && Utils.safeIsEmpty(nu.getNodeValue(refProg, "sub-title")))
    {
-      Matcher m = subtitPattern.matcher(desc);
-      if(m.find())
-      {
-         subtitle = m.group(1);
-         addSubtitleToProgramNode(refProg, subtitle);
-         log.debug("extractMissingEpisodeInfo: added field sub-title to {}: {}", progid, subtitle);
-      }
+      XMLTVutils.getSubTitleFromDesc(desc).ifPresent(st ->  addSubtitleToProgramNode(refProg, st));
    }
    suspendStopWatch(this.swextract);
 }
+
 
 private Optional<String> getEpisodenum(Integer season, Integer episodenumber, Integer totalEpisodesInSeason)
 {
@@ -478,7 +476,7 @@ private Optional<String> getEpisodenum(Integer season, Integer episodenumber, In
    // S/TS . E/TE . P/TP
    // where S = season, E = episode, P = part, T = total
    // the S,E,P values are 0 based BUT the totals are 1 based
-   // so first ever episode in two parts is of the only season or 10 episodes is
+   // so first ever episode in two parts of the only season with 10 episodes is
    // 0/1 . 0/10 . 0/2
    // I've only seen S, E, and TE so that's all I'll support for now
    // S is optional
@@ -517,7 +515,7 @@ private void addSubtitleToProgramNode(Node refProg, String subtitle)
 
 }
 
-private void addEpisodeNumToProgram(Node refProg, String xmltvEpnum, String progid)
+private void addEpisodeNumToProgram(Node refProg, String xmltvEpnum)
 {
    Node newNode = refDoc.createElement("episode-num");  // new episode-num node
    nu.setAttributeValue(newNode, "system", "xmltv_ns");
@@ -525,7 +523,7 @@ private void addEpisodeNumToProgram(Node refProg, String xmltvEpnum, String prog
 
    refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
    refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
-   log.debug("extractMissingEpisodeInfo: added field episode-num to {}: {}", progid, xmltvEpnum);
+   log.debug("extractMissingEpisodeInfo: added field episode-num: {}", xmltvEpnum);
 
 }
 
@@ -627,7 +625,7 @@ public Optional<Pattern> getRegexFilter()
 }
 
 
-private Optional<Node> findAltNode(Node refProg, String progid)
+private Optional<Node> findAltNode(Node refProg)
 {
    Node altProg = null;
    String title = nu.getNodeValue(refProg, "title");
@@ -672,7 +670,7 @@ private Optional<Node> findAltNode(Node refProg, String progid)
             if(refoccur < 0)
             {
                // This should not happen!!
-               log.warn("findAltProg: Failed to find reference occurrence for {}", progid);
+               log.warn("findAltProg: Failed to find reference occurrence");
             }
             else
             {
@@ -693,7 +691,7 @@ private Optional<Node> findAltNode(Node refProg, String progid)
 }
 
 //@Deprecated
-private void adjustTimes(Node refProg, Node altProg, String progid)
+private void adjustTimes(Node refProg, Node altProg)
 {
    resumeStopWatch(swadjustTimes);
    // Compare the times for ref and alt. To maximise the chance of recording the entire program
@@ -722,7 +720,7 @@ private void adjustTimes(Node refProg, Node altProg, String progid)
    {
       zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
       nu.setAttributeValue(refProg, "start", zxmltvdt);
-      log.debug("adjustTimes: changed start for {} from {} to {}", progid, refstart, zxmltvdt);
+      log.debug("adjustTimes: changed start from {} to {}", refstart, zxmltvdt);
    }
 
    refdt = XMLTVutils.getZDateFromXmltv(refend);
@@ -739,13 +737,13 @@ private void adjustTimes(Node refProg, Node altProg, String progid)
    {
       zxmltvdt = XMLTVutils.getXmltvFromZDate(altdt);
       nu.setAttributeValue(refProg, "stop", zxmltvdt);
-      log.debug("adjustTimes: changed stop for {} from {} to {}", progid, refend, zxmltvdt);
+      log.debug("adjustTimes: changed stop from {} to {}", refend, zxmltvdt);
    }
    suspendStopWatch(swadjustTimes);
 }
 
 
-private void copyFields(Node refProg, Node altProg, String[] fieldnames, String progid)
+private void copyFields(Node refProg, Node altProg, String[] fieldnames)
 {
    resumeStopWatch(this.swcopyfields);
    for(String fieldname : fieldnames)
@@ -753,7 +751,7 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
       Optional<Node> optAltFld = nu.getChildByName(altProg, fieldname); // safeGetNodeByPath(altProg, fieldname);
       if(! optAltFld.isPresent() )
       {
-         log.debug("copyFields: alternative for {} has no field {}", progid, fieldname);
+         log.debug("copyFields: alternative has no field {}", fieldname);
          continue;
       }
       Node altFld = optAltFld.get();
@@ -766,7 +764,7 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
          Node newNode = altFld.cloneNode(true);  // Create a duplicate node
          refDoc.adoptNode(newNode);              // Transfer ownership of the new node into the destination document
          refProg.insertBefore(newNode, refProg.getLastChild()); // Place the node in the document. Fingers crossed putting it at the end is OK!!
-         log.debug("copyFields: added field {} to {}: {}", fieldname, progid, newNode.getTextContent());
+         log.debug("copyFields: added field {}: {}", fieldname, newNode.getTextContent());
       }
       else if(optrefFld.isPresent() && "desc".equals(fieldname))
       {
@@ -781,7 +779,7 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames, String 
       }
       else
       {
-         log.debug("copyFields: reference {} already contains field {}", progid, fieldname);
+         log.debug("copyFields: reference already contains field {}", fieldname);
       }
    }
    suspendStopWatch(this.swcopyfields);
@@ -803,13 +801,13 @@ protected void shadowChannel(String srcChannel, String destChannel, String destD
 initDocs();
 NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme[@channel='" + srcChannel + "']");
 Node tvNode = nu.getNodeByPath(refDoc, "/tv");
-   
+
    if(progs.getLength() < 1)
    {
       log.info("shadowChannel: no programmes found for channel '{}'", srcChannel);
       return;
    }
-   
+
    for(int i = 0; i <  progs.getLength(); i++)
    {
       Node prog = progs.item(i);
@@ -818,7 +816,7 @@ Node tvNode = nu.getNodeByPath(refDoc, "/tv");
       refDoc.adoptNode(newNode);
       tvNode.appendChild(newNode);
    }
-   
+
    Node destChanNode = nu.getNodeByPath(refDoc, "/tv/channel[@id='" + destChannel + "']");
    if(destChanNode == null)
    {
@@ -833,12 +831,12 @@ Node tvNode = nu.getNodeByPath(refDoc, "/tv");
       nu.setAttributeValue(newNode, "id", destChannel);
       Node disp = nu.getNodeByPath(newNode, "display-name"); // maybe need the text child node
       disp.setTextContent(destDisplayName);
-   
+
       refDoc.adoptNode(newNode);
    //   tvNode.appendChild(newNode); This inserts after the programme block, which might mess something up
       // Ideally new node should go at end of channel block or after the src channel but this is easier!
       tvNode.insertBefore(newNode, srcChanNode);
-   
+
    }
 }
 

@@ -3,13 +3,23 @@ package com.scu.xmltv;
 import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import javax.xml.transform.TransformerException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import com.scu.utils.NodeUtils;
 
 public class XMLTVutils
 {
@@ -153,5 +163,48 @@ private static final Pattern subtitPattern = Pattern.compile("^(?:\\.\\.\\.\\S.*
 	   }
 	   return Optional.ofNullable(subtitle);
 	}
+
+	protected static void filterProgrammes(Document doc, Pattern pat) throws TransformerException
+	{
+	   NodeUtils nu = NodeUtils.getNodeUtils();
+	   NodeList refchans = nu.getNodesByPath(doc, "/tv/channel");
+	   List<String> refchanids = new ArrayList<>();
+
+	   for(int idx=0 ; idx<refchans.getLength() ; idx++)
+	   {
+	      Node channel = refchans.item(idx);
+	      String chanId = nu.getAttributeValue(channel, "id");
+	      refchanids.add(chanId);
+	   }
+
+	   refchanids = refchanids.stream().filter(rc -> pat.matcher(rc).matches() ).collect(Collectors.toList());
+
+	   // Now remove programmes from ref doc for channel ids not in the filtered list
+	   NodeList progs = nu.getNodesByPath(doc, "/tv/programme");
+	   Node tvNode = nu.getNodeByPath(doc, "/tv");
+	   for(int i = 0; i <  progs.getLength(); i++)
+	   {
+	      Node refProg = progs.item(i);
+	      String progchan = nu.getAttributeValue(refProg, "channel");
+	      if( ! refchanids.contains(progchan))
+	      {
+	         log.debug("filterProgrammes: removing program: {}:{}", nu.getAttributeValue(refProg, "channel"),  nu.getNodeValue(refProg, "title"));
+	         tvNode.removeChild(refProg);
+	      }
+	   }
+
+	   // refDoc still contains the extra channels which should not appear in the channels list of the output document
+	   for(int i = 0; i <  refchans.getLength(); i++)
+	   {
+	      Node channel = refchans.item(i);
+	      String chanid = nu.getAttributeValue(channel, "id");
+	      if( ! refchanids.contains(chanid))
+	      {
+	         tvNode.removeChild(channel);
+	      }
+	   }
+
+	}
+
 
 }

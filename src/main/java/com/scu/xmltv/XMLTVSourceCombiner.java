@@ -233,17 +233,6 @@ protected void initDocs()
    {
       refDoc = nu.parseXML(refXMLTV);
       altDoc = nu.parseXML(altXMLTV);
-//      try
-//      {
-//         XmltvParser.parse(altXMLTV, altStore);
-//      }
-//      catch (FileNotFoundException | XmlTvParseException e)
-//      {
-//         // This means that there will be no combining with the alt file,
-//         // but at least a guide will continue to be produced
-//         log.warn("initDocs: failed to parse alt file: {}", altXMLTV.getAbsolutePath(), e);
-//      }
-
    }
 }
 
@@ -277,12 +266,12 @@ public void combineSource(String... fieldnames)
    {
       Node refProg = progs.item(i);
 
-      String progid = nu.getNodeValue(refProg, "title") + ":"
+      String progid = " :" + nu.getNodeValue(refProg, "title") + ":"
                     + nu.getAttributeValue(refProg, "start") + ":"
                     + nu.getAttributeValue(refProg, "channel");
 
       MDC.put("progid", progid); // Use MDC to avoid passing progid around just for logging purposes
-      log.debug("combineSource: processing {}", progid);
+      log.trace("combineSource: processing{}", progid);
 
 
       findAltNode(refProg).ifPresentOrElse(
@@ -361,52 +350,15 @@ protected void cleanProg(Node refProg)
 
 protected void filterProgrammes() throws TransformerException
 {
-   initDocs();  // so it can be tested
    Optional<Pattern> regex = getRegexFilter();
-   NodeList refchans = nu.getNodesByPath(refDoc, "/tv/channel");
-   List<String> refchanids = new ArrayList<>();
-
-   for(int idx=0 ; idx<refchans.getLength() ; idx++)
-   {
-      Node channel = refchans.item(idx);
-      String chanId = nu.getAttributeValue(channel, "id");
-      refchanids.add(chanId);
-   }
-
    if(!regex.isPresent())
    {
       return;
    }
-
    final Pattern pat =  regex.get();
-   refchanids = refchanids.stream().filter(rc -> pat.matcher(rc).matches() ).collect(Collectors.toList());
-
-
-   // Now remove programmes from ref doc for channel ids not in the filtered list
-   NodeList progs = nu.getNodesByPath(refDoc, "/tv/programme");
-   Node tvNode = nu.getNodeByPath(refDoc, "/tv");
-   for(int i = 0; i <  progs.getLength(); i++)
-   {
-      Node refProg = progs.item(i);
-      String progchan = nu.getAttributeValue(refProg, "channel");
-      if( ! refchanids.contains(progchan))
-      {
-         log.debug("filterProgrammes: removing program: {}:{}", nu.getAttributeValue(refProg, "channel"),  nu.getNodeValue(refProg, "title"));
-         tvNode.removeChild(refProg);
-      }
-   }
-
-   // refDoc still contains the extra channels which should not appear int he channels list of the output document
-   for(int i = 0; i <  refchans.getLength(); i++)
-   {
-      Node channel = refchans.item(i);
-      String chanid = nu.getAttributeValue(channel, "id");
-      if( ! refchanids.contains(chanid))
-      {
-         tvNode.removeChild(channel);
-      }
-   }
-
+   
+   initDocs();
+   XMLTVutils.filterProgrammes(refDoc, pat);
 }
 
 
@@ -684,8 +636,8 @@ private Optional<Node> findAltNode(Node refProg)
       {
          // This usually occurs because the data available for the last day of the range is not
          // always complete
-         log.debug("findAltProg: found different no. of occurrences of '{}' for {} {}: ref:{} alt:{}",
-               title, chanid, day, reftitles.size(), alttitles.size());
+         log.debug("findAltProg: found different no. of occurrences of '{}': ref:{} alt:{}",
+               title, reftitles.size(), alttitles.size());
       }
 
    }
@@ -753,7 +705,7 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames)
       Optional<Node> optAltFld = nu.getChildByName(altProg, fieldname); // safeGetNodeByPath(altProg, fieldname);
       if(! optAltFld.isPresent() )
       {
-         log.debug("copyFields: alternative has no field {}", fieldname);
+         log.trace("copyFields: alternative has no field {}", fieldname);
          continue;
       }
       Node altFld = optAltFld.get();
@@ -781,7 +733,7 @@ private void copyFields(Node refProg, Node altProg, String[] fieldnames)
       }
       else
       {
-         log.debug("copyFields: reference already contains field {}", fieldname);
+         log.trace("copyFields: reference already contains field {}", fieldname);
       }
    }
    suspendStopWatch(this.swcopyfields);

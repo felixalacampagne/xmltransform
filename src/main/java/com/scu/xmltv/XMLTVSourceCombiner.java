@@ -296,6 +296,8 @@ public void combineSource(String... fieldnames)
       cleanProg(refProg);
       extractMissingEpisodeInfo(refProg);
 
+      MDC.clear();
+
       int pcDone = ((i *100 ) / progcnt);
       if((pcDone != lastpcDone) && (pcDone % 5) == 0)
       {

@@ -3,6 +3,7 @@ package com.scu.xmltv;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -73,6 +74,30 @@ class XMLTVutilsTest
       zdt2 = XMLTVutils.getZDateFromXmltv(xmltvdt); 
       long unx2 = zdt2.toEpochSecond();
       assertEquals(unx1, unx2, "Check '015000 +0100' gives same Unix time as '031000 +0200' - 20mins");
+	}
+
+	@Test
+	void testSubtitleFromDesc()
+	{
+	   String desc;
+	   String expected;
+	   Optional<String> subtitle;
+
+	   expected = "Nice and simple subtitle";
+	   desc = expected + ": the rest of this is description";
+
+	   subtitle = XMLTVutils.getSubTitleFromDesc(desc);
+	   assertTrue(subtitle.isPresent());
+	   assertEquals(expected, subtitle.get());
+
+	   desc = "this is just random verbage. Somewhere they decide to randomly, without good reason plant: a list, or something";
+	   subtitle = XMLTVutils.getSubTitleFromDesc(desc);
+	   assertFalse(subtitle.isPresent());
+
+      desc = expected + ": this is just random verbage. Somewhere they decide to randomly, without good reason plant: a list, or something";
+      subtitle = XMLTVutils.getSubTitleFromDesc(desc);
+      assertTrue(subtitle.isPresent());
+      assertEquals(expected, subtitle.get());
 	}
 
 }

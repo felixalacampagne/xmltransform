@@ -4,7 +4,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.felixalacampagne</groupId>
    <artifactId>xmltransform</artifactId>
-   <version>0.17.8.0-RELEASE</version>
+   <version>0.17.9.0-RELEASE</version>
    <packaging>jar</packaging>
    <name>xmltransform</name>
    <description>Perform enhanced XSLT transforms</description>
@@ -14,7 +14,6 @@
       <java.version>17</java.version>
       <maven.compiler.target>${java.version}</maven.compiler.target>
       <maven.compiler.source>${java.version}</maven.compiler.source>   
-      <xmltv-to-mxf.version>0.0.5.1-FALC-RELEASE</xmltv-to-mxf.version>
    </properties>
 
    <build>
@@ -148,11 +147,6 @@
    </plugins>
 </build>
 <dependencies>
-   <dependency>
-      <groupId>com.dontocsata</groupId>
-      <artifactId>xmltv-to-mxf</artifactId>
-      <version>${xmltv-to-mxf.version}</version>
-   </dependency>   
    <dependency>
       <groupId>xalan</groupId>
       <artifactId>xalan</artifactId>

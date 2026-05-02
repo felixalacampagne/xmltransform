@@ -27,14 +27,16 @@ private static Logger log = LoggerFactory.getLogger(XMLTVutils.class);
 
 // This is intended to match something like:
 // Short episode title: rest of description bla bla bla blab alblalbladelbllblblba
-// Of course, as soon as I implemented this there were a rash of descriptions like:
-// Pure description with no subtitle. Somewhere, over the rainbow; they decided to plant a : just for the hell of it.bla bla bla blab alblalbladelbl
-// which results in ridiculously long episode sub-titles. No simple way to avoid this.
-// It seems that \S matches all punctuation so try to ignore ":" which come after other punctuation.
-// Might need to limit the number of characters before the ':' since sub-titles are usually quite short
-// (yes there will be exceptions but long texts are not displayed well in the media player UI)
-// Could also only look for a subtitle if there is epnum info.
-private static final Pattern subtitPattern = Pattern.compile("^(?:\\.\\.\\.\\S.*?: )?([\\w ]*?): ");
+// Of course, as soon as I implemented this there were a rash of descriptions which caused a problem.
+//  - continuation of the show title, usually preceeded by three dots and terminated with a :.
+//    This is what the first )non-capturing) group is trying to avoid.
+//  - random use of : in the description. No way to avoid this except by limiting the title length
+//  - punctuation in the title, hyphens, commas, single-quote or apostrophe are likely. Sentence terminators are tricky as they could result 
+//    in random, mid-description : being picked up, but exclamations and question marks are likely
+//
+// NB. \S matches all punctuation.
+//     - must be escaped in a character class, also ^ ] \ , but not ?
+private static final Pattern subtitPattern = Pattern.compile("^(?:\\.\\.\\.\\S.*?: )?([\\w \\-!?']*?): ");
 
    /**
     * SimpleDateFormat is too stupid to realise that not all of a date has been passed in,
